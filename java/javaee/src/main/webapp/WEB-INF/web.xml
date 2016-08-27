@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+   <!-- ================================================ -->
+   <!-- Web App                                          -->
+   <!-- ================================================ -->
+   <!--icon-->
+   <display-name>NumgameS</display-name>
+   <!--description-->
+   
+   <!-- ================================================ -->
+   <!-- Security                                         -->
+   <!-- ================================================ -->
+   <security-constraint>
+      <web-resource-collection>
+         <web-resource-name>RESULT</web-resource-name>
+         <url-pattern>/RESULT/*</url-pattern>
+      </web-resource-collection>
+      <auth-constraint><!--NONE--></auth-constraint>
+   </security-constraint>
+
+   <!-- ================================================ -->
+   <!-- Context Param                                    -->
+   <!-- ================================================ -->
+   <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/classes/spring.xml</param-value>
+   </context-param>
+
+   <!-- ================================================ -->
+   <!-- Listener                                         -->
+   <!-- ================================================ -->
+   <!-- Spring -->
+   <listener>
+      <listener-class>
+         org.springframework.web.context.ContextLoaderListener
+      </listener-class>
+   </listener>
+
+   <!-- ================================================ -->
+   <!-- Filter                                           -->
+   <!-- ================================================ -->
+   <!-- Spring Open Entity Manager In View Filter -->
+   <!--<filter>-->
+      <!--<filter-name>SpringOpenEntityManagerInViewFilter</filter-name>-->
+      <!--<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>-->
+   <!--</filter>-->
+   <!--<filter-mapping>-->
+      <!--<filter-name>SpringOpenEntityManagerInViewFilter</filter-name>-->
+      <!--<url-pattern>/*</url-pattern>-->
+   <!--</filter-mapping>-->
+
+   <!-- Struts2 -->
+   <filter>
+      <filter-name>struts2</filter-name>
+      <filter-class>
+         org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter
+      </filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>struts2</filter-name>
+      <url-pattern>/*</url-pattern>
+   </filter-mapping>
+
+   <!-- ================================================ -->
+   <!-- Servlet                                          -->
+   <!-- ================================================ -->
+
+   <!-- ================================================ -->
+   <!-- Config                                           -->
+   <!-- ================================================ -->
+   <!-- Session Config -->
+   <session-config>
+      <session-timeout>15</session-timeout>
+   </session-config>
+
+   <!-- Mime Mapping -->
+
+   <!-- Welcome File List -->
+   <welcome-file-list>
+      <welcome-file>/home</welcome-file>
+   </welcome-file-list>
+   
+   <!-- Error Page -->
+   <error-page>
+      <error-code>403</error-code>
+      <location>/403.html</location>
+   </error-page>
+   <error-page>
+      <error-code>404</error-code>
+      <location>/404.html</location>
+   </error-page>
+
+</web-app>

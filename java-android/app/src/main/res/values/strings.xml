@@ -1,0 +1,9 @@
+<resources>
+
+   <string name="app_name">RrDemo-Java-Android</string>
+
+   <string name="title_activity_jumped">Jumped Activity</string>
+   <string name="title_activity_jumper">Jumper Activity</string>
+   <string name="title_activity_lifecycle">Lifecycle Activity</string>
+
+</resources>

@@ -1,0 +1,22 @@
+/* ************************************************************************//*!
+ * \file
+ * \author zhengrr
+ * \date 2016-8-3
+ * \copyright The MIT License
+ ******************************************************************************/
+
+#ifndef HENTAIKIT__CONFIG_HPP
+#define HENTAIKIT__CONFIG_HPP
+
+namespace hentaikit {
+
+static constexpr char *const HENTAIKIT_NAME {"@pnom@"};
+static constexpr char *const HENTAIKIT_VERSION {"@pver@"};
+static constexpr int HENTAIKIT_VERMJR {@pvermjr@};
+static constexpr int HENTAIKIT_VERMIN {@pvermin@};
+static constexpr int HENTAIKIT_VERPCH {@pverpch@};
+static constexpr int HENTAIKIT_VERTWK {@pvertwk@};
+
+}  // namespace hentaikit
+
+#endif  // HENTAIKIT__CONFIG_HPP

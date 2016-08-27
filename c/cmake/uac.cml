@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# \sa [LINK_FLAGS — CMake 3.5.0 Documentation](
+#        http://cmake.org/cmake/help/v3.5/prop_tgt/LINK_FLAGS.html)
+# \sa [Embeds UAC information in manifest](
+#        http://msdn.microsoft.com/library/bb384691.aspx)
+#-----------------------------------------------------------
+option(${PROJECT_NAME}_ENABLE_UAC_REQADMIN
+          "Enable UAC 'requireAdministrator' (requires MSVC)." OFF)
+if(${PROJECT_NAME}_ENABLE_UAC_REQADMIN)
+   if(NOT MSVC)
+      message(FATAL_ERROR "Visual Studio is needed "
+                             "to enable UAC 'requireAdministrator'.")
+   endif()
+   if(MSVC_VERSION LESS 1600)  # 2010 (10.0)
+      string(CONCAT ${PROJECT_NAME}_LINK_FLAGS ${${PROJECT_NAME}_LINK_FLAGS}
+                " /MANIFESTUAC:level='requireAdministrator' "
+                " /MANIFESTUAC:uiAccess='false' ")
+   else()
+      string(CONCAT ${PROJECT_NAME}_LINK_FLAGS ${${PROJECT_NAME}_LINK_FLAGS}
+                " /level='requireAdministrator' "
+                " /uiAccess='false' ")
+   endif()
+   set_target_properties(${PROJECT_NAME} PROPERTIES
+                            LINK_FLAGS ${${PROJECT_NAME}_LINK_FLAGS})
+endif()

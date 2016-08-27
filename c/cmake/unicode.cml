@@ -1,0 +1,7 @@
+#---------------------------------------
+# \sa [add_definitions — CMake 3.5.0 Documentation](
+#        http://cmake.org/cmake/help/v3.5/command/add_definitions.html)
+#---------------------------------------
+if(MSVC)
+   add_definitions("-DUNICODE" "-D_UNICODE")
+endif()

@@ -1,0 +1,18 @@
+/* ************************************************************************//*!
+ * \file
+ * \author zhengrr
+ * \date 2016-8-3
+ * \copyright The MIT License
+ ******************************************************************************/
+
+#ifndef LOGIC01134__CONFIG_H
+#define LOGIC01134__CONFIG_H
+
+static const char *const LOGIC01134_NOM = "@pnom@";
+static const char *const LOGIC01134_VER = "@pver@";
+static const int LOGIC01134_VERMJR = @pvermjr@;
+static const int LOGIC01134_VERMIN = @pvermin@;
+static const int LOGIC01134_VERPCH = @pverpch@;
+static const int LOGIC01134_VERTWK = @pvertwk@;
+
+#endif  /* LOGIC01134__CONFIG_H */

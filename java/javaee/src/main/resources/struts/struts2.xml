@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+      "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+      "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+   <!-- ================================================ -->
+   <!-- struts2 package                                  -->
+   <!-- ================================================ -->
+   <package name="struts2" namespace="/struts2" extends="default">
+
+      <interceptors>
+         <!-- Head Of Default Stack-->
+         <interceptor-stack name="headStruts2Stack">
+            <interceptor-ref name="headStack"/>
+            <interceptor-ref name="checkInput"/>
+         </interceptor-stack>
+         <interceptor-stack name="tailStruts2Stack">
+            <interceptor-ref name="tailStack"/>
+         </interceptor-stack>
+         <interceptor-stack name="struts2Stack">
+            <interceptor-ref name="headStruts2Stack"/>
+            <interceptor-ref name="tailStruts2Stack"/>
+         </interceptor-stack>
+      </interceptors>
+      <default-interceptor-ref name="struts2Stack"/>
+
+      <!-- Action Configuration -->
+      <action name="action_cfg" class="numgames.ptl.struts2.ActionCfg">
+         <result name="success">/RESULT/struts2/action_cfg.html</result>
+         <result name="none">/RESULT/struts2/action_cfg.html</result>
+         <result name="input">/RESULT/struts2/action_cfg.html</result>
+      </action>
+
+      <!-- Action Annotation -->
+      <!-- null -->
+
+      <!-- Action Convention -->
+      <!-- null -->
+
+   </package>
+
+</struts>

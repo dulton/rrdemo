@@ -1,0 +1,42 @@
+<version>
+   Added: ...
+   Improved: ...
+   Updated: ...
+   Fixed: ...
+
+############################################################
+# BldVer  | RelVer | Note
+# --------| -------| ----
+# 0       |        | Product/Project Start Up:
+# |.1     |        | +--Iteration:
+# | |.1   |        | |  +--Task:
+# | | |.a |        | |  |  +--Developing
+# | | `.z | 0.1d   | |  |  `--Developed
+# | |.2.z | 0.1d2  | |  +--Task
+# | `.3.z | 0.1p   | |  `--Build Task (Pre-Alpha, Nightly Builds)
+# `.2     |        | `--Iteration:
+#   |.1.z | 0.2d   |    +--Task
+#   `.2.z | 0.2p   |    `--Build Task
+# 1       |        | Product/Project Release:
+# |.0     |        | +--Iteration:
+# | |.1.z | 1.0a   | |  +--Task (Alpha)
+# | |.2.z | 1.0a2  | |  +--Task
+# | |.3.z | 1.0b   | |  +--Task (Beta)
+# | |.4.z | 1.0b2  | |  +--Task
+# | |.5.z | 1.0rc  | |  +--Task (Release Candidate)
+# | |.6.z | 1.0rc2 | |  +--Task
+# | `.7.z | 1.0    | |  `--Task (General Availability)
+# `.1     |        | `--Iteration:
+#   |.1.z | 1.1d   |    +--Task
+#   |.2.z | 1.1p   |    |--Task
+#   |.3.z | 1.1a   |    |--Task
+#   |.4.z | 1.1b   |    |--Task
+#   |.5.z | 1.1rc  |    |--Task
+#   `.6.z | 1.1    |    `--Task
+# 2       |        | Product/Project Refactoring:
+# `.0 \   |        | `--Iteration:
+#   `.1.z | 2.0a   |    `--Task (Alpha)
+#    also | 2.0b   |       also (Beta)
+#    also | 2.0rc  |       also (Release Candidate)
+#    also | 2.0    |       also (General Availability)
+############################################################
