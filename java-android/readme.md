@@ -4,6 +4,7 @@
 - [*Android Developers*](http://developer.android.com/)
     - [*Training*](http://developer.android.com/training)
     - [*API Guides*](http://developer.android.com/guide)
+    - [*Samples*](http://developer.android.com/samples)
 - [*Android Developers Blog*](http://android-developers.blogspot.com/)
 - [*Android in Stack Overflow*](http://stackoverflow.com/tags/android)
 

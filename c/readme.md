@@ -1,4 +1,4 @@
-# RRDemo-C
+# RrDemo-C
 - 1978, **K&R C**, *The C Programming Language* by Brian Kernighan & Dennis Ritchie.
 - 1990, **C90**, [*ISO/IEC 9899:1990*](http://iso.org/iso/catalogue_detail.htm?csnumber=17782).
 - 1999, **C99**, [*ISO/IEC 9899:1999*](http://iso.org/iso/catalogue_detail.htm?csnumber=29237).
