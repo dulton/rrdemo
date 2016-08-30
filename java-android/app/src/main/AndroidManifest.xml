@@ -18,16 +18,18 @@
       <activity
          android:name=".LifecycleActivity"
          android:label="@string/title_activity_lifecycle"
-         android:theme="@style/AppTheme.NoActionBar">
-      </activity>
+         android:theme="@style/AppTheme.NoActionBar"/>
       <activity
          android:name=".JumperActivity"
          android:label="@string/title_activity_jumper"
-         android:theme="@style/AppTheme.NoActionBar">
-      </activity>
+         android:theme="@style/AppTheme.NoActionBar"/>
       <activity
          android:name=".JumpedActivity"
          android:label="@string/title_activity_jumped"
+         android:theme="@style/AppTheme.NoActionBar"/>
+      <activity
+         android:name=".TestActivity"
+         android:label="@string/title_activity_test"
          android:theme="@style/AppTheme.NoActionBar">
       </activity>
    </application>

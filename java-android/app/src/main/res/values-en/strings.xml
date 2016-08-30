@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+   <string name="title_activity_jumped">Jumped Activity</string>
+   <string name="title_activity_jumper">Jumper Activity</string>
+   <string name="title_activity_lifecycle">Lifecycle Activity</string>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="title_activity_jumped">Jumped 活动</string>
+   <string name="title_activity_jumper">Jumper 活动</string>
+   <string name="title_activity_lifecycle">Lifecycle 活动</string>
+   <string name="jump_to_jumped_activity">跳转到Jumped活动</string>
+</resources>

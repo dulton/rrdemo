@@ -1,9 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+   <!-- Title -->
    <string name="app_name">RrDemo-Java-Android</string>
-
    <string name="title_activity_jumped">Jumped Activity</string>
    <string name="title_activity_jumper">Jumper Activity</string>
    <string name="title_activity_lifecycle">Lifecycle Activity</string>
-
+   <string name="jump_to_jumped_activity">Jump to Jumped Activity</string>
+   <string name="jump_to_jumper_activity">Jump to Jumper Activity</string>
+   <string name="jump_to_lifecycle_activity">Jump to Lifecycle Activity</string>
+   <string name="uninit">Uninitialized</string>
+   <!-- Text -->
+   <string name="please_enter_something">Please enter something.</string>
+   <string name="title_activity_test">TestActivity</string>
+   <string name="action_settings">Settings</string>
 </resources>

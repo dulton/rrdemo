@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-   <string name="jump_to_jumped_activity">Jump to Jumped Activity</string>
-   <string name="jump_to_jumper_activity">Jump to Jumper Activity</string>
-   <string name="jump_to_lifecycle_activity">Jump to Lifecycle Activity</string>
-
-</resources>
