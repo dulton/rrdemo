@@ -1,4 +1,4 @@
-# RrDemo-Java-Android
+# RrDemo: Java: Android
 
 ## [*Android*](http://android.com/)
 - [*Android Developers*](http://developer.android.com/)

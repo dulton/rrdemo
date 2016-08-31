@@ -1,42 +1,32 @@
 #-------------------------------------------------------------------------------
-#       @@@o  @@@o  @@@@o                            *o@@@
-#      @@ @@ @@ @@ @@ o@o                           @@o
-#     @@ @@ @@ @@ @@  @@ o@@@* @*@*@@* *@@@*       @@
-#    @@ @@ @@ @@ @@  @@ @@ @@ @@@@@@@ @@ @@ @@@@@ @@
-#   @@@@* @@@@* @@  @@ @@@@@ @@ @ @@ @@ @@       @@
-#  @@ @@ @@ @@ @@ o@o @@    @@ @ @@ @@ @@       @@o
-# @@ @@ @@ @@ @@@@o  *@@@@ @@ @ @@ *@@@*       *o@@@
+# RrDemo-C
 #-------------------------------------------------------------------------------
 # \author zhengrr
-# \date 2016-6-28 ~ 8-4
+# \date 2016-6-28 ~ 8-31
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.0)
-project("RRDemo-C"  VERSION 0.0.0.0  LANGUAGES C)
+project("RrDemo-C"  VERSION 0.0.0.0  LANGUAGES C)
 
-# Some global variables in product
-set(PNOM ${PROJECT_NAME})              # product name
-string(TOUPPER ${PROJECT_NAME} PUPR)   # product name upper
-string(TOLOWER ${PROJECT_NAME} PLWR)   # product name lower
-set(PSRC ${PROJECT_SOURCE_DIR})        # product source dir
-set(PBIN ${PROJECT_BINARY_DIR})        # product binary dir
-set(PVER ${PROJECT_VERSION})           # product version
-set(PVERMJR ${PROJECT_VERSION_MAJOR})  # product version major
-set(PVERMIN ${PROJECT_VERSION_MINOR})  # product version minor
-set(PVERPCH ${PROJECT_VERSION_PATCH})  # product version patch
-set(PVERTWK ${PROJECT_VERSION_TWEAK})  # product version tweak
+set(PRODUCT_NAME ${PROJECT_NAME})
+string(TOUPPER ${PROJECT_NAME} PRODUCT_NAME_UPPER)
+string(TOLOWER ${PROJECT_NAME} PRODUCT_NAME_LOWER)
+set(PRODUCT_SOURCE_DIR ${PROJECT_SOURCE_DIR})
+set(PRODUCT_BINARY_DIR ${PROJECT_BINARY_DIR})
+set(PRODUCT_VERSION ${PROJECT_VERSION})
+set(PRODUCT_VERSION_MAJRO ${PROJECT_VERSION_MAJOR})
+set(PRODUCT_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(PRODUCT_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+set(PRODUCT_VERSION_TWEAK ${PROJECT_VERSION_TWEAK})
 
-list(APPEND CMAKE_MODULE_PATH "${PSRC}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${PRODUCT_SOURCE_DIR}/cmake")
 include("compile_helpers")
 include("source_helpers")
 
-message(STATUS ${CMAKE_CXX_FLAGS})
-
 add_subdirectory("deps")
-add_subdirectory("langc")
-add_subdirectory("logic01134")
+add_subdirectory("demolib")
+add_subdirectory("demoexe")
 add_subdirectory("spls")
-
 install(DIRECTORY "docs"  DESTINATION ".")
 install(DIRECTORY "spls"  DESTINATION ".")
 install(FILES "license.txt"  DESTINATION ".")
