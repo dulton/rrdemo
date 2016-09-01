@@ -6,7 +6,7 @@
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.0)
-project("DemoLib"  VERSION 0.0.0.0  LANGUAGES C)
+project("RrDemo-C-DemoLib"  VERSION 0.0.0.0  LANGUAGES C)
 
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)

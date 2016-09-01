@@ -1,15 +1,15 @@
 #-------------------------------------------------------------------------------
-# rrdemo-c/logic01134/src
+# RrDemo-C/DemoExe/src
 #-------------------------------------------------------------------------------
 # SRC
 source_helper(GENERATE RECURSE C
-              SRCVAR ${pupr}_SRC)
+              SRCVAR ${PROJECT_NAME_UPPER}_SRC)
 
 # EXE
-option(${pupr}_COMPILE_EXE "Build executable." ON)
-if(${pupr}_COMPILE_EXE)
-   add_executable(${plwr}_exe ${${pupr}_SRC})
-   set_target_properties(${plwr}_exe PROPERTIES
-                         OUTPUT_NAME "${pnom}"  CLEAN_DIRECT_OUTPUT ON)
-   install(TARGETS ${plwr}_exe  DESTINATION "bin")
+option(${PROJECT_NAME_UPPER}_COMPILE_EXE "Build executable." ON)
+if(${PROJECT_NAME_UPPER}_COMPILE_EXE)
+   add_executable(${PROJECT_NAME_LOWER}_exe ${${PROJECT_NAME_UPPER}_SRC})
+   set_target_properties(${PROJECT_NAME_LOWER}_exe PROPERTIES
+                         OUTPUT_NAME "${PROJECT_NAME}"  CLEAN_DIRECT_OUTPUT ON)
+   install(TARGETS ${PROJECT_NAME_LOWER}_exe  DESTINATION "bin")
 endif()

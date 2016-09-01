@@ -9,11 +9,11 @@
 
 #include <inttypes.h>
 
-static const char *const DEMOLIB_NAME = "@PROJECT_NAME@";
-static const char *const DEMOLIB_VERSION = "@PROJECT_VERSION@";
-static const intmax_t DEMOLIB_VERSION_MAJOR = (intmax_t)@PROJECT_VERSION_MAJOR@;
-static const intmax_t DEMOLIB_VERSION_MINOR = (intmax_t)@PROJECT_VERSION_MINOR@;
-static const intmax_t DEMOLIB_VERSION_PATCH = (intmax_t)@PROJECT_VERSION_PATCH@;
-static const intmax_t DEMOLIB_VERSION_TWEAK = (intmax_t)@PROJECT_VERSION_TWEAK@;
+static const char *const RRDEMO_C_DEMOLIB_NAME = "@PROJECT_NAME@";
+static const char *const RRDEMO_C_DEMOLIB_VERSION = "@PROJECT_VERSION@";
+static const intmax_t RRDEMO_C_DEMOLIB_VERSION_MAJOR = (intmax_t)@PROJECT_VERSION_MAJOR@;
+static const intmax_t RRDEMO_C_DEMOLIB_VERSION_MINOR = (intmax_t)@PROJECT_VERSION_MINOR@;
+static const intmax_t RRDEMO_C_DEMOLIB_VERSION_PATCH = (intmax_t)@PROJECT_VERSION_PATCH@;
+static const intmax_t RRDEMO_C_DEMOLIB_VERSION_TWEAK = (intmax_t)@PROJECT_VERSION_TWEAK@;
 
 #endif  /* RRDEMO_C_DEMOLIB_CONFIG_H */

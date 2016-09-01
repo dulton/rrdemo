@@ -8,6 +8,8 @@
 - [*C Reference*](http://cppreference.com/w/c)
 - [*Awesome C/C++*](http://github.com/fffaraz/awesome-cpp)
 
+## [*CMake*](http://cmake.org/)
+
 ## Books
 - King, K. N. (2008). [*C Programming: A Modern Approach, 2nd Ed.*](http://knking.com/books/c2/). W. W. Norton & Company.
 - Plauger, P. J. (1992). *The Standard C Library*. Prentice Hall.
@@ -15,6 +17,5 @@
 - Hanson, D. R. (1996). [*C Interfaces and Implementations: Techniques for Creating Reusable Software*](http://github.com/drh/cii). Addison-Wesley Professional.
 
 ## Tools
-- [*CMake*](http://cmake.org/)
 - [*Doxygen*](http://doxygen.org/)
 - [*Visual Studio*](http://visualstudio.com/)
