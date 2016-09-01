@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# RrDemo-C/DemoLib/doxygen
+# RrDemo-C-Lib/doxygen
 #-------------------------------------------------------------------------------
 find_package(Doxygen)
 option(${PROJECT_NAME_UPPER}_GEN_API_DOC

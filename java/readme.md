@@ -1,4 +1,4 @@
-# RrDemo: Java
+# RrDemo-Java
 
 ## [*Java*](http://java.com/)
 - [*Java Developers*](http://oracle.com/technetwork/java)
@@ -16,6 +16,6 @@
     - [*Gradle API*](http://docs.gradle.org/current/javadoc)
 
 ## Books
-- Walls, C.. (2014). [*Spring in Action, Fourth Edition*](http://manning.com/books/spring-in-action-fourth-edition). Dreamtech Press.
+- Eckel, B. (2006). [*Thinking in Java, 4th Edition*](http://mindviewinc.com/Books/TIJ4). Prentice Hall Professional.
+- Walls, C. (2014). [*Spring in Action, 4th Edition*](http://manning.com/books/spring-in-action-fourth-edition). Dreamtech Press.
 - Brown, D., Davis, C. M., & Stanlick, S. (2008). [*Struts 2 in Action*](http://manning.com/books/struts-2-in-action). Dreamtech Press.
-

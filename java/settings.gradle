@@ -1,2 +1,19 @@
-rootProject.name = 'java'
+rootProject.name = "RrDemo-Java"
 
+include 'RrDemo-Java-JavaSE'
+project(":RrDemo-Java-JavaSE").projectDir = file("demojavase")
+
+include 'RrDemo-Java-JavaEE'
+project(":RrDemo-Java-JavaEE").projectDir = file("demojavaee")
+
+include 'RrDemo-Java-JavaME'
+project(":RrDemo-Java-JavaME").projectDir = file("demojavame")
+
+include 'RrDemo-Groovy'
+project(":RrDemo-Groovy").projectDir = file("tpgroovy")
+
+include 'RrDemo-Kotlin'
+project(":RrDemo-Kotlin").projectDir = file("tpkotlin")
+
+include 'RrDemo-Scala'
+project(":RrDemo-Scala").projectDir = file("tpscala")

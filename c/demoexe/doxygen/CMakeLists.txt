@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# RrDemo-C/DemoExe/doxygen
+# RrDemo-C-Exe/doxygen
 #-------------------------------------------------------------------------------
 find_package(Doxygen)
 option(${PROJECT_NAME_UPPER}_GEN_DEV_DOC
