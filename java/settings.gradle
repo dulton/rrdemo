@@ -1,5 +1,6 @@
 rootProject.name = "RrDemo-Java"
 
+/* Java */
 include 'RrDemo-Java-JavaSE'
 project(":RrDemo-Java-JavaSE").projectDir = file("demojavase")
 
@@ -9,6 +10,20 @@ project(":RrDemo-Java-JavaEE").projectDir = file("demojavaee")
 include 'RrDemo-Java-JavaME'
 project(":RrDemo-Java-JavaME").projectDir = file("demojavame")
 
+/* Third-Party Libraries */
+include 'RrDemo-Hibernate'
+project(":RrDemo-Hibernate").projectDir = file("tphibernate")
+
+include 'RrDemo-JUnit'
+project(":RrDemo-JUnit").projectDir = file("tpjunit")
+
+include 'RrDemo-Spring'
+project(":RrDemo-Spring").projectDir = file("tpspring")
+
+include 'RrDemo-Struts2'
+project(":RrDemo-Struts2").projectDir = file("tpstruts2")
+
+/* Third-Party Languages */
 include 'RrDemo-Groovy'
 project(":RrDemo-Groovy").projectDir = file("tpgroovy")
 
@@ -17,3 +32,7 @@ project(":RrDemo-Kotlin").projectDir = file("tpkotlin")
 
 include 'RrDemo-Scala'
 project(":RrDemo-Scala").projectDir = file("tpscala")
+
+/* Games */
+include 'RrDemo-RrLegend'
+project(":RrDemo-RrLegend").projectDir = file("rrlegend")

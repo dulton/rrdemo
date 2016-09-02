@@ -3,6 +3,7 @@
 ## [*Java*](http://java.com/)
 - [*Java Developers*](http://oracle.com/technetwork/java)
     - [*Java SE*](http://oracle.com/technetwork/java/javase)
+        - [*Java SE Documentation*](http://docs.oracle.com/javase)
     - [*Java EE*](http://oracle.com/technetwork/java/javaee)
         - [*Java Servlet*](http://oracle.com/technetwork/java/javaee/servlet)
         - [*JavaServer Pages*](http://oracle.com/technetwork/java/javaee/jsp)

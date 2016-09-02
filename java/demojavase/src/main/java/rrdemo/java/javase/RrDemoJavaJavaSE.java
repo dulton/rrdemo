@@ -1,7 +1,7 @@
 package rrdemo.java.javase;
 
 /**
- * RrDemo-Java-JavaSE.
+ * Application static util.
  *
  * @author zhengrr
  * @version 2016-9-1
