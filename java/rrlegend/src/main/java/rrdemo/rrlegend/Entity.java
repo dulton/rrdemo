@@ -1,23 +1,26 @@
 package rrdemo.rrlegend;
 
+import rrdemo.rrlegend.rrdemo.rrlegend.underlying.Position;
+
 /**
  * 实体.
  *
  * @author zhengrr
  * @since 2016-9-2
  */
-public class Entity {
+class Entity {
+
    /**
     * 位置.
     */
-   private Position position;
+   private Position pos;
 
-   public Position getPosition() {
-      return position;
+   public Position getPos() {
+      return pos;
    }
 
-   public void setPosition(Position position) {
-      this.position = position;
+   public void setPos(Position pos) {
+      this.pos = pos;
    }
 
 }
