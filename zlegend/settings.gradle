@@ -1,10 +1,8 @@
 rootProject.name = "RrDemo-Java"
 
-// lang
 include 'RrDemo-Java-Language'
 project(":RrDemo-Java-Language").projectDir = file("lang")
 
-// third-party
 include 'RrDemo-Java-Hibernate'
 project(":RrDemo-Java-Hibernate").projectDir = file("hibernate")
 
@@ -16,3 +14,6 @@ project(":RrDemo-Java-Spring").projectDir = file("spring")
 
 include 'RrDemo-Java-Struts2'
 project(":RrDemo-Java-Struts2").projectDir = file("struts2")
+
+include 'RrDemo-RrLegend'
+project(":RrDemo-RrLegend").projectDir = file("rrlegend")

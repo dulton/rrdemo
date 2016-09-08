@@ -1,38 +1,42 @@
 #-----------------------------------------------------------
-# C++.gitignore template, see http://github.com/github/gitignore/blob/master/C++.gitignore
+# C.gitignore template, see http://github.com/github/gitignore/blob/master/C.gitignore
 #-----------------------------------------------------------
 # Prerequisites
 *.d
 
-# Compiled Object files
-*.slo
-*.lo
+# Object files
 *.o
+*.ko
 *.obj
+*.elf
 
 # Precompiled Headers
 *.gch
 *.pch
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+# Libraries
 *.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
 
 # Executables
 *.exe
 *.out
 *.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
 
 #-----------------------------------------------------------
 # CMake.gitignore template, see http://github.com/github/gitignore/blob/master/CMake.gitignore

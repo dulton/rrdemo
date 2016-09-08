@@ -8,14 +8,15 @@
 - [*C Reference*](http://cppreference.com/w/c)
 - [*Awesome C/C++*](http://github.com/fffaraz/awesome-cpp)
 
+## [*Doxygen*](http://doxygen.org/)
+
 ## [*CMake*](http://cmake.org/)
 
-## Books
-- King, K. N. (2008). [*C Programming: A Modern Approach, 2nd Ed.*](http://knking.com/books/c2/). W. W. Norton & Company.
-- Plauger, P. J. (1992). *The Standard C Library*. Prentice Hall.
-- Roberts, E. S. (1989). [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf).
-- Hanson, D. R. (1996). [*C Interfaces and Implementations: Techniques for Creating Reusable Software*](http://github.com/drh/cii). Addison-Wesley Professional.
+## *Visual Studio*
+见于RrDemo-C++.
 
-## Tools
-- [*Doxygen*](http://doxygen.org/)
-- [*Visual Studio*](http://visualstudio.com/)
+## 书籍
+- Hanson, D. R. (1996). [*C Interfaces and Implementations: Techniques for Creating Reusable Software*](http://github.com/drh/cii). Addison-Wesley Professional.
+- King, K. N. (2008). [*C Programming: A Modern Approach, 2nd Ed.*](http://knking.com/books/c2/). W. W. Norton & Company.
+- Roberts, E. S. (1989). [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf).
+- Plauger, P. J. (1992). *The Standard C Library*. Prentice Hall.
