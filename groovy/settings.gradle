@@ -1,0 +1,5 @@
+rootProject.name = "RrDemo-Groovy"
+
+// lang
+include 'RrDemo-Groovy-Language'
+project(":RrDemo-Groovy-Language").projectDir = file("lang")

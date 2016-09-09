@@ -1,6 +1,4 @@
-# RrDemo-Java
-
-## [*Java*](http://java.com/)
+# RrDemo-[*Java*](http://java.com/)
 - [*The Java™ Tutorials*](http://docs.oracle.com/javase/tutorial)
 - [*Java Developers*](http://oracle.com/technetwork/java)
     - [*Java SE*](http://oracle.com/technetwork/java/javase)
@@ -9,13 +7,8 @@
         - [*Java Servlet*](http://oracle.com/technetwork/java/javaee/servlet)
         - [*JavaServer Pages*](http://oracle.com/technetwork/java/javaee/jsp)
     - [*Java ME*](http://oracle.com/technetwork/java/javame)
-- [*Java in Stack Overflow*](http://stackoverflow.com/tags/java)
+- [Java in *Stack Overflow*](http://stackoverflow.com/tags/java)
+- Eckel, B. (2006). [*Thinking in Java, 4th Edition*](http://mindviewinc.com/Books/TIJ4). Prentice Hall Professional.
 
 ## [*Gradle*](http://gradle.org/)
-- [*Gradle Docs*](http://docs.gradle.org/)
-    - [*Gradle User Guide*](http://docs.gradle.org/current/userguide)
-    - [*Gradle Build Language Reference*](http://docs.gradle.org/current/dsl)
-    - [*Gradle API*](http://docs.gradle.org/current/javadoc)
-
-## 书籍
-- Eckel, B. (2006). [*Thinking in Java, 4th Edition*](http://mindviewinc.com/Books/TIJ4). Prentice Hall Professional.
+See [*RrDemo-Groovy*](http://github.com/afoolsbag/rrdemo/blob/master/groovy).

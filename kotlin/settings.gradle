@@ -1,0 +1,5 @@
+rootProject.name = "RrDemo-Kotlin"
+
+// lang
+include 'RrDemo-Kotlin-Language'
+project(":RrDemo-Kotlin-Language").projectDir = file("lang")
