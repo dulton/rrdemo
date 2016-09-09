@@ -13,10 +13,9 @@ package rrdemo.java.lang.access;
  * 包(中)的访问控制权限.
  *
  * @author zhengrr
- * @see <a href="http://docs.oracle.com/javase/tutorial/java/package">
- * Packages</a>
+ * @see <a href="http://docs.oracle.com/javase/tutorial/java/package"> The Java™
+ * Tutorials - Packages</a>
  * @since 2016-9-8
  */
 public class Package {
-
 }

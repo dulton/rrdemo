@@ -7,4 +7,13 @@ package rrdemo.java.lang.access;
  * @since 2016-9-8
  */
 public class Class {
+   /**
+    * 私有字段.
+    */
+   private Object obj;
+
+   /**
+    * 私有方法.
+    */
+   private /*final*/ void method() { }
 }
