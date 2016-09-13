@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="button_call_activity_with_extra_data">带额外数据调用活动</string>
+   <string name="button_on_click_by_attribute">通过属性设定点击响应</string>
+   <string name="button_send">发送</string>
+
+   <string name="edit_data">输入数据</string>
+   <string name="edit_message">输入消息</string>
+</resources>

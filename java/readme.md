@@ -9,6 +9,7 @@
     - [*Java ME*](http://oracle.com/technetwork/java/javame)
 - [Java in *Stack Overflow*](http://stackoverflow.com/tags/java)
 - Eckel, B. (2006). [*Thinking in Java, 4th Edition*](http://mindviewinc.com/Books/TIJ4). Prentice Hall Professional.
+- *Effective Java*
 
 ## *Gradle*
 See [*RrDemo-Groovy*](http://github.com/afoolsbag/rrdemo/blob/master/groovy/readme.md#gradle).

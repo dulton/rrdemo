@@ -1,5 +1,5 @@
-# RrDemo-[*Git*](http://git-scm.com/)
-- [*GitHub*](http://github.org/)
+# [*Git*](http://git-scm.com/) & [*GitHub*](http://github.org/)
+- [*How to Write a Git Commit Message*](http://chris.beams.io/posts/git-commit/)
 
 ## Do / Undo
 ```

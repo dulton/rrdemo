@@ -1,1 +1,1 @@
-# RrDemo-[*Vim*](http://vim.org/)
+# [*Vim*](http://vim.org/)

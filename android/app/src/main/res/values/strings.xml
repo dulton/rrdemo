@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="app_name" translatable="false">RrDemo-Android</string>
+
+   <string name="button_call_activity_with_extra_data">Call Activity With Extra Data</string>
+   <string name="button_on_click_by_attribute">On Click by Attribute</string>
+   <string name="button_send">Send</string>
+
+   <string name="edit_data">Enter data</string>
+   <string name="edit_message">Enter a message</string>
+
+   <!-- TODO: Remove or change this placeholder text -->
+   <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
