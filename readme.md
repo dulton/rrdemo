@@ -7,16 +7,5 @@
     - Levine, J. R. (1999). [*Linkers and Loaders*](http://linker.iecc.com/). Morgan-Kauffman.
     - 俞甲子, 石凡, 潘爱民 (2009). 程序员的自我修养：连接、装载与库. 北京:电子工业出版社.
 
-## Dictionary
-- [*The Free Dictionary*](http://thefreedictionary.com/)
-- English
-    - [*Abbreviations.com*](http://abbreviations.com/)
-    - [*Dictionary.com*](http://dictionary.com/) & [*Thesaurus.com*](http://thesaurus.com/)
-    - [*Cambridge*](http://dictionary.cambridge.org/)
-    - [*Longman*](http://ldoceonline.com/)
-    - [*Oxford*](http://oxforddictionaries.com/)
-    - [*Merriam-Webster*](http://merriam-webster.com/)
-
 ## License
 - [*The MIT License*](http://opensource.org/licenses/MIT)
-
