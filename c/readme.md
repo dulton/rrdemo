@@ -1,6 +1,6 @@
 # RrDemo-C
 
-## [C] ([90](http://iso.org/iso/catalogue_detail.htm?csnumber=17782 "ISO/IEC 9899:1990"), [99](http://iso.org/iso/catalogue_detail.htm?csnumber=29237 "ISO/IEC 9899:1999"), [11](http://iso.org/iso/catalogue_detail.htm?csnumber=57853 "ISO/IEC 9899:2011"))
+## C<sub> [90](http://iso.org/iso/catalogue_detail.htm?csnumber=17782 "ISO/IEC 9899:1990") [99](http://iso.org/iso/catalogue_detail.htm?csnumber=29237 "ISO/IEC 9899:1999") [11](http://iso.org/iso/catalogue_detail.htm?csnumber=57853 "ISO/IEC 9899:2011")</sub>
 **References**
 - [*C Reference*](http://cppreference.com/w/c) (or [*DevDocs*](http://devdocs.io/c))
 
