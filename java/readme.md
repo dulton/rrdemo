@@ -1,4 +1,6 @@
-# RrDemo-[*Java*](http://java.com/)
+# RrDemo-Java
+
+## [*Java*](http://java.com/)
 - [*The Java™ Tutorials*](http://docs.oracle.com/javase/tutorial)
 - [*Java Developers*](http://oracle.com/technetwork/java)
     - [*Java SE*](http://oracle.com/technetwork/java/javase)
@@ -21,3 +23,6 @@
 
 ## *Gradle*
 See [*RrDemo-Groovy: Gradle*](http://github.com/afoolsbag/rrdemo/blob/master/groovy/readme.md#gradle).
+
+## [*IntelliJ*](http://jetbrains.com/idea)
+[*ilanyu*](http://idea.lanyus.com/)

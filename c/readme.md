@@ -1,7 +1,8 @@
 # RrDemo-C
-- [*ISO/IEC 9899:1990*](http://iso.org/iso/catalogue_detail.htm?csnumber=17782), [*ISO/IEC 9899:1999*](http://iso.org/iso/catalogue_detail.htm?csnumber=29237), [*ISO/IEC 9899:2011*](http://iso.org/iso/catalogue_detail.htm?csnumber=57853).
-- [*C Reference*](http://cppreference.com/w/c), or [C *DevDocs*](http://devdocs.io/c)
-- [*Awesome C/C++*](http://github.com/fffaraz/awesome-cpp)
+
+## [C] ([90](http://iso.org/iso/catalogue_detail.htm?csnumber=17782 "ISO/IEC 9899:1990"), [99](http://iso.org/iso/catalogue_detail.htm?csnumber=29237 "ISO/IEC 9899:1999"), [11](http://iso.org/iso/catalogue_detail.htm?csnumber=57853 "ISO/IEC 9899:2011"))
+**References**
+- [*C Reference*](http://cppreference.com/w/c) (or [*DevDocs*](http://devdocs.io/c))
 
 **Coding Style**
 - [Linux kernel coding style](http://kernel.org/doc/Documentation/CodingStyle)
@@ -12,9 +13,13 @@
 - Roberts, E. S. (1989). [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf).
 - Plauger, P. J. (1992). *The Standard C Library*. Prentice Hall.
 
+**More**
+- [*Awesome C*](http://notabug.org/koz.ross/awesome-c) (or [*GitHub*](http://github.com/aleksandar-todorovic/awesome-c))
+- [*Awesome C/C++*](http://github.com/fffaraz/awesome-cpp) (or [*getAwesomeness()*](http://getawesomeness.herokuapp.com/get/cpp), [*LibHunt*](http://cpp.libhunt.com/))
+
 ## [*Doxygen*](http://doxygen.org/)
 
 ## [*CMake*](http://cmake.org/)
 
 ## *Visual Studio*
-See [*RrDemo-VisualStudio*](http://github.com/afoolsbag/rrdemo/blob/master/cpp/readme.md#visual-studio).
+See [*RrDemo-C++: Visual Studio*](http://github.com/afoolsbag/rrdemo/blob/master/cpp/readme.md#visual-studio).
