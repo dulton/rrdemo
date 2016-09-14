@@ -1,8 +1,8 @@
 # RrDemo-C
 
-## C<sub> [90](http://iso.org/iso/catalogue_detail.htm?csnumber=17782 "ISO/IEC 9899:1990") [99](http://iso.org/iso/catalogue_detail.htm?csnumber=29237 "ISO/IEC 9899:1999") [11](http://iso.org/iso/catalogue_detail.htm?csnumber=57853 "ISO/IEC 9899:2011")</sub>
+## *C*<sub> [90](http://iso.org/iso/catalogue_detail.htm?csnumber=17782 "ISO/IEC 9899:1990") [99](http://iso.org/iso/catalogue_detail.htm?csnumber=29237 "ISO/IEC 9899:1999") [11](http://iso.org/iso/catalogue_detail.htm?csnumber=57853 "ISO/IEC 9899:2011")</sub>
 **References**
-- [*C Reference*](http://cppreference.com/w/c) (or [*DevDocs*](http://devdocs.io/c))
+- [*C Reference*](http://cppreference.com/w/c)<sub> [*DevDocs*](http://devdocs.io/c)</sub>
 
 **Coding Style**
 - [Linux kernel coding style](http://kernel.org/doc/Documentation/CodingStyle)
@@ -14,12 +14,12 @@
 - Plauger, P. J. (1992). *The Standard C Library*. Prentice Hall.
 
 **More**
-- [*Awesome C*](http://notabug.org/koz.ross/awesome-c) (or [*GitHub*](http://github.com/aleksandar-todorovic/awesome-c))
-- [*Awesome C/C++*](http://github.com/fffaraz/awesome-cpp) (or [*getAwesomeness()*](http://getawesomeness.herokuapp.com/get/cpp), [*LibHunt*](http://cpp.libhunt.com/))
+- [*Awesome C*](http://notabug.org/koz.ross/awesome-c)<sub> [*GitHub*](http://github.com/aleksandar-todorovic/awesome-c)</sub>
+- [*Awesome C/C++*](http://github.com/fffaraz/awesome-cpp)<sub> [*getAwesomeness()*](http://getawesomeness.herokuapp.com/get/cpp) [*LibHunt*](http://cpp.libhunt.com/)</sub>
 
 ## [*Doxygen*](http://doxygen.org/)
 
 ## [*CMake*](http://cmake.org/)
 
 ## *Visual Studio*
-See [*RrDemo-C++: Visual Studio*](http://github.com/afoolsbag/rrdemo/blob/master/cpp/readme.md#visual-studio).
+See [*<sup>RrDemo-C++: </sup>Visual Studio*](http://github.com/afoolsbag/rrdemo/blob/master/cpp/readme.md#visual-studio).
