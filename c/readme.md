@@ -5,7 +5,7 @@
 - [*C Reference*](http://cppreference.com/w/c)<sub> [*DevDocs*](http://devdocs.io/c)</sub>
 
 **Coding Style**
-- [Linux kernel coding style](http://kernel.org/doc/Documentation/CodingStyle)
+- [*Linux kernel coding style*](http://kernel.org/doc/Documentation/CodingStyle)
 
 **Books**
 - Hanson, D. R. (1996). [*C Interfaces and Implementations: Techniques for Creating Reusable Software*](http://github.com/drh/cii). Addison-Wesley Professional.
@@ -22,4 +22,4 @@
 ## [*CMake*](http://cmake.org/)
 
 ## *Visual Studio*
-See [<sup>*RrDemo-C++:* </sup>*Visual Studio*](http://github.com/afoolsbag/rrdemo/blob/master/cpp/readme.md#visual-studio).
+See [<sup>*RrDemo-C++* </sup>*Visual Studio*](http://github.com/afoolsbag/rrdemo/blob/master/cpp/readme.md#visual-studio).
