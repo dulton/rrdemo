@@ -1,1 +1,9 @@
 apply plugin: 'java'
+
+repositories {
+   maven { url "http://repo.spring.io/release" }
+}
+
+dependencies {
+   compile 'org.springframework:spring-context:4.3.2.RELEASE'
+}

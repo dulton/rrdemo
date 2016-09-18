@@ -11,6 +11,9 @@ project(":RrDemo-Java-Hibernate").projectDir = file("hibernate")
 include 'RrDemo-Java-JUnit'
 project(":RrDemo-Java-JUnit").projectDir = file("junit")
 
+include 'RrDemo-Java-SLF4J'
+project(":RrDemo-Java-SLF4J").projectDir = file("slf4j")
+
 include 'RrDemo-Java-Spring'
 project(":RrDemo-Java-Spring").projectDir = file("spring")
 

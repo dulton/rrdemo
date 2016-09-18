@@ -2,10 +2,10 @@
 
 ## [*Android*](http://android.com/)
 - [*Android Developers*](http://developer.android.com/)
-    - [*Training*](http://developer.android.com/training) ([cmn-Hans-CN](http://hukai.me/android-training-course-in-chinese))
+    - [*Training*](http://developer.android.com/training)<sub> [*cmn-Hans-CN*](http://hukai.me/android-training-course-in-chinese)</sub>
     - [*API Guides*](http://developer.android.com/guide)
     - [*Samples*](http://developer.android.com/samples)
-- [*Material Design*](http://material.google.com/) ([cmn-Hans-CN](http://www.apkbus.com/design))
+- [*Material Design*](http://material.google.com/)<sub> [*cmn-Hans-CN*](http://www.apkbus.com/design)</sub>
 - [*Android Developers Blog*](http://android-developers.blogspot.com/)
 - [Android in *Stack Overflow*](http://stackoverflow.com/tags/android)
 - [*ANDROID学习之路*](http://stormzhang.com/android/2014/07/07/learn-android-from-rookie)
