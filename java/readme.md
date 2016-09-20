@@ -1,6 +1,7 @@
 # RrDemo-Java
 
 ## [*Java*](http://java.com/)
+**References**
 - [*The Java™ Tutorials*](http://docs.oracle.com/javase/tutorial)
 - [*Java Developers*](http://oracle.com/technetwork/java)
     - [*Java SE*](http://oracle.com/technetwork/java/javase)
@@ -11,11 +12,15 @@
     - [*Java ME*](http://oracle.com/technetwork/java/javame)
 - [Java in *Stack Overflow*](http://stackoverflow.com/tags/java)
 
+**Guides**
+
 **Coding Style**
 - [<sup>Oracle </sup>*Code Conventions for the Java Programming Language*](http://oracle.com/technetwork/java/codeconvtoc-136057.html)
 - [<sup>GeoSoft </sup>*Java Programming Style Guidelines*](http://geosoft.no/development/javastyle.html)
 - [*Google Java Style Guide*](http://google.github.io/styleguide/javaguide)
 - [<sup>*JavaRanch* </sup>*Java Programming Style Guide*](http://javaranch.com/style.jsp)
+
+**Articles**
 
 **Books**
 - Eckel, B. (2006). [*Thinking in Java, 4th Edition*](http://mindviewinc.com/Books/TIJ4). Prentice Hall Professional.

@@ -15,7 +15,7 @@
 
 **More**
 - [*Awesome C*](http://notabug.org/koz.ross/awesome-c)<sub> [*GitHub*](http://github.com/aleksandar-todorovic/awesome-c)</sub>
-- [*Awesome C/C++*](http://github.com/fffaraz/awesome-cpp)<sub> [*getAwesomeness()*](http://getawesomeness.herokuapp.com/get/cpp) [*LibHunt*](http://cpp.libhunt.com/)</sub>
+- [*Awesome C/C++*](http://github.com/fffaraz/awesome-cpp)<sub> [*getAwesomeness()*](http://getawesomeness.herokuapp.com/get/cpp), [*LibHunt*](http://cpp.libhunt.com/)</sub>
 
 ## [*Doxygen*](http://doxygen.org/)
 

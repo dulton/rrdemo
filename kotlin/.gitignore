@@ -1,5 +1,5 @@
 #-----------------------------------------------------------
-# Java.gitignore template, see http://github.com/github/gitignore/blob/master/Java.gitignore
+# http://github.com/github/gitignore/blob/master/Java.gitignore
 #-----------------------------------------------------------
 *.class
 
@@ -15,7 +15,7 @@
 hs_err_pid*
 
 #-----------------------------------------------------------
-# Gradle.gitignore template, see http://github.com/github/gitignore/blob/master/Gradle.gitignore
+# http://github.com/github/gitignore/blob/master/Gradle.gitignore
 #-----------------------------------------------------------
 .gradle
 /build/
