@@ -3,7 +3,6 @@
 ## [*Android*](http://android.com/)
 **References**
 
-
 **Guides**
 - [<sup>*Android Developers* </sup>*Training*](http://developer.android.com/training)<sub> [cmn-Hans](http://hukai.me/android-training-course-in-chinese)</sub>
 - [<sup>*Android Developers* </sup>*API Guides*](http://developer.android.com/guide)
