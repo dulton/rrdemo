@@ -1,7 +1,7 @@
 ## [*Git*](http://git-scm.com/) & [*GitHub*](http://github.org/)
 
 **References**
-- [<sup>*Git* </sup>*Reference*](http://git-scm.com/docs)
+- [<sup>*Git* </sup>*Reference*](http://git-scm.com/docs)<sub> [*DevDocs*](http://devdocs.io/git/)</sub>
 
 **Guides**
 - [<sup>*廖雪峰的官方网站* </sup>*Git教程*](http://liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
