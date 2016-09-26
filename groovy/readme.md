@@ -11,4 +11,3 @@ IBM developerWorks
     - [*Gradle User Guide*](http://docs.gradle.org/current/userguide)
     - [*Gradle Build Language Reference*](http://docs.gradle.org/current/dsl)
     - [*Gradle API*](http://docs.gradle.org/current/javadoc)
-``

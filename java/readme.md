@@ -30,7 +30,7 @@
 - [*Awesome Java*](http://github.com/akullpp/awesome-java)
 
 ## *Gradle*
-See [<sup>*RrDemo-Groovy* </sup>*Gradle*](http://github.com/afoolsbag/rrdemo/blob/master/groovy/readme.md#gradle).
+See [<sup>*RrDemo-Groovy* </sup>*Gradle*](../groovy/readme.md#gradle).
 
 ## [*IntelliJ*](http://jetbrains.com/idea)
 [*ilanyu*](http://idea.lanyus.com/)

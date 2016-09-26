@@ -19,7 +19,8 @@
 
 ## [*Doxygen*](http://doxygen.org/)
 
-## [*CMake*](http://cmake.org/)
+## *CMake*
+See [<sup>*RrDemo* </sup>*CMake*](../cmake/readme.md).
 
 ## *Visual Studio*
-See [<sup>*RrDemo-C++* </sup>*Visual Studio*](http://github.com/afoolsbag/rrdemo/blob/master/cpp/readme.md#visual-studio).
+See [<sup>*RrDemo-C++* </sup>*Visual Studio*](../cpp/readme.md#visual-studio).

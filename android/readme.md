@@ -24,4 +24,4 @@
 - [*Awesome Android*](http://github.com/JStumpp/awesome-android)
 
 ## *Gradle*
-See [<sup>*RrDemo-Groovy* </sup>*Gradle*](http://github.com/afoolsbag/rrdemo/blob/master/groovy/readme.md#gradle).
+See [<sup>*RrDemo-Groovy* </sup>*Gradle*](../groovy/readme.md#gradle).

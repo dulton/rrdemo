@@ -1,8 +1,8 @@
 #-------------------------------------------------------------------------------
 # COMPILE HELPERS
 #
-# \sa [CMAKE_<LANG>_FLAGS — CMake 3.6.1 Documentation]{
-#    http://cmake.org/cmake/help/v3.6/variable/CMAKE_LANG_FLAGS.html}
+# \sa [CMAKE_<LANG>_FLAGS — CMake 3.6.1 Documentation](
+#    http://cmake.org/cmake/help/v3.6/variable/CMAKE_LANG_FLAGS.html)
 # \sa [Warning Level](
 #    http://msdn.microsoft.com/library/thxezb7y.aspx)
 #-------------------------------------------------------------------------------
@@ -30,5 +30,4 @@ if(ENABLE_C_HIGHEST_WARNING_LEVEL)
                 " /Wall ")
       endif()
    endif()
-   
 endif()

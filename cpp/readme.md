@@ -14,9 +14,9 @@
 - [*Awesome C/C++*](http://github.com/fffaraz/awesome-cpp)<sub> [*getAwesomeness()*](http://getawesomeness.herokuapp.com/get/cpp) [*LibHunt*](http://cpp.libhunt.com/)</sub>
 
 ## *Doxygen*
-See [<sup>*RrDemo-C* </sup>*Doxygen*](http://github.com/afoolsbag/rrdemo/blob/master/c/readme.md#doxygen).
+See [<sup>*RrDemo-C* </sup>*Doxygen*](../c/readme.md#doxygen).
 
 ## *CMake*
-See [<sup>*RrDemo-C* </sup>*CMake*](http://github.com/afoolsbag/rrdemo/blob/master/c/readme.md#cmake).
+See [<sup>*RrDemo* </sup>*CMake*](../cmake/readme.md).
 
 ## [*Visual Studio*](http://visualstudio.com/)

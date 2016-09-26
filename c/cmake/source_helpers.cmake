@@ -243,7 +243,7 @@ macro(source_helper)
                "GENEXT"    # [in] Generating source extensions, matchs regex
                "INSEXT" )  # [in] Installing source extensions, matchs regex
    cmake_parse_arguments("SRCHLP" "${options}" "${oneargs}" "${mutargs}" ${ARGN})
-   
+
    string(TOLOWER "${PROJECT_NAME}" DEF_PRJNOMLWR)
    set(DEF_PRJSRCDIR "${PROJECT_SOURCE_DIR}")
    set(DEF_CURSRCDIR "${CMAKE_CURRENT_LIST_DIR}")
@@ -252,19 +252,19 @@ macro(source_helper)
    set(DEF_CURBINDIR "${DEF_PRJBINDIR}${DEF_RELDIR}")
    set(DEF_PRJINSDIR "${CMAKE_INSTALL_PREFIX}")
    set(DEF_CURINSDIR "${DEF_PRJINSDIR}/include/${DEF_PRJNOMLWR}")
-   
+
    if(SRCHLP_RECURSE)
       set(SRCHLP_RECURSE "RECURSE")
    else()
       set(SRCHLP_RECURSE "")
    endif()
-   
+
    if((NOT SRCHLP_SRCVAR) OR
       (NOT SRCHLP_SRCVAR MATCHES "^[0-9A-Za-z_-]+$"))
       message(FATAL_ERROR "The argument SRCVAR was null or invalid, "
                           "current input was '${SRCHLP_SRCVAR}'.")
    endif()
-   
+
    if(NOT SRCHLP_SRCDIR)
       set(SRCHLP_SRCDIR "${DEF_CURSRCDIR}")
    endif()
@@ -275,7 +275,7 @@ macro(source_helper)
       message(FATAL_ERROR "The argument SRCDIR was invalid, "
                           "current input was '${SRCHLP_SRCDIR}'.")
    endif()
-   
+
    if(NOT SRCHLP_GENDIR)
       set(SRCHLP_GENDIR "${DEF_CURBINDIR}")
    endif()
@@ -286,7 +286,7 @@ macro(source_helper)
       message(FATAL_ERROR "The argument GENDIR was invalid, "
                           "current input was '${SRCHLP_GENDIR}'.")
    endif()
-   
+
    if(NOT SRCHLP_INSDIR)
       set(SRCHLP_INSDIR "${DEF_CURINSDIR}")
    endif()
@@ -297,7 +297,7 @@ macro(source_helper)
       message(FATAL_ERROR "The argument INSDIR was invalid, "
                           "current input was '${SRCHLP_INSDIR}'.")
    endif()
-   
+
    if(NOT SRCHLP_GRPNOM)
       string(REGEX REPLACE "^.*/" "" SRCHLP_GRPNOM "${DEF_CURSRCDIR}")
    endif()
@@ -305,7 +305,7 @@ macro(source_helper)
       message(FATAL_ERROR "The argument GRPNOM was invalid, "
                           "current input was '${SRCHLP_GRPNOM}'.")
    endif()
-   
+
    if(SRCHLP_C)
       list(APPEND SRCHLP_SRCEXT ".h")
       list(APPEND SRCHLP_SRCEXT ".inth")
@@ -323,7 +323,7 @@ macro(source_helper)
                              "the argument was '${ext}' in '${SRCHLP_SRCEXT}'.")
       endif()
    endforeach()
-   
+
    if(NOT SRCHLP_GENEXT)
       list(APPEND SRCHLP_GENEXT ".in")
    endif()
@@ -333,7 +333,7 @@ macro(source_helper)
                              "the argument was '${ext}' in '${SRCHLP_GENEXT}'.")
       endif()
    endforeach()
-   
+
    if(SRCHLP_C)
       list(APPEND SRCHLP_INSEXT ".h")
    endif()
@@ -347,13 +347,13 @@ macro(source_helper)
                              "the argument was '${ext}' in '${SRCHLP_INSEXT}'.")
       endif()
    endforeach()
-   
+
    srchlp_source(${SRCHLP_RECURSE}
                  SRCVAR ${SRCHLP_SRCVAR}
                  SRCDIR ${SRCHLP_SRCDIR}
                  GRPNOM ${SRCHLP_GRPNOM}
                  SRCEXT ${SRCHLP_SRCEXT})
-   
+
    if(SRCHLP_GENERATE)
       srchlp_generate(${SRCHLP_RECURSE}
                       SRCVAR ${SRCHLP_SRCVAR}
@@ -362,14 +362,14 @@ macro(source_helper)
                       GRPNOM ${SRCHLP_GRPNOM}
                       GENEXT ${SRCHLP_GENEXT})
    endif()
-   
+
    if(SRCHLP_INSTALL)
       srchlp_install(${SRCHLP_RECURSE}
                      SRCDIR ${SRCHLP_SRCDIR}
                      INSDIR ${SRCHLP_INSDIR}
                      INSEXT ${SRCHLP_INSEXT})
    endif()
-   
+
    if(SRCHLP_GENERATE AND SRCHLP_INSTALL)
       srchlp_install(${SRCHLP_RECURSE}
                      SRCDIR ${SRCHLP_GENDIR}
