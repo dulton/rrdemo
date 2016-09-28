@@ -1,13 +1,8 @@
 #-------------------------------------------------------------------------------
 # SOURCE HELPERS
-# 
-# \sa [macro — CMake 3.6.1 Documentation](
-#    http://cmake.org/cmake/help/v3.6/command/macro.html)
-# \sa [function — CMake 3.6.1 Documentation](
-#    http://cmake.org/cmake/help/v3.6/command/function.html)
 #-------------------------------------------------------------------------------
 # \author zhengrr
-# \date 2016-8-11 ~ 17
+# \date 2016-8-11 – 9-28
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)

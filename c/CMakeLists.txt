@@ -1,12 +1,16 @@
 #-------------------------------------------------------------------------------
-# RrDemo-C
+# RrDemo–C
 #-------------------------------------------------------------------------------
 # \author zhengrr
-# \date 2016-6-28 ~ 8-31
+# \date 2016-6-28 – 9-28
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.0)
 project("RrDemo-C"  VERSION 0.0.0.0  LANGUAGES C)
+
+list(APPEND CMAKE_MODULE_PATH "${PRODUCT_SOURCE_DIR}/../cmake/modules")
+include("compile_helpers")
+include("source_helpers")
 
 set(PRODUCT_NAME ${PROJECT_NAME})
 string(TOUPPER ${PROJECT_NAME} PRODUCT_NAME_UPPER)
@@ -18,10 +22,6 @@ set(PRODUCT_VERSION_MAJRO ${PROJECT_VERSION_MAJOR})
 set(PRODUCT_VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set(PRODUCT_VERSION_PATCH ${PROJECT_VERSION_PATCH})
 set(PRODUCT_VERSION_TWEAK ${PROJECT_VERSION_TWEAK})
-
-list(APPEND CMAKE_MODULE_PATH "${PRODUCT_SOURCE_DIR}/cmake")
-include("compile_helpers")
-include("source_helpers")
 
 add_subdirectory("deps")
 add_subdirectory("demolib")

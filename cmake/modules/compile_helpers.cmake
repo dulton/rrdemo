@@ -1,13 +1,11 @@
 #-------------------------------------------------------------------------------
 # COMPILE HELPERS
 #
-# \sa [CMAKE_<LANG>_FLAGS — CMake 3.6.1 Documentation](
-#    http://cmake.org/cmake/help/v3.6/variable/CMAKE_LANG_FLAGS.html)
 # \sa [Warning Level](
 #    http://msdn.microsoft.com/library/thxezb7y.aspx)
 #-------------------------------------------------------------------------------
 # \author zhengrr
-# \date 2016-8-4 ~ 11
+# \date 2016-8-4 – 9-28
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 

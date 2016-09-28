@@ -1,6 +1,8 @@
-# RrDemo-CMake
+# RrDemo–CMake
 
 ## [*CMake*](http://cmake.org/)
-**References**
-- [*CMake Reference Documentation*](http://cmake.org/cmake/help/latest/)<sub> [*DevDocs*](http://devdocs.io/cmake/)</sub>
-    - [<sup>*CMake Reference Documentation* </sup>*language*](http://cmake.org/cmake/help/latest/manual/cmake-language.7.html)
+- [<sup>*CMake* › </sup>*Wiki*](http://cmake.org/Wiki/CMake)
+- [<sup>*CMake* › </sup>*Documentation*](http://cmake.org/documentation/)
+    - [<sup>*CMake* › *Documentation* › </sup>*Reference*](http://cmake.org/cmake/help/latest/)
+- [<sup>*CMake* › </sup>*Mastering CMake*](http://kitware.com/products/books.php)
+    - Martin, K., & Hoffman, B. (2010). *Mastering CMake: A Cross-Platform Build System*. Kitware. Inc.
