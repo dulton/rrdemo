@@ -7,17 +7,21 @@
 #-------------------------------------------------------------------------------
 
 #-----------------------------------------------------------
+# \brief Make Project Extra Variables
 # \since 2016-9-29
 #-----------------------------------------------------------
-macro(define_extra_variables_for_project)
+macro(make_project_extvars)
    string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
    string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
+   set(PRJUPR ${PROJECT_NAME_UPPER})
+   set(prjlwr ${PROJECT_NAME_LOWER})
 endmacro()
 
 #-----------------------------------------------------------
+# \brief Make Product Variables
 # \since 2016-9-29
 #-----------------------------------------------------------
-macro(define_variables_for_product)
+macro(make_product_vars)
    set(PRODUCT_NAME ${PROJECT_NAME})
    string(TOUPPER ${PROJECT_NAME} PRODUCT_NAME_UPPER)
    string(TOLOWER ${PROJECT_NAME} PRODUCT_NAME_LOWER)

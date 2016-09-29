@@ -2,7 +2,7 @@
 # SOURCE HELPERS
 #-------------------------------------------------------------------------------
 # \author zhengrr
-# \date 2016-8-11 – 9-28
+# \date 2016-8-11 – 9-29
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
@@ -19,31 +19,31 @@ macro(srchlp_source)
                "GRPNOM" )  # [in] Group name, matchs regex.
    set(mutargs "SRCEXT" )  # [in] Source extensions, matchs regex.
    cmake_parse_arguments("ARG" "${options}" "${oneargs}" "${mutargs}" ${ARGN})
-   
+
    if(ARG_RECURSE)
       set(ARG_RECURSE "_RECURSE")
    else()
       set(ARG_RECURSE "")
    endif()
-   
+
    if((NOT ARG_SRCVAR) OR
       (NOT ARG_SRCVAR MATCHES "^[0-9A-Za-z_-]+$"))
       message(FATAL_ERROR "The argument SRCVAR was null or invalid, "
                           "current input was '${ARG_SRCVAR}'.")
    endif()
-   
+
    if((NOT ARG_SRCDIR) OR
       (NOT IS_DIRECTORY ${ARG_SRCDIR}))
       message(FATAL_ERROR "The argument SRCDIR was null or invalid, "
                           "current input was '${ARG_SRCDIR}'.")
    endif()
-   
+
    if((NOT ARG_GRPNOM) OR
       (NOT ARG_GRPNOM MATCHES "^[ 0-9A-Za-z/_-]+$"))
       message(FATAL_ERROR "The argument GRPNOM was null or invalid, "
                           "current input was '${ARG_GRPNOM}'.")
    endif()
-   
+
    if(NOT ARG_SRCEXT)
       message(FATAL_ERROR "The argument SRCEXT was null.")
    endif()
@@ -53,7 +53,7 @@ macro(srchlp_source)
                              "the argument was '${ext}' in '${ARG_SRCEXT}'.")
       endif()
    endforeach()
-   
+
    unset(exts)
    foreach(ext ${ARG_SRCEXT})
    if(NOT ext IN_LIST exts)
@@ -87,37 +87,37 @@ macro(srchlp_generate)
                "GRPNOM" )  # [in] Group name, matchs regex.
    set(mutargs "GENEXT" )  # [in] Generating source extensions, matchs regex.
    cmake_parse_arguments("ARG" "${options}" "${oneargs}" "${mutargs}" ${ARGN})
-   
+
    if(ARG_RECURSE)
       set(ARG_RECURSE "_RECURSE")
    else()
       set(ARG_RECURSE "")
    endif()
-   
+
    if((NOT ARG_SRCVAR) OR
       (NOT ARG_SRCVAR MATCHES "^[0-9A-Za-z_-]+$"))
       message(FATAL_ERROR "The argument SRCVAR was null or invalid, "
                           "current input was '${ARG_SRCVAR}'.")
    endif()
-   
+
    if((NOT ARG_SRCDIR) OR
       (NOT IS_DIRECTORY ${ARG_SRCDIR}))
       message(FATAL_ERROR "The argument SRCDIR was null or invalid, "
                           "current input was '${ARG_SRCDIR}'.")
    endif()
-   
+
    if((NOT ARG_GENDIR) OR
       (NOT IS_ABSOLUTE ${ARG_GENDIR}))
       message(FATAL_ERROR "The argument GENDIR was null or invalid, "
                           "current input was '${ARG_GENDIR}'.")
    endif()
-   
+
    if((NOT ARG_GRPNOM) OR
       (NOT ARG_GRPNOM MATCHES "^[ 0-9A-Za-z/_-]+$"))
       message(FATAL_ERROR "The argument GRPNOM was null or invalid, "
                           "current input was '${ARG_GRPNOM}'.")
    endif()
-   
+
    if(NOT ARG_GENEXT)
       message(FATAL_ERROR "The argument GENEXT was null.")
    endif()
@@ -127,7 +127,7 @@ macro(srchlp_generate)
                              "the argument was '${ext}' in '${ARG_GENEXT}'.")
       endif()
    endforeach()
-   
+
    unset(exts)
    foreach(ext ${ARG_GENEXT})
    if(NOT ext IN_LIST exts)
@@ -170,25 +170,25 @@ function(srchlp_install)
                "INSDIR" )  # [in] Install directory, absolute path.
    set(mutargs "INSEXT" )  # [in] Installing source extensions, matchs regex.
    cmake_parse_arguments("ARG" "${options}" "${oneargs}" "${mutargs}" ${ARGN})
-   
+
    if(ARG_RECURSE)
       set(ARG_RECURSE "_RECURSE")
    else()
       set(ARG_RECURSE "")
    endif()
-   
+
    if((NOT ARG_SRCDIR) OR
       (NOT IS_DIRECTORY ${ARG_SRCDIR}))
       message(FATAL_ERROR "The argument SRCDIR was null or invalid, "
                           "current input was '${ARG_SRCDIR}'.")
    endif()
-   
+
    if((NOT ARG_INSDIR) OR
       (NOT IS_ABSOLUTE ${ARG_INSDIR}))
       message(FATAL_ERROR "The argument INSDIR was null or invalid, "
                           "current input was '${ARG_INSDIR}'.")
    endif()
-   
+
    if(NOT ARG_INSEXT)
       message(FATAL_ERROR "The argument INSEXT was null.")
    endif()
@@ -198,7 +198,7 @@ function(srchlp_install)
                              "the argument was '${ext}' in '${ARG_INSEXT}'.")
       endif()
    endforeach()
-   
+
    unset(exts)
    foreach(ext ${ARG_INSEXT})
    if(NOT ext IN_LIST exts)

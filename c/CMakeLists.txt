@@ -9,11 +9,13 @@ cmake_minimum_required(VERSION 3.0)
 project("RrDemo-C" VERSION 0.0.0.0 LANGUAGES NONE)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake/modules")
+include("variable_helpers")
 include("compile_helpers")
 include("source_helpers")
-include("variable_helpers")
 
-define_variables_for_product()
+make_product_vars()
+
+ena_highest_wlvl_spt()
 
 add_subdirectory("deps")
 add_subdirectory("lang")

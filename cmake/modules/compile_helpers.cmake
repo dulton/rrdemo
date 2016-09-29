@@ -1,37 +1,41 @@
 #-------------------------------------------------------------------------------
 # COMPILE HELPERS
-#
-# \sa [Warning Level](
-#        http://msdn.microsoft.com/library/thxezb7y.aspx)
 #-------------------------------------------------------------------------------
 # \author zhengrr
-# \date 2016-8-4 – 9-28
+# \date 2016-8-4 – 9-29
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 
 #-----------------------------------------------------------
+# \brief Enable Highest Warning Level Support
+# \sa [Warning Level](
+#        http://msdn.microsoft.com/library/thxezb7y.aspx)
 # \since 2016-8-4
 #-----------------------------------------------------------
-option(C_HIGHEST_WARNING_LEVEL
-       "Enable highest warning level for C." ON)
-if(ENABLE_C_HIGHEST_WARNING_LEVEL)
-   if(MSVC)
-      if(CMAKE_C_FLAGS MATCHES "/Wall")
-         # skip
-      elseif(CMAKE_C_FLAGS MATCHES "/W[0-4]")
-         string(REGEX REPLACE "/W[0-4]" "/Wall" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
-      else()
-         string(CONCAT CMAKE_C_FLAGS ${CMAKE_C_FLAGS} " /Wall ")
+function(ena_highest_wlvl_spt)
+   if(CMAKE_C_FLAGS)
+      if(MSVC)
+         if(CMAKE_C_FLAGS MATCHES "/Wall")
+            # skip
+         elseif(CMAKE_C_FLAGS MATCHES "/W[0-4]")
+            string(REGEX REPLACE "/W[0-4]" "/Wall" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
+         else()
+            string(CONCAT CMAKE_C_FLAGS ${CMAKE_C_FLAGS} " /Wall ")
+         endif()
       endif()
    endif()
-endif()
+
+   if(CMAKE_CXX_FLAGS)
+      # TODO
+   endif()
+endfunction()
 
 #-----------------------------------------------------------
-# \brief Unicode Support
+# \brief Enable Unicode Support
 # \since 2016-8-4
 #-----------------------------------------------------------
-macro(unicode_support)
+function(ena_unicode_spt)
    if(WIN32)
       add_definitions("-DUNICODE" "-D_UNICODE")
    endif()
-endmacro()
+endfunction()
