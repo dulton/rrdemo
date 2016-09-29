@@ -1,33 +1,27 @@
 #-------------------------------------------------------------------------------
-# RrDemo–C
+# RrDemo › C
 #-------------------------------------------------------------------------------
 # \author zhengrr
 # \date 2016-6-28 – 9-28
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-C"  VERSION 0.0.0.0  LANGUAGES C)
+project("RrDemo-C" VERSION 0.0.0.0 LANGUAGES NONE)
 
-list(APPEND CMAKE_MODULE_PATH "${PRODUCT_SOURCE_DIR}/../cmake/modules")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake/modules")
 include("compile_helpers")
 include("source_helpers")
+include("variable_helpers")
 
-set(PRODUCT_NAME ${PROJECT_NAME})
-string(TOUPPER ${PROJECT_NAME} PRODUCT_NAME_UPPER)
-string(TOLOWER ${PROJECT_NAME} PRODUCT_NAME_LOWER)
-set(PRODUCT_SOURCE_DIR ${PROJECT_SOURCE_DIR})
-set(PRODUCT_BINARY_DIR ${PROJECT_BINARY_DIR})
-set(PRODUCT_VERSION ${PROJECT_VERSION})
-set(PRODUCT_VERSION_MAJRO ${PROJECT_VERSION_MAJOR})
-set(PRODUCT_VERSION_MINOR ${PROJECT_VERSION_MINOR})
-set(PRODUCT_VERSION_PATCH ${PROJECT_VERSION_PATCH})
-set(PRODUCT_VERSION_TWEAK ${PROJECT_VERSION_TWEAK})
+define_variables_for_product()
 
 add_subdirectory("deps")
-add_subdirectory("demolib")
-add_subdirectory("demoexe")
+add_subdirectory("lang")
+add_subdirectory("lib")
+add_subdirectory("exe")
 add_subdirectory("spls")
-install(DIRECTORY "docs"  DESTINATION ".")
-install(DIRECTORY "spls"  DESTINATION ".")
-install(FILES "license.txt"  DESTINATION ".")
-install(FILES "release_notes.txt"  DESTINATION ".")
+
+install(DIRECTORY "docs" DESTINATION ".")
+install(DIRECTORY "spls" DESTINATION ".")
+install(FILES "license.txt" DESTINATION ".")
+install(FILES "release_notes.txt" DESTINATION ".")

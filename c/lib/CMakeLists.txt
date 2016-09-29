@@ -1,12 +1,12 @@
 #-------------------------------------------------------------------------------
-# RrDemo-C-Lib
+# RrDemo › C › Lib
 #-------------------------------------------------------------------------------
 # \author zhengrr
 # \date 2016-8-1 ~ 31
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-C-Lib"  VERSION 0.0.0.0  LANGUAGES C)
+project("RrDemo-C-Lib" VERSION 0.0.0.0 LANGUAGES C)
 
 string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
