@@ -1,0 +1,26 @@
+/* ************************************************************************//*!
+ * \file
+ * \author zhengrr
+ * \date 2016-8-3 – 9-30
+ * \copyright The MIT License
+ ******************************************************************************/
+
+#ifndef RRDEMO_CPP_LIB_CONFIG_HPP
+#define RRDEMO_CPP_LIB_CONFIG_HPP
+
+namespace rrdemo {
+namespace cpp {
+namespace lib {
+
+static constexpr char *const NAME{"@PROJECT_NAME@"};
+static constexpr char *const VERSION{"@PROJECT_VERSION@"};
+static constexpr int VERMJR{@PROJECT_VERSION_MAJOR@};
+static constexpr int VERMIN{@PROJECT_VERSION_MINOR@};
+static constexpr int VERPCH{@PROJECT_VERSION_PATCH@};
+static constexpr int VERTWK{@PROJECT_VERSION_TWEAK@};
+
+}  // namespace lib
+}  // namespace cpp
+}  // namespace rrdemo
+
+#endif  // RRDEMO_CPP_LIB_CONFIG_HPP

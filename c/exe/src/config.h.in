@@ -1,18 +1,18 @@
 /* ************************************************************************//*!
  * \file
  * \author zhengrr
- * \date 2016-8-3
+ * \date 2016-8-3 – 9-30
  * \copyright The MIT License
  ******************************************************************************/
 
-#ifndef RRDEMO_C_DEMOEXE_CONFIG_H
-#define RRDEMO_C_DEMOEXE_CONFIG_H
+#ifndef RRDEMO_C_EXE_CONFIG_H
+#define RRDEMO_C_EXE_CONFIG_H
 
-static const char *const RRDEMO_C_DEMOEXE_NAME = "@PROJECT_NAME@";
-static const char *const RRDEMO_C_DEMOEXE_VERSION = "@PROJECT_VERSION@";
-static const int RRDEMO_C_DEMOEXE_VERSION_MAJOR = @PROJECT_VERSION_MAJOR@;
-static const int RRDEMO_C_DEMOEXE_VERSION_MINOR = @PROJECT_VERSION_MINOR@;
-static const int RRDEMO_C_DEMOEXE_VERSION_PATCH = @PROJECT_VERSION_PATCH@;
-static const int RRDEMO_C_DEMOEXE_VERSION_TWEAK = @PROJECT_VERSION_TWEAK@;
+static const char *const RRDEMO_C_EXE_NAME = "@PROJECT_NAME@";
+static const char *const RRDEMO_C_EXE_VERSION = "@PROJECT_VERSION@";
+static const int RRDEMO_C_EXE_VERMJR = @PROJECT_VERSION_MAJOR@;
+static const int RRDEMO_C_EXE_VERMIN = @PROJECT_VERSION_MINOR@;
+static const int RRDEMO_C_EXE_VERPCH = @PROJECT_VERSION_PATCH@;
+static const int RRDEMO_C_EXE_VERTWK = @PROJECT_VERSION_TWEAK@;
 
-#endif  /* RRDEMO_C_DEMOEXE_CONFIG_H */
+#endif  /* RRDEMO_C_EXE_CONFIG_H */

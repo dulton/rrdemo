@@ -6,7 +6,7 @@ add_definitions(${exports})
 
 include_directories("${PROJECT_SOURCE_DIR}/src")
 include_directories("${PROJECT_BINARY_DIR}/src")
-zr_srchlpr(GENERATE INSTALL RECURSE C
+zr_srchlpr(GENERATE INSTALL RECURSE CPP
            SRCVAR ${PRJUPR}_SRC)
 
 option(${PRJUPR}_COMPILE_STATIC "Build static library." ON)
@@ -18,7 +18,7 @@ if(${PRJUPR}_COMPILE_STATIC)
 endif()
 
 option(${PRJUPR}_COMPILE_SHARED "Build shared library." ON)
-if(${PRJUPR}_COMPILE_STATIC)
+if(${PRJUPR}_COMPILE_SHARED)
    add_library(${PRJLWR}_shared SHARED ${${PRJUPR}_SRC})
    set_target_properties(${PRJLWR}_shared PROPERTIES
                          OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON

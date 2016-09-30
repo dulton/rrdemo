@@ -2,20 +2,18 @@
 # RrDemo › C
 #-------------------------------------------------------------------------------
 # \author zhengrr
-# \date 2016-6-28 – 9-28
+# \date 2016-6-28 – 9-30
 # \copyright The MIT License
 #-------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-C" VERSION 0.0.0.0 LANGUAGES NONE)
+project("RrDemo-C" VERSION 0.0.0.0 LANGUAGES C)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake/modules")
-include("variable_helpers")
-include("compile_helpers")
-include("source_helpers")
+include("zrhlprs")
 
-make_product_vars()
+zr_make_product_vars()
 
-ena_highest_wlvl_spt()
+zr_ena_highest_wlvl_spt()
 
 add_subdirectory("deps")
 add_subdirectory("lang")

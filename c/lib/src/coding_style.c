@@ -2,7 +2,6 @@
  * \copyright The MIT License
  ******************************************************************************/
 #include "coding_style.h"
-#include "coding_style.n"
 #include "config.h"
 
 #include <assert.h>
