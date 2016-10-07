@@ -1,8 +1,10 @@
 #-------------------------------------------------------------------------------
 # ./exe/src
 #-------------------------------------------------------------------------------
-include_directories("${PROJECT_SOURCE_DIR}/src")
-zr_srchlpr(GENERATE RECURSE C
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+zr_srchlpr(GENERATE
+           RECURSE
+           C
            SRCVAR ${PRJUPR}_SRC)
 
 option(${PRJUPR}_COMPILE_EXE "Build executable file." ON)

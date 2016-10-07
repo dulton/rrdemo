@@ -18,5 +18,9 @@ More ...
 ## *CMake*
 See [<sup>*RrDemo* › </sup>*CMake*](../cmake/readme.md).
 
+## [*Check*](http://github.com/libcheck/check)
+
+## [*Clion*](http://jetbrains.com/clion/)
+
 ## *Visual Studio*
 See [<sup>*RrDemo* › *C++* › </sup>*Visual Studio*](../cpp/readme.md#visual-studio).

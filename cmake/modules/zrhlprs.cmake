@@ -14,7 +14,7 @@ cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 #        http://msdn.microsoft.com/library/thxezb7y.aspx)
 # \since 2016-9-30
 #-----------------------------------------------------------
-function(zr_ena_highest_wlvl_spt)
+macro(zr_ena_highest_wlvl_spt)
    get_property(langs GLOBAL PROPERTY ENABLED_LANGUAGES)
 
    if("C" IN_LIST langs)
@@ -40,7 +40,7 @@ function(zr_ena_highest_wlvl_spt)
          endif()
       endif()
    endif()
-endfunction()
+endmacro()
 
 #-----------------------------------------------------------
 # \brief Enable Unicode Support
@@ -51,6 +51,28 @@ function(zr_ena_unicode_spt)
       add_definitions("-DUNICODE" "-D_UNICODE")
    endif()
 endfunction()
+
+#-----------------------------------------------------------
+# \brief Find QTDIR
+# \since 2016-10-3
+#-----------------------------------------------------------
+macro(zr_find_qtdir)
+   math(EXPR addrw "8 * ${CMAKE_SIZEOF_VOID_P}")
+
+   if(DEFINED QTDIR${addrw})
+      set(QTDIR "${QTDIR${addrw}}")
+   elseif(DEFINED QTDIR)
+      # skip
+   elseif(DEFINED ENV{QTDIR${addrw}})
+      set(QTDIR "$ENV{QTDIR${addrw}}")
+   elseif(DEFINED ENV{QTDIR})
+      set(QTDIR "$ENV{QTDIR}")
+   else()
+      message(FATAL_ERROR "'QTDIR' cannot be found.")
+   endif()
+
+   list(APPEND CMAKE_PREFIX_PATH "${QTDIR}")
+endmacro()
 
 #-----------------------------------------------------------
 # \brief Make Project Extra Variables
@@ -292,7 +314,8 @@ macro(zr_srchlpr)
        "INSTALL"   # [in] Enable source install.
        "RECURSE"   # [in] Enable recurse.
        "C"         # [in] Some extensions for C.
-       "CPP")      # [in] Some extensions for C++.
+       "CPP"       # [in] Some extensions for C++.
+       "QT")       # [in] Some extensions for Qt.
    set(ones     # ONE VALUE ARGS
        "SRCVAR"    # [out] Source variable, matchs regex
        "SRCDIR"    # [in] Source directory, default current source directory.
@@ -384,6 +407,10 @@ macro(zr_srchlpr)
       list(APPEND zrsh_srcext ".hpp")
       list(APPEND zrsh_srcext ".inl")
       list(APPEND zrsh_srcext ".cpp")
+   endif()
+   if(ZRSH_QT)
+      list(APPEND zrsh_srcext ".ui")
+      list(APPEND zrsh_srcext ".qrc")
    endif()
    foreach(ext ${zrsh_srcext})
       if(NOT ext MATCHES "^([.][0-9A-Za-z]+)+$")

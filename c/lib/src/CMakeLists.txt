@@ -4,9 +4,10 @@
 string(CONCAT exports "-D" ${PRJUPR} "_EXPORTS")
 add_definitions(${exports})
 
-include_directories("${PROJECT_SOURCE_DIR}/src")
-include_directories("${PROJECT_BINARY_DIR}/src")
-zr_srchlpr(GENERATE INSTALL RECURSE C
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+zr_srchlpr(GENERATE INSTALL
+           RECURSE
+           C
            SRCVAR ${PRJUPR}_SRC)
 
 option(${PRJUPR}_COMPILE_STATIC "Build static library." ON)

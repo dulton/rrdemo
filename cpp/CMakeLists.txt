@@ -21,6 +21,8 @@ add_subdirectory("lib")
 add_subdirectory("exe")
 add_subdirectory("spls")
 
+add_subdirectory("qt")
+
 install(DIRECTORY "docs"  DESTINATION ".")
 install(DIRECTORY "spls"  DESTINATION ".")
 install(FILES "license.txt"  DESTINATION ".")
