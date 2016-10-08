@@ -14,13 +14,28 @@ More ...
 - Plauger, P. J. (1992). *The Standard C Library*. Prentice Hall.
 
 ## [*Doxygen*](http://doxygen.org/)
+- [<sup>*Doxygen* › </sup>*Manual*](http://doxygen.org/manual/)
+    - [*Configuration*](http://doxygen.org/manual/config.html)
+    - [*Special Commands*](http://doxygen.org/manual/commands.html)
+    - [*HTML Commands*](http://doxygen.org/manual/htmlcmds.html)
+    - [*XML Commands*](http://doxygen.org/manual/xmlcmds.html)
 
-## *CMake*
-See [<sup>*RrDemo* › </sup>*CMake*](../cmake/readme.md).
-
-## [*Check*](http://github.com/libcheck/check)
+## [*CMake*](http://cmake.org/)
+- [<sup>*CMake* › </sup>*Wiki*](http://cmake.org/Wiki/CMake)
+    - [*CMake Useful Variables*](http://cmake.org/Wiki/CMake_Useful_Variables)
+- [<sup>*CMake* › </sup>*Documentation*](http://cmake.org/documentation/)
+    - [*Reference*](http://cmake.org/cmake/help/latest/)
+        - [*language*](http://cmake.org/cmake/help/latest/manual/cmake-language.7.html)
+        - [*commands*](http://cmake.org/cmake/help/latest/manual/cmake-commands.7.html)
+        - [*properties*](http://cmake.org/cmake/help/latest/manual/cmake-properties.7.html)
+        - [*variables*](http://cmake.org/cmake/help/latest/manual/cmake-variables.7.html)
+- [<sup>*CMake* › </sup>*Mastering CMake*](http://kitware.com/products/books.php)
+    - Martin, K., & Hoffman, B. (2010). *Mastering CMake: A Cross-Platform Build System*. Kitware. Inc.
 
 ## [*Clion*](http://jetbrains.com/clion/)
+- [<sup>*CLion* › </sup>*Docs & Demos*](http://www.jetbrains.com/clion/documentation/)
 
 ## *Visual Studio*
 See [<sup>*RrDemo* › *C++* › </sup>*Visual Studio*](../cpp/readme.md#visual-studio).
+
+## [*Check*](http://github.com/libcheck/check)

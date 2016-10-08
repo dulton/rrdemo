@@ -7,9 +7,9 @@
 #-------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.0)
 project("RrDemo-C-Lib" VERSION 0.0.0.0 LANGUAGES C)
-zr_make_project_extvars()
+rrdemo_make_project_extra_variables()
 
-zr_ena_unicode_spt()
+rrdemo_enable_unicode_support()
 
 add_subdirectory("src")
 add_subdirectory("test")

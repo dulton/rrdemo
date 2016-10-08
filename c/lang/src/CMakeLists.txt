@@ -1,11 +1,9 @@
 #-------------------------------------------------------------------------------
-# ./exe/src
+# ./lang/src
 #-------------------------------------------------------------------------------
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-zr_srchlpr(GENERATE
-           RECURSE
-           C
-           SRCVAR ${PRJUPR}_SRC)
+rrdemo_sources(GENERATE RECURSE C
+               SRCVAR ${PRJUPR}_SRC)
 
 option(${PRJUPR}_COMPILE_EXE "Build executable file." ON)
 if(${PRJUPR}_COMPILE_EXE)

@@ -1,5 +1,3 @@
-# Demo-Qt
+# RrDemo › C++ › Qt
 
-## Books & References
-References
-- [*Qt*](http://qt.io/)
+## [*Qt*](http://qt.io/)

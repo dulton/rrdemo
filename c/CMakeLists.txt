@@ -8,18 +8,21 @@
 cmake_minimum_required(VERSION 3.0)
 project("RrDemo-C" VERSION 0.0.0.0 LANGUAGES C)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../cmake/modules")
-include("zrhlprs")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
+include("RrDemoVariablesHelpers")
+include("RrDemoSupportsHelpers")
+include("RrDemoSourcesHelpers")
 
-zr_make_product_vars()
+rrdemo_make_product_variables()
 
-zr_ena_highest_wlvl_spt()
+rrdemo_enable_highest_warning_level_support()
 
 add_subdirectory("deps")
 add_subdirectory("lang")
 add_subdirectory("lib")
-add_subdirectory("exe")
 add_subdirectory("spls")
+
+add_subdirectory("linux")
 
 install(DIRECTORY "docs" DESTINATION ".")
 install(DIRECTORY "spls" DESTINATION ".")
