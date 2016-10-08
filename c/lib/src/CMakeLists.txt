@@ -5,10 +5,8 @@ string(CONCAT exports "-D" ${PRJUPR} "_EXPORTS")
 add_definitions(${exports})
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-zr_srchlpr(GENERATE INSTALL
-           RECURSE
-           C
-           SRCVAR ${PRJUPR}_SRC)
+rrdemo_sources(GENERATE INSTALL RECURSE C
+               SRCVAR ${PRJUPR}_SRC)
 
 option(${PRJUPR}_COMPILE_STATIC "Build static library." ON)
 if(${PRJUPR}_COMPILE_STATIC)
