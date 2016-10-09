@@ -1,9 +1,0 @@
-#---------------------------------------
-# \sa [C_STANDARD — CMake 3.5.1 Documentation](
-#        http://cmake.org/cmake/help/v3.5/prop_tgt/C_STANDARD.html)
-# \sa [C_STANDARD_REQUIRED — CMake 3.5.1 Documentation](
-#        http://cmake.org/cmake/help/v3.5/prop_tgt/C_STANDARD_REQUIRED.html)
-#---------------------------------------
-set_target_properties(${PROJECT_NAME} PROPERTIES
-                      C_STANDARD 11  C_STANDARD_REQUIRED ON)
-                               # 90, 99 or 11

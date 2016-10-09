@@ -7,9 +7,8 @@
 
 More ...
 - [*C Reference*](http://cppreference.com/w/c)
-- [*Linux kernel coding style*](http://kernel.org/doc/Documentation/CodingStyle)
+- [*C Programming: A Modern Approach, Second Edition*](http://knking.com/books/c2); 2008; K. N. King.
 - Hanson, D. R. (1996). [*C Interfaces and Implementations: Techniques for Creating Reusable Software*](http://github.com/drh/cii). Addison-Wesley Professional.
-- King, K. N. (2008). [*C Programming: A Modern Approach, 2nd Ed.*](http://knking.com/books/c2). W. W. Norton & Company.
 - Roberts, E. S. (1989). [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf).
 - Plauger, P. J. (1992). *The Standard C Library*. Prentice Hall.
 

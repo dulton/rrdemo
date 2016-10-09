@@ -1,10 +1,10 @@
-#-------------------------------------------------------------------------------
-# RrDemo › C
-#-------------------------------------------------------------------------------
-# \author zhengrr
-# \date 2016-6-28 – 9-30
-# \copyright The MIT License
-#-------------------------------------------------------------------------------
+#==============================================================================#
+# \file                                                                        #
+# \brief RrDemo › C                                                            #
+# \author zhengrr                                                              #
+# \date 2016-6-28 – 10-9                                                       #
+# \copyright The MIT License                                                   #
+#==============================================================================#
 cmake_minimum_required(VERSION 3.0)
 project("RrDemo-C" VERSION 0.0.0.0 LANGUAGES C)
 
@@ -19,7 +19,7 @@ rrdemo_enable_highest_warning_level_support()
 
 add_subdirectory("deps")
 add_subdirectory("lang")
-add_subdirectory("lib")
+add_subdirectory("demo")
 add_subdirectory("spls")
 
 add_subdirectory("linux")

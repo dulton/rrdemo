@@ -7,9 +7,9 @@
 - Chacon, S., & Straub, B. (2014). [*Pro Git*](http://git-scm.com/book/en/v2)<sub> [cmn-Hans](http://git-scm.com/book/zh/v2)</sub>. Apress.
 
 More ...
-- [<sup>*ÁÎÑ©·åµÄ¹Ù·½ÍøÕ¾* </sup>*Git½Ì³Ì*](http://liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+- [<sup>*å»–é›ªå³°çš„å®˜æ–¹ç½‘ç«™* </sup>*Gitæ•™ç¨‹*](http://liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 - [<sup>*Chris Beams* </sup>*How to Write a Git Commit Message*](http://chris.beams.io/posts/git-commit/)
-- [<sup>*ÈîÒ»·åµÄÍøÂçÈÕÖ¾* </sup>*Commit message ºÍ Change log ±àĞ´Ö¸ÄÏ*](http://ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
+- [<sup>*é˜®ä¸€å³°çš„ç½‘ç»œæ—¥å¿—* </sup>*Commit message å’Œ Change log ç¼–å†™æŒ‡å—*](http://ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
 
 ## [*Vim*](http://vim.org/)
 - [*Vimdoc*](http://vimdoc.sf.net/)<sub> [cmn-Hans](http://vimcdoc.sf.net/)</sub>

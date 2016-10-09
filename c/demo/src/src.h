@@ -1,4 +1,4 @@
-/* ************************************************************************//*!
+/*!
  * \file
  * \brief { brief description }
  * \details { detailed description }
@@ -6,7 +6,6 @@
  * \date { date description }
  * \copyright { copyright description }
  ******************************************************************************/
-
 #ifndef SRC_H
 #define SRC_H
 

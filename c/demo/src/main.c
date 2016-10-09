@@ -1,14 +1,13 @@
 /* ************************************************************************//*!
  * \file
- * \author { list of authors }
- * \date { date description }
- * \copyright { copyright description }
+ * \author zhengrr
+ * \date 2016-10-9
+ * \copyright The MIT License
  ******************************************************************************/
-
 #include <stdlib.h>
 
 /* ****************************************************//*!
- * \brief Entry Point
+ * \brief 程序入口
  * \param argc Argument count.
  * \param argv Argument vector.
  * \return Exit status.

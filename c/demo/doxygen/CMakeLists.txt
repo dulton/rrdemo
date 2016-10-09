@@ -1,12 +1,12 @@
-#-------------------------------------------------------------------------------
-# ./lib/doxygen
-#-------------------------------------------------------------------------------
+#------------------------------------------------------------------------------#
+# ./demo/doxygen                                                               #
+#------------------------------------------------------------------------------#
 find_package(Doxygen)
-option(${PRJUPR}_GEN_API_DOC
-       "Generate API documentation (requires Doxygen)." ${DOXYGEN_FOUND})
-if(${PRJUPR}_GEN_API_DOC)
+option(${PRJUPR}_GEN_DEV_DOC
+       "Generate developing documentation (requires Doxygen)." ${DOXYGEN_FOUND})
+if(${PRJUPR}_GEN_DEV_DOC)
    if(NOT DOXYGEN_FOUND)
-      message(FATAL_ERROR "Doxygen is needed to generate the API "
+      message(FATAL_ERROR "Doxygen is needed to generate the developing "
               "documentation.")
    endif()
 
@@ -21,10 +21,10 @@ if(${PRJUPR}_GEN_API_DOC)
    list(APPEND ${PRJUPR}_DOC ${src})
    source_group("Source" FILES ${src})
 
-   add_custom_target(${PRJLWR}_api_doc
+   add_custom_target(${PRJLWR}_dev_doc
                      COMMAND "${DOXYGEN_EXECUTABLE}" "${doxyfile}"
                      WORKING_DIRECTORY "${PROJECT_BINARY_DIR}"
-                     COMMENT "Generating API documentation with Doxygen."
+                     COMMENT "Generating developing documentation with Doxygen."
                      VERBATIM
                      SOURCES ${${PRJUPR}_DOC})
    install(DIRECTORY "${PROJECT_BINARY_DIR}/docs/" DESTINATION "docs")

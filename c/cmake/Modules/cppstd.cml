@@ -1,9 +1,0 @@
-#---------------------------------------
-# \sa [CXX_STANDARD — CMake 3.5.1 Documentation](
-#        http://cmake.org/cmake/help/v3.5/prop_tgt/CXX_STANDARD.html)
-# \sa [CXX_STANDARD_REQUIRED — CMake 3.5.1 Documentation](
-#        http://cmake.org/cmake/help/v3.5/prop_tgt/CXX_STANDARD_REQUIRED.html)
-#---------------------------------------
-set_target_properties(${PROJECT_NAME} PROPERTIES
-                      CXX_STANDARD 14  CXX_STANDARD_REQUIRED ON)
-                                 # 98, 11 or 14

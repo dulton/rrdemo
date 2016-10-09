@@ -1,15 +1,15 @@
-#-------------------------------------------------------------------------------
-# RrDemo Variables Helpers
-#-------------------------------------------------------------------------------
-# \author zhengrr
-# \date 2016-10-8
-# \copyright The MIT License
-#-------------------------------------------------------------------------------
+#==============================================================================#
+# \file                                                                        #
+# \brief RrDemo Variables Helpers                                              #
+# \author zhengrr                                                              #
+# \date 2016-10-8 – 10-9                                                       #
+# \copyright The MIT License                                                   #
+#==============================================================================#
 
-#-----------------------------------------------------------
-# \brief Make Project Extra Variables
-# \since 2016-9-30 – 10-8
-#-----------------------------------------------------------
+#------------------------------------------------------------------------------#
+# \brief Make Project Extra Variables                                          #
+# \since 2016-9-30 – 10-8                                                      #
+#------------------------------------------------------------------------------#
 macro(rrdemo_make_project_extra_variables)
    string(TOUPPER "${PROJECT_NAME}" PROJECT_NAME_UPPER)
    string(TOLOWER "${PROJECT_NAME}" PROJECT_NAME_LOWER)
@@ -17,10 +17,10 @@ macro(rrdemo_make_project_extra_variables)
    set(PRJLWR "${PROJECT_NAME_LOWER}")
 endmacro()
 
-#-----------------------------------------------------------
-# \brief Make Product Variables
-# \since 2016-9-30 – 10-8
-#-----------------------------------------------------------
+#------------------------------------------------------------------------------#
+# \brief Make Product Variables                                                #
+# \since 2016-9-30 – 10-8                                                      #
+#------------------------------------------------------------------------------#
 macro(rrdemo_make_product_variables)
    set(PRODUCT_NAME "${PROJECT_NAME}")
    string(TOUPPER "${PROJECT_NAME}" PRODUCT_NAME_UPPER)

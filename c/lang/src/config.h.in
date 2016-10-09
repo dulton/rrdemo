@@ -1,18 +1,19 @@
 /* ************************************************************************//*!
  * \file
  * \author zhengrr
- * \date 2016-8-3 – 9-30
+ * \date 2016-8-3 – 10-9
  * \copyright The MIT License
  ******************************************************************************/
+#ifndef RRDEMO_C_LIB_CONFIG_H
+#define RRDEMO_C_LIB_CONFIG_H
 
-#ifndef RRDEMO_C_EXE_CONFIG_H
-#define RRDEMO_C_EXE_CONFIG_H
+#include <inttypes.h>
 
-static const char *const RRDEMO_C_EXE_NAME = "@PROJECT_NAME@";
-static const char *const RRDEMO_C_EXE_VERSION = "@PROJECT_VERSION@";
-static const int RRDEMO_C_EXE_VERMJR = @PROJECT_VERSION_MAJOR@;
-static const int RRDEMO_C_EXE_VERMIN = @PROJECT_VERSION_MINOR@;
-static const int RRDEMO_C_EXE_VERPCH = @PROJECT_VERSION_PATCH@;
-static const int RRDEMO_C_EXE_VERTWK = @PROJECT_VERSION_TWEAK@;
+static const char *const RRDEMO_C_LIB_NAME = "@PROJECT_NAME@";
+static const char *const RRDEMO_C_LIB_VERSION = "@PROJECT_VERSION@";
+static const intmax_t RRDEMO_C_LIB_VERSION_MAJOR = (intmax_t)@PROJECT_VERSION_MAJOR@;
+static const intmax_t RRDEMO_C_LIB_VERSION_MINOR = (intmax_t)@PROJECT_VERSION_MINOR@;
+static const intmax_t RRDEMO_C_LIB_VERSION_PATCH = (intmax_t)@PROJECT_VERSION_PATCH@;
+static const intmax_t RRDEMO_C_LIB_VERSION_TWEAK = (intmax_t)@PROJECT_VERSION_TWEAK@;
 
-#endif  /* RRDEMO_C_EXE_CONFIG_H */
+#endif  /* RRDEMO_C_LIB_CONFIG_H */
