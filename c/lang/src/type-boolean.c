@@ -1,6 +1,6 @@
 /*!
  * \brief 布尔型
- * \sa [Type](http://en.cppreference.com/w/c/language/type)
+ * \sa http://en.cppreference.com/w/c/language/type
  * \sa [stdbool.h](http://en.cppreference.com/w/c/types/boolean)
  * \author zhengrr
  * \date 2016-10-9

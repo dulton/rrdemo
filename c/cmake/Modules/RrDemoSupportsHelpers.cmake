@@ -10,14 +10,17 @@ cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 
 #------------------------------------------------------------------------------#
 # \brief Enable Highest Warning Level Support                                  #
-# \sa [Warning Level](http://msdn.microsoft.com/library/thxezb7y.aspx)         #
+# \sa [GCC](http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html)            #
+# \sa [MSVC](http://msdn.microsoft.com/library/thxezb7y.aspx)                  #
 # \since 2016-9-30 – 10-8                                                      #
 #------------------------------------------------------------------------------#
 function(rrdemo_enable_highest_warning_level_support)
    get_property(langs GLOBAL PROPERTY ENABLED_LANGUAGES)
 
    if("C" IN_LIST langs)
-      if(MSVC)
+      if(CMAKE_COMPILER_IS_GNUCC)
+         string(CONCAT CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" " -Wall ")
+      elseif(MSVC)
          if(CMAKE_C_FLAGS MATCHES "/Wall")
             # skip
          elseif(CMAKE_C_FLAGS MATCHES "/W[0-4]")
@@ -30,7 +33,9 @@ function(rrdemo_enable_highest_warning_level_support)
    endif()
 
    if("CXX" IN_LIST langs)
-      if(MSVC)
+      if(CMAKE_COMPILER_IS_GNUCXX)
+         string(CONCAT CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" " -Wall ")
+      elseif(MSVC)
          if(CMAKE_CXX_FLAGS MATCHES "/Wall")
             # skip
          elseif(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")

@@ -1,4 +1,4 @@
-# RrDemo: Lisp
+# RrDemo › LISP
 
 ## References
 - [*Scheme Reports Process*](http://scheme-reports.org/)
