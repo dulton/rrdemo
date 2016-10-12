@@ -1,0 +1,19 @@
+/**
+ * \file
+ * \author zhengrr
+ * \date 2016-8-3 – 10-12
+ * \copyright The MIT License
+ */
+#ifndef RRDEMO_C_LIB_CONFIG_H
+#define RRDEMO_C_LIB_CONFIG_H
+
+#include <inttypes.h>
+
+static const char *const RRDEMO_C_LIB_NAME = "@PROJECT_NAME@";  ///< 项目名
+static const char *const RRDEMO_C_LIB_VERSION = "@PROJECT_VERSION@";  ///< 项目版本号
+static const intmax_t RRDEMO_C_LIB_VERSION_MAJOR = (intmax_t) @PROJECT_VERSION_MAJOR@;  ///< 项目主版本号
+static const intmax_t RRDEMO_C_LIB_VERSION_MINOR = (intmax_t) @PROJECT_VERSION_MINOR@;  ///< 项目次版本号
+static const intmax_t RRDEMO_C_LIB_VERSION_PATCH = (intmax_t) @PROJECT_VERSION_PATCH@;  ///< 项目补丁版本号
+static const intmax_t RRDEMO_C_LIB_VERSION_TWEAK = (intmax_t) @PROJECT_VERSION_TWEAK@;  ///< 项目微调版本号
+
+#endif// RRDEMO_C_LIB_CONFIG_H

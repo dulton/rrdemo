@@ -1,22 +1,25 @@
-/* ************************************************************************//*!
+/**
  * \file
  * \author zhengrr
- * \date 2016-8-3
+ * \date 2016-8-3 – 10-12
  * \copyright The MIT License
- ******************************************************************************/
+ */
+#ifndef RRDEMO_CPP_QT_CONFIG_HPP
+#define RRDEMO_CPP_QT_CONFIG_HPP
 
-#ifndef HENTAIKIT__CONFIG_HPP
-#define HENTAIKIT__CONFIG_HPP
+namespace rrdemo {
+namespace cpp {
+namespace qt {
 
-namespace hentaikit {
+static constexpr char *const NAME{"@PROJECT_NAME@"};  ///< 项目名
+static constexpr char *const VERSION{"@PROJECT_VERSION@"};  ///< 项目版本
+static constexpr int VERSION_MAJOR{@PROJECT_VERSION_MAJOR@};  ///< 项目主版本号
+static constexpr int VERSION_MINOR{@PROJECT_VERSION_MINOR@};  ///< 项目次版本号
+static constexpr int VERSION_PATCH{@PROJECT_VERSION_PATCH@};  ///< 项目补丁版本号
+static constexpr int VERSION_TWEAK{@PROJECT_VERSION_TWEAK@};  ///< 项目微调版本号
 
-static constexpr char *const HENTAIKIT_NAME {"@pnom@"};
-static constexpr char *const HENTAIKIT_VERSION {"@pver@"};
-static constexpr int HENTAIKIT_VERMJR {@pvermjr@};
-static constexpr int HENTAIKIT_VERMIN {@pvermin@};
-static constexpr int HENTAIKIT_VERPCH {@pverpch@};
-static constexpr int HENTAIKIT_VERTWK {@pvertwk@};
+}// namespace qt
+}// namespace cpp
+}// namespace rrdemo
 
-}  // namespace hentaikit
-
-#endif  // HENTAIKIT__CONFIG_HPP
+#endif  // RRDEMO_CPP_QT_CONFIG_HPP

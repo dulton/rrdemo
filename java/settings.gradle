@@ -1,21 +1,17 @@
 rootProject.name = "RrDemo-Java"
 
-// lang
-include 'RrDemo-Java-Language'
-project(":RrDemo-Java-Language").projectDir = file("lang")
+include 'RrDemo-Java-Lang'
+project(":RrDemo-Java-Lang").projectDir = file("lang")
+include 'RrDemo-Java-Groovy'
+project(":RrDemo-Java-Groovy").projectDir = file("groovy")
+include 'RrDemo-Java-Kotlin'
+project(":RrDemo-Java-Kotlin").projectDir = file("kotlin")
+include 'RrDemo-Java-Scala'
+project(":RrDemo-Java-Scala").projectDir = file("scala")
+include 'RrDemo-Java-Demo'
+project(":RrDemo-Java-Demo").projectDir = file("demo")
 
-// third-party
-include 'RrDemo-Java-Hibernate'
-project(":RrDemo-Java-Hibernate").projectDir = file("hibernate")
-
-include 'RrDemo-Java-JUnit'
-project(":RrDemo-Java-JUnit").projectDir = file("junit")
-
-include 'RrDemo-Java-SLF4J'
-project(":RrDemo-Java-SLF4J").projectDir = file("slf4j")
-
-include 'RrDemo-Java-Spring'
-project(":RrDemo-Java-Spring").projectDir = file("spring")
-
-include 'RrDemo-Java-Struts2'
-project(":RrDemo-Java-Struts2").projectDir = file("struts2")
+//include 'RrDemo-Java-Android'
+//project(":RrDemo-Java-Android").projectDir = file("android")
+include 'RrDemo-Java-WAR'
+project(":RrDemo-Java-WAR").projectDir = file("war")

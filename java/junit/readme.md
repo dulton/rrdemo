@@ -1,3 +1,0 @@
-# RrDemo-Java-JUnit
-
-## *JUnit*

@@ -1,18 +1,6 @@
-buildscript {
-   repositories {
-      jcenter()
-   }
-   dependencies {
-      classpath 'com.android.tools.build:gradle:2.1.3'
-   }
-}
+apply plugin: 'groovy'
 
-allprojects {
-   repositories {
-      jcenter()
-   }
-}
-
-task clean(type: Delete) {
-   delete rootProject.buildDir
+dependencies {
+   compile 'org.codehaus.groovy:groovy-all:2.4.7'
+   testCompile 'junit:junit:4.12'
 }

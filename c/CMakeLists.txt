@@ -1,5 +1,4 @@
 #==============================================================================#
-# \file
 # \brief RrDemo › C
 # \author zhengrr
 # \date 2016-6-28 – 10-9
@@ -19,10 +18,12 @@ rrdemo_enable_highest_warning_level_support()
 
 add_subdirectory("deps")
 add_subdirectory("lang")
-add_subdirectory("demo")
+add_subdirectory("lib")
+add_subdirectory("exe")
 add_subdirectory("spls")
 
 add_subdirectory("linux")
+add_subdirectory("opengl")
 
 install(DIRECTORY "docs" DESTINATION ".")
 install(DIRECTORY "spls" DESTINATION ".")

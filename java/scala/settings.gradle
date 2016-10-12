@@ -1,5 +1,0 @@
-rootProject.name = "RrDemo-Scala"
-
-// lang
-include 'RrDemo-Scala-Language'
-project(":RrDemo-Scala-Language").projectDir = file("lang")

@@ -1,0 +1,25 @@
+/**
+ * \file
+ * \author zhengrr
+ * \date 2016-8-3 – 10-12
+ * \copyright The MIT License
+ */
+#ifndef RRDEMO_CPP_DEMO_CONFIG_HPP
+#define RRDEMO_CPP_DEMO_CONFIG_HPP
+
+namespace rrdemo {
+namespace cpp {
+namespace demo {
+
+static constexpr char *const NAME{"@PROJECT_NAME@"};  ///< 项目名
+static constexpr char *const VERSION{"@PROJECT_VERSION@"};  ///< 项目版本
+static constexpr int VERSION_MAJOR{@PROJECT_VERSION_MAJOR@};  ///< 项目主版本号
+static constexpr int VERSION_MINOR{@PROJECT_VERSION_MINOR@};  ///< 项目次版本号
+static constexpr int VERSION_PATCH{@PROJECT_VERSION_PATCH@};  ///< 项目补丁版本号
+static constexpr int VERSION_TWEAK{@PROJECT_VERSION_TWEAK@};  ///< 项目微调版本号
+
+}// namespace demo
+}// namespace cpp
+}// namespace rrdemo
+
+#endif// RRDEMO_CPP_DEMO_CONFIG_HPP

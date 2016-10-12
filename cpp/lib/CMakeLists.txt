@@ -1,15 +1,14 @@
-#-------------------------------------------------------------------------------
-# ./lib
-#-------------------------------------------------------------------------------
+#==============================================================================#
+# \brief RrDemo › C++ › Lang
 # \author zhengrr
-# \date 2016-8-1 – 9-30
+# \date 2016-8-1 – 10-12
 # \copyright The MIT License
-#-------------------------------------------------------------------------------
+#==============================================================================#
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-CPP-Lib" VERSION 0.0.0.0 LANGUAGES CXX)
-zr_make_project_extvars()
+project("RrDemo-CPP-Lang" VERSION 0.0.0.0 LANGUAGES CXX)
+rrdemo_make_project_extra_variables()
 
-zr_ena_unicode_spt()
+rrdemo_enable_unicode_support()
 
 add_subdirectory("src")
 add_subdirectory("test")

@@ -22,4 +22,4 @@ See [<sup>*RrDemo* › *C* › </sup>*CMake*](../c/readme.md#cmake).
 See [<sup>*RrDemo* › *C* › </sup>*CLion*](../c/readme.md#clion).
 
 ## [*Visual Studio*](http://visualstudio.com/)
-[<sup>*MSDN Library* » </sup>*Visual Studio*](http://msdn.microsoft.com/library/dd831853.aspx)
+- [<sup>*MSDN Library* » </sup>*Visual Studio*](http://msdn.microsoft.com/library/dd831853.aspx)

@@ -1,8 +1,8 @@
 /**
  * \file
  * \brief 布尔型
- * \sa http://en.cppreference.com/w/c/language/type
- * \sa [stdbool.h](http://en.cppreference.com/w/c/types/boolean)
+ * \sa http://en.cppreference.com/c/language/type
+ * \sa [stdbool.h](http://en.cppreference.com/c/types/boolean)
  * \author zhengrr
  * \date 2016-10-9 – 10-11
  * \copyright The MIT License

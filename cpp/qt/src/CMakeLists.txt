@@ -1,7 +1,7 @@
-#-------------------------------------------------------------------------------
+#------------------------------------------------------------------------------#
 # ./qt/src
-#-------------------------------------------------------------------------------
-zr_find_qtdir()
+#------------------------------------------------------------------------------#
+rrdemo_find_qtdir()
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
@@ -10,10 +10,8 @@ find_package(Qt5WebSockets REQUIRED)
 find_package(Qt5LinguistTools REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-zr_srchlpr(GENERATE
-           RECURSE
-           CPP QT
-           SRCVAR ${PRJUPR}_SRC)
+rrdemo_sources(GENERATE RECURSE CPP QT
+               SRCVAR ${PRJUPR}_SRC)
 set(${PRJUPR}_TS "ts/en-US.ts")
 
 option(${PRJUPR}_UPDATE_TRANSLATIONS "Update source translation *.ts" OFF)
@@ -32,6 +30,7 @@ if(${PRJUPR}_COMPILE_EXE)
                          Qt5::Gui Qt5::Widgets
                          Qt5::Network Qt5::WebSockets)
    set_target_properties(${PRJLWR}_exe PROPERTIES
+                         CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON
                          OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON
                          AUTOMOC ON AUTOUIC ON AUTORCC ON)
    install(TARGETS ${PRJLWR}_exe DESTINATION "bin")
