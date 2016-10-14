@@ -17,12 +17,15 @@ rrdemo_make_product_variables()
 rrdemo_enable_highest_warning_level_support()
 
 add_subdirectory("deps")
-add_subdirectory("lang")
-add_subdirectory("demo")
+add_subdirectory("lib")
+add_subdirectory("exe")
 add_subdirectory("spls")
 
+add_subdirectory("lang")
+
+add_subdirectory("directx")
 add_subdirectory("windows")
-#add_subdirectory("qt")
+add_subdirectory("qt")
 
 install(DIRECTORY "docs"  DESTINATION ".")
 install(DIRECTORY "spls"  DESTINATION ".")

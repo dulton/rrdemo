@@ -5,7 +5,7 @@
 # \copyright The MIT License
 #==============================================================================#
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-C-Lang" VERSION 0.0.0.0 LANGUAGES C)
+project("RrDemo-C-Lang" LANGUAGES C)
 rrdemo_make_project_extra_variables()
 
 rrdemo_enable_unicode_support()

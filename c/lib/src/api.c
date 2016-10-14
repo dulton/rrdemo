@@ -5,6 +5,6 @@
 
 #include <stdio.h>
 
-void helloworld(void) {
+void rrdemo_c_lib_helloworld(void) {
    printf("hello, world\n");
 }

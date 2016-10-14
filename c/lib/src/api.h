@@ -9,6 +9,6 @@
 
 #include "def.h"
 
-RRDEMO_C_LIB_API void helloworld(void);
+RRDEMO_C_LIB_API void rrdemo_c_lib_helloworld(void);
 
 #endif// RRDEMO_C_LIB_API_H

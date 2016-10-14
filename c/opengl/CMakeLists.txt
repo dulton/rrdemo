@@ -5,9 +5,13 @@
 # \copyright The MIT License
 #==============================================================================#
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-C-OpenGL" VERSION 0.0.0.0 LANGUAGES C)
+project("RrDemo-C-OpenGL" LANGUAGES C)
 rrdemo_make_project_extra_variables()
 
 rrdemo_enable_unicode_support()
 
-add_subdirectory("src")
+find_package(OPENGL)
+find_package(GLUT)
+if(OPENGL_FOUND AND GLUT_FOUND)
+   add_subdirectory("src")
+endif()

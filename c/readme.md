@@ -4,14 +4,12 @@
 - [<sup>*ISO/IEC* › *JTC1* › *SC22* › *WG14* — </sup>*C*](http://open-std.org/jtc1/sc22/wg14/)
 - [<sup>*Awesome* › </sup>*C*](http://notabug.org/koz.ross/awesome-c)
 - [<sup>*Awesome* › </sup>*C/C++*](http://fffaraz.github.io/awesome-cpp/)
-
-More ...
 - [*C Reference*](http://cppreference.com/w/c)
-- [<sup>*Nadeau software consulting* › </sup>C/C++ tips](http://nadeausoftware.com/articles/c_c)
+- *The C Programming Language*; 1978; Brian W. Kernighan, Dennis M. Ritchie.
 - [*C Programming: A Modern Approach, Second Edition*](http://knking.com/books/c2); 2008; K. N. King.
-- Hanson, D. R. (1996). [*C Interfaces and Implementations: Techniques for Creating Reusable Software*](http://github.com/drh/cii). Addison-Wesley Professional.
-- Roberts, E. S. (1989). [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf).
-- Plauger, P. J. (1992). *The Standard C Library*. Prentice Hall.
+- [*C Interfaces and Implementations: Techniques for Creating Reusable Software*](http://github.com/drh/cii); 1997; David R. Hanson.
+- *The Standard C Library*; 1992; P. J. Plauger.
+- [*Implementing Exceptions in C*](http://hpl.hp.com/techreports/Compaq-DEC/SRC-RR-40.pdf); 1989; Eric. S. Roberts.
 
 ## [*Doxygen*](http://doxygen.org/)
 - [<sup>*Doxygen* › </sup>*Manual*](http://doxygen.org/manual/)
@@ -25,19 +23,41 @@ More ...
     - [*CMake Useful Variables*](http://cmake.org/Wiki/CMake_Useful_Variables)
 - [<sup>*CMake* › </sup>*Documentation*](http://cmake.org/documentation/)
     - [*Reference*](http://cmake.org/cmake/help/latest/)
-        - [*language*](http://cmake.org/cmake/help/latest/manual/cmake-language.7.html)
         - [*commands*](http://cmake.org/cmake/help/latest/manual/cmake-commands.7.html)
         - [*properties*](http://cmake.org/cmake/help/latest/manual/cmake-properties.7.html)
         - [*variables*](http://cmake.org/cmake/help/latest/manual/cmake-variables.7.html)
+        - [*modules*](http://cmake.org/cmake/help/latest/manual/cmake-modules.7.html)
 - [<sup>*CMake* › </sup>*Mastering CMake*](http://kitware.com/products/books.php)
     - *Mastering CMake: A Cross-Platform Build System*; 2010; Martin, K., & Hoffman, B.
+
+## [*GNU Compiler Collection*](http://gcc.gnu.org/)
+https://gcc.gnu.org/onlinedocs/gcc/
+
+## *Visual C++*
+- [<sup>*Microsoft Developer Network* » </sup>*Visual C++*](http://msdn.microsoft.com/library/60k1461a.aspx)
 
 ## [*Clion*](http://jetbrains.com/clion/)
 - [<sup>*CLion* › </sup>*Docs & Demos*](http://www.jetbrains.com/clion/documentation/)
 
-## *GCC*
-
 ## *Visual Studio*
 See [<sup>*RrDemo* › *C++* › </sup>*Visual Studio*](../cpp/readme.md#visual-studio).
 
+## [*Vim*](http://vim.org/)
+- [*Vimdoc*](http://vimdoc.sf.net/)<sub> [cmn-Hans](http://vimcdoc.sf.net/)</sub>
+    - [*quickref*](http://vimdoc.sf.net/htmldoc/quickref.html)<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/quickref.html)</sub>
+    - [*intro*](http://vimdoc.sf.net/htmldoc/intro.html)<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/intro.html)</sub>
+    - [*help*](http://vimdoc.sf.net/htmldoc/help.html)<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/help.html)</sub>
+    - [*helphelp*](http://vimdoc.sf.net/htmldoc/helphelp.html)<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/helphelp.html)</sub>
+    - *index*<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/index.html)</sub>
+- [*Vim Cheat Sheat for Programmers*](http://michael.peopleofhonoronly.com/vim/)
+
 ## [*Check*](http://github.com/libcheck/check)
+
+## [*Linux*](http://gnu.org/)
+- [*Cygwin*](http://cygwin.com/)
+- [*MinGW*](http://mingw.org/)
+
+## [*OpenGL*](http://opengl.org/)
+- [<sup>*OpenGL.org* › </sup>*OpenGL Wiki*](http://opengl.org/wiki/)
+    - [*Getting Started*](http://opengl.org/wiki/Getting_Started)
+

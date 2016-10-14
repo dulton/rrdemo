@@ -2,11 +2,10 @@
  * \file
  * \brief 程序入口
  * \author zhengrr
- * \date 2016-10-9 – 12
+ * \date 2016-10-12 – 13
  * \copyright The MIT License
  */
-#include <stdlib.h>
-#include <stdio.h>
+#include <iostream>
 
 /**
  * \brief 程序入口
@@ -15,6 +14,6 @@
  * \return 退出状态
  */
 int main(int argc, char *argv[]) {
-   printf("hello, world\n");
-   return EXIT_SUCCESS;
+   std::cout << "hello, world" << std::endl;
+   return 0;
 }

@@ -1,12 +1,6 @@
 #------------------------------------------------------------------------------#
-# ./opengl/src
+# ./linux/src
 #------------------------------------------------------------------------------#
-find_package(OPENGL REQUIRED)
-include_directories(${OPENGL_INCLUDE_DIR})
-
-find_package(GLUT REQUIRED)
-include_directories(${GLUT_INCLUDE_DIR})
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 rrdemo_sources(GENERATE RECURSE C
                SRCVAR ${PRJUPR}_SRC)
