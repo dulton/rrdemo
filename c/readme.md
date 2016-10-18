@@ -36,7 +36,7 @@
     - [*C++ Manual*](http://gcc.gnu.org/onlinedocs/cpp/)
 
 ## *Visual C++*
-See [<sup>*RrDemo* › *C++* › </sup>*Visual C++*](../cpp/readme.md#visual-c++).
+See [<sup>*RrDemo* › *C++* › </sup>*Visual C++*](../cpp/readme.md#visual-c).
 
 ## [*Clion*](http://jetbrains.com/clion/)
 - [<sup>*CLion* › </sup>*Docs & Demos*](http://www.jetbrains.com/clion/documentation/)

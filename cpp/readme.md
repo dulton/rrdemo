@@ -26,8 +26,7 @@ See [<sup>*RrDemo* › *C* › </sup>*CLion*](../c/readme.md#clion).
 
 ## *DirectX*
 - [<sup>*Microsoft Developer Network* » </sup>*DirectX Graphics and Gaming*](http://msdn.microsoft.com/library/ee663274.aspx)
-- Video Game Development
-    - [*Game Engine Architecture*](http://gameenginebook.com/); 2009; Jason Gregory.
+- [*Game Engine Architecture*](http://gameenginebook.com/); 2009; Jason Gregory.
 
 ## [*LIVE555*](http://live555.com/)
 - [<sup>*LIVE555* › </sup>*Source Code*](http://live555.com/liveMedia/public/)<sub> [GitHub](http://github.com/xanview/live555)</sub>
@@ -36,6 +35,8 @@ See [<sup>*RrDemo* › *C* › </sup>*CLion*](../c/readme.md#clion).
 - [<sup>*Qt* › </sup>*Documentation*](http://doc.qt.io/)
 - [<sup>*Qt* › </sup>*Blog*](http://blog.qt.io/)
 - [<sup>*Qt* › </sup>*Wiki*](http://wiki.qt.io/)
+
+## [*QtAwesome*](http://github.com/gamecreature/QtAwesome)
 
 ## [*Windows*](http://windows.microsoft.com/)
 - [<sup>*Microsoft Developer Network* » </sup>*Windows API*](http://msdn.microsoft.com/library/hh920508.aspx)

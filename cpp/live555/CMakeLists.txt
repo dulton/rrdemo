@@ -1,17 +1,13 @@
 #==============================================================================#
-# \brief RrDemo › C++ › Qt
+# \brief RrDemo › C++ › LIVE555
 # \author zhengrr
-# \date 2016-6-28 – 10-13
+# \date 2016-10-18
 # \copyright The MIT License
 #==============================================================================#
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-CPP-Qt" LANGUAGES CXX)
+project("RrDemo-CPP-LIVE555" LANGUAGES CXX)
 rrdemo_make_project_extra_variables()
 
 rrdemo_enable_unicode_support()
 
-rrdemo_find_qtdir()
-find_package(Qt5Core)
-if(Qt5Core_FOUND)
-   add_subdirectory("src")
-endif()
+add_subdirectory("src")

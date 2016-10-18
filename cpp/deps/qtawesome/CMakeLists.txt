@@ -1,49 +1,49 @@
-#-------------------------------------------------------------------------------
-#       o@@o   @@   o@@o
-#     o@  @o  @@  o@@@@o
-#    @@  @@  @@  @@  @@ @@   @@ o@@@* o@@@  *@@@* @*@*@@* o@@@*
-#   @@  @@ @@@@ @@  @@ @@   @@ @@ @@ @@    @@ @@ @@@@@@@ @@ @@
-#  @@  @@  @@  @@@@@@ @@ @ @@ @@@@@ *@@@* @@ @@ @@ @ @@ @@@@@
-# o@  @o  @@  @@  @@ @@ @ @@ @@       @@ @@ @@ @@ @ @@ @@
-# o@@o@@ o@@ @@  @@ o@@o@@o *@@@@ @@@@o *@@@* @@ @ @@ *@@@@
-#-------------------------------------------------------------------------------
-# \author    the Proj: Rick Blommers
-#            the File: zhengrr
-# \date      2016-5-3 ~ 7-20
+#==============================================================================#
+# \brief QtAwesome
+# \author Rick Blommers (the project)
+# \author zhengrr (the file)
+# \date 2016-5-3 – 10-18
 # \copyright The MIT License
-#-------------------------------------------------------------------------------
+#==============================================================================#
 cmake_minimum_required(VERSION 3.0)
-project("QtAwesome"  VERSION 4.6.1  LANGUAGES CXX)
+project("QtAwesome" VERSION 4.6.1 LANGUAGES CXX)
+rrdemo_make_project_extra_variables()
 
-if(WIN32)
-   add_definitions("-DUNICODE" "-D_UNICODE")
-endif()
+rrdemo_enable_unicode_support()
 
-include("append_qtdir_to_prefixes")
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC             ON)
-set(CMAKE_AUTORCC             ON)
-
-find_package(Qt5Core    REQUIRED)
-find_package(Qt5Gui     REQUIRED)
+rrdemo_find_qtdir()
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
 set(default "${PROJECT_SOURCE_DIR}/QtAwesome")
 if(NOT EXISTS ${default})
    set(default "")
 endif()
-set(${PROJECT_NAME}_DIR ${default}  CACHE PATH "QtAwesome directory path.")
-if(NOT EXISTS ${${PROJECT_NAME}_DIR})
+set(${PRJUPR}_DIR ${default} CACHE PATH "QtAwesome directory path.")
+if(NOT EXISTS ${${PRJUPR}_DIR})
    message(FATAL_ERROR "The 'QtAwesome directory' doesn't exist.")
 endif()
 
-file(GLOB ${PROJECT_NAME}_SRC
-   "${${PROJECT_NAME}_DIR}/QtAwesome/*.h"
-   "${${PROJECT_NAME}_DIR}/QtAwesome/*.cpp"
-   "${${PROJECT_NAME}_DIR}/QtAwesome/*.qrc")
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+rrdemo_sources(SRCVAR ${PRJUPR}_SRC
+               SRCDIR "QtAwesome"
+               GRPDIR "deps\\QtAwesome"
+               SRCEXTS ".h" ".cpp" ".qrc")
 
-add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_SRC})
-target_link_libraries(${PROJECT_NAME}
-   Qt5::Core
-   Qt5::Gui Qt5::Widgets)
+add_library(${PRJLWR}_static STATIC ${${PRJUPR}_SRC})
+target_link_libraries(${PRJLWR}_static
+                      Qt5::Core Qt5::Gui Qt5::Widgets)
+set_target_properties(${PRJLWR}_static PROPERTIES
+                      OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON
+                      AUTOMOC ON AUTORCC ON)
+install(TARGETS ${PRJLWR}_static DESTINATION "dep")
+
+add_library(${PRJLWR}_shared SHARED ${${PRJUPR}_SRC})
+target_link_libraries(${PRJLWR}_shared
+                      Qt5::Core Qt5::Gui Qt5::Widgets)
+set_target_properties(${PRJLWR}_shared PROPERTIES
+                      OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON
+                      VERSION "${PROJECT_VERSION}"
+                      AUTOMOC ON AUTORCC ON)
+install(TARGETS ${PRJLWR}_shared DESTINATION "dep")

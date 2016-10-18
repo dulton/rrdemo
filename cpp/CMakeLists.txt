@@ -24,6 +24,7 @@ add_subdirectory("spls")
 add_subdirectory("lang")
 
 add_subdirectory("directx")
+add_subdirectory("live555")
 add_subdirectory("windows")
 add_subdirectory("qt")
 

@@ -7,7 +7,6 @@
 - *Wikipedia*<sub> [en](http://en.wikipedia.org/wiki/Backus–Naur_Form "Backus–Naur Form"), [cmn-Hans](http://zh.wikipedia.org/wiki/巴科斯范式 "巴科斯范式")</sub>
 - [*The BNF Web Club*](http://cui.unige.ch/db-research/Enseignement/analyseinfo/BNFweb.html)
 
-
 ## Computer Programming
 - Operating System, System Call Interface
     - [*Computer Systems: A Programmer's Perspective*](http://csapp.cs.cmu.edu/); 2002; Randal E. Bryant, David R. O'Hallaron.
