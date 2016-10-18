@@ -31,10 +31,12 @@
     - *Mastering CMake: A Cross-Platform Build System*; 2010; Martin, K., & Hoffman, B.
 
 ## [*GNU Compiler Collection*](http://gcc.gnu.org/)
-https://gcc.gnu.org/onlinedocs/gcc/
+- [<sup>*GNU Compiler Collection* › </sup>*Online Documentation*](http://gcc.gnu.org/onlinedocs/gcc/)
+    - [*Manual*](http://gcc.gnu.org/onlinedocs/gcc/)
+    - [*C++ Manual*](http://gcc.gnu.org/onlinedocs/cpp/)
 
 ## *Visual C++*
-- [<sup>*Microsoft Developer Network* » </sup>*Visual C++*](http://msdn.microsoft.com/library/60k1461a.aspx)
+See [<sup>*RrDemo* › *C++* › </sup>*Visual C++*](../cpp/readme.md#visual-c++).
 
 ## [*Clion*](http://jetbrains.com/clion/)
 - [<sup>*CLion* › </sup>*Docs & Demos*](http://www.jetbrains.com/clion/documentation/)
@@ -60,4 +62,3 @@ See [<sup>*RrDemo* › *C++* › </sup>*Visual Studio*](../cpp/readme.md#visual-
 ## [*OpenGL*](http://opengl.org/)
 - [<sup>*OpenGL.org* › </sup>*OpenGL Wiki*](http://opengl.org/wiki/)
     - [*Getting Started*](http://opengl.org/wiki/Getting_Started)
-

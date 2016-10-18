@@ -1,10 +1,10 @@
 #==============================================================================#
-# \file                                                                        #
-# \brief UAC Fragment                                                          #
-# \sa [MSVC](http://msdn.microsoft.com/library/bb384691.aspx)                  #
-# \author zhengrr                                                              #
-# \date 2016-10-8 – 10-9                                                       #
-# \copyright The MIT License                                                   #
+# \file
+# \brief UAC Fragment
+# \sa [MSVC](http://msdn.microsoft.com/library/bb384691.aspx)
+# \author zhengrr
+# \date 2016-10-8 – 10-9
+# \copyright The MIT License
 #==============================================================================#
 option(${PROJECT_NAME}_ENABLE_UAC_REQADMIN
        "Enable UAC 'requireAdministrator' (requires MSVC)." OFF)

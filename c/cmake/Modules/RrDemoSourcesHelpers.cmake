@@ -1,16 +1,16 @@
 #==============================================================================#
-# \file                                                                        #
-# \brief RrDemo Sources Helpers                                                #
-# \author zhengrr                                                              #
-# \date 2016-10-8 – 10-9                                                       #
-# \copyright The MIT License                                                   #
+# \file
+# \brief RrDemo Sources Helpers
+# \author zhengrr
+# \date 2016-10-8 – 10-9
+# \copyright The MIT License
 #==============================================================================#
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 
 #------------------------------------------------------------------------------#
-# \brief Find Sources                                                          #
-# \since 2016-9-30 – 10-9                                                      #
+# \brief Find Sources
+# \since 2016-9-30 – 10-9
 #------------------------------------------------------------------------------#
 function(rrdemo_find_sources)
    set(opts
@@ -78,8 +78,8 @@ function(rrdemo_find_sources)
 endfunction()
 
 #------------------------------------------------------------------------------#
-# \brief Generate Sources                                                      #
-# \since 2016-9-30 – 10-9                                                      #
+# \brief Generate Sources
+# \since 2016-9-30 – 10-9
 #------------------------------------------------------------------------------#
 function(rrdemo_generate_sources)
    set(opts
@@ -162,8 +162,8 @@ function(rrdemo_generate_sources)
 endfunction()
 
 #------------------------------------------------------------------------------#
-# \brief Install Source                                                        #
-# \since 2016-9-30 – 10-9                                                      #
+# \brief Install Source
+# \since 2016-9-30 – 10-9
 #------------------------------------------------------------------------------#
 function(rrdemo_install_sources)
    set(opts
@@ -217,8 +217,8 @@ function(rrdemo_install_sources)
 endfunction()
 
 #------------------------------------------------------------------------------#
-# \brief Sources                                                               #
-# \since 2016-9-30 – 10-9                                                      #
+# \brief Sources
+# \since 2016-9-30 – 10-9
 #------------------------------------------------------------------------------#
 function(rrdemo_sources)
    set(opts

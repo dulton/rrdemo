@@ -1,18 +1,18 @@
 #==============================================================================#
-# \file                                                                        #
-# \brief RrDemo Supports Helpers                                               #
-# \author zhengrr                                                              #
-# \date 2016-10-8 – 10-9                                                       #
-# \copyright The MIT License                                                   #
+# \file
+# \brief RrDemo Supports Helpers
+# \author zhengrr
+# \date 2016-10-8 – 10-9
+# \copyright The MIT License
 #==============================================================================#
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 
 #------------------------------------------------------------------------------#
-# \brief Enable Highest Warning Level Support                                  #
-# \sa [GCC](http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html)            #
-# \sa [MSVC](http://msdn.microsoft.com/library/thxezb7y.aspx)                  #
-# \since 2016-9-30 – 10-8                                                      #
+# \brief Enable Highest Warning Level Support
+# \sa [GCC](http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html)
+# \sa [MSVC](http://msdn.microsoft.com/library/thxezb7y.aspx)
+# \since 2016-9-30 – 10-8
 #------------------------------------------------------------------------------#
 function(rrdemo_enable_highest_warning_level_support)
    get_property(langs GLOBAL PROPERTY ENABLED_LANGUAGES)
@@ -49,8 +49,8 @@ function(rrdemo_enable_highest_warning_level_support)
 endfunction()
 
 #------------------------------------------------------------------------------#
-# \brief Enable Unicode Support                                                #
-# \since 2016-9-30 – 10-8                                                      #
+# \brief Enable Unicode Support
+# \since 2016-9-30 – 10-8
 #------------------------------------------------------------------------------#
 function(rrdemo_enable_unicode_support)
    if(MSVC)
@@ -59,8 +59,8 @@ function(rrdemo_enable_unicode_support)
 endfunction()
 
 #------------------------------------------------------------------------------#
-# \brief Find QTDIR                                                            #
-# \since 2016-10-3 – 10-8                                                      #
+# \brief Find QTDIR
+# \since 2016-10-3 – 10-8
 #------------------------------------------------------------------------------#
 function(rrdemo_find_qtdir)
    math(EXPR addw "8 * ${CMAKE_SIZEOF_VOID_P}")
