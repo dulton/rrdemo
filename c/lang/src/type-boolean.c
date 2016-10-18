@@ -1,45 +1,37 @@
 /**
  * \file
  * \brief 布尔型
- * \sa http://en.cppreference.com/c/language/type
- * \sa [stdbool.h](http://en.cppreference.com/c/types/boolean)
+ * \sa <http://en.cppreference.com/w/c/language/arithmetic_types#Boolean_type>
+ * \sa [stdbool.h](http://en.cppreference.com/w/c/types/boolean)
  * \author zhengrr
- * \date 2016-10-9 – 10-11
+ * \date 2016-10-9 – 17
  * \copyright The MIT License
  */
+#include "def.h"
 
-/*============================================================================*
- * C89
- *============================================================================*/
-#ifdef __STDC__
+#if defined C99
+#   include <stdbool.h>
+#elif defined C89
+#   define BOOL  int
+#   define TRUE  1
+#   define FALSE 0
+#endif
 
-#define BOOL int
-#define TRUE 1
-#define FALSE 0
-
-static void c89boolean(void) {
-   BOOL flag;
-   if (flag)
-      flag = TRUE;
-   if (!flag)
-      flag = FALSE;
-}
-
-#endif// C89
-
-/*============================================================================*
- * C99
- *============================================================================*/
-#if 199901L <= __STDC_VERSION__
-
-#include <stdbool.h>
-
-static void c99boolean(void) {
+static void boolean(void) {
+   /* definition */
+#if defined C99
    bool flag;
+#elif defined C89
+   BOOL flag;
+#endif
+
+   /* if true */
    if (flag)
-      flag = true;
+      ;
+
+   /* if false */
    if (!flag)
-      flag = false;
+      ;
 }
 
 #endif// C99
