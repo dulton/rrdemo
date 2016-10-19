@@ -1,8 +1,8 @@
 #==============================================================================#
-# \brief RrDemo › C++ › LIVE555
-# \author zhengrr
-# \date 2016-10-18
-# \copyright The MIT License
+# RrDemo › C++ › LIVE555
+# zhengrr
+# 2016-10-18
+# The MIT License
 #==============================================================================#
 cmake_minimum_required(VERSION 3.0)
 project("RrDemo-CPP-LIVE555" LANGUAGES CXX)

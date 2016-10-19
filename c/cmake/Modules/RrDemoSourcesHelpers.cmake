@@ -1,26 +1,54 @@
-#==============================================================================#
-# \file
-# \brief RrDemo Sources Helpers
-# \author zhengrr
-# \date 2016-10-8 – 10-9
-# \copyright The MIT License
-#==============================================================================#
+#[========================================================================[.rst:
+RrDemo Sources Helpers
+----------------------
+
+zhengrr
+2016-10-8 – 19
+The MIT License
+
+Introduction
+^^^^^^^^^^^^
+
+Find, group, generate & install sources by directory, for RrDemo.
+
+CMake 3.3+ required.
+
+Module Function/Macros
+^^^^^^^^^^^^^^^^^^^^^^
+#]========================================================================]
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 
-#------------------------------------------------------------------------------#
-# \brief Find Sources
-# \since 2016-9-30 – 10-9
-#------------------------------------------------------------------------------#
+#[====================================================[.rst:
+.. command:: rrdemo_find_sources
+
+   ::
+
+      rrdemo_find_sources(
+         [RECURSE]
+         SRCVAR <src-var>
+         SRCDIR <src-dir>
+         GRPDIR <grp-dir>
+         SRCEXTS <src-ext>...
+         )
+
+   This function accepts the following named parameters:
+
+   ``RECURSE``
+      enable recurse
+   ``SRCVAR <src-var>``
+      sources variable, matchs regex ``^[0-9A-Za-z_-]+$``
+   ``SRCDIR <src-dir>``
+      sources directory, absolute path, must exist
+   ``GRPDIR <grp-dir>``
+      group directory, matchs regex ``^[ 0-9A-Z\\a-z/_-]+$``
+   ``SRCEXTS <src-ext>...``
+      source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
+#]====================================================]
 function(rrdemo_find_sources)
-   set(opts
-       "RECURSE")  # [in] Enable recurse.
-   set(ones
-       "SRCVAR"    # [out] Sources variable, matchs regex.
-       "SRCDIR"    # [in] Sources directory, absolute path, need exist.
-       "GRPDIR")   # [in] Group directory, matchs regex.
-   set(muts
-       "SRCEXTS")  # [in] Source extensions, matchs regex.
+   set(opts "RECURSE")
+   set(ones "SRCVAR" "SRCDIR" "GRPDIR")
+   set(muts "SRCEXTS")
    cmake_parse_arguments("ARG" "${opts}" "${ones}" "${muts}" ${ARGN})
 
    if(ARG_RECURSE)
@@ -39,7 +67,7 @@ function(rrdemo_find_sources)
               "current input was '${ARG_SRCDIR}'.")
    endif()
 
-   if((NOT ARG_GRPDIR) OR (NOT ARG_GRPDIR MATCHES "^[ 0-9A-Za-z/_-]+$"))
+   if((NOT ARG_GRPDIR) OR (NOT ARG_GRPDIR MATCHES "^[ 0-9A-Z\\a-z/_-]+$"))
       message(FATAL_ERROR "The argument GRPDIR was null or invalid, "
               "current input was '${ARG_GRPDIR}'.")
    endif()
@@ -48,7 +76,7 @@ function(rrdemo_find_sources)
       message(FATAL_ERROR "The argument SRCEXTS was null.")
    endif()
    foreach(ext ${ARG_SRCEXTS})
-      if(NOT ext MATCHES "^([.][0-9A-Za-z]+)+$")
+      if(NOT ext MATCHES "^([.][^ \"%*./:<>?\\|]+)+$")
          message(FATAL_ERROR "A argument in SRCEXTS was invalid, "
                  "the argument was '${ext}' in '${ARG_SRCEXTS}'.")
       endif()
@@ -77,20 +105,39 @@ function(rrdemo_find_sources)
    set(${ARG_SRCVAR} ${${ARG_SRCVAR}} PARENT_SCOPE)
 endfunction()
 
-#------------------------------------------------------------------------------#
-# \brief Generate Sources
-# \since 2016-9-30 – 10-9
-#------------------------------------------------------------------------------#
+#[====================================================[.rst:
+.. command:: rrdemo_generate_sources
+
+   ::
+
+      rrdemo_generate_sources(
+         [RECURSE]
+         SRCVAR <src-var>
+         SRCDIR <src-dir>
+         GENDIR <gen-dir>
+         GRPDIR <grp-dir>
+         GENEXTS <gen-ext>...
+         )
+
+   This function accepts the following named parameters:
+
+   ``RECURSE``
+      enable recurse
+   ``SRCVAR <src-var>``
+      sources variable, matchs regex ``^[0-9A-Za-z_-]+$``
+   ``SRCDIR <src-dir>``
+      sources directory, absolute path, must exist
+   ``GENDIR <gen-dir>``
+      generated directory, absolute path
+   ``GRPDIR <grp-dir>``
+      group directory, matchs regex ``^[ 0-9A-Z\\a-z/_-]+$``
+   ``GENEXTS <gen-ext>...``
+      generating source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
+#]====================================================]
 function(rrdemo_generate_sources)
-   set(opts
-       "RECURSE")  # [in] Enable recurse.
-   set(ones
-       "SRCVAR"    # [out] Sources variable, matchs regex.
-       "SRCDIR"    # [in] Sources directory, absolute path, need exist.
-       "GENDIR"    # [in] Generated directory, absolute path.
-       "GRPDIR")   # [in] Group directory, matchs regex.
-   set(muts
-       "GENEXTS")  # [in] Generating source extensions, matchs regex.
+   set(opts "RECURSE")
+   set(ones "SRCVAR" "SRCDIR" "GENDIR" "GRPDIR")
+   set(muts "GENEXTS")
    cmake_parse_arguments("ARG" "${opts}" "${ones}" "${muts}" ${ARGN})
 
    if(ARG_RECURSE)
@@ -114,7 +161,7 @@ function(rrdemo_generate_sources)
               "current input was '${ARG_GENDIR}'.")
    endif()
 
-   if((NOT ARG_GRPDIR) OR (NOT ARG_GRPDIR MATCHES "^[ 0-9A-Za-z/_-]+$"))
+   if((NOT ARG_GRPDIR) OR (NOT ARG_GRPDIR MATCHES "^[ 0-9A-Z\\a-z/_-]+$"))
       message(FATAL_ERROR "The argument GRPDIR was null or invalid, "
               "current input was '${ARG_GRPDIR}'.")
    endif()
@@ -123,7 +170,7 @@ function(rrdemo_generate_sources)
       message(FATAL_ERROR "The argument GENEXTS was null.")
    endif()
    foreach(ext ${ARG_GENEXTS})
-      if(NOT ext MATCHES "^([.][0-9A-Za-z]+)+$")
+      if(NOT ext MATCHES "^([.][^ \"%*./:<>?\\|]+)+$")
          message(FATAL_ERROR "A argument in GENEXTS was invalid, "
                  "the argument was '${ext}' in '${ARG_GENEXTS}'.")
       endif()
@@ -161,18 +208,33 @@ function(rrdemo_generate_sources)
    set(${ARG_SRCVAR} ${${ARG_SRCVAR}} PARENT_SCOPE)
 endfunction()
 
-#------------------------------------------------------------------------------#
-# \brief Install Source
-# \since 2016-9-30 – 10-9
-#------------------------------------------------------------------------------#
+#[====================================================[.rst:
+.. command:: rrdemo_install_sources
+
+   ::
+
+      rrdemo_install_sources(
+         [RECURSE]
+         SRCDIR <src-dir>
+         INSDIR <ins-dir>
+         INSEXTS <ins-ext>...
+         )
+
+   This function accepts the following named parameters:
+
+   ``RECURSE``
+      enable recurse
+   ``SRCDIR <src-dir>``
+      sources directory, absolute path, must exist
+   ``INSDIR <ins-dir>``
+      install directory, absolute path
+   ``INSEXTS <ins-ext>...``
+      installing source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
+#]====================================================]
 function(rrdemo_install_sources)
-   set(opts
-       "RECURSE")  # [in] Enable recurse.
-   set(ones
-       "SRCDIR"    # [in] Source directory, absolute path, need exist.
-       "INSDIR")   # [in] Install directory, absolute path.
-   set(muts
-       "INSEXTS")  # [in] Installing source extensions, matchs regex.
+   set(opts "RECURSE")
+   set(ones "SRCDIR" "INSDIR")
+   set(muts "INSEXTS")
    cmake_parse_arguments("ARG" "${opts}" "${ones}" "${muts}" ${ARGN})
 
    if(ARG_RECURSE)
@@ -195,7 +257,7 @@ function(rrdemo_install_sources)
       message(FATAL_ERROR "The argument INSEXTS was null.")
    endif()
    foreach(ext ${ARG_INSEXTS})
-      if(NOT ext MATCHES "^([.][0-9A-Za-z]+)+$")
+      if(NOT ext MATCHES "^([.][^ \"%*./:<>?\\|]+)+$")
          message(FATAL_ERROR "A argument in INSEXTS was invalid, "
                  "the argument was '${ext}' in '${ARG_INSEXTS}'.")
       endif()
@@ -216,28 +278,61 @@ function(rrdemo_install_sources)
    endforeach()
 endfunction()
 
-#------------------------------------------------------------------------------#
-# \brief Sources
-# \since 2016-9-30 – 10-9
-#------------------------------------------------------------------------------#
+#[====================================================[.rst:
+.. command:: rrdemo_sources
+
+   ::
+
+      rrdemo_sources(
+         [GENERATE] [INSTALL] [RECURSE] [C] [CPP] [QT]
+         SRCVAR <src-var>
+         [SRCDIR <src-dir>] [GENDIR <gen-dir>] [INSDIR <ins-dir>]
+         [GRPDIR <grp-dir>]
+         [SRCEXTS <src-ext>...] [GENEXTS <gen-ext>...] [INSEXTS <ins-ext>...]
+         )
+
+   This function accepts the following named parameters:
+
+   ``GENERATE``
+      enable source generating
+   ``INSTALL``
+      enable source installing
+   ``RECURSE``
+      enable recurse
+   ``C``
+      append some extensions for C
+   ``CPP``
+      append some extensions for C++
+   ``QT``
+      append some extensions for Qt
+   ``SRCVAR <src-var>``
+      sources variable, matchs regex ``^[0-9A-Za-z_-]+$``
+   ``SRCDIR <src-dir>``
+      sources directory, absolute path, must exist
+      default current source directory
+   ``GENDIR <gen-dir>``
+      generated directory, absolute path
+      default current build directory
+   ``INSDIR <ins-dir>``
+      install directory, absolute path
+      default current install directory
+   ``GRPDIR <grp-dir>``
+      group directory, matchs regex ``^[ 0-9A-Z\\a-z/_-]+$``
+      default current parent directory
+   ``SRCEXTS <src-ext>...``
+      source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
+      if not enable preset, this is required
+   ``GENEXTS <gen-ext>...``
+      generating source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
+      default ```.in```
+   ``INSEXTS <ins-ext>...``
+      installing source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
+      if not enable preset, this is required
+#]====================================================]
 function(rrdemo_sources)
-   set(opts
-       "GENERATE"  # [in] Enable source generating.
-       "INSTALL"   # [in] Enable source installing.
-       "RECURSE"   # [in] Enable recurse.
-       "C"         # [in] Some extensions for C.
-       "CPP"       # [in] Some extensions for C++.
-       "QT")       # [in] Some extensions for Qt.
-   set(ones
-       "SRCVAR"    # [out] Source variable, matchs regex
-       "SRCDIR"    # [in] Source directory, default current source directory.
-       "GENDIR"    # [in] Generated directory, default current build directory.
-       "INSDIR"    # [in] Install directory, default current install directory.
-       "GRPDIR")   # [in] Group directory, default current parent directory.
-   set(muts
-       "SRCEXTS"   # [in] Source extensions, matchs regex.
-       "GENEXTS"   # [in] Generating source extensions, matchs regex.
-       "INSEXTS")  # [in] Installing source extensions, matchs regex.
+   set(opts "GENERATE" "INSTALL" "RECURSE" "C" "CPP" "QT")
+   set(ones "SRCVAR" "SRCDIR" "GENDIR" "INSDIR" "GRPDIR")
+   set(muts "SRCEXTS" "GENEXTS" "INSEXTS")
    cmake_parse_arguments("ARG" "${opts}" "${ones}" "${muts}" ${ARGN})
 
    set(prjsrc "${PROJECT_SOURCE_DIR}")
@@ -299,26 +394,22 @@ function(rrdemo_sources)
    if(NOT ARG_GRPDIR)
       string(REGEX REPLACE "^.*/" "" ARG_GRPDIR "${cursrc}")
    endif()
-   if(NOT ARG_GRPDIR MATCHES "^[ 0-9A-Za-z/_-]+$")
+   if(NOT ARG_GRPDIR MATCHES "^[ 0-9A-Z\\a-z/_-]+$")
       message(FATAL_ERROR "The argument GRPDIR was invalid, "
               "current input was '${ARG_GRPDIR}'.")
    endif()
 
    if(ARG_C)
-      list(APPEND ARG_SRCEXTS ".h")
-      list(APPEND ARG_SRCEXTS ".c")
+      list(APPEND ARG_SRCEXTS ".h" ".c")
    endif()
    if(ARG_CPP)
-      list(APPEND ARG_SRCEXTS ".hpp")
-      list(APPEND ARG_SRCEXTS ".inl")
-      list(APPEND ARG_SRCEXTS ".cpp")
+      list(APPEND ARG_SRCEXTS ".H" ".h++" ".hh" ".hpp" ".hxx" ".inl" ".C" ".c++" ".cc" ".cpp" ".cxx")
    endif()
    if(ARG_QT)
-      list(APPEND ARG_SRCEXTS ".ui")
-      list(APPEND ARG_SRCEXTS ".qrc")
+      list(APPEND ARG_SRCEXTS ".ui" ".qrc")
    endif()
    foreach(ext ${ARG_SRCEXTS})
-      if(NOT ext MATCHES "^([.][0-9A-Za-z]+)+$")
+      if(NOT ext MATCHES "^([.][^ \"%*./:<>?\\|]+)+$")
          message(FATAL_ERROR "A argument in SRCEXTS was invalid, "
                  "the argument was '${ext}' in '${ARG_SRCEXTS}'.")
       endif()
@@ -328,7 +419,7 @@ function(rrdemo_sources)
       list(APPEND ARG_GENEXTS ".in")
    endif()
    foreach(ext ${ARG_GENEXTS})
-      if(NOT ext MATCHES "^([.][0-9A-Za-z]+)+$")
+      if(NOT ext MATCHES "^([.][^ \"%*./:<>?\\|]+)+$")
          message(FATAL_ERROR "A argument in GENEXTS was invalid, "
                  "the argument was '${ext}' in '${ARG_GENEXTS}'.")
       endif()
@@ -338,11 +429,10 @@ function(rrdemo_sources)
       list(APPEND ARG_INSEXTS ".h")
    endif()
    if(ARG_CPP)
-      list(APPEND ARG_INSEXTS ".hpp")
-      list(APPEND ARG_INSEXTS ".inl")
+      list(APPEND ARG_INSEXTS ".H" ".h++" ".hh" ".hpp" ".hxx" ".inl")
    endif()
    foreach(ext ${ARG_INSEXTS})
-      if(NOT ext MATCHES "^([.][0-9A-Za-z]+)+$")
+      if(NOT ext MATCHES "^([.][^ \"%*./:<>?\\|]+)+$")
          message(FATAL_ERROR "A argument in INSEXTS was invalid, "
                  "the argument was '${ext}' in '${ARG_INSEXTS}'.")
       endif()

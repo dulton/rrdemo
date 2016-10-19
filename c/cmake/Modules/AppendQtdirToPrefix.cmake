@@ -1,10 +1,26 @@
-#==============================================================================#
-# \file
-# \brief Append QTDIR to Prefix
-# \author zhengrr
-# \date 2016-10-18
-# \copyright The MIT License
-#==============================================================================#
+#[========================================================================[.rst:
+Append QTDIR to Prefix
+----------------------
+
+zhengrr
+2016-10-3 – 19
+The MIT License
+
+Introduction
+^^^^^^^^^^^^
+Find & append ``QTDIR`` to ``CMAKE_PREFIX_PATH`` for using Qt5.
+
+Module Function/Macros
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. command:: append_qtdir_to_prefix
+
+  ::
+
+    append_qtdir_to_prefix()
+
+  This function will run automatically once.
+#]========================================================================]
 function(append_qtdir_to_prefix)
    math(EXPR addw "8 * ${CMAKE_SIZEOF_VOID_P}")
 

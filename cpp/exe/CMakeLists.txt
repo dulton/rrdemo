@@ -1,8 +1,8 @@
 #==============================================================================#
-# \brief RrDemo › C++ › Exe
-# \author zhengrr
-# \date 2016-8-1 – 10-13
-# \copyright The MIT License
+# RrDemo › C++ › Exe
+# zhengrr
+# 2016-8-1 – 10-13
+# The MIT License
 #==============================================================================#
 cmake_minimum_required(VERSION 3.0)
 project("RrDemo-CPP-Exe" VERSION 0.0.0.0 LANGUAGES CXX)

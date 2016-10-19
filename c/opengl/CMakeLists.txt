@@ -1,8 +1,8 @@
 ﻿#==============================================================================#
-# \brief RrDemo › C › OpenGL
-# \author zhengrr
-# \date 2016-10-12
-# \copyright The MIT License
+# RrDemo › C › OpenGL
+# zhengrr
+# 2016-10-12
+# The MIT License
 #==============================================================================#
 cmake_minimum_required(VERSION 3.0)
 project("RrDemo-C-OpenGL" LANGUAGES C)

@@ -1,6 +1,5 @@
 /**
  * \file
- * \brief hello, world
  * \author zhengrr
  * \date 2016-10-12
  * \copyright The MIT License

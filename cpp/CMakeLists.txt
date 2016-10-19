@@ -1,8 +1,8 @@
 #==============================================================================#
-# \brief RrDemo › C++
-# \author zhengrr
-# \date 2016-6-28 – 10-12
-# \copyright The MIT License
+# RrDemo › C++
+# zhengrr
+# 2016-6-28 – 10-12
+# The MIT License
 #==============================================================================#
 cmake_minimum_required(VERSION 3.0)
 project("RrDemo-CPP"  VERSION 0.0.0.0  LANGUAGES CXX)

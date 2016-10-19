@@ -1,15 +1,32 @@
-#==============================================================================#
-# \file
-# \brief RrDemo Variables Helpers
-# \author zhengrr
-# \date 2016-10-8 – 10-9
-# \copyright The MIT License
-#==============================================================================#
+#[========================================================================[.rst:
+RrDemo Variables Helpers
+------------------------
 
-#------------------------------------------------------------------------------#
-# \brief Make Project Extra Variables
-# \since 2016-9-30 – 10-8
-#------------------------------------------------------------------------------#
+zhengrr
+2016-10-8 – 19
+The MIT License
+
+Introduction
+^^^^^^^^^^^^
+
+Some variables set for RrDemo.
+
+Module Function/Macros
+^^^^^^^^^^^^^^^^^^^^^^
+#]========================================================================]
+
+#[====================================================[.rst:
+.. command:: rrdemo_make_project_extra_variables
+
+   This macro defines the following values:
+
+   ::
+
+      PROJECT_NAME_UPPER
+      PROJECT_NAME_LOWER
+      PRJUPR
+      PRJLWR
+#]====================================================]
 macro(rrdemo_make_project_extra_variables)
    string(TOUPPER "${PROJECT_NAME}" PROJECT_NAME_UPPER)
    string(TOLOWER "${PROJECT_NAME}" PROJECT_NAME_LOWER)
@@ -17,10 +34,24 @@ macro(rrdemo_make_project_extra_variables)
    set(PRJLWR "${PROJECT_NAME_LOWER}")
 endmacro()
 
-#------------------------------------------------------------------------------#
-# \brief Make Product Variables
-# \since 2016-9-30 – 10-8
-#------------------------------------------------------------------------------#
+#[====================================================[.rst:
+.. command:: rrdemo_make_product_variables
+
+   This macro defines the following values:
+
+   ::
+
+      PRODUCT_NAME
+      PRODUCT_NAME_UPPER
+      PRODUCT_NAME_LOWER
+      PRODUCT_SOURCE_DIR
+      PRODUCT_BINARY_DIR
+      PRODUCT_VERSION
+      PRODUCT_VERSION_MAJRO
+      PRODUCT_VERSION_MINOR
+      PRODUCT_VERSION_PATCH
+      PRODUCT_VERSION_TWEAK
+#]====================================================]
 macro(rrdemo_make_product_variables)
    set(PRODUCT_NAME "${PROJECT_NAME}")
    string(TOUPPER "${PROJECT_NAME}" PRODUCT_NAME_UPPER)

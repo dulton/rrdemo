@@ -4,7 +4,7 @@
 - [<sup>*ISO/IEC* › *JTC1* › *SC22* › *WG14* — </sup>*C*](http://open-std.org/jtc1/sc22/wg14/)
 - [<sup>*Awesome* › </sup>*C*](http://notabug.org/koz.ross/awesome-c)
 - [<sup>*Awesome* › </sup>*C/C++*](http://fffaraz.github.io/awesome-cpp/)
-- [*C Reference*](http://cppreference.com/w/c)
+- [<sup>*cppreference.com* › </sup>*C Reference*](http://cppreference.com/w/c)
 - *The C Programming Language*; 1978; Brian W. Kernighan, Dennis M. Ritchie.
 - [*C Programming: A Modern Approach, Second Edition*](http://knking.com/books/c2); 2008; K. N. King.
 - [*C Interfaces and Implementations: Techniques for Creating Reusable Software*](http://github.com/drh/cii); 1997; David R. Hanson.
@@ -30,6 +30,9 @@
 - [<sup>*CMake* › </sup>*Mastering CMake*](http://kitware.com/products/books.php)
     - *Mastering CMake: A Cross-Platform Build System*; 2010; Martin, K., & Hoffman, B.
 
+## [*reStructuredText*](http://docutils.sf.net/rst.html) & [*Sphinx*](http://sphinx-doc.org/)
+- [<sup>*reStructuredText* » </sup>*Quick reStructuredText*](http://docutils.sourceforge.net/docs/user/rst/quickref.html)
+
 ## [*GNU Compiler Collection*](http://gcc.gnu.org/)
 - [<sup>*GNU Compiler Collection* › </sup>*Online Documentation*](http://gcc.gnu.org/onlinedocs/gcc/)
     - [*Manual*](http://gcc.gnu.org/onlinedocs/gcc/)
@@ -51,6 +54,7 @@ See [<sup>*RrDemo* › *C++* › </sup>*Visual Studio*](../cpp/readme.md#visual-
     - [*help*](http://vimdoc.sf.net/htmldoc/help.html)<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/help.html)</sub>
     - [*helphelp*](http://vimdoc.sf.net/htmldoc/helphelp.html)<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/helphelp.html)</sub>
     - *index*<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/index.html)</sub>
+- [<sup>*Wikia* › </sup>*Vim*](http://vim.wikia.com/)
 - [*Vim Cheat Sheat for Programmers*](http://michael.peopleofhonoronly.com/vim/)
 
 ## [*Check*](http://github.com/libcheck/check)
