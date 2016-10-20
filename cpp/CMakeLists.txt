@@ -1,11 +1,9 @@
-#==============================================================================#
 # RrDemo › C++
 # zhengrr
-# 2016-6-28 – 10-12
+# 2016-6-28 – 10-20
 # The MIT License
-#==============================================================================#
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-CPP"  VERSION 0.0.0.0  LANGUAGES CXX)
+project("RrDemo-CPP" VERSION 0.0.0.0 LANGUAGES CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../c/cmake/Modules")
 include("RrDemoVariablesHelpers")
@@ -28,7 +26,7 @@ add_subdirectory("live555")
 add_subdirectory("windows")
 add_subdirectory("qt")
 
-install(DIRECTORY "docs"  DESTINATION ".")
-install(DIRECTORY "spls"  DESTINATION ".")
-install(FILES "license.txt"  DESTINATION ".")
-install(FILES "release_notes.txt"  DESTINATION ".")
+install(DIRECTORY "docs" DESTINATION ".")
+install(DIRECTORY "spls" DESTINATION ".")
+install(FILES "license.txt" DESTINATION ".")
+install(FILES "release_notes.txt" DESTINATION ".")

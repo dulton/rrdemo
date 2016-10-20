@@ -1,30 +1,29 @@
-/**
- * \file
- * \author zhengrr
- * \date 2016-8-1 – 10-12
- * \copyright The MIT License
+/** \file
+ *  \author zhengrr
+ *  \date 2016-8-1 – 10-20
+ *  \copyright The MIT License
  */
-#ifndef RRDEMO_C_LIB_DEF_H
-#define RRDEMO_C_LIB_DEF_H
+#ifndef _RRDEMOCLIB_DEF_H
+#define _RRDEMOCLIB_DEF_H
 
 #ifdef _MSC_VER
-#   define RRDEMO_C_LIB_EXPORT __declspec(dllexport)
-#   define RRDEMO_C_LIB_IMPORT __declspec(dllimport)
-#   define RRDEMO_C_LIB_LOCAL
+# define RRDEMOCLIB_EXPORT __declspec(dllexport)
+# define RRDEMOCLIB_IMPORT __declspec(dllimport)
+# define RRDEMOCLIB_LOCAL
 #elif 4 <= __GNUC__
-#   define RRDEMO_C_LIB_EXPORT __attribute__((visibility("default")))
-#   define RRDEMO_C_LIB_IMPORT __attribute__((visibility("default")))
-#   define RRDEMO_C_LIB_LOCAL  __attribute__((visibility("hidden")))
+# define RRDEMOCLIB_EXPORT __attribute__((visibility("default")))
+# define RRDEMOCLIB_IMPORT __attribute__((visibility("default")))
+# define RRDEMOCLIB_LOCAL  __attribute__((visibility("hidden")))
 #else
-#   define RRDEMO_C_LIB_IMPORT
-#   define RRDEMO_C_LIB_EXPORT
-#   define RRDEMO_C_LIB_LOCAL
+# define RRDEMOCLIB_IMPORT
+# define RRDEMOCLIB_EXPORT
+# define RRDEMOCLIB_LOCAL
 #endif
 
 #ifdef RRDEMO_C_LIB_EXPORTS
-#   define RRDEMO_C_LIB_API RRDEMO_C_LIB_EXPORT
+#   define RRDEMOCLIB_API RRDEMOCLIB_EXPORT
 #else
-#   define RRDEMO_C_LIB_API RRDEMO_C_LIB_IMPORT
+#   define RRDEMOCLIB_API RRDEMOCLIB_IMPORT
 #endif
 
-#endif// RRDEMO_C_LIB_DEF_H
+#endif// _RRDEMOCLIB_DEF_H

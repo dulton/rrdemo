@@ -5,6 +5,7 @@
     - [*cppreference.com*](http://cppreference.com/)
     - [*cplusplus.com*](http://cplusplus.com/)
 - [<sup>*Awesome* › </sup>*C/C++*](http://fffaraz.github.io/awesome-cpp/)
+- [*Bjarne Stroustrup's Homepage*](http://stroustrup.com/)
 
 ## *Doxygen*
 See [<sup>*RrDemo* › *C* › </sup>*Doxygen*](../c/readme.md#doxygen).

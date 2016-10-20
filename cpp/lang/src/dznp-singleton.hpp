@@ -1,28 +1,30 @@
-/**
- * \file
- * \brief 单例模式
- * \author zhengrr
- * \date 2016-10-18
- * \copyright The MIT License
+/** \file
+ *  \brief 单例模式
+ *  \author zhengrr
+ *  \date 2016-10-18
+ *  \copyright The MIT License
  */
 
-#ifndef RRDEMO_CPP_LANG_DZNP_SINGLETON_HPP
-#define RRDEMO_CPP_LANG_DZNP_SINGLETON_HPP
+#ifndef _RRDEMOCPPLANG_DZNPSINGLETON_HPP
+#define _RRDEMOCPPLANG_DZNPSINGLETON_HPP
 
 namespace rrdemo {
 namespace cpp {
 namespace lang {
 
+/// 单例
 /**
- * \brief 单例
  */
 class Singleton {
    explicit Singleton(const Singleton &) = delete;
+
    explicit Singleton(Singleton &&) = delete;
+
    Singleton &operator=(const Singleton &) = delete;
 
 private:
    explicit Singleton(void) = default;
+
    //Singleton &operator=(Singleton &&) = default;
    ~Singleton(void) = default;
 
@@ -41,4 +43,4 @@ public:
 }// namespace cpp
 }// namespace rrdemo
 
-#endif// RRDEMO_CPP_LANG_DZNP_SINGLETON_HPP
+#endif// _RRDEMOCPPLANG_DZNPSINGLETON_HPP

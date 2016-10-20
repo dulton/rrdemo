@@ -1,6 +1,4 @@
-#------------------------------------------------------------------------------#
 # ./lib/doxygen
-#------------------------------------------------------------------------------#
 find_package(Doxygen)
 option(${PRJUPR}_GEN_API_DOC
        "Generate API documentation (requires Doxygen)." ${DOXYGEN_FOUND})

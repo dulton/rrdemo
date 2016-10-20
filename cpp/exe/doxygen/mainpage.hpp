@@ -1,14 +1,5 @@
-/* ************************************************************************//*!
- * \mainpage
- * \brief { brief description }
- * \details { detailed description }
- * \author { list of authors }
- * \date { date description }
- * \copyright { copyright description }
- *
- * ---
- *
- * { text }
- *
- ******************************************************************************/
- 
+/** \mainpage
+ *  \author zhengrr
+ *  \date 2016-10-20
+ *  \copyright The MIT License
+ */

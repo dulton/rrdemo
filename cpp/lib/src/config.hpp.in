@@ -1,11 +1,10 @@
-/**
- * \file
- * \author zhengrr
- * \date 2016-8-3 – 10-13
- * \copyright The MIT License
+/** \file
+ *  \author zhengrr
+ *  \date 2016-8-3 – 10-20
+ *  \copyright The MIT License
  */
-#ifndef RRDEMO_CPP_LIB_CONFIG_HPP
-#define RRDEMO_CPP_LIB_CONFIG_HPP
+#ifndef _RRDEMOCPPLIB_CONFIG_HPP
+#define _RRDEMOCPPLIB_CONFIG_HPP
 
 namespace rrdemo {
 namespace cpp {
@@ -22,4 +21,4 @@ static constexpr int VERSION_TWEAK{@PROJECT_VERSION_TWEAK@};  ///< 项目微调�
 }// namespace cpp
 }// namespace rrdemo
 
-#endif// RRDEMO_CPP_LIB_CONFIG_HPP
+#endif// _RRDEMOCPPLIB_CONFIG_HPP

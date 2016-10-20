@@ -1,6 +1,4 @@
-/**
- * \copyright The MIT License
- */
+/** \copyright The MIT License */
 
 #include "dznp-singleton.hpp"
 
