@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>nsp::MnWd</class>
- <widget class="QMainWindow" name="nsp::MnWd">
+ <class>rrdemo::cpp::qt::MainWindow</class>
+ <widget class="QMainWindow" name="rrdemo::cpp::qt::MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,7 +10,7 @@
     <height>600</height>
    </rect>
   </property>
-  <widget class="QWidget" name="ctrlWgt"/>
+  <widget class="QWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -21,7 +21,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statBar"/>
+  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <resources/>
  <connections/>

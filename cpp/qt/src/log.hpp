@@ -1,49 +1,53 @@
-/* ************************************************************************//*!
- * \file
- * \author zhengrr
- * \date 2016-1-9 ~ 7-18
- * \copyright The MIT License
- ******************************************************************************/
+/** \file
+ *  \author zhengrr
+ *  \date 2016-1-9 – 10-20
+ *  \copyright The MIT License
+ */
 
-#ifndef LOG_HPP
-#define LOG_HPP
+#ifndef _RRDEMOCPPQT_LOG_HPP
+#define _RRDEMOCPPQT_LOG_HPP
 
 #include <QString>
 
 class QFile;
 class QTextStream;
 
-namespace nsp {
+namespace rrdemo {
+namespace cpp {
+namespace qt {
 
-/* ****************************************************//*!
- * \brief Get 'logLevel'
- **********************************************************/
-const QtMsgType getLogLevel(void);
+/// 获取(输出)日志等级
+QtMsgType getLogLevel(void);
 
-/* ****************************************************//*!
- * \brief Set 'logLevel'
- **********************************************************/
+/// 设定(输出)日志等级
 void setLogLevel(const QtMsgType level);
 
-/* ****************************************************//*!
- * \post logDstr
- **********************************************************/
-void logInit(const QString &logPath = "log.txt",
-             const QtMsgType logLevel = QtMsgType::QtWarningMsg);
+/// 日志初始化
+/** \param logPath 日志文件路径
+ *  \param logLevel (输出)日志等级
+ *  \post logDestroy
+ */
+void logInitialize(const QString &logPath = "log.txt",
+                   const QtMsgType logLevel = QtWarningMsg);
 
-/* ****************************************************//*!
- * \pre logInit
- * \post LogDstr
- **********************************************************/
+/// 日志处理器
+/** \param type
+ *  \param context
+ *  \param message
+ *  \pre logInitialize
+ *  \post logDestroy
+ */
 void logHandler(QtMsgType type,
                 const QMessageLogContext &context,
-                const QString &msg);
+                const QString &message);
 
-/* ****************************************************//*!
- * \pre logInit
- **********************************************************/
-void logDstr(void);
+/// 日志销毁
+/** \pre logInitialize
+ */
+void logDestroy();
 
-}  // namespace nsp
+}// namespace qt
+}// namespace cpp
+}// namespace rrdemo
 
-#endif  // LOG_HPP
+#endif// _RRDEMOCPPQT_LOG_HPP

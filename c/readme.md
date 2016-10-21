@@ -61,6 +61,8 @@ See [<sup>*RrDemo* › *C++* › </sup>*Visual Studio*](../cpp/readme.md#visual-
 
 ## [*Check*](http://github.com/libcheck/check)
 
+## [*FFmpeg*](http://ffmpeg.org/)
+
 ## [*Linux*](http://gnu.org/)
 - [*Cygwin*](http://cygwin.com/)
 - [*MinGW*](http://mingw.org/)

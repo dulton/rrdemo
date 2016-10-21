@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>nsp::DlgWBtnsBtm</class>
- <widget class="QDialog" name="nsp::DlgWBtnsBtm">
+ <class>rrdemo::cpp::qt::DialogWithButtonsBottom</class>
+ <widget class="QDialog" name="rrdemo::cpp::qt::DialogWithButtonsBottom">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,7 +10,7 @@
     <height>300</height>
    </rect>
   </property>
-  <widget class="QDialogButtonBox" name="btnsBtm">
+  <widget class="QDialogButtonBox" name="buttonsBottom">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -30,9 +30,9 @@
  <resources/>
  <connections>
   <connection>
-   <sender>btnsBtm</sender>
+   <sender>buttonsBottom</sender>
    <signal>accepted()</signal>
-   <receiver>nsp::DlgWBtnsBtm</receiver>
+   <receiver>rrdemo::cpp::qt::DialogWithButtonsBottom</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -46,9 +46,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>btnsBtm</sender>
+   <sender>buttonsBottom</sender>
    <signal>rejected()</signal>
-   <receiver>nsp::DlgWBtnsBtm</receiver>
+   <receiver>rrdemo::cpp::qt::DialogWithButtonsBottom</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

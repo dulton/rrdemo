@@ -1,5 +1,5 @@
 # ./qt/src
-include("AppendQtdirToPrefix")
+find_package(Qt5CMake REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
@@ -14,11 +14,11 @@ set(${PRJUPR}_TS "ts/en-US.ts")
 
 option(${PRJUPR}_UPDATE_TRANSLATIONS "Update source translation *.ts" OFF)
 if(${PRJUPR}_UPDATE_TRANSLATIONS)
-  qt5_create_translation(${PRJUPR}_QM ${PRJUPR}_SRC ${PRJUPR}_TS)
+  qt5_create_translation(${PRJUPR}_QM ${${PRJUPR}_SRC} ${${PRJUPR}_TS})
 else()
-  qt5_add_translation(${PRJUPR}_QM ${PRJUPR}_TS)
+  qt5_add_translation(${PRJUPR}_QM ${${PRJUPR}_TS})
 endif()
-list(APPEND ${PRJUPR}_SRC ${PRJUPR}_QM)
+list(APPEND ${PRJUPR}_SRC ${${PRJUPR}_QM})
 
 option(${PRJUPR}_COMPILE_EXE "Build executable file." ON)
 if(${PRJUPR}_COMPILE_EXE)

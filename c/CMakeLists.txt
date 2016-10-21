@@ -1,6 +1,6 @@
 # RrDemo › C
 # zhengrr
-# 2016-6-28 – 10-9
+# 2016-6-28 – 10-21
 # The MIT License
 cmake_minimum_required(VERSION 3.0)
 project("RrDemo-C" VERSION 0.0.0.0 LANGUAGES C)
@@ -21,8 +21,20 @@ add_subdirectory("spls")
 
 add_subdirectory("lang")
 
-add_subdirectory("linux")
-add_subdirectory("opengl")
+option(${PRODUCT_NAME}_ENABLE_PROJECT_FFMPEG "Enable project FFmpeg (requires FFmpeg)." OFF)
+if(${PRODUCT_NAME}_ENABLE_PROJECT_FFMPEG)
+  add_subdirectory("ffmpeg")
+endif()
+
+option(${PRODUCT_NAME}_ENABLE_PROJECT_LINUX "Enable project Linux (requires Linux)." OFF)
+if(${PRODUCT_NAME}_ENABLE_PROJECT_LINUX)
+  add_subdirectory("linux")
+endif()
+
+option(${PRODUCT_NAME}_ENABLE_PROJECT_OPENGL "Enable project OpenGL (requires OpenGL)." OFF)
+if(${PRODUCT_NAME}_ENABLE_PROJECT_OPENGL)
+  add_subdirectory("opengl")
+endif()
 
 install(DIRECTORY "docs" DESTINATION ".")
 install(DIRECTORY "spls" DESTINATION ".")
