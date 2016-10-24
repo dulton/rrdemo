@@ -21,17 +21,17 @@ add_subdirectory("spls")
 
 add_subdirectory("lang")
 
-option(${PRODUCT_NAME}_ENABLE_PROJECT_FFMPEG "Enable project FFmpeg (requires FFmpeg)." OFF)
+option(${PRODUCT_NAME_UPPER}_ENABLE_PROJECT_FFMPEG "Enable project FFmpeg (requires FFmpeg)." OFF)
 if(${PRODUCT_NAME}_ENABLE_PROJECT_FFMPEG)
   add_subdirectory("ffmpeg")
 endif()
 
-option(${PRODUCT_NAME}_ENABLE_PROJECT_LINUX "Enable project Linux (requires Linux)." OFF)
+option(${PRODUCT_NAME_UPPER}_ENABLE_PROJECT_LINUX "Enable project Linux (requires Linux)." OFF)
 if(${PRODUCT_NAME}_ENABLE_PROJECT_LINUX)
   add_subdirectory("linux")
 endif()
 
-option(${PRODUCT_NAME}_ENABLE_PROJECT_OPENGL "Enable project OpenGL (requires OpenGL)." OFF)
+option(${PRODUCT_NAME_UPPER}_ENABLE_PROJECT_OPENGL "Enable project OpenGL (requires OpenGL)." OFF)
 if(${PRODUCT_NAME}_ENABLE_PROJECT_OPENGL)
   add_subdirectory("opengl")
 endif()

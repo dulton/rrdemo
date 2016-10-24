@@ -20,16 +20,13 @@ else()
 endif()
 list(APPEND ${PRJUPR}_SRC ${${PRJUPR}_QM})
 
-option(${PRJUPR}_COMPILE_EXE "Build executable file." ON)
-if(${PRJUPR}_COMPILE_EXE)
-  add_executable(${PRJLWR}_exe WIN32 ${${PRJUPR}_SRC})
-  target_link_libraries(${PRJLWR}_exe
-    Qt5::Core
-    Qt5::Gui Qt5::Widgets
-    Qt5::Network Qt5::WebSockets)
-  set_target_properties(${PRJLWR}_exe PROPERTIES
-    CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON
-    OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON
-    AUTOMOC ON AUTOUIC ON AUTORCC ON)
-  install(TARGETS ${PRJLWR}_exe DESTINATION "bin")
-endif()
+add_executable(${PRJLWR}_exe WIN32 ${${PRJUPR}_SRC})
+target_link_libraries(${PRJLWR}_exe
+  Qt5::Core
+  Qt5::Gui Qt5::Widgets
+  Qt5::Network Qt5::WebSockets)
+set_target_properties(${PRJLWR}_exe PROPERTIES
+  CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON
+  OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON
+  AUTOMOC ON AUTOUIC ON AUTORCC ON)
+install(TARGETS ${PRJLWR}_exe DESTINATION "bin")

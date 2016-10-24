@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-21
+# 2016-10-21 – 24
 # The MIT License
 
 #[======================================================================[.rst:
@@ -22,10 +22,8 @@ cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 function(find_qt5_cmake)
   set(QT5CMAKE_FOUND TRUE)
 
-  # check validity
+  # default value & check validity
   if(NOT QT5CMAKE_ROOT_DIR)
-    # else if auto-find QT5CMAKE_ROOT_DIR
-    set(newauto TRUE)
     math(EXPR addw "8 * ${CMAKE_SIZEOF_VOID_P}")
     if(DEFINED QTDIR${addw})
       set(QT5CMAKE_ROOT_DIR "${QTDIR${addw}}")
@@ -35,39 +33,33 @@ function(find_qt5_cmake)
       set(QT5CMAKE_ROOT_DIR "$ENV{QTDIR}")
     else()
       set(QT5CMAKE_FOUND FALSE)
-      if(NOT Qt5CMake_FIND_QUIETLY)
-        message(WARNING "Failed to auto-find QT5CMAKE_ROOT_DIR.")
-      endif()
     endif()
   elseif(NOT IS_DIRECTORY "${QT5CMAKE_ROOT_DIR}")
-    # if specified QT5CMAKE_ROOT_DIR (and invalid)
     set(QT5CMAKE_FOUND FALSE)
-    if(NOT Qt5CMake_FIND_QUIETLY)
-      message(WARNING "The specified QT5CMAKE_ROOT_DIR is invalid: ${QT5CMAKE_ROOT_DIR}")
-    endif()
   endif()
 
-  #TODO: check effectivity
-
-  # append QT5CMAKE_ROOT_DIR to CMAKE_PREFIX_PATH
-  if(QT5CMAKE_FOUND AND NOT QT5CMAKE_ROOT_DIR IN_LIST CMAKE_PREFIX_PATH)
-    if(newauto AND NOT Qt5CMake_FIND_QUIETLY)
-      message(STATUS "Found Qt5CMake: ${QT5CMAKE_ROOT_DIR}\\lib\\cmake")
-    endif()
-    list(APPEND CMAKE_PREFIX_PATH "${QT5CMAKE_ROOT_DIR}")
-    set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)
+  # check effectivity & find results
+  if(QT5CMAKE_FOUND)
+    find_path(QT5CMAKE_LIBRARIES
+      NAMES "Qt5/Qt5Config.cmake"
+      PATHS "${QT5CMAKE_ROOT_DIR}/lib/cmake")
   endif()
 
-  # returned variables
+  # result variables
+  find_package_handle_standard_args(Qt5CMake
+    FOUND_VAR QT5CMAKE_FOUND
+    REQUIRED_VARS QT5CMAKE_LIBRARIES)
+
   set(QT5CMAKE_FOUND ${QT5CMAKE_FOUND} PARENT_SCOPE)
-  set(QT5CMAKE_ROOT_DIR ${QT5CMAKE_ROOT_DIR} PARENT_SCOPE)
+  set(QT5CMAKE_ROOT_DIR ${QT5CMAKE_ROOT_DIR} CACHE PATH "Qt5CMake root directory.")
+  mark_as_advanced(QT5CMAKE_LIBRARIES)
 
-  # check necessity
-  if(NOT QT5CMAKE_FOUND AND Qt5CMake_FIND_REQUIRED)
-    message(FATAL_ERROR "Failed to find Qt5 cmake modules.")
+  if(QT5CMAKE_FOUND)
+    if(NOT QT5CMAKE_ROOT_DIR IN_LIST CMAKE_PREFIX_PATH)
+      list(APPEND CMAKE_PREFIX_PATH "${QT5CMAKE_ROOT_DIR}")
+      set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)
+    endif()
   endif()
 endfunction()
 
 find_qt5_cmake()
-set(QT5CMAKE_ROOT_DIR ${QT5CMAKE_ROOT_DIR} CACHE PATH "Qt5CMake root directory.")
-mark_as_advanced(QT5CMAKE_ROOT_DIR)
