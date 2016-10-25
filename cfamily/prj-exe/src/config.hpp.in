@@ -1,0 +1,26 @@
+/** \file
+ *  \author zhengrr
+ *  \date 2016-8-3 – 10-25
+ *  \copyright The MIT License
+ */
+#ifndef _RRDEMOCFAMILYEXE_CONFIG_HPP
+#define _RRDEMOCFAMILYEXE_CONFIG_HPP
+
+#include <cinttypes>
+
+namespace rrdemo {
+namespace cfamily {
+namespace exe {
+
+static constexpr char *const NAME {"@PROJECT_NAME@"};  ///< 项目名
+static constexpr char *const VERSION {"@PROJECT_VERSION@"};  ///< 项目版本
+static constexpr intmax_t VERSION_MAJOR {@PROJECT_VERSION_MAJOR@};  ///< 项目主版本号
+static constexpr intmax_t VERSION_MINOR {@PROJECT_VERSION_MINOR@};  ///< 项目次版本号
+static constexpr intmax_t VERSION_PATCH {@PROJECT_VERSION_PATCH@};  ///< 项目补丁版本号
+static constexpr intmax_t VERSION_TWEAK {@PROJECT_VERSION_TWEAK@};  ///< 项目微调版本号
+
+}// namespace exe
+}// namespace cfamily
+}// namespace rrdemo
+
+#endif// _RRDEMOCFAMILYEXE_CONFIG_HPP
