@@ -1,17 +1,17 @@
-rootProject.name = "RrDemo-Java"
+rootProject.name = "RrDemo-JavaVM"
 
-include 'RrDemo-Java-Lang'
-project(":RrDemo-Java-Lang").projectDir = file("lang")
-include 'RrDemo-Java-Groovy'
-project(":RrDemo-Java-Groovy").projectDir = file("groovy")
-include 'RrDemo-Java-Kotlin'
-project(":RrDemo-Java-Kotlin").projectDir = file("kotlin")
-include 'RrDemo-Java-Scala'
-project(":RrDemo-Java-Scala").projectDir = file("scala")
-include 'RrDemo-Java-Demo'
-project(":RrDemo-Java-Demo").projectDir = file("demo")
+include 'RrDemo-JavaVM-Java'
+project(":RrDemo-JavaVM-Java").projectDir = file("lang-java")
+include 'RrDemo-JavaVM-Groovy'
+project(":RrDemo-JavaVM-Groovy").projectDir = file("lang-groovy")
+include 'RrDemo-JavaVM-Kotlin'
+project(":RrDemo-JavaVM-Kotlin").projectDir = file("lang-kotlin")
+include 'RrDemo-JavaVM-Scala'
+project(":RrDemo-JavaVM-Scala").projectDir = file("lang-scala")
 
 //include 'RrDemo-Java-Android'
 //project(":RrDemo-Java-Android").projectDir = file("android")
-include 'RrDemo-Java-WAR'
-project(":RrDemo-Java-WAR").projectDir = file("war")
+include 'RrDemo-JavaVM-Demo'
+project(":RrDemo-JavaVM-Demo").projectDir = file("prj-demo")
+include 'RrDemo-JavaVM-WAR'
+project(":RrDemo-JavaVM-WAR").projectDir = file("prj-war")

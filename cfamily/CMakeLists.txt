@@ -1,4 +1,4 @@
-# RrDemo › C Family
+﻿# RrDemo › C Family
 # zhengrr
 # 2016-6-28 – 10-25
 # The MIT License
@@ -20,12 +20,12 @@ add_subdirectory("lang-cpp")
 add_subdirectory("prj-lib")
 add_subdirectory("prj-exe")
 add_subdirectory("spls")
-add_subdirectory("tpty-directx")
-add_subdirectory("tpty-linux")
-add_subdirectory("tpty-live555")
-add_subdirectory("tpty-opengl")
-add_subdirectory("tpty-qt")
-add_subdirectory("tpty-windows")
+add_subdirectory("trdpty-directx")
+add_subdirectory("trdpty-linux")
+add_subdirectory("trdpty-live555")
+add_subdirectory("trdpty-opengl")
+add_subdirectory("trdpty-qt")
+add_subdirectory("trdpty-windows")
 
 install(DIRECTORY "docs" DESTINATION ".")
 install(DIRECTORY "spls" DESTINATION ".")

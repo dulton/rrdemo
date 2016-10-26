@@ -15,13 +15,16 @@
 - *Effective Java*
 
 ## [*Groovy*](http://groovy-lang.org/)
-- [<sup>*Groovy Programming Language* › </sup>*Documentation*](http://groovy-lang.org/documentation.html)<sub> [cmn-Hans](http://groovy.zeroleaf.com/)</sub>
+- [<sup>*Groovy Programming Language* › </sup>*Documentation*](http://groovy-lang.org/documentation.html)
+    - [*Syntax*](http://groovy-lang.org/syntax.html)<sub> [cmn-Hans](http://groovy.zeroleaf.com/)</sub>
 - [<sup>*IBM developerWorks* » </sup>*精通 Groovy*](http://ibm.com/developerworks/cn/education/java/j-groovy/j-groovy.html)
 
 ## [*Kotlin*](http://kotlinlang.org/)
-- [<sup>*Kotlin Programming Language* › </sup>*Reference*](http://kotlinlang.org/docs/reference/)<sub> [cmn-Hans](http://kotlindoc.com/)</sub>
+- [<sup>*Kotlin Programming Language* › </sup>*Documentation*](http://kotlinlang.org/docs/)
+    - [*Reference*](http://kotlinlang.org/docs/reference/)<sub> [cmn-Hans](http://kotlindoc.com/)</sub>
 
 ## [*Scala*](http://scala-lang.org/)
+- [<sup>*Scala Programming Language* › </sup>*Documentation*](http://scala-lang.org/documentation/)
 - [<sup>*IBM developerWorks* » </sup> *面向 Java 开发人员的 Scala 指南系列*](http://ibm.com/developerworks/cn/java/j-scala)
 
 ## [*Gradle*](http://gradle.org/)

@@ -1,1 +1,11 @@
 apply plugin: 'scala'
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.8'
+    zinc 'com.typesafe.zinc:zinc:0.3.11'
+}
+
+ScalaCompileOptions.metaClass.daemonServer = true
+ScalaCompileOptions.metaClass.fork = true
+ScalaCompileOptions.metaClass.useAnt = false
+ScalaCompileOptions.metaClass.useCompileDaemon = false
