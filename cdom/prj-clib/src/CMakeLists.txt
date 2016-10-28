@@ -4,7 +4,7 @@ string(CONCAT exports "-D" "${exports}" "_EXPORTS")
 add_definitions(${exports})
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-rrdemo_sources(GENERATE INSTALL RECURSE C
+sources_helper(GENERATE INSTALL RECURSE C
   SRCVAR ${PRJUPR}_SRC)
 
 option(${PRJUPR}_COMPILE_STATIC "Build static library." ON)

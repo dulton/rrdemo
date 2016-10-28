@@ -4,7 +4,6 @@
  *  \date 2016-10-18
  *  \copyright The MIT License
  */
-
 #ifndef _RRDEMOCPPLANG_DZNPSINGLETON_HPP
 #define _RRDEMOCPPLANG_DZNPSINGLETON_HPP
 

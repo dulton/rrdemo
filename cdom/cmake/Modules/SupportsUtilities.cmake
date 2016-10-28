@@ -1,27 +1,35 @@
 # zhengrr
-# 2016-10-8 – 20
+# 2016-10-8 – 28
 # The MIT License
 
 #[======================================================================[.rst:
-RrDemo Supports Helpers
------------------------
+Supports Utilities
+------------------
 
-Some compile options set for RrDemo.
+Defines some options sets for compiler, linker, etc..
 
 CMake 3.3+ required.
-
-Module Function/Macros
-^^^^^^^^^^^^^^^^^^^^^^
 #]======================================================================]
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 
 #[==================================================[.rst:
-.. command:: rrdemo_enable_highest_warning_level_support
+.. command:: enable_highest_warning_level_support
 
   ::
 
-    rrdemo_enable_highest_warning_level_support()
+    enable_highest_warning_level_support()
+
+  Example usage:
+
+  ::
+
+    # Product(Root) CMakeLists.txt
+    project...
+    ...
+    enable_highest_warning_level_support()
+    ...
+    add_subdirectory...
 
   See also:
 
@@ -30,7 +38,7 @@ cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
   - `VC++ Warning Level
     <http://msdn.microsoft.com/library/thxezb7y.aspx>`_
 #]==================================================]
-function(rrdemo_enable_highest_warning_level_support)
+function(enable_highest_warning_level_support)
   get_property(langs GLOBAL PROPERTY ENABLED_LANGUAGES)
 
   if("C" IN_LIST langs)
@@ -65,13 +73,26 @@ function(rrdemo_enable_highest_warning_level_support)
 endfunction()
 
 #[==================================================[.rst:
-.. command:: rrdemo_enable_unicode_support
+.. command:: enable_unicode_support
 
   ::
 
-    rrdemo_enable_unicode_support()
+    enable_unicode_support()
+
+  Example usage:
+
+  ::
+
+    # Project(Sub) CMakeLists.txt
+    project...
+    ...
+    enable_unicode_support()
+    ...
+    add_executable...
+    add_library...
+
 #]==================================================]
-function(rrdemo_enable_unicode_support)
+function(enable_unicode_support)
   if(MSVC)
     add_definitions("-DUNICODE" "-D_UNICODE")
   endif()

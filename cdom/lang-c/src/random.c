@@ -1,5 +1,5 @@
 /** \file
- *  \brief 随机（数）
+ *  \brief 随机(数).
  *  \sa <http://en.cppreference.com/w/c/numeric/random>
  *  \author zhengrr
  *  \date 2016-10-10 – 27

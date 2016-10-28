@@ -8,23 +8,27 @@
 
 #include <QObject>
 
-namespace rrdemo {
-namespace cpp {
-namespace qt {
+namespace rrdemo
+{
+namespace cpp
+{
+namespace qt
+{
 
-/// Qt类
+/// Qt类.
 /**
  */
-class Class : public QObject {
-   Q_OBJECT
+class Class: public QObject
+{
+Q_OBJECT
 
 public:
-   explicit Class(QObject *parent = nullptr);
-   explicit Class(const Class &) = delete;
-   explicit Class(Class &&) = delete;
-   Class &operator=(const Class &) = delete;
-   Class &operator=(Class &&) = delete;
-   ~Class() = default;
+    explicit Class(QObject *parent = nullptr);
+    explicit Class(const Class &) = delete;
+    explicit Class(Class &&) = delete;
+    Class &operator=(const Class &) = delete;
+    Class &operator=(Class &&) = delete;
+    ~Class() = default;
 
 };// class Class
 

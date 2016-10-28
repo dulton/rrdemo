@@ -1,16 +1,16 @@
 /** \file
  *  \sa <http://en.cppreference.com/w/cpp/language/classes>
  *  \author zhengrr
- *  \date 2016-10-19 – 20
+ *  \date 2016-10-19 – 28
  *  \copyright The MIT License
  */
 
-#ifndef _RRDEMOCPPLANG_CLASS_HPP
-#define _RRDEMOCPPLANG_CLASS_HPP
+#ifndef _RRDEMOCDOMCPP_CLASS_HPP
+#define _RRDEMOCDOMCOO_CLASS_HPP
 
 namespace rrdemo {
+namespace cdom {
 namespace cpp {
-namespace lang {
 
 class Class {
 public:
@@ -46,8 +46,8 @@ public:
 
 };// class Class
 
-}// namespace lang
 }// namespace cpp
+}// namespace cdom
 }// namespace rrdemo
 
-#endif// _RRDEMOCPPLANG_CLASS_HPP
+#endif// _RRDEMOCDOMCPP_CLASS_HPP

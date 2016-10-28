@@ -3,10 +3,10 @@
 # 2016-10-12 – 10-27
 # The MIT License
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-CDom-OpenGL" LANGUAGES C)
-rrdemo_make_project_extra_variables()
+project("${PRODUCT_NAME}-OpenGL" LANGUAGES C)
+make_project_extra_variables()
 
-rrdemo_enable_unicode_support()
+enable_unicode_support()
 
 find_package(OPENGL)
 find_package(GLUT)

@@ -52,6 +52,7 @@ function(find_live555)
   endif()
 
   # result variables
+  include(FindPackageHandleStandardArgs)
   find_package_handle_standard_args(LIVE555
     FOUND_VAR LIVE555_FOUND
     REQUIRED_VARS LIVE555_INCLUDE_DIRS
@@ -69,7 +70,7 @@ function(find_live555)
   set(LIVE555_FOUND ${LIVE555_FOUND} PARENT_SCOPE)
   set(LIVE555_ROOT_DIR ${LIVE555_ROOT_DIR} CACHE PATH "LIVE555 root directory.")
   set(LIVE555_LIBRARIES ${LIVE555_LIBRARIES} PARENT_SCOPE)
-  mark_as_advanced(LIVE555_INCLUDE_DIRS 
+  mark_as_advanced(LIVE555_INCLUDE_DIRS
     LIVE555_BasicUsageEnvironment_LIBRARY
     LIVE555_groupsock_LIBRARY
     LIVE555_liveMedia_LIBRARY

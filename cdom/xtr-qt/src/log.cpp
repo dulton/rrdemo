@@ -6,6 +6,7 @@
 
 #include <QDateTime>
 #include <QFileInfo>
+#include <QMutex>
 #include <QTextStream>
 
 namespace {

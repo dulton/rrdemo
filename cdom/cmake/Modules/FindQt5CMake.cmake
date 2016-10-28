@@ -6,7 +6,7 @@
 FindQt5CMake
 ------------
 
-Find Qt5 cmake modules.
+Find Qt5 CMake modules.
 
 CMake 3.3+ required.
 
@@ -46,6 +46,7 @@ function(find_qt5_cmake)
   endif()
 
   # result variables
+  include(FindPackageHandleStandardArgs)
   find_package_handle_standard_args(Qt5CMake
     FOUND_VAR QT5CMAKE_FOUND
     REQUIRED_VARS QT5CMAKE_LIBRARIES)

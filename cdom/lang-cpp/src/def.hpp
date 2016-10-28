@@ -7,17 +7,17 @@
  *  \date 2016-10-18
  *  \copyright The MIT License
  */
-#ifndef RRDEMO_CPP_LANG_DEF_HPP
-#define RRDEMO_CPP_LANG_DEF_HPP
+#ifndef _RRDEMOCDOMCPP_DEF_HPP
+#define _RRDEMOCDOMCPP_DEF_HPP
 
-#if 199409L <= __cplusplus
+#if 199409L<=__cplusplus
 # define CPP14 201402L
 #endif
-#if 201103L <= __cplusplus
+#if 201103L<=__cplusplus
 # define CPP11 201103L
 #endif
-#if 199711L <= __cplusplus
+#if 199711L<=__cplusplus
 # define CPP98 199711L
 #endif
 
-#endif// RRDEMO_CPP_LANG_DEF_HPP
+#endif// _RRDEMOCDOMCPP_DEF_HPP

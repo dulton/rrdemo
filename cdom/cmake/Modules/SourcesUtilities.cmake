@@ -1,27 +1,24 @@
 # zhengrr
-# 2016-10-8 – 20
+# 2016-10-8 – 28
 # The MIT License
 
 #[======================================================================[.rst:
-RrDemo Sources Helpers
-----------------------
+Sources Utilities
+-----------------
 
-Find, group, generate & install sources by directory, for RrDemo.
+Find, group, generate, install sources etc..
 
 CMake 3.3+ required.
-
-Module Function/Macros
-^^^^^^^^^^^^^^^^^^^^^^
 #]======================================================================]
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
 
 #[==================================================[.rst:
-.. command:: rrdemo_find_sources
+.. command:: find_sources
 
   ::
 
-    rrdemo_find_sources(
+    find_sources(
       [RECURSE]
       SRCVAR <src-var>
       SRCDIR <src-dir>
@@ -32,17 +29,17 @@ cmake_policy(SET CMP0057 NEW)  # CMake 3.3+
   This function accepts the following named parameters:
 
   ``RECURSE``
-    enable recurse
+    Enable recurse.
   ``SRCVAR <src-var>``
-    sources variable, matchs regex ``^[0-9A-Za-z_-]+$``
+    Sources variable, matchs regex ``^[0-9A-Za-z_-]+$``.
   ``SRCDIR <src-dir>``
-    sources directory, absolute path, must exist
+    Sources directory, absolute path, must exist.
   ``GRPDIR <grp-dir>``
-    group directory, matchs regex ``^[ 0-9A-Z\\a-z/_-]+$``
+    Group directory, matchs regex ``^[ 0-9A-Z\\a-z/_-]+$``.
   ``SRCEXTS <src-ext>...``
-    source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
+    Source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``.
 #]==================================================]
-function(rrdemo_find_sources)
+function(find_sources)
   set(opts "RECURSE")
   set(ones "SRCVAR" "SRCDIR" "GRPDIR")
   set(muts "SRCEXTS")
@@ -103,11 +100,11 @@ function(rrdemo_find_sources)
 endfunction()
 
 #[==================================================[.rst:
-.. command:: rrdemo_generate_sources
+.. command:: generate_sources
 
   ::
 
-    rrdemo_generate_sources(
+    generate_sources(
       [RECURSE]
       SRCVAR <src-var>
       SRCDIR <src-dir>
@@ -119,19 +116,19 @@ endfunction()
   This function accepts the following named parameters:
 
   ``RECURSE``
-    enable recurse
+    Enable recurse.
   ``SRCVAR <src-var>``
-    sources variable, matchs regex ``^[0-9A-Za-z_-]+$``
+    Sources variable, matchs regex ``^[0-9A-Za-z_-]+$``.
   ``SRCDIR <src-dir>``
-    sources directory, absolute path, must exist
+    Sources directory, absolute path, must exist.
   ``GENDIR <gen-dir>``
-    generated directory, absolute path
+    Generated directory, absolute path.
   ``GRPDIR <grp-dir>``
-    group directory, matchs regex ``^[ 0-9A-Z\\a-z/_-]+$``
+    Group directory, matchs regex ``^[ 0-9A-Z\\a-z/_-]+$``.
   ``GENEXTS <gen-ext>...``
-    generating source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
+    Generating source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``.
 #]==================================================]
-function(rrdemo_generate_sources)
+function(generate_sources)
   set(opts "RECURSE")
   set(ones "SRCVAR" "SRCDIR" "GENDIR" "GRPDIR")
   set(muts "GENEXTS")
@@ -206,11 +203,11 @@ function(rrdemo_generate_sources)
 endfunction()
 
 #[==================================================[.rst:
-.. command:: rrdemo_install_sources
+.. command:: install_sources
 
   ::
 
-    rrdemo_install_sources(
+    install_sources(
       [RECURSE]
       SRCDIR <src-dir>
       INSDIR <ins-dir>
@@ -220,15 +217,15 @@ endfunction()
   This function accepts the following named parameters:
 
   ``RECURSE``
-    enable recurse
+    Enable recurse.
   ``SRCDIR <src-dir>``
-    sources directory, absolute path, must exist
+    Sources directory, absolute path, must exist.
   ``INSDIR <ins-dir>``
-    install directory, absolute path
+    Install directory, absolute path.
   ``INSEXTS <ins-ext>...``
-    installing source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
+    Installing source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``.
 #]==================================================]
-function(rrdemo_install_sources)
+function(install_sources)
   set(opts "RECURSE")
   set(ones "SRCDIR" "INSDIR")
   set(muts "INSEXTS")
@@ -276,11 +273,11 @@ function(rrdemo_install_sources)
 endfunction()
 
 #[==================================================[.rst:
-.. command:: rrdemo_sources
+.. command:: sources_helper
 
   ::
 
-    rrdemo_sources(
+    sources_helper(
       [GENERATE] [INSTALL] [RECURSE] [C] [CPP] [QT]
       SRCVAR <src-var>
       [SRCDIR <src-dir>] [GENDIR <gen-dir>] [INSDIR <ins-dir>]
@@ -291,42 +288,42 @@ endfunction()
   This function accepts the following named parameters:
 
   ``GENERATE``
-    enable source generating
+    Enable source generating.
   ``INSTALL``
-    enable source installing
+    Enable source installing.
   ``RECURSE``
-    enable recurse
+    Enable recurse.
   ``C``
-    append some extensions for C
+    Append some extensions for C.
   ``CPP``
-    append some extensions for C++
+    Append some extensions for C++.
   ``QT``
-    append some extensions for Qt
+    Append some extensions for Qt.
   ``SRCVAR <src-var>``
-    sources variable, matchs regex ``^[0-9A-Za-z_-]+$``
+    Sources variable, matchs regex ``^[0-9A-Za-z_-]+$``.
   ``SRCDIR <src-dir>``
-    sources directory, absolute path, must exist
-    default current source directory
+    Sources directory, absolute path, must exist,
+    default current source directory.
   ``GENDIR <gen-dir>``
-    generated directory, absolute path
-    default current build directory
+    Generated directory, absolute path,
+    default current build directory.
   ``INSDIR <ins-dir>``
-    install directory, absolute path
-    default current install directory
+    Install directory, absolute path,
+    default current install directory.
   ``GRPDIR <grp-dir>``
-    group directory, matchs regex ``^[ 0-9A-Z\\a-z/_-]+$``
-    default current parent directory
+    Group directory, matchs regex ``^[ 0-9A-Z\\a-z/_-]+$``,
+    default current parent directory.
   ``SRCEXTS <src-ext>...``
-    source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
-    if not enable preset, this is required
+    Source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``,
+    if not enable preset, this is required.
   ``GENEXTS <gen-ext>...``
-    generating source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
-    default ```.in```
+    Generating source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``,
+    default ```.in```.
   ``INSEXTS <ins-ext>...``
-    installing source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``
-    if not enable preset, this is required
+    Installing source extensions, matchs regex ``^([.][^ \"%*./:<>?\\|]+)+$``,
+    if not enable preset, this is required.
 #]==================================================]
-function(rrdemo_sources)
+function(sources_helper)
   set(opts "GENERATE" "INSTALL" "RECURSE" "C" "CPP" "QT")
   set(ones "SRCVAR" "SRCDIR" "GENDIR" "INSDIR" "GRPDIR")
   set(muts "SRCEXTS" "GENEXTS" "INSEXTS")
@@ -435,14 +432,14 @@ function(rrdemo_sources)
     endif()
   endforeach()
 
-  rrdemo_find_sources(${ARG_RECURSE}
+  find_sources(${ARG_RECURSE}
     SRCVAR ${ARG_SRCVAR}
     SRCDIR ${ARG_SRCDIR}
     GRPDIR ${ARG_GRPDIR}
     SRCEXTS ${ARG_SRCEXTS})
 
   if(ARG_GENERATE)
-    rrdemo_generate_sources(${ARG_RECURSE}
+    generate_sources(${ARG_RECURSE}
       SRCVAR ${ARG_SRCVAR}
       SRCDIR ${ARG_SRCDIR}
       GENDIR ${ARG_GENDIR}
@@ -451,14 +448,14 @@ function(rrdemo_sources)
   endif()
 
   if(ARG_INSTALL)
-    rrdemo_install_sources(${ARG_RECURSE}
+    install_sources(${ARG_RECURSE}
       SRCDIR ${ARG_SRCDIR}
       INSDIR ${ARG_INSDIR}
       INSEXTS ${ARG_INSEXTS})
   endif()
 
   if(ARG_GENERATE AND ARG_INSTALL)
-    rrdemo_install_sources(${ARG_RECURSE}
+    install_sources(${ARG_RECURSE}
       SRCDIR ${ARG_GENDIR}
       INSDIR ${ARG_INSDIR}
       INSEXTS ${ARG_INSEXTS})

@@ -1,6 +1,6 @@
 # ./cppexe/src
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-rrdemo_sources(GENERATE RECURSE CPP
+sources_helper(GENERATE RECURSE CPP
   SRCVAR ${PRJUPR}_SRC)
 
 option(${PRJUPR}_COMPILE_EXE "Build executable file." ON)

@@ -5,6 +5,7 @@
 - [<sup>*Awesome* › </sup>*C*](http://notabug.org/koz.ross/awesome-c)
 - [<sup>*Awesome* › </sup>*C/C++*](http://fffaraz.github.io/awesome-cpp/)
 - [<sup>*cppreference.com* › </sup>*C Reference*](http://cppreference.com/w/c)
+- [<sup>*Linux Kernel* › </sup>*Linux Kernel Coding Style*](http://kernel.org/doc/Documentation/CodingStyle)
 - *The C Programming Language*; 1978; Brian W. Kernighan, Dennis M. Ritchie.
 - [*C Programming: A Modern Approach*](http://knking.com/books/c2); 2008; K. N. King.
 - [*C Interfaces and Implementations: Techniques for Creating Reusable Software*](http://github.com/drh/cii); 1997; David R. Hanson.
@@ -95,6 +96,7 @@
 - [<sup>*Qt* › </sup>*Documentation*](http://doc.qt.io/)
 - [<sup>*Qt* › </sup>*Blog*](http://blog.qt.io/)
 - [<sup>*Qt* › </sup>*Wiki*](http://wiki.qt.io/)
+    - [*Qt Coding Style*](http://wiki.qt.io/Qt_Coding_Style)
 
 ## [*QtAwesome*](http://github.com/gamecreature/QtAwesome)
 
