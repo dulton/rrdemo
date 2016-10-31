@@ -2,12 +2,10 @@
  *  \brief 友元.
  *  \sa <http://en.cppreference.com/w/cpp/language/classes>
  *  \author zhengrr
- *  \date 2016-10-25
+ *  \date 2016-10-25 – 31
  *  \copyright The MIT License
  */
-namespace rrdemo {
-namespace cdom {
-namespace cpp {
+namespace {
 
 class Class {
     int privateData = 0;
@@ -15,7 +13,7 @@ class Class {
     /// 友元函数.
     /** 友元函数声明于类中, 但不是成员函数, 不被继承.
      */
-    friend int get_class_private_data(const Class& object);
+    friend int GetClassPrivateData(const Class& object);
 
     /// 友元类.
     /** 友元类声明于类中, 但不是嵌套类, 不被继承.
@@ -24,7 +22,7 @@ class Class {
     friend class Clazz;
 };
 
-int get_class_private_data(const Class& object)
+int GetClassPrivateData(const Class& object)
 {
     return object.privateData;
 }
@@ -37,6 +35,4 @@ class Clazz {
     }
 };
 
-}// namespace cpp
-}// namespace cdom
-}// namespace rrdemo
+}// namespace

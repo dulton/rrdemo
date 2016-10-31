@@ -1,14 +1,14 @@
 /** \file
  *  \brief 循环.
- *  \sa <http://en.cppreference.com/w/c/language/do>
- *  \sa <http://en.cppreference.com/w/c/language/for>
- *  \sa <http://en.cppreference.com/w/c/language/while>
  *  \author zhengrr
- *  \date 2016-10-9 – 27
+ *  \date 2016-10-9 – 31
  *  \copyright The MIT License
  */
 #include "def.h"
 
+/** \brief do–while 循环.
+ *  \sa <http://en.cppreference.com/w/c/language/do>
+ */
 static void do_while_loop(void)
 {
         int i = 0;
@@ -18,6 +18,9 @@ static void do_while_loop(void)
         } while (i < 9);
 }
 
+/** \brief for 循环.
+ *  \sa <http://en.cppreference.com/w/c/language/for>
+ */
 static void for_loop(void)
 {
 #ifdef C99
@@ -32,6 +35,9 @@ static void for_loop(void)
 #endif
 }
 
+/** \brief while 循环.
+ *  \sa <http://en.cppreference.com/w/c/language/while>
+ */
 static void while_loop(void)
 {
         int i = 0;

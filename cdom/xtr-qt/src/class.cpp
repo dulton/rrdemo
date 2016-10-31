@@ -1,12 +1,17 @@
 /** \copyright The MIT License */
 #include "class.hpp"
 
-namespace rrdemo {
-namespace cpp {
-namespace qt {
+namespace rrdemo
+{
+namespace cdom
+{
+namespace qt
+{
 
-Class::Class(QObject *parent) : QObject(parent) {}
+Class::Class(QObject *parent)
+    : QObject(parent)
+{}
 
 }// namespace qt
-}// namespace cpp
+}// namespace cdom
 }// namespace rrdemo

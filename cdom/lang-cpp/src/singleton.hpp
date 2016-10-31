@@ -1,45 +1,33 @@
 /** \file
- *  \brief 单例模式
+ *  \brief 单例(模式).
  *  \author zhengrr
- *  \date 2016-10-18
+ *  \date 2016-10-18 – 31
  *  \copyright The MIT License
  */
-#ifndef _RRDEMOCPPLANG_DZNPSINGLETON_HPP
-#define _RRDEMOCPPLANG_DZNPSINGLETON_HPP
+#ifndef _RRDEMOCDOMCPP_SINGLETON_HPP
+#define _RRDEMOCDOMCPP_SINGLETON_HPP
+
+#include "def.hpp"
 
 namespace rrdemo {
+namespace cdom {
 namespace cpp {
-namespace lang {
 
-/// 单例
-/**
- */
-class Singleton {
-   explicit Singleton(const Singleton &) = delete;
+/// 线程安全(的)惰性单例(模式).
+class ThreadSafeLazySingleton {
+public:
+    ThreadSafeLazySingleton& operator=(const ThreadSafeLazySingleton&) = delete;
+    ThreadSafeLazySingleton& operator=(ThreadSafeLazySingleton&&) = delete;
 
-   explicit Singleton(Singleton &&) = delete;
-
-   Singleton &operator=(const Singleton &) = delete;
+    static ThreadSafeLazySingleton& Instance();
 
 private:
-   explicit Singleton(void) = default;
+    explicit ThreadSafeLazySingleton() { }
 
-   //Singleton &operator=(Singleton &&) = default;
-   ~Singleton(void) = default;
+};// class ThreadSafeLazySingleton
 
-public:
-   inline static Singleton &get_instance(void) { return *instance; }
-
-private:
-   static Singleton *const instance;
-
-public:
-   /* ... */
-
-};// class Singleton
-
-}// namespace lang
 }// namespace cpp
+}// namespace cdom
 }// namespace rrdemo
 
-#endif// _RRDEMOCPPLANG_DZNPSINGLETON_HPP
+#endif// _RRDEMOCDOMCPP_SINGLETON_HPP

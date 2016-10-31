@@ -3,14 +3,14 @@
  *  \date 2016-10-21
  *  \copyright The MIT License
  */
-#ifndef _RRDEMOCPPQT_CLASS_HPP
-#define _RRDEMOCPPQT_CLASS_HPP
+#ifndef _RRDEMOCDOMQT_CLASS_HPP
+#define _RRDEMOCDOMQT_CLASS_HPP
 
 #include <QObject>
 
 namespace rrdemo
 {
-namespace cpp
+namespace cdom
 {
 namespace qt
 {
@@ -33,7 +33,7 @@ public:
 };// class Class
 
 }// namespace qt
-}// namespace cpp
+}// namespace cdom
 }// namespace rrdemo
 
-#endif// _RRDEMOCPPQT_CLASS_HPP
+#endif// _RRDEMOCDOMQT_CLASS_HPP

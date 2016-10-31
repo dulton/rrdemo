@@ -1,9 +1,9 @@
 /** \file
- *  \brief 布尔型.
+ *  \brief 布尔(型).
  *  \sa <http://en.cppreference.com/w/c/language/arithmetic_types#Boolean_type>
  *  \sa [stdbool.h](http://en.cppreference.com/w/c/types/boolean)
  *  \author zhengrr
- *  \date 2016-10-9 – 27
+ *  \date 2016-10-9 – 31
  *  \copyright The MIT License
  */
 #include "def.h"
@@ -18,13 +18,15 @@
 
 static void boolean(void)
 {
+        /* 声明与定义 */
 #ifdef C99
-        bool flag;
+        bool flag = false;
 #else
-        BOOL flag;
+        BOOL flag = FALSE;
 #endif
 
-        if (flag) /*true*/;
+        /* 使用 */
+        if (flag);
 
-        if (!flag) /*false*/;
+        if (!flag);
 }

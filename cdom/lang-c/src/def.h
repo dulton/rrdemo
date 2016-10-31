@@ -4,11 +4,11 @@
  *  \sa <http://gcc.gnu.org/onlinedocs/cpp/Predefined-Macros.html>
  *  \sa <http://msdn.microsoft.com/library/b0084kay.aspx>
  *  \author zhengrr
- *  \date 2016-10-18 – 20
+ *  \date 2016-10-18 – 31
  *  \copyright The MIT License
  */
-#ifndef _RRDEMOCLANG_DEF_H
-#define _RRDEMOCLANG_DEF_H
+#ifndef _RRDEMOCDOMC_DEF_H
+#define _RRDEMOCDOMC_DEF_H
 
 #if 201112L <= __STDC_VERSION__
 # define C11 201112L
@@ -27,4 +27,4 @@
 # define GCC
 #endif
 
-#endif// _RRDEMOCLANG_DEF_H
+#endif// _RRDEMOCDOMC_DEF_H
