@@ -12,33 +12,30 @@ namespace
 {
 
 /// 命令行支持.
-/**
- */
-void commandLineSupport()
+void CommandLineSupport(const QCoreApplication &app)
 {
-    qApp->setOrganizationDomain(qApp->translate("app", "orgDomain"));
-    qApp->setOrganizationName(qApp->translate("app", "orgName"));
-    qApp->setApplicationName(qApp->translate("app", "application"));
-    qApp->setApplicationVersion(qApp->translate("app", "version"));
+    app.setOrganizationDomain(app.translate("app", "orgDomain"));
+    app.setOrganizationName(app.translate("app", "orgName"));
+    app.setApplicationName(app.translate("app", "application"));
+    app.setApplicationVersion(app.translate("app", "version"));
 
-    /* Command Line */
     QCommandLineParser parser;
-    parser.setApplicationDescription(qApp->translate("app", "description"));
+    parser.setApplicationDescription(app.translate("app", "description"));
     // Argument
-    parser.addPositionalArgument("name", qApp->translate("app", "description"));
+    parser.addPositionalArgument("name", app.translate("app", "description"));
     // Option
     parser.addVersionOption();
     parser.addHelpOption();
-    parser.addOption({{"n", "nAlt"}, qApp->translate("app", "description")});
-    parser.addOption({{"m", "mAlt"}, qApp->translate("app", "description"),
-                      qApp->translate("app", "valueName")
+    parser.addOption({{"n", "nAlt"}, app.translate("app", "description")});
+    parser.addOption({{"m", "mAlt"}, app.translate("app", "description"),
+                      app.translate("app", "valueName")
                      });
 
-    parser.process(*qApp);
+    parser.process(app);
 
     /* Parse */
     if (parser.isSet("v") || parser.isSet("h")) {
-        QTimer::singleShot(0, qApp, &QCoreApplication::quit);
+        QTimer::singleShot(0, &app, &QCoreApplication::quit);
         return;
     }
 
@@ -48,13 +45,11 @@ void commandLineSupport()
         QString arg_2{args.at(1)};
     }
 
-//   bool    opt_b {parser.isSet("b")};
-//   QString opt_s {parser.value("s")};
-
-    /* ... */
+    bool opt_b{parser.isSet("b")};
+    QString opt_s{parser.value("s")};
 }
 
-/// 设置支持
+/// 设置支持.
 /** \since 2016-2-14
  */
 void settingsSupport(void)
@@ -63,7 +58,7 @@ void settingsSupport(void)
     settings.setIniCodec("UTF-8");
 }
 
-/// 日志支持
+/// 日志支持.
 /**
  */
 void logSupport(void)
@@ -84,8 +79,8 @@ void logSupport(void)
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    commandLineSupport();
     logSupport();
+    CommandLineSupport(app);
 
     rrdemo::cpp::qt::TabWindowMergeTitleBar tabWindow;
     tabWindow.show();

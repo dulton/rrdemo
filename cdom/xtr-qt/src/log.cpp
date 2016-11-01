@@ -1,112 +1,127 @@
 /** \copyright The MIT License */
-
 #include "log.hpp"
-
-#include <cassert>
 
 #include <QDateTime>
 #include <QFileInfo>
 #include <QMutex>
 #include <QTextStream>
 
-namespace {
+namespace rrdemo
+{
+namespace cdom
+{
+namespace qt
+{
 
-QFile *file {nullptr};
-QtMsgType logLevel {QtWarningMsg};
-
-}// namespace
-
-namespace rrdemo {
-namespace cpp {
-namespace qt {
-
-QtMsgType getLogLevel(void) {
-   return logLevel;
+LoggingController::LoggingController(const QString &path,
+                                                   const QtMsgType &level)
+    : file{new QFile(path)}, level{level}
+{
+    file = new QFile(path);
+    if (!file->open(QIODevice::WriteOnly | QIODevice::Append))
+        Q_ASSERT(false);
 }
 
-void setLogLevel(const QtMsgType level) {
-   logLevel = level;
+LoggingController::~LoggingController()
+{
+    Q_CHECK_PTR(file);
+    if (!file)
+        return;
+
+    file->close();
+    delete file;
+    file = nullptr;
 }
 
-void logInitialize(const QString &path, const QtMsgType level) {
-   static QMutex mutex;
-   mutex.lock();
-
-   Q_CHECK_PTR(!file);
-   if (file) return;
-
-   file = new QFile(path);
-   if (!file->open(QIODevice::WriteOnly | QIODevice::Append))
-      Q_ASSERT(false);
-
-   logLevel = level;
-
-   mutex.unlock();
+LoggingController &LoggingController::Instance(
+    const QString &path, const QtMsgType &level)
+{
+#if 201103L <= __cplusplus /*C++11*/ && (\
+    defined(_MSC_VER) && 1900 <= _MSCVER /*VS2015*/ || \
+    defined(__GNUC__) && (4 < __GNUC__ || 4 == __GNUC__ && 3 <= __GNUC_MINOR__) /*GCC4.3*/ \
+)// [Dynamic Initialization and Destruction with Concurrency](http://open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2660.htm)
+    static LoggingController inst(path, level);
+    return inst;
+#else
+    static LoggingController *inst;
+    if(!inst){
+        static QMutex mutex;
+        mutex.lock();
+        if(!inst)
+            inst = new LoggingController(path, level);
+        mutex.unlock();
+    }
+    return *inst;
+#endif
 }
 
-void logHandler(QtMsgType type,
-                const QMessageLogContext & ctx,
-                const QString &msg) {
-   Q_CHECK_PTR(file);
-   if (!file) return;
+void LoggingController::Handler(QtMsgType type,
+                                       const QMessageLogContext &context,
+                                       const QString &message)
+{
+    if (type < Instance().level)
+        return;
 
-   if (type < logLevel) return;
+    Q_CHECK_PTR(Instance().file);
+    if (!Instance().file)
+        return;
 
-   const QString timeStr {
-      QDateTime::currentDateTime().toString("yyMMdd HH:mm:ss.zzz")};
+    const QString timeStr{
+        QDateTime::currentDateTime().toString("yyMMdd HH:mm:ss.zzz")};
 
-   QString typeStr;
-   switch (type) {
-   case QtDebugMsg:    typeStr = "[Debug]";    break;
-   case QtWarningMsg:  typeStr = "[Warning]";  break;
-   case QtCriticalMsg: typeStr = "[Critical]"; break;
-   case QtFatalMsg:    typeStr = "[*Fatal*]";  break;
-   case QtInfoMsg:     typeStr = "[Info]";     break;
-   default:            Q_ASSERT(false);        break;
-   }
+    QString typeStr;
+    switch (type) {
+        case QtDebugMsg:
+            typeStr = "[Debug]";
+            break;
+        case QtWarningMsg:
+            typeStr = "[Warning]";
+            break;
+        case QtCriticalMsg:
+            typeStr = "[Critical]";
+            break;
+        case QtFatalMsg:
+            typeStr = "[*Fatal*]";
+            break;
+        case QtInfoMsg:
+            typeStr = "[Info]";
+            break;
+        default:
+            Q_ASSERT(false);
+            break;
+    }
 
-   QString localStr;
-   switch (type) {
-   case QtDebugMsg:          break;
-   case QtWarningMsg:        break;
-   case QtCriticalMsg:       //break;
-   case QtFatalMsg:
-      localStr = QString(" \t@%1:%2:%3")
-         .arg(QFileInfo(ctx.file).fileName())
-         .arg(ctx.line)
-         .arg(ctx.function);
-      break;
-   case QtInfoMsg:           break;
-   default: Q_ASSERT(false); break;
-   }
+    QString localStr;
+    switch (type) {
+        case QtDebugMsg:
+            break;
+        case QtWarningMsg:
+            break;
+        case QtCriticalMsg:
+            //break;
+        case QtFatalMsg:
+            localStr = QString(" \t@%1:%2:%3")
+                .arg(QFileInfo(context.file).fileName())
+                .arg(context.line)
+                .arg(context.function);
+            break;
+        case QtInfoMsg:
+            break;
+    }
 
-   const QString message {
-      QString("%1 %2 \t%3%4").arg(timeStr, typeStr, msg, localStr)};
+    const QString output{
+        QString("%1 %2 \t%3%4").arg(timeStr, typeStr, message, localStr)};
 
-   static QMutex mutex;
-   mutex.lock();
+    static QMutex mutex;
+    mutex.lock();
 
-   QTextStream stream(file);
-   stream << message << "\n";
-   stream.flush();
+    QTextStream stream(Instance().file);
+    stream << output << "\n";
+    stream.flush();
 
-   mutex.unlock();
-}
-
-void logDestroy(void) {
-   static QMutex mutex;
-   mutex.lock();
-
-   assert(file);
-   if (!file) return;
-
-   file->close();
-   delete file;
-   file = nullptr;
-
-   mutex.unlock();
+    mutex.unlock();
 }
 
 }// namespace qt
-}// namespace cpp
+}// namespace cdom
 }// namespace rrdemo

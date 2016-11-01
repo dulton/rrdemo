@@ -1,53 +1,73 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-1-9 – 10-20
+ *  \date 2016-1-9 – 11-1
  *  \copyright The MIT License
  */
 
-#ifndef _RRDEMOCPPQT_LOG_HPP
-#define _RRDEMOCPPQT_LOG_HPP
+#ifndef _RRDEMOCDOMQT_LOG_HPP
+#define _RRDEMOCDOMQT_LOG_HPP
 
 #include <QString>
+#include <QFile>
 
-class QFile;
-class QTextStream;
+namespace rrdemo
+{
+namespace cdom
+{
+namespace qt
+{
 
-namespace rrdemo {
-namespace cpp {
-namespace qt {
+/// 内建日志控制器.
+class LoggingController
+{
+private:
+    /// 私有化构造函数.
+    explicit LoggingController(const QString &path, const QtMsgType &level);
+public:
+    /// 禁用复制构造函数.
+    explicit LoggingController(const LoggingController &) = delete;
+    /// 禁用复制赋值操作符.
+    LoggingController &operator=(const LoggingController &) = delete;
+    /// 析构函数.
+    ~LoggingController();
 
-/// 获取(输出)日志等级
-QtMsgType getLogLevel(void);
+    /// 初始化.
+    static void Initialize(const QString &logPath = "log.txt",
+                           const QtMsgType &level = QtWarningMsg);
 
-/// 设定(输出)日志等级
-void setLogLevel(const QtMsgType level);
+    /// 获取单例实例.
+    static LoggingController &Instance(const QString &path = "log.txt",
+                                       const QtMsgType &level = QtWarningMsg);
 
-/// 日志初始化
-/** \param logPath 日志文件路径
- *  \param logLevel (输出)日志等级
- *  \post logDestroy
- */
-void logInitialize(const QString &logPath = "log.txt",
-                   const QtMsgType logLevel = QtWarningMsg);
+    /// 设定输出日志等级.
+    static void SetLevel(const QtMsgType &level)
+    {
+        Instance().level = level;
+    }
 
-/// 日志处理器
-/** \param type
- *  \param context
- *  \param message
- *  \pre logInitialize
- *  \post logDestroy
- */
-void logHandler(QtMsgType type,
-                const QMessageLogContext &context,
-                const QString &message);
+    /// 获取输出日志等级.
+    static QtMsgType GetLevel() const
+    {
+        return Instance().level;
+    }
 
-/// 日志销毁
-/** \pre logInitialize
- */
-void logDestroy();
+    /// 日志处理器.
+    /** \param type
+     *  \param context
+     *  \param message
+     */
+    static void Handler(QtMsgType type,
+                        const QMessageLogContext &context,
+                        const QString &message);
+
+private:
+    bool initialized{false};
+    QFile *file{nullptr};
+    QtMsgType level;
+};
 
 }// namespace qt
-}// namespace cpp
+}// namespace cdom
 }// namespace rrdemo
 
-#endif// _RRDEMOCPPQT_LOG_HPP
+#endif// _RRDEMOCDOMQT_LOG_HPP

@@ -5,8 +5,6 @@
  *  \date 2016-10-11 – 31
  *  \copyright The MIT License
  */
-#include "def.hpp"
-
 namespace {
 
 void boolean()
