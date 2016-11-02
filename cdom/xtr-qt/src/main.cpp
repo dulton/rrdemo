@@ -58,17 +58,6 @@ void settingsSupport(void)
     settings.setIniCodec("UTF-8");
 }
 
-/// 日志支持.
-/**
- */
-void logSupport(void)
-{
-    using namespace rrdemo::cpp::qt;
-    logInitialize("log.txt", QtDebugMsg);
-    qInstallMessageHandler(&logHandler);
-    QObject::connect(qApp, &QApplication::destroyed, &logDestroy);
-}
-
 }// namespace
 
 /// 程序入口
@@ -79,7 +68,10 @@ void logSupport(void)
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    logSupport();
+
+    // log
+    rrdemo::cdom::qt::LoggingController::Initialize("log.txt");
+
     CommandLineSupport(app);
 
     rrdemo::cpp::qt::TabWindowMergeTitleBar tabWindow;

@@ -1,22 +1,19 @@
 /** \file
- *  \brief UsageEnvironment是什么鬼.
+ *  \brief UsageEnvironment 是什么鬼.
  *  \sa <http://live555.com/liveMedia/doxygen/html/classUsageEnvironment.html>
  *  \author zhengrr
  *  \date 2016-10-24 – 11-1
  *  \copyright The MIT License
  */
 
-#ifndef _RRDEMOCDOMLIVE555_WHATISCLASSUSAGEENVIRONMENT_HPP
-#define _RRDEMOCDOMLIVE555_WHATISCLASSUSAGEENVIRONMENT_HPP
+#ifndef _RRDEMOCDOMLIVE555_WHATISUSAGEENVIRONMENT_HPP
+#define _RRDEMOCDOMLIVE555_WHATISUSAGEENVIRONMENT_HPP
 
 #include <live555/Boolean.hh>
 #include <live555/NetCommon.h>
-#include <live555/strDup.hh>
-#include <live555/UsageEnvironment.hh>
-#include <live555/UsageEnvironment_version.hh>
 
 namespace rrdemo {
-namespace cpp {
+namespace cdom {
 namespace live555 {
 
 class TaskScheduler;  // 前置声明
@@ -24,7 +21,7 @@ class TaskScheduler;  // 前置声明
 /// 用户环境
 class UsageEnvironment {
 public:
-    Boolean reclaim();
+    Boolean reclaim() const;
     TaskScheduler& taskScheduler() const { return fScheduler; }
     typedef char const* MsgString;
 
@@ -77,9 +74,9 @@ public:
 
     typedef void BackgroundHandlerProc(void* clientData, int mask);
 
-#define SOCKET_READABLE    (1<<1)
-#define SOCKET_WRITABLE    (1<<2)
-#define SOCKET_EXCEPTION   (1<<3)
+#define SOCKET_READABLE  (1<<1)
+#define SOCKET_WRITABLE  (1<<2)
+#define SOCKET_EXCEPTION (1<<3)
     virtual void setBackgroundHandling(
         int socketNum, int conditionSet,
         BackgroundHandlerProc* handlerProc, void* clientData) = 0;
@@ -112,7 +109,7 @@ protected:
 };// class TaskScheduler
 
 }// namespace live555
-}// namespace cpp
+}// namespace cdom
 }// namespace rrdemo
 
-#endif// _RRDEMOCDOMLIVE555_WHATISCLASSUSAGEENVIRONMENT_HPP
+#endif// _RRDEMOCDOMLIVE555_WHATISUSAGEENVIRONMENT_HPP
