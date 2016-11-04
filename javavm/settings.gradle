@@ -9,9 +9,10 @@ project(":RrDemo-JavaVM-Kotlin").projectDir = file("lang-kotlin")
 include 'RrDemo-JavaVM-Scala'
 project(":RrDemo-JavaVM-Scala").projectDir = file("lang-scala")
 
-//include 'RrDemo-Java-Android'
-//project(":RrDemo-Java-Android").projectDir = file("android")
-include 'RrDemo-JavaVM-Demo'
-project(":RrDemo-JavaVM-Demo").projectDir = file("prj-demo")
+include 'RrDemo-JavaVM-JAR'
+project(":RrDemo-JavaVM-JAR").projectDir = file("prj-jar")
+
+include 'RrDemo-JavaVM-Android'
+project(":RrDemo-JavaVM-Android").projectDir = file("xtr-android")
 include 'RrDemo-JavaVM-WAR'
-project(":RrDemo-JavaVM-WAR").projectDir = file("prj-war")
+project(":RrDemo-JavaVM-WAR").projectDir = file("xtr-war")
