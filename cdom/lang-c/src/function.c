@@ -7,19 +7,17 @@
  *  \date 2016-10-17 – 27
  *  \copyright The MIT License
  */
-#include "def.h"
-
-#ifdef C11
+#if 201112L <= __STDC_VERSION__
 # include <stdnoreturn.h>
 #endif
 
-#ifdef C99
+#if 199901L <= __STDC_VERSION__
 inline static void inline_function(void)
 {
 }
 #endif
 
-#ifdef C11
+#if 201112L <= __STDC_VERSION__
 static noreturn noreturn_function(void)
 {
 }

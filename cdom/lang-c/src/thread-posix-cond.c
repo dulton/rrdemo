@@ -7,8 +7,7 @@
  *  \date 2016-10-11 – 27
  *  \copyright The MIT License
  */
-#include "def.h"
-#ifdef GCC
+#ifdef __GNUC__
 
 #include <pthread.h>
 

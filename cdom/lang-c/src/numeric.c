@@ -7,10 +7,8 @@
  *  \date 2016-10-9 – 10-27
  *  \copyright The MIT License
  */
-#include "def.h"
-
 #include <limits.h>
-#ifdef C99
+#ifdef 199901L <= __STDC_VERSION__
 # include <stdint.h>
 #endif
 
@@ -25,7 +23,7 @@ static void numeric(void)
         unsigned unsigned_int = 0u;
         long signed_long_int = 0L;
         unsigned long unsigned_long_int = 0uL;
-#ifdef C99
+#ifdef 199901L <= __STDC_VERSION__
         long long signed_long_long_int = 0LL;
         unsigned long long unsigned_long_long_int = 0uLL;
         int8_t signed_exactly_8bit_int;

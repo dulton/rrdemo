@@ -4,7 +4,6 @@
  *  \date 2016-10-9 – 31
  *  \copyright The MIT License
  */
-#include "def.h"
 
 /** \brief do–while 循环.
  *  \sa <http://en.cppreference.com/w/c/language/do>
@@ -23,14 +22,14 @@ static void do_while_loop(void)
  */
 static void for_loop(void)
 {
-#ifdef C99
+#if 199901L <= __STDC_VERSION__
         for (int i = 0; i < 9; ++i) {
                 continue;
         }
 #else
         int i = 0;
         for (i = 0; i < 9; ++i) {
-           continue;
+                continue;
         }
 #endif
 }

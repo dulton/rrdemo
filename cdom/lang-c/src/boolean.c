@@ -6,9 +6,7 @@
  *  \date 2016-10-9 – 31
  *  \copyright The MIT License
  */
-#include "def.h"
-
-#ifdef C99
+#if 199901L <= __STDC_VERSION__
 # include <stdbool.h>
 #else
 # define BOOL  int
@@ -19,7 +17,7 @@
 static void boolean(void)
 {
         /* 声明与定义 */
-#ifdef C99
+#if 199901L <= __STDC_VERSION__
         bool flag = false;
 #else
         BOOL flag = FALSE;

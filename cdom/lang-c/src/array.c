@@ -6,8 +6,6 @@
  *  \date 2016-10-9 – 10-27
  *  \copyright The MIT License
  */
-#include "def.h"
-
 static void array(void)
 {
         /* 声明与定义 */
@@ -15,7 +13,7 @@ static void array(void)
         int b[3] = {1, 2};              // 1, 2, 0
         int c[3] = {0};                 // 0, 0, 0
         int d[ ] = {1, 2, 3};           // 1, 2, 3
-#ifdef C99
+#if 199901L <= __STDC_VERSION__
         int e[3] = {[0] = 1, [2] = 3};  // 1, 0, 3
 #endif
 }
