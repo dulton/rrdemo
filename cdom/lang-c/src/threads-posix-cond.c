@@ -1,5 +1,4 @@
 /** \file
- *  \brief POSIX线程条件变量.
  *  \sa <http://ibm.com/developerworks/cn/linux/thread/posix_thread1/>
  *  \sa <http://ibm.com/developerworks/cn/linux/thread/posix_thread2/>
  *  \sa <http://ibm.com/developerworks/cn/linux/thread/posix_thread3/>

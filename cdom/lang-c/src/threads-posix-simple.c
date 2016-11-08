@@ -1,5 +1,4 @@
 /** \file
- *  \brief POSIX线程简单示例.
  *  \sa <http://ibm.com/developerworks/cn/linux/thread/posix_thread1/>
  *  \sa <http://ibm.com/developerworks/cn/linux/thread/posix_thread2/>
  *  \sa <http://ibm.com/developerworks/cn/linux/thread/posix_thread3/>
