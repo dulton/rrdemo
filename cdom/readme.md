@@ -73,15 +73,17 @@
 - [<sup>*Wikia* › </sup>*Vim*](http://vim.wikia.com/)
 - [*Vim Cheat Sheat for Programmers*](http://michael.peopleofhonoronly.com/vim/)
 
-## [*Check*](http://github.com/libcheck/check)
-
 ## [*Boost*](http://boost.org/)
+
+## [*Check*](http://github.com/libcheck/check)
 
 ## *DirectX*
 - [<sup>*Microsoft Developer Network* » </sup>*DirectX Graphics and Gaming*](http://msdn.microsoft.com/library/ee663274.aspx)
 - [*Game Engine Architecture*](http://gameenginebook.com/); 2009; Jason Gregory.
 
 ## [*FFmpeg*](http://ffmpeg.org/)
+
+## [*Klib*](http://attractivechaos.github.io/klib/)
 
 ## [*LIVE555*](http://live555.com/)
 - [<sup>*LIVE555* › </sup>*Source Code*](http://live555.com/liveMedia/public/)<sub> [GitHub](http://github.com/xanview/live555)</sub>
@@ -94,6 +96,8 @@
 - [<sup>*OpenGL.org* › </sup>*OpenGL Wiki*](http://opengl.org/wiki/)
     - [*Getting Started*](http://opengl.org/wiki/Getting_Started)
 
+## [*Protothreads*](http://dunkels.com/adam/pt/)
+
 ## [*Qt*](http://qt.io/)
 - [<sup>*Qt* › </sup>*Documentation*](http://doc.qt.io/)
 - [<sup>*Qt* › </sup>*Blog*](http://blog.qt.io/)
@@ -101,6 +105,8 @@
     - [*Qt Coding Style*](http://wiki.qt.io/Qt_Coding_Style)
 
 ## [*QtAwesome*](http://github.com/gamecreature/QtAwesome)
+
+## [*SGLIB*](http://sglib.sourceforge.net/)
 
 ## [*Windows*](http://windows.microsoft.com/)
 - [<sup>*Microsoft Developer Network* » </sup>*Windows API*](http://msdn.microsoft.com/library/hh920508.aspx)

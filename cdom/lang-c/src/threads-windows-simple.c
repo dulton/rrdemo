@@ -34,7 +34,7 @@ static DWORD WINAPI task(LPVOID data)
         return 0;
 }
 
-#if 1
+#if 0
 int main(void)
 {
         HANDLE peon;
