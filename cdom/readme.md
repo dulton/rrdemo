@@ -83,6 +83,8 @@
 
 ## [*FFmpeg*](http://ffmpeg.org/)
 
+## [*Jansson*](http://digip.org/jansson/)
+
 ## [*Klib*](http://attractivechaos.github.io/klib/)
 
 ## [*LIVE555*](http://live555.com/)

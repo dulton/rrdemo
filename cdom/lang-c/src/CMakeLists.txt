@@ -1,4 +1,10 @@
 # ./c/src
+find_package(SGLIB)
+if(SGLIB_FOUND)
+  add_definitions("-DSGLIB")
+  include_directories(${SGLIB_INCLUDE_DIRS})
+endif()
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 sources_helper(GENERATE RECURSE C
   SRCVAR ${PRJUPR}_SRC)
