@@ -10,21 +10,31 @@
 #include <QCoreApplication>
 #include <QTimer>
 
+#ifdef ENTRY_SWITCH
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
+    app.setOrganizationDomain(app.translate("app", "Organization domain."));
+    app.setOrganizationName(app.translate("app", "Organization name."));
+    app.setApplicationName(app.translate("app", "Application name."));
+    app.setApplicationVersion(app.translate("app", "Application version."));
 
     QCommandLineParser parser;
+    parser.setApplicationDescription(app.translate("app", "Application description."));
     /* Arguments */
     const int argsc {1};
     parser.addPositionalArgument("arg", app.translate("app", "Argument."));
     /* Options */
+    parser.addHelpOption();     // <http://doc.qt.io/qt-5/qcommandlineparser.html#addHelpOption>
+    parser.addVersionOption();  // <http://doc.qt.io/qt-5/qcommandlineparser.html#addVersionOption>
     parser.addOptions({
         {
             {"b", "optboolean"},
+            app.translate("app", "Option boolean.")
         },
         {
             {"s", "optstring"},
+            app.translate("app", "Option string."),
             app.translate("app", "string")
         }
     });
