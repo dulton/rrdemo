@@ -10,7 +10,7 @@ find_package(Qt5LinguistTools REQUIRED)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 sources_helper(GENERATE RECURSE CPP QT
   SRCVAR ${PRJUPR}_SRC)
-set(${PRJUPR}_TS "ts/en-US.ts")
+set(${PRJUPR}_TS "ts/hans-CN.ts")
 
 option(${PRJUPR}_UPDATE_TRANSLATIONS "Update source translation *.ts" OFF)
 if(${PRJUPR}_UPDATE_TRANSLATIONS)
