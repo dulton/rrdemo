@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>rrdemo::cpp::qt::MainWindow</class>
- <widget class="QMainWindow" name="rrdemo::cpp::qt::MainWindow">
+ <class>rrdemo::cdom::qt::MainWindow</class>
+ <widget class="QMainWindow" name="rrdemo::cdom::qt::MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

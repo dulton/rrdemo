@@ -3,19 +3,20 @@
 #include "ui_tab_widget.h"
 
 namespace rrdemo {
-namespace cpp {
+namespace cdom {
 namespace qt {
 
 TabWidget::TabWidget(QWidget *parent) :
-QTabWidget(parent), ui(new Ui::TabWidget) {
-   ui->setupUi(this);
+QTabWidget(parent), ui(new Ui::TabWidget)
+{
+    ui->setupUi(this);
 }
 
-TabWidget::~TabWidget() {
-   delete ui;
-   ui = nullptr;
+TabWidget::~TabWidget()
+{
+    delete ui;  ui = nullptr;
 }
 
 }// namespace qt
-}// namespace cpp
+}// namespace cdom
 }// namespace rrdemo

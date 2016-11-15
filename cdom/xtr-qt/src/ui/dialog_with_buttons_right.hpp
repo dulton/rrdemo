@@ -1,42 +1,41 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-10-21
+ *  \date 2016-10-21 – 11-15
  *  \copyright The MIT License
  */
-
-#ifndef _RRDEMOCPPQT_DIALOGWITHBUTTONSRIGHT_HPP
-#define _RRDEMOCPPQT_DIALOGWITHBUTTONSRIGHT_HPP
+#ifndef _RRDEMOCDOMQT_DIALOGWITHBUTTONSRIGHT_HPP
+#define _RRDEMOCDOMQT_DIALOGWITHBUTTONSRIGHT_HPP
 
 #include <QDialog>
 
 namespace rrdemo {
-namespace cpp {
+namespace cdom {
 namespace qt {
 
 namespace Ui {
 class DialogWithButtonsRight;
 }
 
-/// 带右侧按钮的对话框
+/// 带右侧按钮的对话框。
 /**
 */
 class DialogWithButtonsRight : public QDialog {
-   Q_OBJECT
+    Q_OBJECT
 
 public:
-   explicit DialogWithButtonsRight(QWidget *parent = nullptr);
-   explicit DialogWithButtonsRight(const DialogWithButtonsRight &) = delete;
-   explicit DialogWithButtonsRight(DialogWithButtonsRight &&) = delete;
-   DialogWithButtonsRight &operator=(const DialogWithButtonsRight &) = delete;
-   DialogWithButtonsRight &operator=(DialogWithButtonsRight &&) = delete;
-   ~DialogWithButtonsRight();
+    explicit DialogWithButtonsRight(QWidget *parent = nullptr);
+    explicit DialogWithButtonsRight(const DialogWithButtonsRight &) = delete;
+    explicit DialogWithButtonsRight(DialogWithButtonsRight &&) = delete;
+    DialogWithButtonsRight &operator=(const DialogWithButtonsRight &) = delete;
+    DialogWithButtonsRight &operator=(DialogWithButtonsRight &&) = delete;
+    ~DialogWithButtonsRight();
 
 private:
-   Ui::DialogWithButtonsRight *ui {nullptr};
+    Ui::DialogWithButtonsRight *ui {nullptr};
 };// class DialogWithButtonsRight
 
 }// namespace qt
-}// namespace cpp
+}// namespace cdom
 }// namespace rrdemo
 
-#endif// _RRDEMOCPPQT_DIALOGWITHBUTTONSRIGHT_HPP
+#endif// _RRDEMOCDOMQT_DIALOGWITHBUTTONSRIGHT_HPP

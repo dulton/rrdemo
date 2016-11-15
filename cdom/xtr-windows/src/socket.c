@@ -8,7 +8,7 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 int main(void)
 {
     HANDLE peon;

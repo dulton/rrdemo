@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>rrdemo::cpp::qt::TabWidget</class>
- <widget class="QTabWidget" name="rrdemo::cpp::qt::TabWidget">
+ <class>rrdemo::cdom::qt::TabWidget</class>
+ <widget class="QTabWidget" name="rrdemo::cdom::qt::TabWidget">
   <property name="geometry">
    <rect>
     <x>0</x>

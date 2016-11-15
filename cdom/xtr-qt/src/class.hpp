@@ -1,6 +1,7 @@
 /** \file
+ *  \sa <http://doc.qt.io/qt-5/qobject.html#Q_OBJECT>
  *  \author zhengrr
- *  \date 2016-10-21
+ *  \date 2016-10-21 – 11-15
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMQT_CLASS_HPP
@@ -8,19 +9,15 @@
 
 #include <QObject>
 
-namespace rrdemo
-{
-namespace cdom
-{
-namespace qt
-{
+namespace rrdemo {
+namespace cdom {
+namespace qt {
 
-/// Qt类.
+/// Qt 类。
 /**
  */
-class Class: public QObject
-{
-Q_OBJECT
+class Class : public QObject {
+    Q_OBJECT
 
 public:
     explicit Class(QObject *parent = nullptr);

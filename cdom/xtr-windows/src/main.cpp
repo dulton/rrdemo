@@ -6,7 +6,7 @@
 #include <tchar.h>
 #include <windows.h>
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 /// Windows控制台应用程序入口。
 /** \sa <http://msdn.microsoft.com/library/6wd819wh.aspx>
  */
@@ -16,7 +16,7 @@ int _tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
 }
 #endif// ENTRY SWITCH
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 /// Windows桌面应用程序入口。
 /** \sa <http://msdn.microsoft.com/library/ms633559.aspx>
  */

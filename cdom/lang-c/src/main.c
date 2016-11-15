@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 /** \brief 程序入口。
  *  \param argc 参数计数。
  *  \param argv 参数向量。

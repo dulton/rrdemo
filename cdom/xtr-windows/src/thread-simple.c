@@ -14,7 +14,7 @@
 #include <tchar.h>
 #include <windows.h>
 
-static DWORD WINAPI task(LPVOID data)
+static DWORD WINAPI work(LPVOID data)
 {
     const LPTSTR name = (LPTSTR)data;
     const int workload = 5;
@@ -33,11 +33,11 @@ static DWORD WINAPI task(LPVOID data)
     return 0;
 }
 
-#if ENTRY_SWITCH || 1
+#ifdef ENTRY_SWITCH
 int _tmain(void)
 {
     HANDLE peon;
-    if ((peon = CreateThread(NULL, 0, task, _T("Peon"), 0, NULL))) {
+    if ((peon = CreateThread(NULL, 0, work, _T("Peon"), 0, NULL))) {
         _tprintf(_T("Main: A peon has been produced.\n"));
     } else {
         _ftprintf_s(stderr, _T("Thread creating failed.\n"));
