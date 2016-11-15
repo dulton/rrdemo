@@ -71,6 +71,7 @@
     - [*helphelp*](http://vimdoc.sf.net/htmldoc/helphelp.html)<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/helphelp.html)</sub>
     - *index*<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/index.html)</sub>
 - [<sup>*Wikia* › </sup>*Vim*](http://vim.wikia.com/)
+- [<sup>*Awesome* › </sup>*Vim*](http://github.com/mhinz/vim-galore)
 - [*Vim Cheat Sheat for Programmers*](http://michael.peopleofhonoronly.com/vim/)
 
 ## [*Boost*](http://boost.org/)

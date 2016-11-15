@@ -38,7 +38,7 @@
 //    - Using events
 //    - Database access using type providers
 //    - OData access using type providers
-
+module rrdemo.dotnet.fsharp
 
 
 // ---------------------------------------------------------------
