@@ -2,6 +2,7 @@
 find_package(Qt5CMake REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
+find_package(Qt5Sql REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5WebSockets REQUIRED)
@@ -26,6 +27,7 @@ if(${PRJUPR}_COMPILE_EXE)
   target_link_libraries(${PRJLWR}_exe
     Qt5::Core
     Qt5::Gui Qt5::Widgets
+    Qt5::Sql
     Qt5::Network Qt5::WebSockets)
   set_target_properties(${PRJLWR}_exe PROPERTIES
     CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON

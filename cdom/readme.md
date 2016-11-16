@@ -58,7 +58,7 @@
 - [<sup>*Microsoft Developer Network* » </sup>*Visual C++*](http://msdn.microsoft.com/library/60k1461a.aspx)
 
 ## [*Clion*](http://jetbrains.com/clion/)
-- [<sup>*CLion* › </sup>*Docs & Demos*](http://www.jetbrains.com/clion/documentation/)
+- [<sup>*CLion* › </sup>*Docs & Demos*](http://jetbrains.com/clion/documentation/)
 
 ## [*Visual Studio*](http://visualstudio.com/)
 - [<sup>*Microsoft Developer Network* » </sup>*Visual Studio*](http://msdn.microsoft.com/library/dd831853.aspx)
