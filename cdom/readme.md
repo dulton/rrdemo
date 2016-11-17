@@ -63,7 +63,7 @@
 ## [*Visual Studio*](http://visualstudio.com/)
 - [<sup>*Microsoft Developer Network* » </sup>*Visual Studio*](http://msdn.microsoft.com/library/dd831853.aspx)
 
-## [*Vim*](http://vim.org/)
+## [*Visual Editor Improved*](http://vim.org/)
 - [*Vimdoc*](http://vimdoc.sf.net/)<sub> [cmn-Hans](http://vimcdoc.sf.net/)</sub>
     - [*quickref*](http://vimdoc.sf.net/htmldoc/quickref.html)<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/quickref.html)</sub>
     - [*intro*](http://vimdoc.sf.net/htmldoc/intro.html)<sub> [cmn-Hans](http://vimcdoc.sf.net/doc/intro.html)</sub>

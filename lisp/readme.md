@@ -10,5 +10,5 @@
 
 ## [*Clojure* (2007)](http://clojure.org/)
 
-## [*Emacs*](http://gnu.org/software/emacs/)
+## [*Editor Macros*](http://gnu.org/software/emacs/)
 - [<sup>*Awesome* › </sup>*Emacs*](http://github.com/emacs-tw/awesome-emacs)
