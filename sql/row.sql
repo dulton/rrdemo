@@ -5,7 +5,7 @@
 /* 插入数据。
  * <http://sqlite.org/lang_insert.html>
  */
-INSERT OR IGNORE INTO "table" (intc, realc, txtc) VALUES
+INSERT OR IGNORE INTO 'table' (intc, realc, txtc) VALUES
   (0, 3, 'Alpha'),
   (1, 3.1, 'Beta'),
   (1, 3.14, 'Gamma'),
@@ -31,6 +31,18 @@ INSERT OR IGNORE INTO "table" (intc, realc, txtc) VALUES
   (17711, 3.1415926535897932384626, 'Psi'),
   (28657, 3.14159265358979323846264, 'Omega');
 
+-- 示例
+INSERT INTO implementation (interfaceid, environmentid, operation)
+  SELECT
+    interface.id,
+    environment.id,
+    '操作'
+  FROM
+    interface, environment
+  WHERE
+    interface.brief = '描述' AND
+    environment.description LIKE '环境';
+
 /* ------------------------------------------------------------------------ *
  * CRUD - Read
  * ------------------------------------------------------------------------ */
@@ -38,7 +50,21 @@ INSERT OR IGNORE INTO "table" (intc, realc, txtc) VALUES
 /* 查询数据。
  * <http://sqlite.org/lang_select.html>
  */
-SELECT * FROM "table";
+SELECT *
+FROM 'table';
+
+-- 示例
+SELECT
+  interface.brief,
+  interface.details,
+  environment.description,
+  implementation.operation
+FROM
+  interface, environment, implementation
+WHERE
+  interface.id = implementation.interfaceid AND
+  environment.id = implementation.environmentid;
+
 
 /* ------------------------------------------------------------------------ *
  * CRUD - Update
@@ -47,7 +73,7 @@ SELECT * FROM "table";
 /* 修改数据。
  * <http://sqlite.org/lang_update.html>
  */
-UPDATE OR IGNORE "table"
+UPDATE OR IGNORE 'table'
 SET intc = -1
 WHERE intc = 1;
 
@@ -58,9 +84,9 @@ WHERE intc = 1;
 /* 删除数据。
  * <http://sqlite.org/lang_delete.html>
  */
-DELETE FROM "table"
+DELETE FROM 'table'
 WHERE intc != 1;
 
 /* 删除全部数据。
  */
-DELETE FROM "table";
+DELETE FROM 'table';
