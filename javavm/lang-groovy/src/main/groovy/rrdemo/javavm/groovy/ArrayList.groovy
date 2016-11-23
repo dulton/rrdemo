@@ -6,11 +6,11 @@ package rrdemo.javavm.groovy
  * @author zhengrr
  * @since 2016-10-26
  */
-final class TypeArrayList {
+final class ArrayList {
    /**
     * 构造器.
     */
-   private TypeArrayList() {}
+   private ArrayList() {}
    
    /**
     * 声明与定义.

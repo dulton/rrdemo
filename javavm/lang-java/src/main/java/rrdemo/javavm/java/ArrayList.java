@@ -9,17 +9,17 @@ import java.util.List;
  * @author zhengrr
  * @since 2016-10-26
  */
-public final class TypeArrayList {
+public final class ArrayList {
     /**
      * 构造器.
      */
-    private TypeArrayList() { }
+    private ArrayList() { }
 
     /**
      * 声明与定义.
      */
     public static List<Character> declaringAndDefining() {
-        List<Character> abc = new ArrayList<>();
+        List<Character> abc = new java.util.ArrayList<>();
         abc.add('a');
         abc.add('b');
         abc.add('c');
