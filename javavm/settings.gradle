@@ -1,20 +1,20 @@
 rootProject.name = 'RrDemo-JavaVM'
 
-//include 'RrDemo-JavaVM-Clojure'
-//project(":RrDemo-JavaVM-Clojure").projectDir = file("lang-clojure")
-include 'RrDemo-JavaVM-Groovy'
-project(":RrDemo-JavaVM-Groovy").projectDir = file("lang-groovy")
-include 'RrDemo-JavaVM-Java'
-project(":RrDemo-JavaVM-Java").projectDir = file("lang-java")
-include 'RrDemo-JavaVM-Kotlin'
-project(":RrDemo-JavaVM-Kotlin").projectDir = file("lang-kotlin")
-include 'RrDemo-JavaVM-Scala'
-project(":RrDemo-JavaVM-Scala").projectDir = file("lang-scala")
+include 'lang-clojure'
+project(":lang-clojure").name = rootProject.name + '-Clojure'
+include 'lang-groovy'
+project(":lang-groovy").name = rootProject.name + '-Groovy'
+include 'lang-java'
+project(":lang-java").name = rootProject.name + '-Java'
+include 'lang-kotlin'
+project(':lang-kotlin').name = rootProject.name + '-Kotlin'
+include 'lang-scala'
+project(":lang-scala").name = rootProject.name + '-Scala'
 
-include 'RrDemo-JavaVM-JAR'
-project(":RrDemo-JavaVM-JAR").projectDir = file("prj-jar")
+include 'prj-jar'
+project(":prj-jar").name = rootProject.name + '-JAR'
 
-//include 'RrDemo-JavaVM-Android'
-//project(":RrDemo-JavaVM-Android").projectDir = file("xtr-android")
-include 'RrDemo-JavaVM-WAR'
-project(":RrDemo-JavaVM-WAR").projectDir = file("xtr-war")
+//include 'xtr-android'
+//project(":xtr-android").name = rootProject.name + '-Android'
+include 'xtr-war'
+project(":xtr-war").name = rootProject.name + '-WAR'
