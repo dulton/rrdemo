@@ -1,8 +1,8 @@
 /** \file
  *  \brief Duff's Device.
- *  \details 一种串行复制的优化实现, 通过展开循环进行优化.
+ *  \details 一种串行复制的优化实现，通过展开循环进行优化。
  *  \author zhengrr
- *  \date 2016-11-10
+ *  \date 2016-11-10 – 25
  *  \copyright The MIT License
  */
 static void duff_device(register short *to,

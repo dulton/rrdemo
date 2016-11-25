@@ -12,7 +12,7 @@
  * Unformatted input/output
  * ------------------------------------------------------------------ */
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 /** \brief GET CHARacter / PUT CHARacter
  *  \sa <http://en.cppreference.com/w/c/io/getchar>
  *  \sa <http://en.cppreference.com/w/c/io/putchar>
@@ -40,7 +40,7 @@ int main(void)
 }
 #endif// ENTRY SWITCH
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 /** \brief GET Wide CHARacter / PUT Wide CHARacter
  *  \sa <http://en.cppreference.com/w/c/io/getwchar>
  *  \sa <http://en.cppreference.com/w/c/io/putwchar>
@@ -68,7 +68,7 @@ int main(void)
 }
 #endif// ENTRY SWITCH
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 /** \brief GET String / PUT String
  *  \sa <http://en.cppreference.com/w/c/io/gets>
  *  \sa <http://en.cppreference.com/w/c/io/puts>
@@ -107,7 +107,7 @@ int main(void)
  * Formatted input/output
  * ------------------------------------------------------------------ */
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 /** \brief SCAN Formatted input / PRINT Formatted output
  *  \sa <http://en.cppreference.com/w/c/io/fscanf>
  *  \sa <http://en.cppreference.com/w/c/io/fprintf>
@@ -128,7 +128,7 @@ int main(void)
 }
 #endif// ENTRY SWITCH
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 /** \brief Wide SCAN Formatted input / Wide PRINT Formatted output
  *  \sa <http://en.cppreference.com/w/c/io/fwscanf>
  *  \sa <http://en.cppreference.com/w/c/io/fwprintf>

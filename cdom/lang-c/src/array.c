@@ -18,7 +18,7 @@
 #define SIZE 10
 static int INPUT[SIZE] = {1, 7, 5, 3, 9, 0, 6, 4, 2, 8};
 
-#if ENTRY_SWITCH || 0
+#ifdef ENTRY_SWITCH
 int main(void)
 {
         int array[SIZE];

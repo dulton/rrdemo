@@ -36,6 +36,10 @@
     - [*Gradle Build Language Reference*](http://docs.gradle.org/current/dsl/)
     - [*Gradle API*](http://docs.gradle.org/current/javadoc/)
 
+## [*Android Studio*](http://developer.android.com/studio/)
+
+## [*Cursive*](http://cursive-ide.com/)
+
 ## [*Eclipse*](http://eclipse.org/)
 
 ## [*IntelliJ IDEA*](http://jetbrains.com/idea/)

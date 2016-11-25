@@ -7,9 +7,9 @@
  *  \data 2016-11-7 – 8
  *  \copyright The MIT License
  */
-#ifndef _ISO646_H
-#define _ISO646_H
+#ifndef _ISO646ALT_H
+#define _ISO646ALT_H
 
 #include <iso646.h>
 
-#endif// _ISO646_H
+#endif// _ISO646ALT_H
