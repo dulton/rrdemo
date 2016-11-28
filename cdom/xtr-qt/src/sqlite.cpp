@@ -16,13 +16,14 @@ int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    auto db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("sqlite.db");
+    auto db = QSqlDatabase::addDatabase(QStringLiteral("QSQLITE"));
+    db.setDatabaseName(QStringLiteral("db.sqlite"));
     if (!db.open()) {
-        qFatal("Database open faild.");
+        qWarning("Couldn't open database.");
+        return -1;
     }
 
-    QSqlQuery query("SELECT * FROM table;");
+    QSqlQuery query(QStringLiteral("SELECT * FROM table;"));
     query.exec();
     while (query.next()) {
         qInfo() << query.value(0).toString();

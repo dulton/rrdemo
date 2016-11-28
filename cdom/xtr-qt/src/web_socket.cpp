@@ -8,11 +8,9 @@
 #include <QCoreApplication>
 #include <QWebSocket>
 
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
+namespace {
+void WebSockets(const QUrl &url)
 {
-    QCoreApplication app(argc, argv);
-
     QWebSocket *webskt {new QWebSocket};
 
     QObject::connect(webskt, &QWebSocket::connected, [](void) {
@@ -24,8 +22,8 @@ int main(int argc, char *argv[])
     });
 
     QObject::connect(webskt, static_cast<void (QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error),
-                     [&webskt](const QAbstractSocket::SocketError error) {
-        qInfo() << "Error " << error << ": " << webskt->errorString();
+                     [&webskt](const QAbstractSocket::SocketError /*error*/) {
+        qInfo() << "Error " << webskt->error() << ": " << webskt->errorString();
     });
 
     QObject::connect(webskt, &QWebSocket::textMessageReceived,
@@ -33,8 +31,17 @@ int main(int argc, char *argv[])
         qInfo() << "Data: " << message;
     });
 
-    webskt->open(QUrl("ws://192.168.1.12/ws"));
+    webskt->open(url);
     //webskt->close(code, reason);
+}
+}
+
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[])
+{
+    QCoreApplication app(argc, argv);
+
+    WebSockets(QUrl("ws://192.168.1.12/ws"));
 
     return app.exec();
 }

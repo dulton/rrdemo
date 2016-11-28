@@ -1,7 +1,7 @@
 /** \file
  *  \sa <http://doc.qt.io/qt-5/qobject.html#Q_OBJECT>
  *  \author zhengrr
- *  \date 2016-10-21 – 11-15
+ *  \date 2016-10-21 – 11-28
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMQT_CLASS_HPP
@@ -20,13 +20,13 @@ class Class : public QObject {
     Q_OBJECT
 
 public:
-    explicit Class(QObject *parent = nullptr);
-    explicit Class(const Class &) = delete;
-    explicit Class(Class &&) = delete;
-    Class &operator=(const Class &) = delete;
-    Class &operator=(Class &&) = delete;
-    ~Class() = default;
-
+    explicit Class(QObject *parent = Q_NULLPTR);
+    explicit Class(const Class &) Q_DECL_EQ_DELETE;
+    explicit Class(Class &&) Q_DECL_EQ_DELETE;
+    Class &operator=(const Class &)Q_DECL_EQ_DELETE;
+    Class &operator=(Class &&)Q_DECL_EQ_DELETE;
+    ~Class() Q_DECL_EQ_DEFAULT;
+    
 };// class Class
 
 }// namespace qt

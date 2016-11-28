@@ -24,10 +24,10 @@ public:
     Task &operator=(Task &&) = delete;
     ~Task() = default;
 
-public slots:
+public Q_SLOTS:
     void task();
 
-signals:
+Q_SIGNALS:
     void completed();
 };// class Task
 

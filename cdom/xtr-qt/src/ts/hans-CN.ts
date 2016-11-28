@@ -4,47 +4,47 @@
 <context>
     <name>app</name>
     <message>
-        <location filename="../command_line.cpp" line="17"/>
+        <location filename="../command_line.cpp" line="16"/>
         <source>Organization domain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="18"/>
+        <location filename="../command_line.cpp" line="17"/>
         <source>Organization name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="19"/>
+        <location filename="../command_line.cpp" line="18"/>
         <source>Application name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="20"/>
+        <location filename="../command_line.cpp" line="19"/>
         <source>Application version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="23"/>
+        <location filename="../command_line.cpp" line="22"/>
         <source>Application description.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="26"/>
+        <location filename="../command_line.cpp" line="25"/>
         <source>Argument.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="33"/>
+        <location filename="../command_line.cpp" line="32"/>
         <source>Option boolean.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="37"/>
+        <location filename="../command_line.cpp" line="36"/>
         <source>Option string.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="38"/>
+        <location filename="../command_line.cpp" line="37"/>
         <source>string</source>
         <translation type="unfinished"></translation>
     </message>

@@ -21,42 +21,52 @@ void MessageHandler(QtMsgType type,
 {
     static QFile *logfile {nullptr};
     if (!logfile) {
-        logfile = new QFile("log.txt");
-        logfile->open(QIODevice::WriteOnly | QIODevice::Append);
+        static QMutex mutex;
+        mutex.lock();
+        if (!logfile) {
+            logfile = new QFile(QStringLiteral("log.txt"));
+            logfile->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text);
+        }
+        mutex.unlock();
     }
 
-    QString time {QDateTime::currentDateTime().toString("yy-MM-dd HH:mm:ss.zzz")};
+    QString logtext;
 
-    QString typea;
+    // time
+    logtext += QDateTime::currentDateTime().toString(QStringLiteral("yy-MM-dd HH:mm:ss.zzz"));
+
+    // type
     switch (type) {
-    case QtDebugMsg:     typea = "[D]";  break;
-    case QtWarningMsg:   typea = "[W]";  break;
-    case QtCriticalMsg:  typea = "[C]";  break;
-    case QtFatalMsg:     typea = "[F]";  break;
-    case QtInfoMsg:      typea = "[I]";  break;
-    default: Q_ASSERT(false); abort();
+    case QtDebugMsg:     logtext += QStringLiteral(" [D]");  break;
+    case QtWarningMsg:   logtext += QStringLiteral(" [W]");  break;
+    case QtCriticalMsg:  logtext += QStringLiteral(" [C]");  break;
+    case QtFatalMsg:     logtext += QStringLiteral(" [F]");  break;
+    case QtInfoMsg:      logtext += QStringLiteral(" [I]");  break;
+    default: Q_ASSERT(false);
     }
 
-    QString local;
+    // message
+    logtext += QString(" %1").arg(message);
+
+    // local
     switch (type) {
     case QtDebugMsg:     break;
     case QtWarningMsg:   break;
     case QtCriticalMsg:  // break through
     case QtFatalMsg:
-        local = QString(" @%1:%2: %3")
+        logtext += QString(" @%1:%2: %3")
             .arg(QFileInfo(context.file).fileName())
             .arg(context.line)
             .arg(context.function);
         break;
     case QtInfoMsg:      break;
-    default: Q_ASSERT(false); abort();
+    default: Q_ASSERT(false);
     }
 
     static QMutex mutex;
     mutex.lock();
     QTextStream stream(logfile);
-    stream << QString("%1 %2 %3%4").arg(time, typea, message, local) << "\r\n";
-    stream.flush();
+    stream << logtext << endl;
     mutex.unlock();
 }
 }// namespace

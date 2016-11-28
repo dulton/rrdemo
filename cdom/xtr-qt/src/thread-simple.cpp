@@ -11,7 +11,7 @@ namespace qt {
 void Task::task()
 {
     qInfo("Task thread %p.", QThread::currentThreadId());
-    emit completed();
+    Q_EMIT completed();
 }
 
 }// namespace qt
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     qInfo("Main thread %p.", QThread::currentThreadId());
 
     Task *task {new Task};
-    QThread *thread {new QThread};
+    QThread *thread {new QThread(&app)};
     task->moveToThread(thread);
 
     QObject::connect(thread, &QThread::started, task, &Task::task);

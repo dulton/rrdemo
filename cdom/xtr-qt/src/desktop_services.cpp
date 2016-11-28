@@ -1,6 +1,7 @@
 /** \file
+ *  \sa <http://doc.qt.io/qt-5/qdesktopservices.html>
  *  \author zhengrr
- *  \date 2016-11-15
+ *  \date 2016-11-15 – 28
  *  \copyright The MIT License
  */
 #include <QApplication>
