@@ -1,0 +1,6 @@
+<RCC>
+  <qresource>
+    <file>qm/hans-CN.qm</file>
+    <file>qml/main.qml</file>
+  </qresource>
+</RCC>

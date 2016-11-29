@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-8 – 28
+# 2016-10-8 – 11-29
 # The MIT License
 
 #[======================================================================[.rst:
@@ -400,7 +400,7 @@ function(sources_helper)
     list(APPEND ARG_SRCEXTS ".H" ".h++" ".hh" ".hpp" ".hxx" ".inl" ".C" ".c++" ".cc" ".cpp" ".cxx")
   endif()
   if(ARG_QT)
-    list(APPEND ARG_SRCEXTS ".ui" ".qrc")
+    list(APPEND ARG_SRCEXTS ".ui" ".qml" ".qrc" ".ts")
   endif()
   foreach(ext ${ARG_SRCEXTS})
     if(NOT ext MATCHES "^([.][^ \"%*./:<>?\\|]+)+$")

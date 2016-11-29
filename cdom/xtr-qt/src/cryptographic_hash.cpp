@@ -8,9 +8,17 @@
 #include <QCryptographicHash>
 #include <QDebug>
 
-namespace {
-void CryptographicHash(const QByteArray &data)
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[])
 {
+    QCoreApplication app(argc, argv);
+
+    QByteArray data;
+    if (1 < argc)
+        data = argv[1];
+    else
+        data = "1337";
+
     QCryptographicHash md4parser(QCryptographicHash::Md4);
     QCryptographicHash md5parser(QCryptographicHash::Md5);
     QCryptographicHash sha1parser(QCryptographicHash::Sha1);
@@ -47,18 +55,6 @@ void CryptographicHash(const QByteArray &data)
     qInfo() << "SHA3-256:" << sha3256parser.result().toHex().toUpper();
     qInfo() << "SHA3-384:" << sha3384parser.result().toHex().toUpper();
     qInfo() << "SHA3-512:" << sha3512parser.result().toHex().toUpper();
-}
-}
-
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
-{
-    QCoreApplication app(argc, argv);
-
-    if (1 < argc)
-        CryptographicHash(argv[1]);
-    else
-        CryptographicHash("1337");
 
     return app.exec();
 }
