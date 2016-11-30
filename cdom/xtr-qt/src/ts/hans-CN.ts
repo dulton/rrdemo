@@ -85,4 +85,12 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>rrdemo::cdom::qt::ThreadLcdMainWindow</name>
+    <message>
+        <location filename="../thread-lcd.cpp" line="26"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

@@ -106,6 +106,7 @@
 - [<sup>*Qt* › </sup>*Blog*](http://blog.qt.io/)
 - [<sup>*Qt* › </sup>*Wiki*](http://wiki.qt.io/)
     - [*Qt Coding Style*](http://wiki.qt.io/Qt_Coding_Style)
+- [*Qt学习之路2*](http://devbean.net/category/qt-study-road-2/)
 
 ## [*QtAwesome*](http://github.com/gamecreature/QtAwesome)
 

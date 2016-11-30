@@ -1,6 +1,10 @@
 <RCC>
-  <qresource>
-    <file>qm/hans-CN.qm</file>
-    <file>qml/main.qml</file>
+  <qresource prefix="/lang">
+    <file alias="hans-CN">qm/hans-CN.qm</file>
+  </qresource>
+  <qresource prefix="/qml">
+    <file alias="main">qml/main.qml</file>
+  </qresource>
+  <qresource prefix="/qml/hans-CN" lang="zh">
   </qresource>
 </RCC>

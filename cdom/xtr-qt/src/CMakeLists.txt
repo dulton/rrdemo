@@ -1,15 +1,17 @@
 # ./qt/src
+# Qt CMake Tools
 find_package(Qt5CMake REQUIRED)
-
+# Qt Essentials Modules
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5Qml REQUIRED)
 find_package(Qt5Quick REQUIRED)
 find_package(Qt5Sql REQUIRED)
+# Qt Add-on Modules
 find_package(Qt5WebSockets REQUIRED)
 find_package(Qt5Widgets REQUIRED)
-
+# Qt I18n Tools
 find_package(Qt5LinguistTools REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -32,8 +34,8 @@ option(${PRJUPR}_COMPILE_EXE "Build executable file." ON)
 if(${PRJUPR}_COMPILE_EXE)
   add_executable(${PRJLWR}_exe WIN32 ${${PRJUPR}_SRC})
   target_link_libraries(${PRJLWR}_exe
-    Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::Sql Qt5::WebSockets
-    Qt5::Widgets)
+    Qt5::Core Qt5::Gui Qt5::Network Qt5::Qml Qt5::Quick Qt5::Sql
+    Qt5::WebSockets Qt5::Widgets)
   set_target_properties(${PRJLWR}_exe PROPERTIES
     CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON
     OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON

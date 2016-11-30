@@ -9,7 +9,7 @@
 #include <QDebug>
 #include <QTranslator>
 
-#ifndef ENTRY_SWITCH
+#ifdef ENTRY_SWITCH
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);

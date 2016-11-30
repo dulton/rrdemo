@@ -17,12 +17,12 @@ class Task : public QObject {
     Q_OBJECT
 
 public:
-    explicit Task(QObject *parent = nullptr) : QObject(parent) {}
-    explicit Task(const Task &) = delete;
-    explicit Task(Task &&) = delete;
-    Task &operator=(const Task &) = delete;
-    Task &operator=(Task &&) = delete;
-    ~Task() = default;
+    explicit Task(QObject *parent = Q_NULLPTR) : QObject(parent) {}
+    explicit Task(const Task &)Q_DECL_EQ_DELETE;
+    explicit Task(Task &&)Q_DECL_EQ_DELETE;
+    Task &operator=(const Task &)Q_DECL_EQ_DELETE;
+    Task &operator=(Task &&)Q_DECL_EQ_DELETE;
+    ~Task() Q_DECL_EQ_DEFAULT;
 
 public Q_SLOTS:
     void task();

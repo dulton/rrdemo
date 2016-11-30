@@ -12,17 +12,20 @@
 
 namespace {
 
-void CouldNotOpenTheFileWarningAndExitFailure(const QString &filePath) {
+void CouldNotOpenTheFileWarningAndExitFailure(const QString &filePath)
+{
     qWarning("Couldn't open the file \"%s\".", filePath.toStdString().c_str());
     exit(EXIT_FAILURE);
 }
 
-void FileIsPossiblyCorruptWarningAndExitFailure(const QString &filePath) {
+void FileIsPossiblyCorruptWarningAndExitFailure(const QString &filePath)
+{
     qWarning("The file \"%s\" is possibly corrupt.", filePath.toStdString().c_str());
     exit(EXIT_FAILURE);
 }
 
-void WriteJSON(const QString &filePath, const bool binary = false) {
+void WriteJSON(const QString &filePath, const bool binary = false)
+{
     QJsonObject root;
     root[QStringLiteral("string")] = QStringLiteral("string");
     root[QStringLiteral("number")] = 1234.5678;
@@ -34,15 +37,20 @@ void WriteJSON(const QString &filePath, const bool binary = false) {
     QJsonDocument doc(root);
 
     QFile file(filePath);
-    if (!file.open(binary ? QIODevice::WriteOnly : QIODevice::WriteOnly | QIODevice::Text))
+    if (!file.open(binary ?
+        QIODevice::WriteOnly | QIODevice::Truncate :
+        QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
         CouldNotOpenTheFileWarningAndExitFailure(filePath);
     file.write(binary ? doc.toBinaryData() : doc.toJson());
     file.close();
 }
 
-void ReadJSON(const QString &filePath, const bool binary = false) {
+void ReadJSON(const QString &filePath, const bool binary = false)
+{
     QFile file(filePath);
-    if (!file.open(binary ? QIODevice::ReadOnly : QIODevice::ReadOnly | QIODevice::Text))
+    if (!file.open(binary ?
+        QIODevice::ReadOnly :
+        QIODevice::ReadOnly | QIODevice::Text))
         CouldNotOpenTheFileWarningAndExitFailure(filePath);
     QByteArray data {file.readAll()};
 
@@ -59,7 +67,8 @@ void ReadJSON(const QString &filePath, const bool binary = false) {
 }// namespace
 
 #ifdef ENTRY_SWITCH
-int main(int, char *[]) {
+int main(int, char *[])
+{
     Q_CONSTEXPR QString filePath {"json.json"};
     Q_CONSTEXPR bool binary {false};
 
