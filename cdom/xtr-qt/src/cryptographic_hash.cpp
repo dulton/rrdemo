@@ -1,18 +1,15 @@
 /** \file
  *  \sa <http://doc.qt.io/qt-5/qcryptographichash.html>
  *  \author zhengrr
- *  \date 2016-11-15 – 28
+ *  \date 2016-11-15 – 12-1
  *  \copyright The MIT License
  */
-#include <QCoreApplication>
 #include <QCryptographicHash>
 #include <QDebug>
 
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
+namespace {
+int altmain(int argc, char *argv[])
 {
-    QCoreApplication app(argc, argv);
-
     QByteArray data;
     if (1 < argc)
         data = argv[1];
@@ -56,6 +53,10 @@ int main(int argc, char *argv[])
     qInfo() << "SHA3-384:" << sha3384parser.result().toHex().toUpper();
     qInfo() << "SHA3-512:" << sha3512parser.result().toHex().toUpper();
 
-    return app.exec();
+    return EXIT_SUCCESS;
 }
+}// namespace
+
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain(argc, argv); }
 #endif// ENTRY SWITCH

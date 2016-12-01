@@ -18,10 +18,10 @@ void Task::task()
 }// namespace cdom
 }// namespace rrdemo
 
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
+namespace {
+int altmain(int argc, char *argv[])
 {
-    using namespace rrdemo::cdom::qt;
+    using rrdemo::cdom::qt::Task;
 
     QCoreApplication app(argc, argv);
     qInfo("Main thread %p.", QThread::currentThreadId());
@@ -39,4 +39,9 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
+}// namespace
+
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain(argc, argv); }
 #endif// ENTRY SWITCH
+

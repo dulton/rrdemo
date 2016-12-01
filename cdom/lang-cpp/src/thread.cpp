@@ -33,10 +33,7 @@ void ThreadBeta()
     std::cout << "ThreadBeta: Thread beta are called.\n";
 }
 
-}// namespace
-
-#ifdef ENABLE_THREAD_MAIN
-int main()
+int altmain()
 {
     std::cout << "main: Call ThreadAlpha.\n";
     std::thread alpha(ThreadAlpha);
@@ -52,4 +49,9 @@ int main()
 
     return 0;
 }
-#endif
+
+}// namespace
+
+#ifdef ENTRY_SWITCH
+int main() { return altmain(); }
+#endif// ENTRY SWITCH

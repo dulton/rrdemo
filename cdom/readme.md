@@ -20,6 +20,7 @@
 - [<sup>*ISO/IEC* › *JTC1* › *SC22* › *WG21* — </sup>*C++*](http://open-std.org/jtc1/sc22/wg21/)
 - [<sup>*Awesome* › </sup>*C/C++*](http://fffaraz.github.io/awesome-cpp/)
 - [*Bjarne Stroustrup's Homepage*](http://stroustrup.com/)
+- *C++ Primer Plus*; Stephen Prata.
 
 ## [*Lua*](http://lua.org/)
 

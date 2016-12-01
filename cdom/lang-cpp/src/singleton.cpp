@@ -30,7 +30,7 @@ ThreadSafeLazySingleton& ThreadSafeLazySingleton::Instance()
     static ThreadSafeLazySingleton inst;
     return inst;
 #else
-    static ThreadSafeLazySingleton* instptr = nullptr;
+    static ThreadSafeLazySingleton* instptr {nullptr};
     if (!instptr) {
         static std::mutex mutex;
         mutex.lock();

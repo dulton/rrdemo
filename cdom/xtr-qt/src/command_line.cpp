@@ -1,7 +1,7 @@
 /** \file
  *  \brief 命令行支持。
  *  \author zhengrr
- *  \date 2016-2-14 – 11-15
+ *  \date 2016-2-14 – 12-1
  *  \copyright The MIT License
  */
 #include <QCommandLineParser>
@@ -9,8 +9,8 @@
 #include <QDebug>
 #include <QTimer>
 
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
+namespace {
+int altmain(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
     app.setOrganizationDomain(app.translate("app", "Organization domain."));
@@ -62,6 +62,11 @@ int main(int argc, char *argv[])
     qInfo() << "optM: " << optM;
     qInfo() << "optN: " << optN;
 
-    return 0;
+    return EXIT_SUCCESS;
+    return app.exec();
 }
+}// namespace
+
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain(argc, argv); }
 #endif// ENTRY SWITCH

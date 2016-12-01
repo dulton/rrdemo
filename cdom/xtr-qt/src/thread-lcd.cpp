@@ -29,7 +29,7 @@ ThreadLcdMainWindow::ThreadLcdMainWindow(QWidget* parent)
     setCentralWidget(widget);
 
     QTimer *timer {new QTimer(this)};
-    connect(timer, &QTimer::timeout, [lcdNumber]() {
+    connect(timer, &QTimer::timeout, [=]() {
         static int sec {0};
         lcdNumber->display(QString::number(sec++));
     });
@@ -64,7 +64,7 @@ void ThreadLcdTask::task()
 }// namespace cdom
 }// namespace rrdemo
 
-#ifndef ENTRY_SWITCH
+#ifdef ENTRY_SWITCH
 int main(int argc, char *argv[])
 {
     using namespace rrdemo::cdom::qt;

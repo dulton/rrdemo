@@ -12,12 +12,11 @@
  * Unformatted input/output
  * ------------------------------------------------------------------ */
 
-#ifdef ENTRY_SWITCH
 /** \brief GET CHARacter / PUT CHARacter
  *  \sa <http://en.cppreference.com/w/c/io/getchar>
  *  \sa <http://en.cppreference.com/w/c/io/putchar>
  */
-int main(void)
+int getputchar(void)
 {
         char ch;
         while (EOF != (ch = getchar()))
@@ -38,14 +37,15 @@ int main(void)
 
         return EXIT_SUCCESS;
 }
+#ifdef ENTRY_SWITCH
+int main(void) { return getputchar(); }
 #endif// ENTRY SWITCH
 
-#ifdef ENTRY_SWITCH
 /** \brief GET Wide CHARacter / PUT Wide CHARacter
  *  \sa <http://en.cppreference.com/w/c/io/getwchar>
  *  \sa <http://en.cppreference.com/w/c/io/putwchar>
  */
-int main(void)
+int getputwchar(void)
 {
         setlocale(LC_ALL, "");
         wchar_t wch;
@@ -66,17 +66,19 @@ int main(void)
         }
         return EXIT_SUCCESS;
 }
+#ifdef ENTRY_SWITCH
+int main(void) { return getputwchar(); }
 #endif// ENTRY SWITCH
 
-#ifdef ENTRY_SWITCH
 /** \brief GET String / PUT String
  *  \sa <http://en.cppreference.com/w/c/io/gets>
  *  \sa <http://en.cppreference.com/w/c/io/puts>
  */
-int main(void)
+int getputs(void)
 {
         char buf[256];
-#if 201112L<=__STDC_VERSION__
+#if (201112L<=__STDC_VERSION__ /*C11*/) || \
+    (defined(_MSC_VER) && 1400<=_MSC_VER /*VS2005*/)
         if (!gets_s(buf, (rsize_t)(sizeof buf / sizeof *buf))) {
 #else
         if (!gets(buf)) {
@@ -98,53 +100,56 @@ int main(void)
                 return EXIT_FAILURE;
         }
 
-        system("pause");
         return EXIT_SUCCESS;
-        }
+}
+#ifdef ENTRY_SWITCH
+int main(void) { return getputs(); }
 #endif// ENTRY SWITCH
 
 /* ------------------------------------------------------------------ *
  * Formatted input/output
  * ------------------------------------------------------------------ */
 
-#ifdef ENTRY_SWITCH
 /** \brief SCAN Formatted input / PRINT Formatted output
  *  \sa <http://en.cppreference.com/w/c/io/fscanf>
  *  \sa <http://en.cppreference.com/w/c/io/fprintf>
  */
-int main(void)
+int scanprintf(void)
 {
         setlocale(LC_ALL, "");
         char buf[256];
-#if 201112L<=__STDC_VERSION__||1
+#if (201112L<=__STDC_VERSION__ /*C11*/) || \
+    (defined(_MSC_VER) && 1400<=_MSC_VER /*VS2005*/)
         scanf_s("%s", buf, (rsize_t)(sizeof buf / sizeof *buf));
         printf_s("%s", buf);
 #else
         scanf("%s", buf);
         printf("%s", buf);
 #endif
-        system("pause");
         return EXIT_SUCCESS;
 }
+#ifdef ENTRY_SWITCH
+int main(void) { return scanprintf(); }
 #endif// ENTRY SWITCH
 
-#ifdef ENTRY_SWITCH
 /** \brief Wide SCAN Formatted input / Wide PRINT Formatted output
  *  \sa <http://en.cppreference.com/w/c/io/fwscanf>
  *  \sa <http://en.cppreference.com/w/c/io/fwprintf>
  */
-int main(void)
+int wscanprintf(void)
 {
         setlocale(LC_ALL, "");
         wchar_t buf[256];
-#if 201112L<=__STDC_VERSION__
+#if (201112L<=__STDC_VERSION__ /*C11*/) || \
+    (defined(_MSC_VER) && 1400<=_MSC_VER /*VS2005*/)
         wscanf_s(L"%ls", buf, (rsize_t)(sizeof buf / sizeof *buf));
         wprintf_s(L"%ls", buf);
 #else
         wscanf(L"%ls", buf);
         wprintf(L"%ls", buf);
 #endif
-        system("pause");
         return EXIT_SUCCESS;
 }
+#ifdef ENTRY_SWITCH
+int main(void) { return wscanprintf(); }
 #endif// ENTRY SWITCH
