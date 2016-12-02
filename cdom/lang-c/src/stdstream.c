@@ -16,7 +16,7 @@
  *  \sa <http://en.cppreference.com/w/c/io/getchar>
  *  \sa <http://en.cppreference.com/w/c/io/putchar>
  */
-int getputchar(void)
+static int getputchar(void)
 {
         char ch;
         while (EOF != (ch = getchar()))
@@ -45,7 +45,7 @@ int main(void) { return getputchar(); }
  *  \sa <http://en.cppreference.com/w/c/io/getwchar>
  *  \sa <http://en.cppreference.com/w/c/io/putwchar>
  */
-int getputwchar(void)
+static int getputwchar(void)
 {
         setlocale(LC_ALL, "");
         wchar_t wch;
@@ -74,10 +74,10 @@ int main(void) { return getputwchar(); }
  *  \sa <http://en.cppreference.com/w/c/io/gets>
  *  \sa <http://en.cppreference.com/w/c/io/puts>
  */
-int getputs(void)
+static int getputs(void)
 {
         char buf[256];
-#if (201112L<=__STDC_VERSION__ /*C11*/) || \
+#if (defined(__STDC_VERSION__) && 201112L<=__STDC_VERSION__ /*C11*/) || \
     (defined(_MSC_VER) && 1400<=_MSC_VER /*VS2005*/)
         if (!gets_s(buf, (rsize_t)(sizeof buf / sizeof *buf))) {
 #else
@@ -114,11 +114,11 @@ int main(void) { return getputs(); }
  *  \sa <http://en.cppreference.com/w/c/io/fscanf>
  *  \sa <http://en.cppreference.com/w/c/io/fprintf>
  */
-int scanprintf(void)
+static int scanprintf(void)
 {
         setlocale(LC_ALL, "");
         char buf[256];
-#if (201112L<=__STDC_VERSION__ /*C11*/) || \
+#if (defined(__STDC_VERSION__) && 201112L<=__STDC_VERSION__ /*C11*/) || \
     (defined(_MSC_VER) && 1400<=_MSC_VER /*VS2005*/)
         scanf_s("%s", buf, (rsize_t)(sizeof buf / sizeof *buf));
         printf_s("%s", buf);
@@ -136,11 +136,11 @@ int main(void) { return scanprintf(); }
  *  \sa <http://en.cppreference.com/w/c/io/fwscanf>
  *  \sa <http://en.cppreference.com/w/c/io/fwprintf>
  */
-int wscanprintf(void)
+static int wscanprintf(void)
 {
         setlocale(LC_ALL, "");
         wchar_t buf[256];
-#if (201112L<=__STDC_VERSION__ /*C11*/) || \
+#if (defined(__STDC_VERSION__) && 201112L<=__STDC_VERSION__ /*C11*/) || \
     (defined(_MSC_VER) && 1400<=_MSC_VER /*VS2005*/)
         wscanf_s(L"%ls", buf, (rsize_t)(sizeof buf / sizeof *buf));
         wprintf_s(L"%ls", buf);
