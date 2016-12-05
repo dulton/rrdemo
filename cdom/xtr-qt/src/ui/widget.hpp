@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-10-21 – 11-15
+ *  \date 2016-10-21 – 12-5
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMQT_WIDGET_HPP
@@ -23,15 +23,16 @@ class Widget : public QWidget {
     Q_OBJECT
 
 public:
-    explicit Widget(QWidget *parent = nullptr);
-    explicit Widget(const Widget &) = delete;
-    explicit Widget(Widget &&) = delete;
-    Widget &operator=(const Widget &) = delete;
-    Widget &operator=(Widget &&) = delete;
+    explicit Widget(QWidget *parent = Q_NULLPTR);
     ~Widget();
 
 private:
-    Ui::Widget *ui {nullptr};
+    Q_DISABLE_COPY(Widget);
+    explicit Widget(Widget &&) Q_DECL_EQ_DELETE;
+    Widget &operator=(Widget &&)Q_DECL_EQ_DELETE;
+
+    Ui::Widget *ui {Q_NULLPTR};
+
 };// class Widget
 
 }// namespace qt

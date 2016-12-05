@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-10-21 – 11-15
+ *  \date 2016-10-21 – 12-5
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMQT_DIALOGWITHBUTTONSBOTTOM_HPP
@@ -23,15 +23,16 @@ class DialogWithButtonsBottom : public QDialog {
     Q_OBJECT
 
 public:
-    explicit DialogWithButtonsBottom(QWidget *parent = nullptr);
-    explicit DialogWithButtonsBottom(const DialogWithButtonsBottom &) = delete;
-    explicit DialogWithButtonsBottom(DialogWithButtonsBottom &&) = delete;
-    DialogWithButtonsBottom &operator=(const DialogWithButtonsBottom &) = delete;
-    DialogWithButtonsBottom &operator=(DialogWithButtonsBottom &&) = delete;
+    explicit DialogWithButtonsBottom(QWidget *parent = Q_NULLPTR);
     ~DialogWithButtonsBottom();
 
 private:
-    Ui::DialogWithButtonsBottom *ui {nullptr};
+    Q_DISABLE_COPY(DialogWithButtonsBottom);
+    explicit DialogWithButtonsBottom(DialogWithButtonsBottom &&) Q_DECL_EQ_DELETE;
+    DialogWithButtonsBottom &operator=(DialogWithButtonsBottom &&)Q_DECL_EQ_DELETE;
+
+    Ui::DialogWithButtonsBottom *ui {Q_NULLPTR};
+
 };// class DialogWithButtonsBottom
 
 }// namespace qt

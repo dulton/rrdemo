@@ -4,48 +4,76 @@
 <context>
     <name>app</name>
     <message>
-        <location filename="../command_line.cpp" line="16"/>
+        <location filename="../command_line.cpp" line="15"/>
         <source>Organization domain.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="17"/>
+        <location filename="../command_line.cpp" line="16"/>
         <source>Organization name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="18"/>
+        <location filename="../command_line.cpp" line="17"/>
         <source>Application name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="19"/>
+        <location filename="../command_line.cpp" line="18"/>
         <source>Application version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="22"/>
+        <location filename="../command_line.cpp" line="21"/>
         <source>Application description.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="25"/>
+        <location filename="../command_line.cpp" line="24"/>
         <source>Argument.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="32"/>
+        <location filename="../command_line.cpp" line="31"/>
         <source>Option boolean.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="36"/>
+        <location filename="../command_line.cpp" line="35"/>
         <source>Option string.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../command_line.cpp" line="37"/>
+        <location filename="../command_line.cpp" line="36"/>
         <source>string</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>rrdemo::cdom::qt::StringListModel</name>
+    <message>
+        <location filename="../modelview/string_list_model.ui" line="25"/>
+        <source>&amp;Insert</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/string_list_model.ui" line="32"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/string_list_model.cpp" line="50"/>
+        <source>Insert</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/string_list_model.cpp" line="51"/>
+        <source>New data:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/string_list_model.cpp" line="53"/>
+        <source>USER DARA </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

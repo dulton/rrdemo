@@ -20,15 +20,16 @@ class TabWidget : public QTabWidget {
     Q_OBJECT
 
 public:
-    explicit TabWidget(QWidget *parent = nullptr);
-    explicit TabWidget(const TabWidget &) = delete;
-    explicit TabWidget(TabWidget &&) = delete;
-    TabWidget &operator=(const TabWidget &) = delete;
-    TabWidget &operator=(TabWidget &&) = delete;
+    explicit TabWidget(QWidget *parent = Q_NULLPTR);
     ~TabWidget();
 
 private:
-    Ui::TabWidget *ui;
+    Q_DISABLE_COPY(TabWidget);
+    explicit TabWidget(TabWidget &&) Q_DECL_EQ_DELETE;
+    TabWidget &operator=(TabWidget &&)Q_DECL_EQ_DELETE;
+
+    Ui::TabWidget *ui {Q_NULLPTR};
+
 };// TabWidget
 
 }// namespace qt

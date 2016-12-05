@@ -9,12 +9,13 @@ namespace qt {
 MainWindow::MainWindow(QWidget *parent) :
 QMainWindow(parent), ui {new Ui::MainWindow}
 {
+    Q_CHECK_PTR(ui);
     ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;  ui = nullptr;
+    delete ui;  ui = Q_NULLPTR;
 }
 
 }// namespace qt

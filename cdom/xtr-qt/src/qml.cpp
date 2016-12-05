@@ -6,11 +6,9 @@
 #include <QApplication>
 #include <QQuickView>
 #include <QQmlContext>
-#include <QDebug>
-#include <QTranslator>
 
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
+namespace {
+int altmain(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
@@ -18,9 +16,13 @@ int main(int argc, char *argv[])
     QQmlContext *context {view.rootContext()};
     context->setContextProperty(QStringLiteral("backgroundColor"), QColor(Qt::yellow));
 
-    view.setSource(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    view.setSource(QUrl(QStringLiteral("qrc:/qml/main")));
     view.show();
 
     return app.exec();
 }
+}// namespace
+
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain(argc, argv); }
 #endif// ENTRY SWITC

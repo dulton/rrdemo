@@ -5,7 +5,6 @@
  *  \copyright The MIT License
  */
 #include <QCryptographicHash>
-#include <QDebug>
 
 namespace {
 int altmain(int argc, char *argv[])
@@ -40,18 +39,18 @@ int altmain(int argc, char *argv[])
     sha3384parser.addData(data);
     sha3512parser.addData(data);
 
-    qInfo() << "Input:" << data;
-    qInfo() << "MD4:" << md4parser.result().toHex().toUpper();
-    qInfo() << "MD5:" << md5parser.result().toHex().toUpper();
-    qInfo() << "SHA1:" << sha1parser.result().toHex().toUpper();
-    qInfo() << "SHA2-224:" << sha224parser.result().toHex().toUpper();
-    qInfo() << "SHA2-256:" << sha256parser.result().toHex().toUpper();
-    qInfo() << "SHA2-384:" << sha384parser.result().toHex().toUpper();
-    qInfo() << "SHA2-512:" << sha512parser.result().toHex().toUpper();
-    qInfo() << "SHA3-224:" << sha3224parser.result().toHex().toUpper();
-    qInfo() << "SHA3-256:" << sha3256parser.result().toHex().toUpper();
-    qInfo() << "SHA3-384:" << sha3384parser.result().toHex().toUpper();
-    qInfo() << "SHA3-512:" << sha3512parser.result().toHex().toUpper();
+    qInfo("Input: %s", data.data());
+    qInfo("MD4: %s", md4parser.result().toHex().toUpper().data());
+    qInfo("MD5: %s", md5parser.result().toHex().toUpper().data());
+    qInfo("SHA1: %s", sha1parser.result().toHex().toUpper().data());
+    qInfo("SHA2-224: %s", sha224parser.result().toHex().toUpper().data());
+    qInfo("SHA2-256: %s", sha256parser.result().toHex().toUpper().data());
+    qInfo("SHA2-384: %s", sha384parser.result().toHex().toUpper().data());
+    qInfo("SHA2-512: %s", sha512parser.result().toHex().toUpper().data());
+    qInfo("SHA3-224: %s", sha3224parser.result().toHex().toUpper().data());
+    qInfo("SHA3-256: %s", sha3256parser.result().toHex().toUpper().data());
+    qInfo("SHA3-384: %s", sha3384parser.result().toHex().toUpper().data());
+    qInfo("SHA3-512: %s", sha3512parser.result().toHex().toUpper().data());
 
     return EXIT_SUCCESS;
 }

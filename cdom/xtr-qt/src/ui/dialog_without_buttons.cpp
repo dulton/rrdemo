@@ -9,12 +9,13 @@ namespace qt {
 DialogWithoutButtons::DialogWithoutButtons(QWidget *parent) :
 QDialog(parent), ui {new Ui::DialogWithoutButtons}
 {
+    Q_CHECK_PTR(ui);
     ui->setupUi(this);
 }
 
 DialogWithoutButtons::~DialogWithoutButtons()
 {
-    delete ui;  ui = nullptr;
+    delete ui;  ui = Q_NULLPTR;
 }
 
 }// namespace qt

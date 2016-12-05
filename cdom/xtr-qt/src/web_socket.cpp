@@ -9,40 +9,38 @@
 #include <QWebSocket>
 
 namespace {
-void WebSockets(const QUrl &url)
+int altmain(int argc, char *argv[])
 {
+    QCoreApplication app(argc, argv);
+
     QWebSocket *webskt {new QWebSocket};
 
     QObject::connect(webskt, &QWebSocket::connected, [](void) {
-        qInfo("Connected.");
+        qInfo("WebSocket Connected.");
     });
 
     QObject::connect(webskt, &QWebSocket::disconnected, [](void) {
-        qInfo("Disconnected.");
+        qInfo("WebSocket Disconnected.");
     });
 
     QObject::connect(webskt, static_cast<void (QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error),
-                     [&webskt](const QAbstractSocket::SocketError /*error*/) {
-        qInfo() << "Error " << webskt->error() << ": " << webskt->errorString();
+                     [=](const QAbstractSocket::SocketError /*error*/) {
+        qInfo("WebSocket Error %d: %s", webskt->error(), webskt->errorString().toUtf8().data());
     });
 
     QObject::connect(webskt, &QWebSocket::textMessageReceived,
                      [](const QString &message) {
-        qInfo() << "Data: " << message;
+        qInfo("WebSocket Data: %s", message.toUtf8().data());
     });
 
-    webskt->open(url);
+    webskt->open(QUrl("ws://192.168.1.12/ws"));
+
     //webskt->close(code, reason);
-}
-}
-
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
-{
-    QCoreApplication app(argc, argv);
-
-    WebSockets(QUrl("ws://192.168.1.12/ws"));
 
     return app.exec();
 }
-#endif// ENTRY SWITCH
+}// namespace
+
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain(argc, argv); }
+#endif// ENTRY SWITC

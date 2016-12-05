@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-10-21 – 11-15
+ *  \date 2016-10-21 – 12-5
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMQT_DIALOGWITHBUTTONSRIGHT_HPP
@@ -23,15 +23,16 @@ class DialogWithButtonsRight : public QDialog {
     Q_OBJECT
 
 public:
-    explicit DialogWithButtonsRight(QWidget *parent = nullptr);
-    explicit DialogWithButtonsRight(const DialogWithButtonsRight &) = delete;
-    explicit DialogWithButtonsRight(DialogWithButtonsRight &&) = delete;
-    DialogWithButtonsRight &operator=(const DialogWithButtonsRight &) = delete;
-    DialogWithButtonsRight &operator=(DialogWithButtonsRight &&) = delete;
+    explicit DialogWithButtonsRight(QWidget *parent = Q_NULLPTR);
     ~DialogWithButtonsRight();
 
 private:
-    Ui::DialogWithButtonsRight *ui {nullptr};
+    Q_DISABLE_COPY(DialogWithButtonsRight);
+    explicit DialogWithButtonsRight(DialogWithButtonsRight &&) Q_DECL_EQ_DELETE;
+    DialogWithButtonsRight &operator=(DialogWithButtonsRight &&)Q_DECL_EQ_DELETE;
+
+    Ui::DialogWithButtonsRight *ui {Q_NULLPTR};
+
 };// class DialogWithButtonsRight
 
 }// namespace qt

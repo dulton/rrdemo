@@ -4,7 +4,6 @@
  *  \date 2016-11-28
  *  \copyright The MIT License
  */
-#include <QDebug>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -14,13 +13,13 @@ namespace {
 
 void CouldNotOpenTheFileWarningAndExitFailure(const QString &filePath)
 {
-    qWarning("Couldn't open the file \"%s\".", filePath.toStdString().c_str());
+    qWarning("Couldn't open the file \"%s\".", filePath.toUtf8().data());
     exit(EXIT_FAILURE);
 }
 
 void FileIsPossiblyCorruptWarningAndExitFailure(const QString &filePath)
 {
-    qWarning("The file \"%s\" is possibly corrupt.", filePath.toStdString().c_str());
+    qWarning("The file \"%s\" is possibly corrupt.", filePath.toUtf8().data());
     exit(EXIT_FAILURE);
 }
 
@@ -59,22 +58,21 @@ void ReadJSON(const QString &filePath, const bool binary = false)
     QJsonObject root {doc.object()};
 
     if (!root[QStringLiteral("string")].isString()) FileIsPossiblyCorruptWarningAndExitFailure(filePath);
-    else qInfo("string: %s", root[QStringLiteral("string")].toString().toStdString().c_str());
+    else qInfo("string: %s", root[QStringLiteral("string")].toString().toUtf8().data());
     if (!root[QStringLiteral("number")].isDouble()) FileIsPossiblyCorruptWarningAndExitFailure(filePath);
     else qInfo("number: %lf", root[QStringLiteral("number")].toDouble());
 }
 
-}// namespace
-
-#ifdef ENTRY_SWITCH
-int main(int, char *[])
+Q_CONSTEXPR QString FILE_PATH {"json.json"};
+Q_CONSTEXPR bool BINARY {false};
+int altmain(int, char *[])
 {
-    Q_CONSTEXPR QString filePath {"json.json"};
-    Q_CONSTEXPR bool binary {false};
+    WriteJSON(FILE_PATH, BINARY);
+    ReadJSON(FILE_PATH, BINARY);
 
-    WriteJSON(filePath, binary);
-    ReadJSON(filePath, binary);
-
-    exit(EXIT_SUCCESS);
+    return EXIT_SUCCESS;
 }
+}// namespace
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain(argc, argv); }
 #endif// ENTRY SWITCH

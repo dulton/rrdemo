@@ -11,17 +11,28 @@ namespace qt {
 TabWindowMergeTitleBar::TabWindowMergeTitleBar(QWidget *parent) :
 QMainWindow(parent), ui {new Ui::TabWindowMergeTitleBar}
 {
+    Q_CHECK_PTR(ui);
     ui->setupUi(this);
-    initialize();
+}
+
+void TabWindowMergeTitleBar::initialize()
+{
+    Q_ASSERT(!initialized);
+
+    setWindowFlags(Qt::CustomizeWindowHint);
+
+    initialized = true;
 }
 
 TabWindowMergeTitleBar::~TabWindowMergeTitleBar()
 {
-    delete ui;  ui = nullptr;
+    delete ui;  ui = Q_NULLPTR;
 }
 
 void TabWindowMergeTitleBar::on_titleBarMinimizeButton_clicked() const
 {
+    Q_ASSERT(initialized);
+
     if (isMinimized()) {
         QTimer::singleShot(0, this, &QWidget::showNormal);
     } else {
@@ -31,6 +42,8 @@ void TabWindowMergeTitleBar::on_titleBarMinimizeButton_clicked() const
 
 void TabWindowMergeTitleBar::on_titleBarMaximizeButton_clicked() const
 {
+    Q_ASSERT(initialized);
+
     if (isMaximized()) {
         QTimer::singleShot(0, this, &QWidget::showNormal);
     } else {
@@ -40,12 +53,9 @@ void TabWindowMergeTitleBar::on_titleBarMaximizeButton_clicked() const
 
 void TabWindowMergeTitleBar::on_titleBarCloseButton_clicked() const
 {
-    QTimer::singleShot(0, this, &QWidget::close);
-}
+    Q_ASSERT(initialized);
 
-void TabWindowMergeTitleBar::initialize()
-{
-    setWindowFlags(Qt::CustomizeWindowHint);
+    QTimer::singleShot(0, this, &QWidget::close);
 }
 
 }// namespace qt

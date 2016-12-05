@@ -1,12 +1,11 @@
 /** \file
  *  \brief 命令行支持。
  *  \author zhengrr
- *  \date 2016-2-14 – 12-1
+ *  \date 2016-2-14 – 12-5
  *  \copyright The MIT License
  */
 #include <QCommandLineParser>
 #include <QCoreApplication>
-#include <QDebug>
 #include <QTimer>
 
 namespace {
@@ -52,17 +51,17 @@ int altmain(int argc, char *argv[])
         qWarning("Too many command-line arguments.");
         return EXIT_FAILURE;
     }
-    const QString argName {parser.positionalArguments().at(0)};
+    const QString arg {parser.positionalArguments().at(0)};
 
     /* Parse options */
-    const bool optM {parser.isSet(QStringLiteral("m"))};
-    QString optN {parser.value(QStringLiteral("n"))};
+    const bool optBool {parser.isSet(QStringLiteral("b"))};
+    QString optString {parser.value(QStringLiteral("s"))};
 
-    qInfo() << "argName: " << argName;
-    qInfo() << "optM: " << optM;
-    qInfo() << "optN: " << optN;
+    qInfo("arg: %s", arg.toUtf8().data());
+    qInfo("optBool: %s", optBool ? "true" : "false");
+    qInfo("optString: %s", optString.toUtf8().data());
 
-    return EXIT_SUCCESS;
+    QTimer::singleShot(0, &app, &QCoreApplication::quit);
     return app.exec();
 }
 }// namespace

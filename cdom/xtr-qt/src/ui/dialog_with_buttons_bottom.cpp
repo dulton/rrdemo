@@ -9,12 +9,13 @@ namespace qt {
 DialogWithButtonsBottom::DialogWithButtonsBottom(QWidget *parent) :
 QDialog(parent), ui {new Ui::DialogWithButtonsBottom}
 {
+    Q_CHECK_PTR(ui);
     ui->setupUi(this);
 }
 
 DialogWithButtonsBottom::~DialogWithButtonsBottom()
 {
-    delete ui;  ui = nullptr;
+    delete ui;  ui = Q_NULLPTR;
 }
 
 }// namespace qt

@@ -29,7 +29,7 @@
     </property>
     <item>
      <widget class="QWidget" name="titleBar" native="true">
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="titleBarLayout">
        <property name="spacing">
         <number>0</number>
        </property>

@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-10-21 – 11-15
+ *  \date 2016-10-21 – 12-5
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMQT_TABWINDOWMERGETITLEBAR_HPP
@@ -23,25 +23,28 @@ class TabWindowMergeTitleBar : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit TabWindowMergeTitleBar(QWidget *parent = nullptr);
-    explicit TabWindowMergeTitleBar(const TabWindowMergeTitleBar &) = delete;
-    explicit TabWindowMergeTitleBar(TabWindowMergeTitleBar &&) = delete;
-    TabWindowMergeTitleBar &operator=(const TabWindowMergeTitleBar &) = delete;
-    TabWindowMergeTitleBar &operator=(TabWindowMergeTitleBar &&) = delete;
+    explicit TabWindowMergeTitleBar(QWidget *parent = Q_NULLPTR);
+    void initialize();
     ~TabWindowMergeTitleBar();
 
-    private slots:
-    /// 标题栏最小化按钮
+private:
+    Q_DISABLE_COPY(TabWindowMergeTitleBar);
+    explicit TabWindowMergeTitleBar(TabWindowMergeTitleBar &&) Q_DECL_EQ_DELETE;
+    TabWindowMergeTitleBar &operator=(TabWindowMergeTitleBar &&)Q_DECL_EQ_DELETE;
+
+    bool initialized {false};
+
+private Q_SLOTS:
+    /// 标题栏最小化按钮。
     void on_titleBarMinimizeButton_clicked() const;
-    /// 标题栏最大化按钮
+    /// 标题栏最大化按钮。
     void on_titleBarMaximizeButton_clicked() const;
-    /// 标题栏关闭按钮
+    /// 标题栏关闭按钮。
     void on_titleBarCloseButton_clicked() const;
 
 private:
-    void initialize();
+    Ui::TabWindowMergeTitleBar *ui {Q_NULLPTR};
 
-    Ui::TabWindowMergeTitleBar *ui {nullptr};
 };// class TabWindowMergeTitleBar
 
 }// namespace qt

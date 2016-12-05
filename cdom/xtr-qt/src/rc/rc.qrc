@@ -5,6 +5,6 @@
   <qresource prefix="/qml">
     <file alias="main">qml/main.qml</file>
   </qresource>
-  <qresource prefix="/qml/hans-CN" lang="zh">
+  <qresource prefix="/qml" lang="zh">
   </qresource>
 </RCC>

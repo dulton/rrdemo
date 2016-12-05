@@ -64,16 +64,18 @@ void ThreadLcdTask::task()
 }// namespace cdom
 }// namespace rrdemo
 
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
+namespace {
+int altmain(int argc, char *argv[])
 {
-    using namespace rrdemo::cdom::qt;
-
     QApplication app(argc, argv);
 
-    ThreadLcdMainWindow main_window;
+    rrdemo::cdom::qt::ThreadLcdMainWindow main_window;
     main_window.show();
 
     return app.exec();
 }
-#endif// ENTRY SWITCH
+}// namespace
+
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain(argc, argv); }
+#endif// ENTRY SWITC

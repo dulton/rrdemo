@@ -5,9 +5,7 @@
  *  \date 2016-1-9 – 11-15
  *  \copyright The MIT License
  */
-#include <QCoreApplication>
 #include <QDateTime>
-#include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QMutex>
@@ -15,19 +13,21 @@
 #include <QTextStream>
 
 namespace {
+QMutex logFileMutex;
+QMutex logOutputMutex;
+
 void MessageHandler(QtMsgType type,
                     const QMessageLogContext &context,
                     const QString &message)
 {
     static QFile *logfile {nullptr};
     if (!logfile) {
-        static QMutex mutex;
-        mutex.lock();
+        logFileMutex.lock();
         if (!logfile) {
             logfile = new QFile(QStringLiteral("log.txt"));
             logfile->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text);
         }
-        mutex.unlock();
+        logFileMutex.unlock();
     }
 
     QString logtext;
@@ -63,18 +63,14 @@ void MessageHandler(QtMsgType type,
     default: Q_ASSERT(false);
     }
 
-    static QMutex mutex;
-    mutex.lock();
+    logOutputMutex.lock();
     QTextStream stream(logfile);
     stream << logtext << endl;
-    mutex.unlock();
+    logOutputMutex.unlock();
 }
-}// namespace
 
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
+int altmain(int, char *[])
 {
-    QCoreApplication app(argc, argv);
     qInstallMessageHandler(MessageHandler);
 
     qDebug("Debug message.");
@@ -83,6 +79,10 @@ int main(int argc, char *argv[])
     qCritical("Critical message.");
     qFatal("Fatal message.");
 
-    return app.exec();
+    return EXIT_SUCCESS;
 }
+}// namespace
+
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain(argc, argv); }
 #endif// ENTRY SWITCH

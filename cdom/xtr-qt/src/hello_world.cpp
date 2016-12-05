@@ -6,27 +6,33 @@
 #include <QApplication>
 #include <QLabel>
 
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
+namespace {
+int altmain1(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QLabel label("hello, world");
+    QLabel label(QStringLiteral("hello, world"));
     label.show();
 
     return app.exec();
 }
+}// namespace
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain1(argc, argv); }
 #endif// ENTRY SWITCH
 
-#ifdef ENTRY_SWITCH
-int main(int argc, char *argv[])
+namespace {
+int altmain2(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QLabel *label {new QLabel("hello, world")};
+    QLabel *label {new QLabel(QStringLiteral("hello, world"))};
     label->setAttribute(Qt::WA_DeleteOnClose);
     label->show();
 
     return app.exec();
 }
+}// namespace
+#ifdef ENTRY_SWITCH
+int main(int argc, char *argv[]) { return altmain2(argc, argv); }
 #endif// ENTRY SWITCH

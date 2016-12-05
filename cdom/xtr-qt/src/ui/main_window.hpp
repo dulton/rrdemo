@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-10-20 – 11-15
+ *  \date 2016-10-20 – 12-5
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMQT_MAINWINDOW_HPP
@@ -21,15 +21,16 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    explicit MainWindow(const MainWindow &) = delete;
-    explicit MainWindow(MainWindow &&) = delete;
-    MainWindow &operator=(const MainWindow &) = delete;
-    MainWindow &operator=(MainWindow &&) = delete;
+    explicit MainWindow(QWidget *parent = Q_NULLPTR);
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui {nullptr};
+    Q_DISABLE_COPY(MainWindow);
+    explicit MainWindow(MainWindow &&) Q_DECL_EQ_DELETE;
+    MainWindow &operator=(MainWindow &&)Q_DECL_EQ_DELETE;
+
+    Ui::MainWindow *ui {Q_NULLPTR};
+
 };// class MainWindow
 
 }// namespace qt

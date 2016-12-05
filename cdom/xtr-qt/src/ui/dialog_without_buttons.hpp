@@ -1,6 +1,6 @@
-/** \file
+﻿/** \file
  *  \author zhengrr
- *  \date 2016-10-21 – 11-15
+ *  \date 2016-10-21 – 12-5
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMQT_DIALOGWITHOUTBUTTONS_HPP
@@ -23,15 +23,16 @@ class DialogWithoutButtons : public QDialog {
     Q_OBJECT
 
 public:
-    explicit DialogWithoutButtons(QWidget *parent = nullptr);
-    explicit DialogWithoutButtons(const DialogWithoutButtons &) = delete;
-    explicit DialogWithoutButtons(DialogWithoutButtons &&) = delete;
-    DialogWithoutButtons &operator=(const DialogWithoutButtons &) = delete;
-    DialogWithoutButtons &operator=(DialogWithoutButtons &&) = delete;
+    explicit DialogWithoutButtons(QWidget *parent = Q_NULLPTR);
     ~DialogWithoutButtons();
 
 private:
-    Ui::DialogWithoutButtons *ui {nullptr};
+    Q_DISABLE_COPY(DialogWithoutButtons);
+    explicit DialogWithoutButtons(DialogWithoutButtons &&) Q_DECL_EQ_DELETE;
+    DialogWithoutButtons &operator=(DialogWithoutButtons &&)Q_DECL_EQ_DELETE;
+
+    Ui::DialogWithoutButtons *ui {Q_NULLPTR};
+
 };// class DialogWithoutButtons
 
 }// namespace qt
