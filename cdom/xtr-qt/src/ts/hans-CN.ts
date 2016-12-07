@@ -50,30 +50,70 @@
     </message>
 </context>
 <context>
-    <name>rrdemo::cdom::qt::StringListModel</name>
+    <name>rrdemo::cdom::qt::FileSystemModelDialog</name>
     <message>
-        <location filename="../modelview/string_list_model.ui" line="25"/>
+        <location filename="../modelview/file_system_model_dialog.ui" line="22"/>
+        <source>&amp;Make Directory...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/file_system_model_dialog.ui" line="29"/>
+        <source>&amp;Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/file_system_model_dialog.cpp" line="61"/>
+        <location filename="../modelview/file_system_model_dialog.cpp" line="70"/>
+        <source>Create Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/file_system_model_dialog.cpp" line="62"/>
+        <source>Directory Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/file_system_model_dialog.cpp" line="71"/>
+        <source>Failed to create the directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/file_system_model_dialog.cpp" line="89"/>
+        <location filename="../modelview/file_system_model_dialog.cpp" line="99"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/file_system_model_dialog.cpp" line="90"/>
+        <source>Sure you want to delete %1 ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modelview/file_system_model_dialog.cpp" line="100"/>
+        <source>Failed to remove %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>rrdemo::cdom::qt::StringListModelDialog</name>
+    <message>
+        <location filename="../modelview/string_list_model_dialog.ui" line="25"/>
         <source>&amp;Insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../modelview/string_list_model.ui" line="32"/>
+        <location filename="../modelview/string_list_model_dialog.ui" line="32"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../modelview/string_list_model.cpp" line="50"/>
+        <location filename="../modelview/string_list_model_dialog.cpp" line="55"/>
         <source>Insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../modelview/string_list_model.cpp" line="51"/>
-        <source>New data:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../modelview/string_list_model.cpp" line="53"/>
-        <source>USER DARA </source>
+        <location filename="../modelview/string_list_model_dialog.cpp" line="56"/>
+        <source>Number (-100 ~ 100):</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -116,7 +156,7 @@
 <context>
     <name>rrdemo::cdom::qt::ThreadLcdMainWindow</name>
     <message>
-        <location filename="../thread-lcd.cpp" line="26"/>
+        <location filename="../thread/thread-lcd.cpp" line="26"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>

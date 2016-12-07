@@ -20,6 +20,7 @@ void MessageHandler(QtMsgType type,
                     const QMessageLogContext &context,
                     const QString &message)
 {
+    // logFile
     static QFile *logfile {nullptr};
     if (!logfile) {
         logFileMutex.lock();
@@ -32,10 +33,10 @@ void MessageHandler(QtMsgType type,
 
     QString logtext;
 
-    // time
+    // logText: time
     logtext += QDateTime::currentDateTime().toString(QStringLiteral("yy-MM-dd HH:mm:ss.zzz"));
 
-    // type
+    // logText: type
     switch (type) {
     case QtDebugMsg:     logtext += QStringLiteral(" [D]");  break;
     case QtWarningMsg:   logtext += QStringLiteral(" [W]");  break;
@@ -45,10 +46,10 @@ void MessageHandler(QtMsgType type,
     default: Q_ASSERT(false);
     }
 
-    // message
+    // logText: message
     logtext += QString(" %1").arg(message);
 
-    // local
+    // logText: local
     switch (type) {
     case QtDebugMsg:     break;
     case QtWarningMsg:   break;
@@ -63,9 +64,10 @@ void MessageHandler(QtMsgType type,
     default: Q_ASSERT(false);
     }
 
+    // logText: "yy-MM-dd HH:mm:ss.zzz [*] message @file:line: function"
     logOutputMutex.lock();
     QTextStream stream(logfile);
-    stream << logtext << endl;
+    stream << logtext << endl;  // CR/LF and flush
     logOutputMutex.unlock();
 }
 
