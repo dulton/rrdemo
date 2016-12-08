@@ -1,7 +1,7 @@
 /** \file
  *  \sa <http://doc.qt.io/qt-5/qcryptographichash.html>
  *  \author zhengrr
- *  \date 2016-11-15 – 12-1
+ *  \date 2016-11-15 – 12-8
  *  \copyright The MIT License
  */
 #include <QCryptographicHash>
@@ -10,8 +10,8 @@ namespace {
 int altmain(int argc, char *argv[])
 {
     QByteArray data;
-    if (1 < argc)
-        data = argv[1];
+    if (2 <= argc)
+        data = argv[2 - 1];
     else
         data = "1337";
 

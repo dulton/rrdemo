@@ -1,43 +1,42 @@
 /** \file
  *  \sa <http://doc.qt.io/qt-5/qnetworkaccessmanager.html>
+ *  \sa <http://doc.qt.io/qt-5/qnetworkrequest.html>
+ *  \sa <http://doc.qt.io/qt-5/qnetworkreply.html>
  *  \author zhengrr
- *  \date 2016-12-7
+ *  \date 2016-12-7 – 8
  *  \copyright The MIT License
  */
-#include <QApplication>
+#include <QCoreApplication>
 #include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QTextBrowser>
 
 namespace {
 int altmain(int argc, char *argv[])
 {
-#error Can't compile
-    QApplication app(argc, argv);
+    QCoreApplication app(argc, argv);
 
-    QTextBrowser browser;
-    browser.show();
+    QNetworkAccessManager manager(&app);
+    QNetworkReply *reply {manager.get(QNetworkRequest(QUrl(
+        QStringLiteral("http://info.cern.ch/hypertext/WWW/TheProject.html"))))};
 
-    QNetworkReply *reply {QNetworkAccessManager(&app).get(
-        QNetworkRequest(QUrl(
-        QStringLiteral("http://info.cern.ch/hypertext/WWW/TheProject.html")
-        ))
-        )};
-
+    // ready read
     QObject::connect(reply, &QIODevice::readyRead,
-                     [=, &browser]() {
-        browser.append(reply->readAll());
+                     [=]() {
+        qInfo("Network Data: %s", reply->readAll().data());
     });
 
+    // error
     QObject::connect(reply, static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
                      [=](const QNetworkReply::NetworkError /*error*/) {
-        qDebug("Network Error: %s", reply->errorString().toUtf8().data());
+        qInfo("Network Error %d: %s",
+              reply->error(), reply->errorString().toUtf8().data());
     });
 
+    // ssl errors
     QObject::connect(reply, &QNetworkReply::sslErrors,
                      [](const QList<QSslError> &errors) {
         for (const auto error : errors) {
-            qDebug("Network SSL Error: %s", error.errorString().toUtf8().data());
+            qInfo("Network SSL Error %d: %s",
+                  error.error(), error.errorString().toUtf8().data());
         }
     });
 
@@ -45,6 +44,6 @@ int altmain(int argc, char *argv[])
 }
 }// namespace
 
-#ifndef ENTRY_SWITCH
+#ifdef ENTRY_SWITCH
 int main(int argc, char *argv[]) { return altmain(argc, argv); }
 #endif// ENTRY SWITCH

@@ -16,7 +16,6 @@ int altmain(int argc, char *argv[])
     QDesktopServices::openUrl(QUrl("http://qt.io/"));
     QTimer::singleShot(0, &app, &QCoreApplication::quit);
     return app.exec();
-#error QStandardPaths
 }
 }// namespace
 

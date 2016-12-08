@@ -1,13 +1,12 @@
-import QtQuick 2.3
+import QtQuick 2.4
+import QtQuick.Window 2.2
 
-Rectangle {
-    width: 300
-    height: 300
-
-    color: backgroundColor
-
-    Text {
-        anchors.centerIn: parent
-        text: "Hello Yellow World!"
+Window {
+    visible: true
+    MainForm {
+        anchors.fill: parent
+        mouseArea.onClicked: {
+            Qt.quit();
+        }
     }
 }
