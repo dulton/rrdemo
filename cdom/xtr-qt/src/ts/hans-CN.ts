@@ -5,7 +5,6 @@
     <name>MainForm.ui</name>
     <message>
         <location filename="../rc/qml/MainForm.ui.qml" line="16"/>
-        <location filename="../qml/MainForm.ui.qml" line="16"/>
         <source>Hello World</source>
         <translation type="unfinished"></translation>
     </message>

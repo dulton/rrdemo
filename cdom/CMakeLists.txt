@@ -1,9 +1,9 @@
-﻿# RrDemo › C Dom
+﻿# RrDemo › Cdom
 # zhengrr
-# 2016-6-28 – 10-27
+# 2016-6-28 – 12-9
 # The MIT License
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-CDom" VERSION 0.0.0.0)
+project("RrDemo-Cdom" VERSION 0.0.0.0)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
 include("SourcesUtilities")

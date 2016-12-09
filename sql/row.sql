@@ -6,7 +6,7 @@
  * <http://sqlite.org/lang_insert.html>
  */
 INSERT OR IGNORE INTO 'table' (intc, realc, txtc) VALUES
-  (0, 3, 'Alpha'),
+  (0, 3., 'Alpha'),
   (1, 3.1, 'Beta'),
   (1, 3.14, 'Gamma'),
   (2, 3.142, 'Delta'),

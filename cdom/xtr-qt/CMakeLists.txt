@@ -1,6 +1,6 @@
-# RrDemo › C Dom › Qt
+# RrDemo › Cdom › Qt
 # zhengrr
-# 2016-6-28 – 10-27
+# 2016-6-28 – 12-9
 # The MIT License
 cmake_minimum_required(VERSION 3.0)
 project("${PRODUCT_NAME}-Qt" LANGUAGES CXX)
