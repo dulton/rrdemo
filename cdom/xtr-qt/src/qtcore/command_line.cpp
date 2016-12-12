@@ -9,13 +9,17 @@
 #include <QTimer>
 
 namespace {
-int altmain(int argc, char *argv[])
+int Main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
-    app.setOrganizationDomain(app.translate("app", "Organization domain."));
-    app.setOrganizationName(app.translate("app", "Organization name."));
-    app.setApplicationName(app.translate("app", "Application name."));
-    app.setApplicationVersion(app.translate("app", "Application version."));
+    app.setOrganizationDomain(
+        app.translate("app", "Organization domain."));
+    app.setOrganizationName(
+        app.translate("app", "Organization name."));
+    app.setApplicationName(
+        app.translate("app", "Application name."));
+    app.setApplicationVersion(
+        app.translate("app", "Application version."));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(app.translate("app", "Application description."));
@@ -67,5 +71,5 @@ int altmain(int argc, char *argv[])
 }// namespace
 
 #ifdef ENTRY_SWITCH
-int main(int argc, char *argv[]) { return altmain(argc, argv); }
+int main(int argc, char *argv[]) { return Main(argc, argv); }
 #endif// ENTRY SWITCH

@@ -7,7 +7,7 @@
 #include <QString>
 
 namespace {
-int altmain(int argc, char *argv[])
+int Main(int argc, char *argv[])
 {
     QByteArray raw;
     if (2 <= argc)
@@ -22,7 +22,6 @@ int altmain(int argc, char *argv[])
     return EXIT_SUCCESS;
 }
 }// namespace
-
 #ifdef ENTRY_SWITCH
-int main(int argc, char *argv[]) { return altmain(argc, argv); }
+int main(int argc, char *argv[]) { return Main(argc, argv); }
 #endif// ENTRY SWITCH

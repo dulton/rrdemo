@@ -1,7 +1,7 @@
 /** \copyright The MIT License */
 #include "rtsp_server.hpp"
 
-#include <CString>
+#include <cstring>
 
 #include <live555/liveMedia.hh>
 

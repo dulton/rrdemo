@@ -7,7 +7,7 @@
 #include <QLabel>
 
 namespace {
-int altmain1(int argc, char *argv[])
+int MainAlpha(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
@@ -18,11 +18,11 @@ int altmain1(int argc, char *argv[])
 }
 }// namespace
 #ifdef ENTRY_SWITCH
-int main(int argc, char *argv[]) { return altmain1(argc, argv); }
+int main(int argc, char *argv[]) { return MainAlpha(argc, argv); }
 #endif// ENTRY SWITCH
 
 namespace {
-int altmain2(int argc, char *argv[])
+int MainBeta(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
@@ -34,5 +34,5 @@ int altmain2(int argc, char *argv[])
 }
 }// namespace
 #ifdef ENTRY_SWITCH
-int main(int argc, char *argv[]) { return altmain2(argc, argv); }
+int main(int argc, char *argv[]) { return MainBeta(argc, argv); }
 #endif// ENTRY SWITCH

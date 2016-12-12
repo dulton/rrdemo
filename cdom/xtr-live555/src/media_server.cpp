@@ -7,7 +7,7 @@
 #include "rtsp_server.hpp"
 
 namespace {
-int altmain(int, char *[])
+int Main(int, char *[])
 {
     using MyRTSPServer = rrdemo::cdom::live555::RTSPServer;
 
@@ -36,5 +36,5 @@ int altmain(int, char *[])
 }// namespace
 
 #ifdef ENTRY_SWITCH
-int main(int argc, char *argv[]) { return altmain(argc, argv); }
+int main(int argc, char *argv[]) { return Main(argc, argv); }
 #endif// ENTRY SWITCH
