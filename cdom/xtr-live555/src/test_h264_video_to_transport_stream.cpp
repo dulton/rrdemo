@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-9 – 12
+ *  \date 2016-12-9 – 13
  *  \copyright The MIT License
  */
 #include <live555/BasicUsageEnvironment.hh>
@@ -11,53 +11,48 @@ namespace {
 const char const *INPUT_FILE_NAME {"in.264"};
 const char const *OUTPUT_FILE_NAME {"out.ts"};
 
-void AfterPlaying(void *);
-
 UsageEnvironment *env {nullptr};
 
+/// 将 H.264 基本流（Elementary Stream）转换为传输流（Transport Stream）。
 int Main(int, char *[])
 {
-    // 创建调度器与环境
-    TaskScheduler *scheduler {BasicTaskScheduler::createNew()};
-    env = BasicUsageEnvironment::createNew(*scheduler);
+    /* 创建任务调度器与使用环境 */
+    TaskScheduler *schr {BasicTaskScheduler::createNew()};
+    env = BasicUsageEnvironment::createNew(*schr);
 
-    // 打开输入源文件
-    FramedSource *inputSource;
-    if (!((inputSource = ByteStreamFileSource::createNew(*env, INPUT_FILE_NAME)))) {
+    /* 创建源 */
+    FramedSource *src;                           // 源
+    if (!((src = ByteStreamFileSource::createNew(*env, INPUT_FILE_NAME)))) {
         *env << "Unable to open file \"" << INPUT_FILE_NAME << "\" as a byte-stream file source.\n";
         return EXIT_FAILURE;
     }
-    H264VideoStreamFramer* framer {
-        H264VideoStreamFramer::createNew(*env, inputSource, True)};
-    MPEG2TransportStreamFromESSource* tsFrames {
+    H264VideoStreamFramer *framer {              // 成帧器
+        H264VideoStreamFramer::createNew(*env, src, True)};
+    MPEG2TransportStreamFromESSource *mplexor {  // 多路复用器
         MPEG2TransportStreamFromESSource::createNew(*env)};
-    tsFrames->addNewVideoSource(framer, 5/*H.264*/);
+    mplexor->addNewVideoSource(framer, 5/*H.264*/);
 
-    // 打开输出槽文件
-    MediaSink *outputSink;
-    if (!((outputSink = FileSink::createNew(*env, OUTPUT_FILE_NAME)))) {
+    /* 创建接收器 */
+    MediaSink *sink;
+    if (!((sink = FileSink::createNew(*env, OUTPUT_FILE_NAME)))) {
         *env << "Unable to open file \"" << OUTPUT_FILE_NAME << "\" as a file sink.\n";
         return EXIT_FAILURE;
     }
 
-    // 转换
-    *env << "Beginning to read...\n";
-    outputSink->startPlaying(*tsFrames, AfterPlaying, nullptr);
+    /* 执行转换 */
+    *env << "Beginning to read..." << "\n";
+    sink->startPlaying(*mplexor, [](void *) {
+        *env << "Done reading.\n";
+        *env << "Wrote output file: \"" << OUTPUT_FILE_NAME << "\"\n";
+        exit(EXIT_SUCCESS);
+    }, nullptr);
 
     env->taskScheduler().doEventLoop();// noreturn
-
     return EXIT_SUCCESS;
-}
-
-void AfterPlaying(void */*clientData*/)
-{
-    *env << "Done reading.\n";
-    *env << "Wrote output file: \"" << OUTPUT_FILE_NAME << "\"\n";
-    exit(EXIT_SUCCESS);
 }
 
 }// namespace
 
-#ifdef ENTRY_SWITCH
+#ifndef ENTRY_SWITCH
 int main(int argc, char *argv[]) { return Main(argc, argv); }
 #endif// ENTRY SWITCH

@@ -1,8 +1,8 @@
 /** \file
- *  \author zhengrr
- *  \date 2016-12-12
- *  \copyright The MIT License
- */
+*  \author zhengrr
+*  \date 2016-12-12
+*  \copyright The MIT License
+*/
 #include <live555/BasicUsageEnvironment.hh>
 #include <live555/GroupsockHelper.hh>
 #include <live555/liveMedia.hh>
@@ -10,43 +10,38 @@
 namespace {
 
 const char const *INPUT_FILE_NAME {"test.264"};
-const portNumBits RTP_PORT_NUM {18888};
-const portNumBits RTCP_PORT_NUM {RTP_PORT_NUM + 1};
-const u_int8_t TTL {255};
 
 void Play();
 void AfterPlaying(void *);
 
 UsageEnvironment *env {nullptr};
-H264VideoStreamFramer *videoSource {nullptr};
-RTPSink *videoSink {nullptr};
+H264VideoStreamFramer *VideoSource {nullptr};
+RTPSink *VideoSink {nullptr};
 
 int Main(int, char *[])
 {
-    TaskScheduler* scheduler {BasicTaskScheduler::createNew()};
-    env = BasicUsageEnvironment::createNew(*scheduler);
+    /* 创建任务调度器与使用环境 */
+    TaskScheduler *schr {BasicTaskScheduler::createNew()};
+    env = BasicUsageEnvironment::createNew(*schr);
 
+    /* 分配四版网际协议组播地址、创建实时传输协议及其控制协议的组播套接字 */
     struct in_addr destAddr;
     destAddr.s_addr = chooseRandomIPv4SSMAddress(*env);
-    const Port rtpPort(RTP_PORT_NUM);
-    const Port rtcpPort(RTCP_PORT_NUM);
+    Groupsock rtpGrpSkt(*env, destAddr, /* 端口 */18888, /* 存活跳数 */255);
+    rtpGrpSkt.multicastSendOnly();
+    Groupsock rtcpGrpSkt(*env, destAddr, 18889, 255);
+    rtcpGrpSkt.multicastSendOnly();
 
-    Groupsock rtpGroupsock(*env, destAddr, rtpPort, TTL);
-    rtpGroupsock.multicastSendOnly();
-    Groupsock rtcpGroupsock(*env, destAddr, rtcpPort, TTL);
-    rtcpGroupsock.multicastSendOnly();
-
+    /* 创建实时传输协议高级视频编码视频接收器及配套的控制协议实例 */
     OutPacketBuffer::maxSize = 100000;
-    videoSink = H264VideoRTPSink::createNew(*env, &rtpGroupsock, 96);
-
-    const unsigned estimatedSessionBandwidth = 500;
+    VideoSink = H264VideoRTPSink::createNew(*env, &rtpGrpSkt, 96);
     const unsigned maxCNAMElen = 100;
     unsigned char CNAME[maxCNAMElen + 1];
     gethostname((char*)CNAME, maxCNAMElen);
     CNAME[maxCNAMElen] = '\0';
     RTCPInstance *rtcp {
-        RTCPInstance::createNew(*env, &rtcpGroupsock,
-        estimatedSessionBandwidth, CNAME, videoSink, nullptr, True)};
+        RTCPInstance::createNew(*env, &rtcpGrpSkt,
+        /*预估带宽 */500/*kbps*/, CNAME, VideoSink, nullptr, /*源特定组播源 */True)};
 
     RTSPServer *rtspServer;
     if (!((rtspServer = RTSPServer::createNew(*env, 8554)))) {
@@ -55,8 +50,8 @@ int Main(int, char *[])
     }
     ServerMediaSession *sms {
         ServerMediaSession::createNew(*env, "testStream", INPUT_FILE_NAME,
-        "Session streamed by \"testH264VideoStreamer\"", True)};
-    sms->addSubsession(PassiveServerMediaSubsession::createNew(*videoSink, rtcp));
+        "Session streamed by \"testH264VideoStreamer\"", /*源特定组播 */True)};
+    sms->addSubsession(PassiveServerMediaSubsession::createNew(*VideoSink, rtcp));
     rtspServer->addServerMediaSession(sms);
 
     char *url {rtspServer->rtspURL(sms)};
@@ -80,23 +75,23 @@ void Play()
         exit(EXIT_FAILURE);
     }
 
-    videoSource = H264VideoStreamFramer::createNew(*env, static_cast<FramedSource *>(fileSource));
+    VideoSource = H264VideoStreamFramer::createNew(*env, static_cast<FramedSource *>(fileSource));
 
     *env << "Beginning to read from file...\n";
-    videoSink->startPlaying(*videoSource, AfterPlaying, videoSink);
+    VideoSink->startPlaying(*VideoSource, AfterPlaying, VideoSink);
 }
 
-void AfterPlaying(void */*clientData*/)
+void AfterPlaying(void *)
 {
     *env << "...done reading from file\n";
-    videoSink->stopPlaying();
-    Medium::close(videoSource);
+    VideoSink->stopPlaying();
+    Medium::close(VideoSource);
 
     Play();
 }
 
 }// namespace
 
-#ifndef ENTRY_SWITCH
+#ifdef ENTRY_SWITCH
 int main(int argc, char *argv[]) { return Main(argc, argv); }
 #endif// ENTRY SWITCH
