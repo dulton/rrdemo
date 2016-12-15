@@ -199,15 +199,15 @@ int Main(int, char *[])
             ServerMediaSession::createNew(*env, "Ogg", "info", "desc")};
 
         newDemuxWatchVariable = 0;
-        OggFileServerDemux::createNew(*env, "ogg.ogg", [](OggFileServerDemux *newDemux, void *) {
-            oggDemux = newDemux;
+        OggFileServerDemux::createNew(*env, "ogg.ogg", [](OggFileServerDemux *demux, void *) {
+            oggDemux = demux;
             newDemuxWatchVariable = 1;
         }, nullptr);
         env->taskScheduler().doEventLoop(&newDemuxWatchVariable);
 
         Boolean sessionHasTracks {False};
         ServerMediaSubsession *smss;
-        while ((smss = oggDemux->newServerMediaSubsession()) != NULL) {
+        while ((smss = oggDemux->newServerMediaSubsession()) != nullptr) {
             sms->addSubsession(smss);
             sessionHasTracks = True;
         }
@@ -221,8 +221,8 @@ int Main(int, char *[])
             ServerMediaSession::createNew(*env, "Opus", "info", "desc")};
 
         newDemuxWatchVariable = 0;
-        OggFileServerDemux::createNew(*env, "opus.opus", [](OggFileServerDemux *newDemux, void *) {
-            oggDemux = newDemux;
+        OggFileServerDemux::createNew(*env, "opus.opus", [](OggFileServerDemux *demux, void *) {
+            oggDemux = demux;
             newDemuxWatchVariable = 1;
         }, nullptr);
         env->taskScheduler().doEventLoop(&newDemuxWatchVariable);
@@ -264,6 +264,6 @@ int Main(int, char *[])
 
 }// namespace
 
-#ifndef ENTRY_SWITCH
+#ifdef ENTRY_SWITCH
 int main(int argc, char *argv[]) { return Main(argc, argv); }
 #endif// ENTRY SWITCH
