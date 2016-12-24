@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-11-11 – 12-23
+ *  \date 2016-11-11 – 12-24
  *  \copyright The MIT License
  */
 #include <stdio.h>
@@ -26,6 +26,7 @@ static int tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
         }
 
         SOCKADDR_IN addr;
+        ZeroMemory(&addr, sizeof addr);
         addr.sin_family = AF_INET;
         addr.sin_addr.s_addr = htonl(INADDR_ANY);
         addr.sin_port = htons(10096);
