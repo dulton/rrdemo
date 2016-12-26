@@ -17,6 +17,8 @@ namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
+#ifdef CODING
+
 class H264VideoUdpSource : public FramedSource {
 public:
     /** \param env
@@ -37,19 +39,28 @@ private:
     void doGetNextFrame() override;
 
 protected:
+    Port port;                       //< 收流端口。
+
+    /// 缓冲类型。
     struct buf_t {
         uint8_t data[300000];
         size_t size;
-    } bufs[10];                      //< 固定缓冲。
-    std::queue<buf_t> dataque;       //< 数据缓冲队列。
-    std::queue<buf_t> idleque;       //< 闲置缓冲队列。
+    };
 
-    Port port;                       //< 收流端口。
-    bool sinkloop {false};           //< 接收者线程标志。
+    std::queue<buf_t *> bufsque;     //< 缓冲队列。
+
     std::thread *sinkthr {nullptr};  //< 接收者线程（Sink Thread）。
-    std::mutex quemtx;               //< 队列锁。
+
+    /// 接收者线程函数。
+    void sinkthrfunc();
+
+    bool sinkloop {false};           //< 接收者线程标志。
+
+    std::mutex quemtx;               //< 缓冲队列锁。
 
 };// H264VideoUdpSource
+
+#endif// CODING
 
 }// namespace live555
 }// namespace cdom

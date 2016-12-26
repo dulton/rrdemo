@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-23 – 24
+ *  \date 2016-12-23 – 26
  *  \copyright The MIT License
  */
 #include <stdio.h>
@@ -23,7 +23,7 @@ static USHORT get_in_port(PSOCKADDR addr)
 
 static int tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
 {
-        /* 启用 Windows Socket */
+        /* 启动 Windows Socket */
         WSADATA data;
         int rwsas = WSAStartup(MAKEWORD(2, 2), &data);  // Result of WSAStartup
         if (NO_ERROR != rwsas) {
@@ -35,8 +35,8 @@ static int tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
         ADDRINFOA hints;
         ZeroMemory(&hints, sizeof hints);
         hints.ai_family = AF_INET;        // IPv4
-        hints.ai_socktype = SOCK_STREAM;  // Stream Socket
-        hints.ai_protocol = IPPROTO_TCP;  // TCP protocol
+        hints.ai_socktype = SOCK_STREAM;  // TCP
+        hints.ai_protocol = IPPROTO_TCP;  // TCP
         hints.ai_flags = AI_PASSIVE;
         PADDRINFOA info;
         int rgai = getaddrinfo(NULL, "10096", &hints, &info);

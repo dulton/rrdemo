@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-23 – 24
+ *  \date 2016-12-23 – 26
  *  \copyright The MIT License
  */
 #include <stdio.h>
@@ -22,9 +22,9 @@ static int tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
 
         ADDRINFOA hints;
         ZeroMemory(&hints, sizeof hints);
-        hints.ai_family = AF_UNSPEC;  // IPv4 or IPv6
-        hints.ai_socktype = SOCK_STREAM;
-        hints.ai_protocol = IPPROTO_TCP;
+        hints.ai_family = AF_UNSPEC;      // IPv4 or IPv6
+        hints.ai_socktype = SOCK_STREAM;  // TCP
+        hints.ai_protocol = IPPROTO_TCP;  // TCP
         PADDRINFOA info;
         int rgai = getaddrinfo("192.168.2.182", "10096", &hints, &info);
         if (NO_ERROR != rgai) {

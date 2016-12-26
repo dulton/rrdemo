@@ -10,10 +10,13 @@
 
 #include "h264_video_udp_server_media_subsession.hpp"
 
+#include "h264_video_udp_source_special.hpp"
+
 namespace {
 int Main(int, char *[])
 {
     using rrdemo::cdom::live555::H264VideoUDPServerMediaSubsession;
+    using rrdemo::cdom::live555::H264VideoUdpSourceSpecial;
 
     /* 创建任务调度器与使用环境 */
     TaskScheduler *schr {BasicTaskScheduler::createNew()};
@@ -32,40 +35,41 @@ int Main(int, char *[])
     *env << "Stream List:\n";
 
     /* MPEG-2 TS UDP */
-    {
-        ServerMediaSession *sms {
-            ServerMediaSession::createNew(*env, "mpeg2tsudp", "info", "desc")};
-        sms->addSubsession(MPEG2TransportUDPServerMediaSubsession
-                           ::createNew(*env, "127.0.0.1", 10096, False));
-        server->addServerMediaSession(sms);
-        *env << server->rtspURL(sms) << "\n";
-    }
+    //{
+    //    ServerMediaSession *sms {
+    //        ServerMediaSession::createNew(*env, "mpeg2tsudp", "info", "desc")};
+    //    sms->addSubsession(MPEG2TransportUDPServerMediaSubsession
+    //                       ::createNew(*env, "127.0.0.1", 10096, False));
+    //    server->addServerMediaSession(sms);
+    //    *env << server->rtspURL(sms) << "\n";
+    //}
 
     /* MPEG-2 TS RTP */
-    {
-        ServerMediaSession *sms {
-            ServerMediaSession::createNew(*env, "mpeg2tsrtp", "info", "desc")};
-        sms->addSubsession(MPEG2TransportUDPServerMediaSubsession
-                           ::createNew(*env, "127.0.0.1", 5504, True));
-        server->addServerMediaSession(sms);
-        *env << server->rtspURL(sms) << "\n";
-    }
+    //{
+    //    ServerMediaSession *sms {
+    //        ServerMediaSession::createNew(*env, "mpeg2tsrtp", "info", "desc")};
+    //    sms->addSubsession(MPEG2TransportUDPServerMediaSubsession
+    //                       ::createNew(*env, "127.0.0.1", 5504, True));
+    //    server->addServerMediaSession(sms);
+    //    *env << server->rtspURL(sms) << "\n";
+    //}
 
     /* H.264 ES (V) */
-    {
-        ServerMediaSession *sms {
-            ServerMediaSession::createNew(*env, "h264", "info", "desc")};
-        OutPacketBuffer::maxSize = 100000;
-        sms->addSubsession(H264VideoFileServerMediaSubsession
-                           ::createNew(*env, "rec.h264", False));
-        server->addServerMediaSession(sms);
-        *env << server->rtspURL(sms) << "\n";
-    }
+    //{
+    //    ServerMediaSession *sms {
+    //        ServerMediaSession::createNew(*env, "h264", "info", "desc")};
+    //    OutPacketBuffer::maxSize = 100000;
+    //    sms->addSubsession(H264VideoFileServerMediaSubsession
+    //                       ::createNew(*env, "rec.h264", False));
+    //    server->addServerMediaSession(sms);
+    //    *env << server->rtspURL(sms) << "\n";
+    //}
 
     /* H.264 ES (V) UDP */
     {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "h264udp", "info", "desc")};
+        H264VideoUdpSourceSpecial::initializeSource(env, 10096);  // JUST FOR SPECIAL
         sms->addSubsession(H264VideoUDPServerMediaSubsession
                            ::createNew(*env, "127.0.0.1", 10096, True));
         server->addServerMediaSession(sms);
@@ -73,14 +77,14 @@ int Main(int, char *[])
     }
 
     /* H.264 ES (V) RTP */
-    {
-        ServerMediaSession *sms {
-            ServerMediaSession::createNew(*env, "h264rtp", "info", "desc")};
-        sms->addSubsession(H264VideoUDPServerMediaSubsession
-                           ::createNew(*env, "127.0.0.1", 5004, False));
-        server->addServerMediaSession(sms);
-        *env << server->rtspURL(sms) << "\n";
-    }
+    //{
+    //    ServerMediaSession *sms {
+    //        ServerMediaSession::createNew(*env, "h264rtp", "info", "desc")};
+    //    sms->addSubsession(H264VideoUDPServerMediaSubsession
+    //                       ::createNew(*env, "127.0.0.1", 5004, False));
+    //    server->addServerMediaSession(sms);
+    //    *env << server->rtspURL(sms) << "\n";
+    //}
 
     *env << "\n";
 

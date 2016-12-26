@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-24
+ *  \date 2016-12-24 – 26
  *  \copyright The MIT License
  */
 #include <stdio.h>
@@ -13,23 +13,23 @@
 
 static int tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
 {
-        _tprintf_s(_T("*** Startuping Windows Socket..."));
+        _tprintf_s(_T("*** Startuping windows socket..."));
         WSADATA data;
         int rwsas = WSAStartup(MAKEWORD(2, 2), &data);  // Result of WSAStartup
         if (NO_ERROR != rwsas) {
-                _tprintf_s(_T(" ! WSAStartup() failed with error %d.\n"), rwsas);
+                _tprintf_s(_T(" error, WSAStartup() failed with error %d.\n"), rwsas);
                 return EXIT_FAILURE;
         }
-        _tprintf_s(_T(" Startuped.\n"));
+        _tprintf_s(_T(" done.\n"));
 
-        _tprintf_s(_T("*** Creating Socket..."));
+        _tprintf_s(_T("*** Creating socket..."));
         SOCKET skt = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
         if (INVALID_SOCKET == skt) {
-                _tprintf_s(_T(" ! socket() failed with error %d.\n"), WSAGetLastError());
+                _tprintf_s(_T(" error, socket() failed with error %d.\n"), WSAGetLastError());
                 WSACleanup();
                 return EXIT_FAILURE;
         }
-        _tprintf_s(_T(" Created.\n"));
+        _tprintf_s(_T(" done.\n"));
 
         SOCKADDR_IN addr;
         ZeroMemory(&addr, sizeof addr);
@@ -48,17 +48,17 @@ static int tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
                 _tprintf_s(_T(" << Sending packet to %hhu.%hhu.%hhu.%hhu:%hu..."),
                            addr.sin_addr.s_net, addr.sin_addr.s_host, addr.sin_addr.s_lh, addr.sin_addr.s_impno, ntohs(addr.sin_port));
                 if (SOCKET_ERROR == sendto(skt, buf, strlen(buf), 0, (PSOCKADDR)&addr, addrlen)) {
-                        _tprintf_s(_T(" ! sendto() failed with error %d.\n"), WSAGetLastError());
+                        _tprintf_s(_T(" error, sendto() failed with error %d.\n"), WSAGetLastError());
                         closesocket(skt);
                         WSACleanup();
                         return EXIT_FAILURE;
                 }
-                _tprintf_s(_T(" Sended.\n"));
+                _tprintf_s(_T(" done.\n"));
 
                 _tprintf_s(_T("    Waiting for echo..."));
                 ZeroMemory(buf, sizeof buf);
                 if (SOCKET_ERROR == recvfrom(skt, buf, sizeof buf, 0, (PSOCKADDR)&addr, &addrlen)) {
-                        _tprintf_s(_T(" ! recvfrom() failed with error %d.\n"), WSAGetLastError());
+                        _tprintf_s(_T(" error, recvfrom() failed with error %d.\n"), WSAGetLastError());
                         closesocket(skt);
                         WSACleanup();
                         return EXIT_FAILURE;
