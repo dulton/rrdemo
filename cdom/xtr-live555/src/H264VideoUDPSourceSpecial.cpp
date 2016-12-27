@@ -1,5 +1,5 @@
 /** \copyright The MIT License */
-#include "h264_video_udp_source_special.hpp"
+#include "H264VideoUDPSourceSpecial.hpp"
 
 #include <cassert>
 #include <map>
@@ -9,6 +9,8 @@
 #include <live555/Groupsock.hh>
 
 #pragma comment(lib, "Ws2_32.lib")
+
+#define BUFSIZE 500000
 
 namespace {
 
@@ -23,6 +25,15 @@ struct src_t {
 };
 
 std::map<u_int16_t, src_t *> srcs;  //< 源集。
+
+/// H.264 Network Abstract Layer Unit
+struct nalu {
+    uint32_t start_codes : 32;       // 起始码，固定为 00 00 00 01 (16)
+
+    uint8_t forbidden_zero_bit : 1;  // 禁止位，固定为 0 (2)
+    uint8_t nal_ref_idc : 2;
+    uint8_t nal_unit_type : 5;       // 网络抽象层单元类型
+};
 
 void sink(UsageEnvironment * const env, src_t * const src)
 {
@@ -79,13 +90,16 @@ void sink(UsageEnvironment * const env, src_t * const src)
     }
     *env << " done with port " << ntohs(addr.sin_port) << ".\n";
 
-    /* 循环局部变量生存期优化 */
+    /* 循环内局部变量生存期优化 */
     struct timeval timeout {};
     fd_set set {};
     SOCKADDR_IN ano {};
     int anolen {sizeof ano};
-    char buf[300000] {};
-    int datalen;
+    char udpack[65535] {};
+    int udpacklen;
+
+    u_int8_t buf[BUFSIZE] {};
+    int buflen {0};
 
     /* 收流与处理 */
     while (True) {
@@ -106,33 +120,58 @@ void sink(UsageEnvironment * const env, src_t * const src)
         if (select(0, &set, nullptr, nullptr, &timeout) <= 0) continue;  // 若超时
         if (!FD_ISSET(skt, &set)) continue;  // 若不可读
 
+        /* 接收 UDP 数据包 */
         // SOCKADDR_IN ano {};
         // int anolen {sizeof ano};
-        // char buf[300000] {};
-        // int datalen {recvfrom(skt, buf, sizeof buf, 0, reinterpret_cast<SOCKADDR *>(&ano), &anolen)};
-        datalen = recvfrom(skt, buf, sizeof buf, 0, reinterpret_cast<SOCKADDR *>(&ano), &anolen);
-        if (SOCKET_ERROR == datalen || datalen <= 0) {
+        // char udpack[65535] {};
+        // int packlen {recvfrom(skt, udpack, sizeof udpack, 0, reinterpret_cast<SOCKADDR *>(&ano), &anolen)};
+        udpacklen = recvfrom(skt, udpack, sizeof udpack, 0, reinterpret_cast<SOCKADDR *>(&ano), &anolen);
+        if (SOCKET_ERROR == udpacklen) {
             *env << "Error, recvfrom() failed with code " << WSAGetLastError() << ".\n";
             continue;
         }
 
-        /* 将接收到的数据进行成帧处理，并分发给各存储处 */
-        src->destsmtx.lock();
-        for (auto dest : src->dests) {
-            dest->bufsmtx.lock();
-            auto destbuf = new buf_t;
-            memcpy_s(destbuf->data, sizeof destbuf->data, buf, datalen);
-            destbuf->size = datalen;
-            dest->bufs.push(destbuf);
-            /* 抛弃陈旧数据 */
-            while (3 < dest->bufs.size()) {
-                *env << "A H264 video udp source buffer is too long, partial data has been discarded.";
-                delete dest->bufs.front();
-                dest->bufs.pop();
+        /* 将接收到的数据进行成帧处理 */
+        if (0 < buflen && (
+            0 == udpack[0] && 0 == udpack[1] && 1 == udpack[2] ||
+            0 == udpack[0] && 0 == udpack[1] && 0 == udpack[2] && 1 == udpack[3]
+            )) {  // 若成帧
+            /* 将缓冲帧加入缓冲队列，并清理陈旧数据 */
+            src->destsmtx.lock();
+            for (auto dest : src->dests) {
+                dest->bufsmtx.lock();
+                /* 为缓冲队列创建新的缓冲 */
+                auto destbuf = new buf_t;
+                destbuf->data = new u_int8_t[buflen];
+                /* 为缓冲赋值 */
+                memcpy_s(destbuf->data, buflen, buf, buflen);
+                destbuf->size = buflen;
+                /* 将缓冲加入缓冲队列 */
+                dest->bufs.push(destbuf);
+                /* 清理缓冲队列，抛弃陈旧数据 */
+                while (2 < dest->bufs.size()) {
+                    *env << "A H264 video udp source buffers queue is too long, partial data has been discarded.\n";
+                    delete[] dest->bufs.front()->data;
+                    delete dest->bufs.front();
+                    dest->bufs.pop();
+                }
+                dest->bufsmtx.unlock();
             }
-            dest->bufsmtx.unlock();
+            src->destsmtx.unlock();
+
+            /* 重置成帧缓存 */
+            memset(buf, 0, sizeof buf);
+            buflen = 0;
         }
-        src->destsmtx.unlock();
+
+        if (buflen + udpacklen <= BUFSIZE) {
+            memcpy_s(buf + buflen, BUFSIZE - buflen, udpack, udpacklen);
+            buflen += udpacklen;
+        } else {
+            buflen += udpacklen;
+            *env << "A frame size is too large, partial data has been discarded."
+                << " BL/BS: " << buflen << "/" << BUFSIZE << ".\n";
+        }
     }
 
     /* 关闭套接字 */
@@ -197,6 +236,7 @@ H264VideoUdpSourceSpecial::~H264VideoUdpSourceSpecial()
     unreg(this, ntohs(skt->port().num()));
     bufsmtx.lock();
     while (!bufs.empty()) {
+        delete[] bufs.front()->data;
         delete bufs.front();
         bufs.pop();
     }
@@ -209,13 +249,31 @@ void H264VideoUdpSourceSpecial::doGetNextFrame()
         std::this_thread::sleep_for(std::chrono::microseconds(100));
     }
 
-    bufsmtx.lock();
-    auto buf = bufs.front();
+    /* 若当前缓冲不存在，则在缓冲队列中取缓冲 */
+    if (!buf) {
+        bufsmtx.lock();
+        buf = bufs.front();
+        bufs.pop();
+        bufsmtx.unlock();
+        bufcur = 0;  // 重置游标
+    }
+
     fFrameSize = buf->size < fMaxSize ? buf->size : fMaxSize;
-    memcpy_s(fTo, fMaxSize, buf->data, fFrameSize);
-    delete buf;
-    bufs.pop();
-    bufsmtx.unlock();
+    //if (fMaxSize < buf->size)
+    //    envir() << "A frame size is too large, partial data has been discarded."
+    //    << " BS/MS: " << buf->size << "/" << fMaxSize << ".\n";
+    memcpy_s(fTo, fMaxSize, buf->data + bufcur, fFrameSize);
+
+    bufcur += fFrameSize;
+    buf->size -= fFrameSize;
+
+    /* 若当前缓冲用尽，则将其销毁 */
+    assert(0 <= buf->size);
+    if (!buf->size) {
+        delete[] buf->data;
+        delete buf;
+        buf = nullptr;
+    }
 
     nextTask() = envir().taskScheduler().scheduleDelayedTask(
         0, reinterpret_cast<TaskFunc*>(afterGetting), this);
@@ -224,3 +282,5 @@ void H264VideoUdpSourceSpecial::doGetNextFrame()
 }// namespace live555
 }// namespace cdom
 }// namespace rrdemo
+
+#undef BUFSIZE

@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-22
+ *  \date 2016-12-22 – 27
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMLIVE555_H264VIDEOFIFOSERVERMEDIASUBSESSION_HPP
@@ -8,7 +8,7 @@
 
 #include <live555/OnDemandServerMediaSubsession.hh>
 
-#include "h264_video_fifo_source.hpp"
+#include "H264VideoFIFOSource.hpp"
 
 namespace rrdemo {
 namespace cdom {
@@ -16,16 +16,16 @@ namespace live555 {
 
 #ifdef CODING
 
-class H264VideoFifoServerMediaSubsession : public OnDemandServerMediaSubsession {
+class H264VideoFIFOServerMediaSubsession : public OnDemandServerMediaSubsession {
 public:
-    static H264VideoFifoServerMediaSubsession *createNew(
+    static H264VideoFIFOServerMediaSubsession *createNew(
         UsageEnvironment &env, FramedSource *src);
 
 protected:
-    H264VideoFifoServerMediaSubsession(
+    H264VideoFIFOServerMediaSubsession(
         UsageEnvironment &env, H264VideoFifoSource *src);
 
-    ~H264VideoFifoServerMediaSubsession();
+    ~H264VideoFIFOServerMediaSubsession();
 
     FramedSource *createNewStreamSource(unsigned clientSessionId,
                                         unsigned &estBitrate) override;
@@ -34,7 +34,7 @@ protected:
                               unsigned char rtpPayloadTypeIfDynamic,
                               FramedSource *inputSource) override;
 
-};// H264VideoFifoServerMediaSubsession
+};// H264VideoFIFOServerMediaSubsession
 
 #endif// CODING
 

@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-24
+ *  \date 2016-12-24 – 27
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMLIVE555_H264VIDEOUDPSOURCESPECIAL_HPP
@@ -17,7 +17,7 @@ namespace cdom {
 namespace live555 {
 
 struct buf_t {
-    u_int8_t data[300000];
+    u_int8_t *data;
     size_t size;
 };
 
@@ -27,6 +27,8 @@ public:
     static void initializeSource(UsageEnvironment *env, u_int16_t port);
     std::queue<buf_t *> bufs;  //< 缓冲队列。
     std::mutex bufsmtx;        //< 缓冲队列锁。
+    buf_t *buf {};             //< 当前缓冲。
+    int bufcur {};             //< 当前缓冲游标。
 
     /** \param env
      *  \param skt  收流套接字。

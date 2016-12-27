@@ -1,6 +1,6 @@
 /** \copyright The MIT License */
 
-#include "h264_video_fifo_server_media_subsession.hpp"
+#include "H264VideoFIFOServerMediaSubsession.hpp"
 
 namespace rrdemo {
 namespace cdom {

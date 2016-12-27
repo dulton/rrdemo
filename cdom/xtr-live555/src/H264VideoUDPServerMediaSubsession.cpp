@@ -1,11 +1,13 @@
 /** \copyright The MIT License */
-#include "h264_video_udp_server_media_subsession.hpp"
+#include "H264VideoUDPServerMediaSubsession.hpp"
 
+#include <live555/BasicUDPSource.hh>
 #include <live555/GroupsockHelper.hh>
+#include <live555/H264VideoRTPSink.hh>
 #include <live555/H264VideoRTPSource.hh>
-#include <live555/SimpleRTPSink.hh>
+#include <live555/H264VideoStreamFramer.hh>
 
-#include "h264_video_udp_source_special.hpp"
+#include "H264VideoUDPSourceSpecial.hpp"
 
 namespace rrdemo {
 namespace cdom {
@@ -37,26 +39,27 @@ FramedSource *H264VideoUDPServerMediaSubsession::createNewStreamSource(
 
     if (!skt) {
         struct in_addr inaddr;
-        inaddr.s_addr = addr ? our_inet_addr(addr) : 0;
+        inaddr.s_addr = addr ? our_inet_addr(addr) : htonl(INADDR_ANY);
         skt = new Groupsock(envir(), inaddr, port, 255);
     }
 
+
     FramedSource *src;
     if (udp) {
-        // src = BasicUDPSource::createNew(envir(), skt);
+        //src = BasicUDPSource::createNew(envir(), skt);
         src = H264VideoUdpSourceSpecial::createNew(envir(), skt);
     } else {
-        // src = SimpleRTPSource::createNew(envir(), skt, 96, 90000, "video/H264", 0, False);
+        //src = SimpleRTPSource::createNew(envir(), skt, 96, 90000, "video/H264", 0, False);
         src = H264VideoRTPSource::createNew(envir(), skt, 96, 90000);
     }
-    return src;
+    return H264VideoStreamFramer::createNew(envir(), src, True);
 }
 
 RTPSink *H264VideoUDPServerMediaSubsession::createNewRTPSink(
     Groupsock* rtpGroupsock, unsigned char /*rtpPayloadTypeIfDynamic*/, FramedSource */*inputSource*/)
 {
-    return SimpleRTPSink::createNew(
-        envir(), rtpGroupsock, 96, 90000, "video", "H264", 1, True, False);
+    //return SimpleRTPSink::createNew(envir(), rtpGroupsock, 96, 90000, "video", "H264", 1, True, False);
+    return H264VideoRTPSink::createNew(envir(), rtpGroupsock, 96);
 }
 
 }// namespace live555

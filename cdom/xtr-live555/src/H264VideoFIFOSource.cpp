@@ -1,5 +1,5 @@
 /** \copyright The MIT License */
-#include "h264_video_fifo_source.hpp"
+#include "H264VideoFIFOSource.hpp"
 
 namespace rrdemo {
 namespace cdom {
@@ -7,14 +7,14 @@ namespace live555 {
 
 #ifdef CODING
 
-void H264VideoFifoSource::doGetNextFrame()
+void H264VideoFIFOSource::doGetNextFrame()
 {}
 
-H264VideoFifoSource::H264VideoFifoSource(UsageEnvironment &env) :
+H264VideoFIFOSource::H264VideoFIFOSource(UsageEnvironment &env) :
 FramedSource(env)
 {}
 
-H264VideoFifoSource::~H264VideoFifoSource()
+H264VideoFIFOSource::~H264VideoFIFOSource()
 {}
 
 #endif// CODING

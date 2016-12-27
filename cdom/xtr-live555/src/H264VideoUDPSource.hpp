@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-22 – 24
+ *  \date 2016-12-22 – 27
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMLIVE555_H264VIDEOUDPSOURCE_HPP

@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-22
+ *  \date 2016-12-22 – 27
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMLIVE555_H264VIDEOFIFOSOURCE_HPP
@@ -14,16 +14,16 @@ namespace live555 {
 
 #ifdef CODING
 
-class H264VideoFifoSource : public FramedSource {
+class H264VideoFIFOSource : public FramedSource {
 public:
     void doGetNextFrame() override;
 
 protected:
-    explicit H264VideoFifoSource(UsageEnvironment &env);
+    explicit H264VideoFIFOSource(UsageEnvironment &env);
 
-    ~H264VideoFifoSource();
+    ~H264VideoFIFOSource();
 
-};// H264VideoFifoSource
+};// H264VideoFIFOSource
 
 #endif// CODING
 
