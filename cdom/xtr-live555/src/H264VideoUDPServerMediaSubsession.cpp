@@ -1,13 +1,12 @@
 /** \copyright The MIT License */
 #include "H264VideoUDPServerMediaSubsession.hpp"
 
-#include <live555/BasicUDPSource.hh>
 #include <live555/GroupsockHelper.hh>
 #include <live555/H264VideoRTPSink.hh>
 #include <live555/H264VideoRTPSource.hh>
 #include <live555/H264VideoStreamFramer.hh>
 
-#include "H264VideoUDPSourceSpecial.hpp"
+#include "H264VideoUDPSource.hpp"
 
 namespace rrdemo {
 namespace cdom {
@@ -47,7 +46,7 @@ FramedSource *H264VideoUDPServerMediaSubsession::createNewStreamSource(
     FramedSource *src;
     if (udp) {
         //src = BasicUDPSource::createNew(envir(), skt);
-        src = H264VideoUdpSourceSpecial::createNew(envir(), skt);
+        src = H264VideoUDPSource::createNew(envir(), skt);
     } else {
         //src = SimpleRTPSource::createNew(envir(), skt, 96, 90000, "video/H264", 0, False);
         src = H264VideoRTPSource::createNew(envir(), skt, 96, 90000);

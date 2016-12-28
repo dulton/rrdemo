@@ -7,13 +7,13 @@
 #include <live555/liveMedia.hh>
 
 #include "H264VideoUDPServerMediaSubsession.hpp"
-#include "H264VideoUDPSourceSpecial.hpp"
+#include "H264VideoUDPSource.hpp"
 
 namespace {
 int Main(int, char *[])
 {
     using rrdemo::cdom::live555::H264VideoUDPServerMediaSubsession;
-    using rrdemo::cdom::live555::H264VideoUdpSourceSpecial;
+    using rrdemo::cdom::live555::H264VideoUDPSource;
 
     /* 创建任务调度器与使用环境 */
     TaskScheduler *schr {BasicTaskScheduler::createNew()};
@@ -66,8 +66,8 @@ int Main(int, char *[])
     {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "h264udp", "info", "desc")};
-        H264VideoUdpSourceSpecial::initializeSource(env, 10096);  // JUST FOR SPECIAL
-        OutPacketBuffer::maxSize = 300000;  // for RTSP/RTP packet size
+        OutPacketBuffer::maxSize = 300000;
+        H264VideoUDPSource::initializeSourceBeforeEventLoop(env, 10096);
         sms->addSubsession(H264VideoUDPServerMediaSubsession
                            ::createNew(*env, "127.0.0.1", 10096, True));
         server->addServerMediaSession(sms);
