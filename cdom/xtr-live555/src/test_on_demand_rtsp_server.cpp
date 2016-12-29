@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-14
+ *  \date 2016-12-14 – 29
  *  \copyright The MIT License
  */
 #include <live555/BasicUsageEnvironment.hh>
@@ -27,8 +27,7 @@ int Main(int, char *[])
     RTSPServer *rtspServer {RTSPServer::createNew(*env, 8554, auth)};
     if (!rtspServer) return -1;
 
-    /* MPEG-4 ES (V) */
-    {
+    /* MPEG-4 ES (V) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "mpeg4es", "info", "desc")};
         sms->addSubsession(MPEG4VideoFileServerMediaSubsession
@@ -36,8 +35,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* H.264 ES (V) */
-    {
+    /* H.264 ES (V) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "h264es", "info", "desc")};
         sms->addSubsession(H264VideoFileServerMediaSubsession
@@ -45,8 +43,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* H.265 ES (V) */
-    {
+    /* H.265 ES (V) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "h265es", "info", "desc")};
         sms->addSubsession(H265VideoFileServerMediaSubsession
@@ -54,8 +51,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* MPEG-1/2 PS (A/V) */
-    {
+    /* MPEG-1/2 PS (A/V) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "mpeg12ps", "info", "desc")};
         MPEG1or2FileServerDemux *demux/* 解复用器 */ {
@@ -65,8 +61,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* MPEG-1/2 ES (V) */
-    {
+    /* MPEG-1/2 ES (V) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "mpeg12es", "info", "desc")};
         sms->addSubsession(MPEG1or2VideoFileServerMediaSubsession
@@ -74,8 +69,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* MP3 (A) */
-    {
+    /* MP3 (A) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "mp3", "info", "desc")};
         sms->addSubsession(MP3AudioFileServerMediaSubsession
@@ -83,8 +77,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* WAV (A) */
-    {
+    /* WAV (A) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "wav", "info", "desc")};
         sms->addSubsession(WAVAudioFileServerMediaSubsession
@@ -92,8 +85,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* AMR (A) */
-    {
+    /* AMR (A) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "amr", "info", "desc")};
         sms->addSubsession(AMRAudioFileServerMediaSubsession
@@ -101,8 +93,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* VOB (MPEG-2 PS with AC-3) (A/V) */
-    {
+    /* VOB (MPEG-2 PS with AC-3) (A/V) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "vob", "info", "desc")};
         MPEG1or2FileServerDemux *demux {
@@ -112,8 +103,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* MPEG-2 TS */
-    {
+    /* MPEG-2 TS */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "mpeg2ts", "info", "desc")};
         sms->addSubsession(MPEG2TransportFileServerMediaSubsession
@@ -121,8 +111,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* AAC (A) */
-    {
+    /* AAC (A) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "aac", "info", "desc")};
         sms->addSubsession(ADTSAudioFileServerMediaSubsession
@@ -130,8 +119,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* DV (V) */
-    {
+    /* DV (V) */ {
         OutPacketBuffer::maxSize = /*288000 < */300000;
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "dv", "info", "desc")};
@@ -140,8 +128,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* AC-3 ES (A) */
-    {
+    /* AC-3 ES (A) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "ac3", "info", "desc")};
         sms->addSubsession(AC3AudioFileServerMediaSubsession
@@ -149,8 +136,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* Matroska (A/V/S) */
-    {
+    /* Matroska (A/V/S) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "matroska", "info", "desc")};
 
@@ -171,8 +157,7 @@ int Main(int, char *[])
             rtspServer->addServerMediaSession(sms);
     }
 
-    /* WebM (Special Matroska with Vorbis and VP8) (A/V) */
-    {
+    /* WebM (Special Matroska with Vorbis and VP8) (A/V) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "webm", "info", "desc")};
 
@@ -193,8 +178,7 @@ int Main(int, char *[])
             rtspServer->addServerMediaSession(sms);
     }
 
-    /* Ogg (A/V) */
-    {
+    /* Ogg (A/V) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "ogg", "info", "desc")};
 
@@ -215,8 +199,7 @@ int Main(int, char *[])
             rtspServer->addServerMediaSession(sms);
     }
 
-    /* Opus (Special OGG) (A) */
-    {
+    /* Opus (Special OGG) (A) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "opus", "info", "desc")};
 
@@ -237,8 +220,7 @@ int Main(int, char *[])
             rtspServer->addServerMediaSession(sms);
     }
 
-    /* MPEG-2 TS UDP */
-    {
+    /* MPEG-2 TS UDP */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "mpeg2tsudp", "info", "desc")};
         sms->addSubsession(MPEG2TransportUDPServerMediaSubsession

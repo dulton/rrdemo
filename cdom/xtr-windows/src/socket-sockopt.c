@@ -72,6 +72,23 @@ static int tmain(int argc, _TCHAR *argv[], _TCHAR *envp[])
         else
                 _tprintf_s(_T(" done, SO_KEEPALIVE: %s.\n"), so_val & so_keepalive_mask ? _T("ON") : _T("OFF"));
 
+        ///* 配置套接字 */ {
+        //    *env << "H264VideoUDPSource: Setting socket option RECBUF...";
+        //    int so_rcvbuf {1 << 24};
+        //    if (SOCKET_ERROR == setsockopt(skt, SOL_SOCKET, SO_RCVBUF, reinterpret_cast<const char *>(&so_rcvbuf), sizeof so_rcvbuf))
+        //        *env << " error, setsockopt() failed with error " << WSAGetLastError() << ".\n";
+        //    else
+        //        *env << " done with value " << so_rcvbuf << ".\n";
+        //
+        //    *env << "H264VideoUDPSource: Setting socket option REUSEADDR...";
+        //    BOOL so_reuseaddr {TRUE};
+        //    if (SOCKET_ERROR == setsockopt(skt, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<const char *>(&so_reuseaddr), sizeof so_reuseaddr))
+        //        *env << " error, setsockopt() failed with error " << WSAGetLastError() << ".\n";
+        //    else
+        //        *env << "done with value " << (so_reuseaddr ? "ON" : "OFF") << ".\n";
+        //}
+
+        /* 关闭套接字、关闭 Windows Socket */
         closesocket(skt);
         WSACleanup();
         return EXIT_SUCCESS;

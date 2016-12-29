@@ -28,7 +28,7 @@ H264VideoUDPServerMediaSubsession::H264VideoUDPServerMediaSubsession(
 H264VideoUDPServerMediaSubsession::~H264VideoUDPServerMediaSubsession()
 {
     delete[] addr;
-    delete skt;
+    if (skt) delete skt;
 }
 
 FramedSource *H264VideoUDPServerMediaSubsession::createNewStreamSource(
@@ -41,7 +41,6 @@ FramedSource *H264VideoUDPServerMediaSubsession::createNewStreamSource(
         inaddr.s_addr = addr ? our_inet_addr(addr) : htonl(INADDR_ANY);
         skt = new Groupsock(envir(), inaddr, port, 255);
     }
-
 
     FramedSource *src;
     if (udp) {

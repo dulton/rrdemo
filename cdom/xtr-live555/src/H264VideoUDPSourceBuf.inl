@@ -52,7 +52,6 @@ inline size_t H264VideoUDPSource::Buf::cutt(uint8_t *const dst, const size_t siz
     return len - actual;
 }
 
-
 inline void H264VideoUDPSource::Buf::clear()
 {
     memset(data, 0, size);
