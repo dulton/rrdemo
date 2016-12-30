@@ -47,7 +47,6 @@ FramedSource *H264VideoUDPServerMediaSubsession::createNewStreamSource(
         //src = BasicUDPSource::createNew(envir(), skt);
         src = H264VideoUDPSource::createNew(envir(), skt);
     } else {
-        //src = SimpleRTPSource::createNew(envir(), skt, 96, 90000, "video/H264", 0, False);
         src = H264VideoRTPSource::createNew(envir(), skt, 96, 90000);
     }
     return H264VideoStreamFramer::createNew(envir(), src, True);
@@ -56,7 +55,6 @@ FramedSource *H264VideoUDPServerMediaSubsession::createNewStreamSource(
 RTPSink *H264VideoUDPServerMediaSubsession::createNewRTPSink(
     Groupsock* rtpGroupsock, unsigned char /*rtpPayloadTypeIfDynamic*/, FramedSource */*inputSource*/)
 {
-    //return SimpleRTPSink::createNew(envir(), rtpGroupsock, 96, 90000, "video", "H264", 1, True, False);
     return H264VideoRTPSink::createNew(envir(), rtpGroupsock, 96);
 }
 

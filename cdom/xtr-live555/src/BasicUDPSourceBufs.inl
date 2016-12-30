@@ -1,35 +1,35 @@
 /** \copyright The MIT License */
-#ifndef _RRDEMOCDOMLIVE555_H264VIDEOUDPSOURCEBUFS_INL
-#define _RRDEMOCDOMLIVE555_H264VIDEOUDPSOURCEBUFS_INL
+#ifndef _RRDEMOCDOMLIVE555_BASICUDPSOURCEBUFS_INL
+#define _RRDEMOCDOMLIVE555_BASICUDPSOURCEBUFS_INL
 
 namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
-inline H264VideoUDPSource::Bufs::Bufs()
+inline BasicUDPSource::Bufs::Bufs()
 {
     for (auto &entity : entities)
         recycle(&entity);
 }
 
-inline size_t H264VideoUDPSource::Bufs::datalen() const
+inline size_t BasicUDPSource::Bufs::datalen() const
 {
     return dataque.size();
 }
 
-inline size_t H264VideoUDPSource::Bufs::idlelen() const
+inline size_t BasicUDPSource::Bufs::idlelen() const
 {
     return idleque.size();
 }
 
-inline void H264VideoUDPSource::Bufs::push(Buf * const buf)
+inline void BasicUDPSource::Bufs::push(Buf * const buf)
 {
     mtx.lock(); {
         dataque.push(buf);
     } mtx.unlock();
 }
 
-inline H264VideoUDPSource::Buf* H264VideoUDPSource::Bufs::pop()
+inline BasicUDPSource::Buf* BasicUDPSource::Bufs::pop()
 {
     Buf *buf;
     mtx.lock(); {
@@ -43,7 +43,7 @@ inline H264VideoUDPSource::Buf* H264VideoUDPSource::Bufs::pop()
     return buf;
 }
 
-inline void H264VideoUDPSource::Bufs::recycle(Buf * const buf)
+inline void BasicUDPSource::Bufs::recycle(Buf * const buf)
 {
     buf->clear();
     mtx.lock(); {
@@ -51,7 +51,7 @@ inline void H264VideoUDPSource::Bufs::recycle(Buf * const buf)
     } mtx.unlock();
 }
 
-inline H264VideoUDPSource::Buf* H264VideoUDPSource::Bufs::allocate()
+inline BasicUDPSource::Buf* BasicUDPSource::Bufs::allocate()
 {
     Buf *buf;
     mtx.lock(); {
@@ -65,7 +65,7 @@ inline H264VideoUDPSource::Buf* H264VideoUDPSource::Bufs::allocate()
     return buf;
 }
 
-inline H264VideoUDPSource::Buf* H264VideoUDPSource::Bufs::allocateforce()
+inline BasicUDPSource::Buf* BasicUDPSource::Bufs::allocateforce()
 {
     Buf *buf;
     mtx.lock(); {
@@ -90,4 +90,4 @@ inline H264VideoUDPSource::Buf* H264VideoUDPSource::Bufs::allocateforce()
 }// namespace cdom
 }// namespace rrdemo
 
-#endif// _RRDEMOCDOMLIVE555_H264VIDEOUDPSOURCEBUFS_INL
+#endif// _RRDEMOCDOMLIVE555_BASICUDPSOURCEBUFS_INL
