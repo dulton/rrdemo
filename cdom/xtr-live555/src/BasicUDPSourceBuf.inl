@@ -18,8 +18,8 @@ inline size_t BasicUDPSource::Buf::len() const
 
 inline size_t BasicUDPSource::Buf::cpyf(const uint8_t *const src, const size_t len)
 {
-    auto actual = len < size ? len : size;  // min
-    memcpy_s(data, size, src, actual);
+    const auto actual = len < SIZE ? len : SIZE;  // min
+    memcpy_s(data, SIZE, src, actual);
     cur = 0;
     len_ = actual;
     return len - actual;
@@ -28,15 +28,15 @@ inline size_t BasicUDPSource::Buf::cpyf(const uint8_t *const src, const size_t l
 inline size_t BasicUDPSource::Buf::cpyt(uint8_t *const dst, const size_t siz, const size_t len) const
 {
     assert(len <= len_);
-    auto actual = len < siz ? len : siz;  // min
+    const auto actual = len < siz ? len : siz;  // min
     memcpy_s(dst, siz, data, actual);
     return len - actual;
 }
 
 inline size_t BasicUDPSource::Buf::appf(const uint8_t *const src, const size_t len)
 {
-    auto free = size - len_;
-    auto actual = len < free ? len : free;  // min
+    const auto free = SIZE - len_;
+    const auto actual = len < free ? len : free;  // min
     memcpy_s(data + len_, free, src, actual);
     len_ += actual;
     return len - actual;
@@ -45,7 +45,7 @@ inline size_t BasicUDPSource::Buf::appf(const uint8_t *const src, const size_t l
 inline size_t BasicUDPSource::Buf::cutt(uint8_t *const dst, const size_t siz, const size_t len)
 {
     assert(len <= len_);
-    auto actual = len < siz ? len : siz;  // min
+    const auto actual = len < siz ? len : siz;  // min
     memcpy_s(dst, siz, data + cur, actual);
     cur += actual;
     len_ -= actual;
@@ -54,7 +54,7 @@ inline size_t BasicUDPSource::Buf::cutt(uint8_t *const dst, const size_t siz, co
 
 inline void BasicUDPSource::Buf::clear()
 {
-    memset(data, 0, size);
+    memset(data, 0, SIZE);
     cur = 0;
     len_ = 0;
 }

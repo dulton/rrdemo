@@ -6,12 +6,16 @@
 #include <live555/BasicUsageEnvironment.hh>
 #include <live555/liveMedia.hh>
 
+#include "ADTSAudioUDPServerMediaSubsession.hpp"
+#include "ADTSAudioUDPSource.hpp"
 #include "H264VideoUDPServerMediaSubsession.hpp"
 #include "H264VideoUDPSource.hpp"
 
 namespace {
 int Main(int, char *[])
 {
+    using rrdemo::cdom::live555::ADTSAudioUDPServerMediaSubsession;
+    using rrdemo::cdom::live555::ADTSAudioUDPSource;
     using rrdemo::cdom::live555::H264VideoUDPServerMediaSubsession;
     using rrdemo::cdom::live555::H264VideoUDPSource;
 
@@ -31,22 +35,21 @@ int Main(int, char *[])
 
     *env << "Stream List:\n";
 
+    /* ADTS (A) UDP */ {
+        ServerMediaSession *sms {
+            ServerMediaSession::createNew(*env, "adtsudp", "info", "desc")};
+        ADTSAudioUDPSource::initializeSourceBeforeEventLoop(env, 10096);
+        sms->addSubsession(ADTSAudioUDPServerMediaSubsession::createNew(*env, 10096));
+        server->addServerMediaSession(sms);
+        *env << server->rtspURL(sms) << "\n";
+    }
+
     /* H.264 ES (V) UDP */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "h264udp", "info", "desc")};
         OutPacketBuffer::maxSize = 300000;
         H264VideoUDPSource::initializeSourceBeforeEventLoop(env, 10096);
-        sms->addSubsession(H264VideoUDPServerMediaSubsession
-                           ::createNew(*env, "127.0.0.1", 10096, True));
-        server->addServerMediaSession(sms);
-        *env << server->rtspURL(sms) << "\n";
-    }
-
-    /* H.264 ES (V) RTP */ {
-        ServerMediaSession *sms {
-            ServerMediaSession::createNew(*env, "h264rtp", "info", "desc")};
-        sms->addSubsession(H264VideoUDPServerMediaSubsession
-                           ::createNew(*env, "127.0.0.1", 5004, False));
+        sms->addSubsession(H264VideoUDPServerMediaSubsession::createNew(*env, 10096));
         server->addServerMediaSession(sms);
         *env << server->rtspURL(sms) << "\n";
     }

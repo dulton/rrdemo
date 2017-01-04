@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-30
+ *  \date 2016-12-30 – 2017-1-3
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMLIVE555_BASICUDPSOURCE_HPP
@@ -12,7 +12,6 @@
 #include <queue>
 
 #include <live555/FramedSource.hh>
-#include <live555/Groupsock.hh>
 
 namespace rrdemo {
 namespace cdom {
@@ -22,16 +21,16 @@ class BasicUDPSource : public FramedSource {
 public:
     /// 创建新的 BasicUDPSource 实例。
     /** \param env
-     *  \param skt  收流套接字。
+     *  \param port 收流端口。
      */
-    static BasicUDPSource *createNew(UsageEnvironment &env, Groupsock *skt)
+    static BasicUDPSource *createNew(UsageEnvironment &env, u_int16_t port)
     {
-        return new BasicUDPSource(env, skt);
+        return new BasicUDPSource(env, port);
     }
 
 protected:
     /// 构造函数。
-    explicit BasicUDPSource(UsageEnvironment &env, Groupsock *skt);
+    explicit BasicUDPSource(UsageEnvironment &env, const u_int16_t port);
 
     /// 析构函数。
     ~BasicUDPSource();
@@ -41,7 +40,7 @@ private:
     void doGetNextFrame() override;
 
 protected:
-    Groupsock *skt;  //< 收流地址。
+    u_int16_t port;  //< 收流端口。
 
 public:
     /// 于 LIVE555 事件循环前，手动初始化源。
@@ -79,8 +78,8 @@ public:
         /// 清空缓存。
         inline void clear();
     private:
-        static const size_t size {500000};  //< 尺寸（内存）。百兆网25FPS最大尺寸。
-        uint8_t data[size] {};              //< 数据。
+        static const size_t SIZE {500000};  //< 尺寸（内存）。百兆网 25FPS 最大尺寸。
+        uint8_t data[SIZE] {};              //< 数据。
         size_t cur {};                      //< 游标。
         size_t len_ {};                     //< 长度（数据）。
     } *curb {};  //< 当前处理缓存。
@@ -112,12 +111,19 @@ public:
         std::mutex mtx;             //< 缓存队列锁。
     } bufs;  //< 缓存队列。
 
+    /// 用户数据报协议包。
+    typedef struct Packet {
+        static const size_t SIZE {65535};
+        uint8_t data[SIZE] {};
+        size_t len;
+    } PACKET;
+
     /// 用户数据报协议包回调处理函数。
-    /** param PCKS 尺寸（内存）。
-     *  param pck  数据。
-     *  param pckl 长度。
+    /** param pck 包。
+     *  param rcv 接收者地址。
+     *  param snd 发送者地址。
      */
-    virtual void newpck(const size_t PCKS, const uint8_t * const pck, const size_t pckl);
+    virtual void newpck(const PACKET &pck, const SOCKADDR_IN &rcv, const SOCKADDR_IN &snd);
 
 };// H264VideoUdpSource
 

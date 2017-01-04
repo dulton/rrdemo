@@ -7,8 +7,6 @@
 
 #include <live555/Groupsock.hh>
 
-//#pragma comment(lib, "Ws2_32.lib")
-
 namespace {
 
 using rrdemo::cdom::live555::BasicUDPSource;
@@ -21,7 +19,7 @@ struct sink_t {
     /// 目的地集类型。
     struct dests_t {
         std::set<BasicUDPSource *> set;  //< 目的地集实体。
-        std::mutex mtx;                      //< 目的地集锁。
+        std::mutex mtx;                  //< 目的地集锁。
         /// 判断目的地集是否为空。
         bool empty() const { return set.empty(); }
         /// 插入目的地。
@@ -48,11 +46,11 @@ void sink_t::dests_t::erase(BasicUDPSource * const dest)
 /// 接收者集类。
 class Sinks {
 public:
-    /// 分配接收者.
+    /// 分配接收者。
     bool allo(UsageEnvironment * const env, const u_int16_t port);
     /// 释放接收者。
     bool free(const u_int16_t port);
-    /// 寻找接收者。
+    /// 查找接收者。
     sink_t *find(const u_int16_t port);
 private:
     std::map<u_int16_t, sink_t *> map;  //< 接收者集实体。
@@ -134,9 +132,7 @@ void sink_thr_func(UsageEnvironment * const env, sink_t * sink)
     FD_SET set {};
     SOCKADDR_IN saddr {};              //< Sender ADDRess。
     int saddrl {sizeof saddr};         //< Sender SocKeT Length。
-    static const size_t PCKS {65535};  //< udp PaCKet Size。
-    uint8_t pck[PCKS] {};              //< udp PaCKet。
-    size_t pckl;                       //< udp PaCKet Length。
+    BasicUDPSource::PACKET pck;        //< udp PaCKet。
 
     /* 收流与处理 */
     while (sink->thrloop) {
@@ -156,9 +152,9 @@ void sink_thr_func(UsageEnvironment * const env, sink_t * sink)
         if (!FD_ISSET(skt, &set)) continue;
 
         /* 接收用户数据报协议数据包 */
-        pckl = recvfrom(skt, reinterpret_cast<char *>(pck), sizeof pck, 0,
-                        reinterpret_cast<SOCKADDR *>(&saddr), &saddrl);
-        if (SOCKET_ERROR == pckl) {
+        pck.len = recvfrom(skt, reinterpret_cast<char *>(pck.data), pck.SIZE, 0,
+                           reinterpret_cast<SOCKADDR *>(&saddr), &saddrl);
+        if (SOCKET_ERROR == pck.len) {
             *env << "BasicUDPSource: Error, recvfrom() failed with code " << WSAGetLastError() << ".\n";
             continue;
         }
@@ -166,7 +162,7 @@ void sink_thr_func(UsageEnvironment * const env, sink_t * sink)
         /* 将接收到的数据交予各目的地回调处理函数处理 */
         sink->dests.mtx.lock(); {
             for (auto dest : sink->dests.set)
-                dest->newpck(PCKS, pck, pckl);
+                dest->newpck(pck, raddr, saddr);
         } sink->dests.mtx.unlock();
     }
 
@@ -187,18 +183,17 @@ namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
-BasicUDPSource::BasicUDPSource(
-    UsageEnvironment &env, Groupsock *skt) :
-    FramedSource(env), skt {skt}
+BasicUDPSource::BasicUDPSource(UsageEnvironment &env, const u_int16_t port) :
+FramedSource(env), port {port}
 {
-    auto sink = gSinks.find(ntohs(skt->port().num()));
+    auto sink = gSinks.find(port);
     assert(sink);
     sink->dests.insert(this);
 }
 
 BasicUDPSource::~BasicUDPSource()
 {
-    auto sink = gSinks.find(ntohs(skt->port().num()));
+    auto sink = gSinks.find(port);
     assert(sink);
     sink->dests.erase(this);
 }
@@ -227,17 +222,16 @@ void BasicUDPSource::doGetNextFrame()
 
 void BasicUDPSource::initializeSourceBeforeEventLoop(UsageEnvironment *env, u_int16_t port)
 {
-    if (!gSinks.allo(env, port))
-        assert(false);
+    gSinks.allo(env, port);
 }
 
-void BasicUDPSource::newpck(const size_t PCKS, const uint8_t* const pck, const size_t pckl)
+void BasicUDPSource::newpck(const PACKET &pck, const SOCKADDR_IN &, const SOCKADDR_IN &)
 {
     Buf *buf;
     while (nullptr == (buf = bufs.allocateforce()))
         std::this_thread::sleep_for(std::chrono::microseconds(100));
     size_t discarded;
-    if (0 != (discarded = buf->cpyf(pck, pckl)))
+    if (0 != (discarded = buf->cpyf(pck.data, pck.len)))
         envir() << "BasicUDPSource: A UDP pack size is too large for SrcBuf, "
         << discarded << " bytes data has been discarded.\n";
     bufs.push(buf);
