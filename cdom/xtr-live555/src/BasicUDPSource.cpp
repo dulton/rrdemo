@@ -5,8 +5,6 @@
 #include <set>
 #include <thread>
 
-#include <live555/Groupsock.hh>
-
 namespace {
 
 using rrdemo::cdom::live555::BasicUDPSource;
@@ -96,7 +94,7 @@ sink_t *Sinks::find(const u_int16_t port)
 void sink_thr_func(UsageEnvironment * const env, sink_t * sink)
 {
     /* 等待主线程初始化 */
-    std::this_thread::sleep_for(std::chrono::milliseconds(300));
+    std::this_thread::sleep_for(std::chrono::milliseconds(30));
 
     /* Windows Socket 的启用和关闭由 LIVE555 管理 */
 
@@ -206,7 +204,7 @@ void BasicUDPSource::doGetNextFrame()
             std::this_thread::sleep_for(std::chrono::microseconds(100));
 
     /* 将当前处理缓存中的数据，按指定量，剪切到指定位置 */
-    fFrameSize = curb->len() < fMaxSize ? curb->len() : fMaxSize;
+    fFrameSize = curb->len() < fMaxSize ? curb->len() : fMaxSize;  // min
     curb->cutt(fTo, fMaxSize, fFrameSize);
 
     /* 若当前处理缓存处理完毕，则将其回收 */

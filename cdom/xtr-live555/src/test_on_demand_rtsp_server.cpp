@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-14 – 29
+ *  \date 2016-12-14 – 2017-1-4
  *  \copyright The MIT License
  */
 #include <live555/BasicUsageEnvironment.hh>
@@ -93,7 +93,7 @@ int Main(int, char *[])
         rtspServer->addServerMediaSession(sms);
     }
 
-    /* VOB (MPEG-2 PS with AC-3) (A/V) */ {
+    /* VOB (AC-3 with MPEG-2 PS) (A/V) */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "vob", "info", "desc")};
         MPEG1or2FileServerDemux *demux {

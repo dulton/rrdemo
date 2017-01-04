@@ -1,5 +1,5 @@
 /** \copyright The MIT License */
-#include "H264VideoUDPSource.hpp"
+#include "FLVDemuxH264VideoUDPSource.hpp"
 
 #include <thread>
 
@@ -7,18 +7,20 @@ namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
-void H264VideoUDPSource::newpck(const PACKET &pck, const SOCKADDR_IN &, const SOCKADDR_IN &)
+void FLVDemuxH264VideoUDPSource::newpck(const PACKET &pck, const SOCKADDR_IN &, const SOCKADDR_IN &)
 {
     /* 判断包是否含有 NAL 单元头 */
     bool isheader;
     do {
-        if (pck.len < 4) {
+        if (pck.len < sizeof(NALUH)) {
             isheader = false; break;
         }
 
-        if (!(
-            0 == pck.data[0] && 0 == pck.data[1] && 1 == pck.data[2] ||
-            0 == pck.data[0] && 0 == pck.data[1] && 0 == pck.data[2] && 1 == pck.data[3])) {
+        if (0x00 == pck.data[0] && 0x00 == pck.data[1] && 0x00 == pck.data[2] && 0x01 == pck.data[3]) {
+            // 起始码 4 字节变种。
+        } else if (0x00 == pck.data[0] && 0x00 ==pck.data[1] && 0x01 == pck.data[2]) {
+            // 起始码 3 字节变种。
+        } else {
             isheader = false; break;
         }
 
@@ -33,7 +35,7 @@ void H264VideoUDPSource::newpck(const PACKET &pck, const SOCKADDR_IN &, const SO
             std::this_thread::sleep_for(std::chrono::microseconds(100));
         const auto discarded = buf->cpyf(nalub.data, nalub.len);
         if (0 < discarded)
-            envir() << "H264VideoUDPSource: A NALU size is too large for SrcBuf, "
+            envir() << "FLVDemuxH264VideoUDPSource: A NALU size is too large for SrcBuf, "
             << discarded << " bytes data has been discarded.\n";
         bufs.push(buf);
         nalub.len = 0;
@@ -41,7 +43,7 @@ void H264VideoUDPSource::newpck(const PACKET &pck, const SOCKADDR_IN &, const SO
     } else
         if (ceil(nalub.SIZE / pck.SIZE) / 0.01 - 1 < ++nalub.pcknum &&
             0 == nalub.pcknum % static_cast<int>(ceil(nalub.SIZE / pck.SIZE)))
-            envir() << "H264VideoUDPSource: " << nalub.pcknum << " consecutive packets without NALU start_codes,"
+            envir() << "FLVDemuxH264VideoUDPSource: " << nalub.pcknum << " consecutive packets without NALU start_codes,"
             << " the port is receiving H.264 elementary stream?";
 
     /* 将包数据追加至 NAL 单元缓存 */
@@ -51,7 +53,7 @@ void H264VideoUDPSource::newpck(const PACKET &pck, const SOCKADDR_IN &, const SO
     nalub.len += actual;
     const auto discarded = pck.len - actual;
     if (0 < discarded)
-        envir() << "H264VideoUDPSource: A NALU size is too large for NALUB, "
+        envir() << "FLVDemuxH264VideoUDPSource: A NALU size is too large for NALUB, "
         << discarded << " bytes data has been discarded.\n";
 }
 

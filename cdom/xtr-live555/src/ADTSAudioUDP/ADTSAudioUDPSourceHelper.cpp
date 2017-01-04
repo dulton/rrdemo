@@ -29,37 +29,32 @@ void ADTSAudioUDPSourceHelper::newpck(const PACKET &pck, const SOCKADDR_IN &, co
     if (pck.len < sizeof(ADTSFH))
         return;
 
-    ADTSFH parsor;
-    memcpy_s(&parsor, sizeof parsor, pck.data, sizeof(ADTSFH));
-
-    if (0xFFF != parsor.syncword)
+    if (!(0xFFu == pck.data[0] && 0xF0u == (pck.data[1] & 0xF0u)))
         return;
+    adtsfh.syncword = 0xFFFu;
 
-    if (3 == parsor.profile) {
+    uint8_t profile {(pck.data[2] & 0xC0u) >> 6};
+    if (3 == profile) {
         envir() << "ADTSAudioUDPSourceHelper: Bad profile.\n";
         return;
     }
+    adtsfh.profile = profile;
 
-    if (0 == SAMPLING_FREQUENCY_TABLE[parsor.sampling_frequency_index]) {
+    uint8_t sampling_frequency_index {(pck.data[2] & 0x3Cu) >> 2};
+    if (0 == SAMPLING_FREQUENCY_TABLE[sampling_frequency_index]) {
         envir() << "ADTSAudioUDPSourceHelper: Bad sampling_frequency_index.\n";
         return;
     }
+    adtsfh.sampling_frequency_index = sampling_frequency_index;
 
-    if (0 == CHANNEL_CONFIGURATION_TABLE[parsor.channel_configuration]) {
+    uint8_t channel_configuration {(pck.data[2] & 0x01u) << 2 | (pck.data[3] & 0xC0) >> 6};
+    if (0 == CHANNEL_CONFIGURATION_TABLE[channel_configuration]) {
         envir() << "ADTSAudioUDPSourceHelper: Bad channel_configuration.\n";
         return;
     }
+    adtsfh.channel_configuration = channel_configuration;
 
-    memcpy_s(&adtsfh, sizeof adtsfh, &parsor, sizeof parsor);
-    sprintf_s(configstr_, sizeof configstr_, "%02X%02x",
-              adtsfh.profile + 1 << 3 | adtsfh.sampling_frequency_index >> 1,
-              adtsfh.sampling_frequency_index << 7 | adtsfh.channel_configuration << 3);
-
-#ifndef NDEBUG
-    envir() << "ADTSAudioUDPSourceHelper: profile " << parsor.profile << ","
-        << " sampling_frequency_index " << parsor.sampling_frequency_index << ","
-        << " channel_configuration " << parsor.channel_configuration << ".\n";
-#endif
+    initialized_ = true;
 }
 
 

@@ -13,14 +13,13 @@ const unsigned ADTSAudioUDPSource::SAMPLING_FREQUENCY_TABLE[16] {
     96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350, 0, 0, 0
 };
 
-const unsigned ADTSAudioUDPSource::CHANNEL_CONFIGURATION_TABLE[16] {
-    2, 1, 2, 3, 4, 5, 6, 8, 0, 0, 0, 0, 0, 0, 0, 0
+const unsigned ADTSAudioUDPSource::CHANNEL_CONFIGURATION_TABLE[8] {
+    2, 1, 2, 3, 4, 5, 6, 8
 };
 
 bool ADTSAudioUDPSource::initialized() const
 {
-    if (0xFFF == adtsfh.syncword) return true;
-    else                          return false;
+    return initialized_;
 }
 
 unsigned ADTSAudioUDPSource::sampfreq() const
@@ -30,7 +29,7 @@ unsigned ADTSAudioUDPSource::sampfreq() const
 
 unsigned ADTSAudioUDPSource::usecspf() const
 {
-    return 1024. / sampfreq() * 1000 * 1000;
+    return 1024. / SAMPLING_FREQUENCY_TABLE[adtsfh.sampling_frequency_index] * 1000 * 1000;
 }
 
 unsigned ADTSAudioUDPSource::channels() const
@@ -38,12 +37,15 @@ unsigned ADTSAudioUDPSource::channels() const
     return CHANNEL_CONFIGURATION_TABLE[adtsfh.channel_configuration];
 }
 
-const char *ADTSAudioUDPSource::configstr() const
+const char *ADTSAudioUDPSource::configstr()
 {
+    sprintf_s(configstr_, sizeof configstr_, "%02X%02x",
+              adtsfh.profile + 1 << 3 | adtsfh.sampling_frequency_index >> 1,
+              adtsfh.sampling_frequency_index << 7 | adtsfh.channel_configuration << 3);
     return configstr_;
 }
 
-void ADTSAudioUDPSource::initializeSourceBeforeEventLoop(UsageEnvironment* env, u_int16_t port)
+void ADTSAudioUDPSource::initializeSourceBeforeEventLoop(UsageEnvironment *env, u_int16_t port)
 {
     BasicUDPSource::initializeSourceBeforeEventLoop(env, port);
     ADTSAudioUDPSourceHelper::allo(env, port);
@@ -58,40 +60,36 @@ void ADTSAudioUDPSource::newpck(const PACKET &pck, const SOCKADDR_IN &, const SO
             isheader = false; break;
         }
 
-        ADTSFH parsor;
-        memcpy_s(&parsor, sizeof parsor, pck.data, sizeof(ADTSFH));
-
-        if (0xFFF != parsor.syncword) {
+        if (!(0xFFu == pck.data[0] && 0xF0u == (pck.data[1] & 0xF0u))) {
             isheader = false; break;
         }
+        adtsfh.syncword = 0xFFFu;
 
-        if (3 == parsor.profile) {
+        uint8_t profile {(pck.data[2] & 0xC0u) >> 6};
+        if (3 == profile) {
             envir() << "ADTSAudioUDPSource: Bad profile.\n";
             isheader = false; break;
         }
+        adtsfh.profile = profile;
 
-        if (0 == SAMPLING_FREQUENCY_TABLE[parsor.sampling_frequency_index]) {
+        uint8_t sampling_frequency_index {(pck.data[2] & 0x3Cu) >> 2};
+        if (0 == SAMPLING_FREQUENCY_TABLE[sampling_frequency_index]) {
             envir() << "ADTSAudioUDPSource: Bad sampling_frequency_index.\n";
             isheader = false; break;
         }
+        adtsfh.sampling_frequency_index = sampling_frequency_index;
 
-        if (0 == CHANNEL_CONFIGURATION_TABLE[parsor.channel_configuration]) {
+        uint8_t channel_configuration {(pck.data[2] & 0x01u) << 2 | (pck.data[3] & 0xC0u) >> 6};
+        if (0 == CHANNEL_CONFIGURATION_TABLE[channel_configuration]) {
             envir() << "ADTSAudioUDPSource: Bad channel_configuration.\n";
             isheader = false; break;
         }
+        adtsfh.channel_configuration = channel_configuration;
 
         isheader = true;
-        memcpy_s(&adtsfh, sizeof adtsfh, &parsor, sizeof parsor);
-        sprintf_s(configstr_, sizeof configstr_, "%02X%02x",
-                  adtsfh.profile + 1 << 3 | adtsfh.sampling_frequency_index >> 1,
-                  adtsfh.sampling_frequency_index << 7 | adtsfh.channel_configuration << 3);
+        initialized_ = true;
 
     } while (false);
-
-    if (isheader)
-        envir() << "Header.\n";
-    else
-        envir() << "NOT Header.\n";
 
     /* 若上一帧已组装完毕，则将其压入缓存池，并重置 ADTS 帧缓存 */
     if (isheader && 0 < adtsfb.len) {

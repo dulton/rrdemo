@@ -28,7 +28,7 @@ RTPSink *ADTSAudioUDPServerMediaSubsession::createNewRTPSink(
         src = ADTSAudioUDPSourceHelper::find(port);
         if (nullptr != src && src->initialized()) break;
         src = static_cast<ADTSAudioUDPSource *>(inputSource);
-        assert(false);
+        envir() << "ADTSAudioUDPServerMediaSubsession: No MPEG4GenericRTPSink information is available.\n";
     } while (false);
 
     return MPEG4GenericRTPSink::createNew(

@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-30 – 2017-1-3
+ *  \date 2016-12-30 – 2017-1-4
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMLIVE555_BASICUDPSOURCE_HPP
@@ -39,7 +39,6 @@ private:
     /// 重写的 doGetNextFrame 函数。
     void doGetNextFrame() override;
 
-protected:
     u_int16_t port;  //< 收流端口。
 
 public:
@@ -51,6 +50,7 @@ public:
      */
     static void initializeSourceBeforeEventLoop(UsageEnvironment *env, u_int16_t port);
 
+protected:
     /// 缓存嵌套类。
     class Buf {
     public:
@@ -111,6 +111,7 @@ public:
         std::mutex mtx;             //< 缓存队列锁。
     } bufs;  //< 缓存队列。
 
+public:
     /// 用户数据报协议包。
     typedef struct Packet {
         static const size_t SIZE {65535};

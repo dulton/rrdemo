@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2017-1-3
+ *  \date 2017-1-3 – 4
  *  \copyright The MIT License
  */
 #ifndef _RRDEMOCDOMLIVE555_ADTSAUDIOUDPSOURCE_HPP
@@ -40,9 +40,10 @@ public:
     /// 通道数。
     unsigned channels() const;
     /// 特别配置。
-    const char *configstr() const;
+    const char *configstr();
 
 protected:
+    boolean initialized_ {false};
     char configstr_[5] {};
 
 public:
@@ -56,30 +57,33 @@ public:
      */
     void newpck(const PACKET &pck, const SOCKADDR_IN &rcv, const SOCKADDR_IN &snd) override;
 
-    // 音频数据传输流帧头（Audio Data Transport Stream Frame Header）
+protected:
+    /// 音频数据传输流帧头（Audio Data Transport Stream Frame Header）。
+    /** 因端序和实现差异导致的不可移植性，位域结构体仅供按字段访问，勿按内存整体访问。
+     */
     struct ADTSFH {
         /* Fixed Header */
-        unsigned syncword : 12;                           // 同步码，固定为 FFF(16)；
-        unsigned ID : 1;                                  // 固定为 0；
-        unsigned layer : 2;                               // 固定为 0；
-        unsigned protection_absent : 1;                   // 固定为 1；
-        unsigned profile : 2;                             // 配置；
-        unsigned sampling_frequency_index : 4;            // 采样率下标；
-        unsigned privete_bit : 1;                         // 固定为 0；
-        unsigned channel_configuration : 3;               // 声道配置；
-        unsigned original_copy : 1;                       // 固定为 0；
-        unsigned home : 1;                                // 固定为 0；
+        uint16_t syncword : 12;                          // 同步码，固定为 FFF(16)；
+        uint8_t ID : 1;                                  // 固定为 0；
+        uint8_t layer : 2;                               // 固定为 0；
+        uint8_t protection_absent : 1;                   // 固定为 1；
+        uint8_t profile : 2;                             // 配置；
+        uint8_t sampling_frequency_index : 4;            // 采样率下标；
+        uint8_t privete_bit : 1;                         // 固定为 0；
+        uint8_t channel_configuration : 3;               // 声道配置；
+        uint8_t original_copy : 1;                       // 固定为 0；
+        uint8_t home : 1;                                // 固定为 0；
         /* Variable Header */
-        unsigned copyright_identification_bit : 1;        // 固定为 0；
-        unsigned copyright_identification_start : 1;      // 固定为 0；
-        unsigned aac_frame_length : 13;                   // 全帧长度；
-        unsigned adts_buffer_fullness : 11;               // 固定为 7FF(16)；
-        unsigned number_of_raw_data_blocks_in_frame : 2;  // 固定为 0。
+        uint8_t copyright_identification_bit : 1;        // 固定为 0；
+        uint8_t copyright_identification_start : 1;      // 固定为 0；
+        uint16_t aac_frame_length : 13;                  // 全帧长度；
+        uint16_t adts_buffer_fullness : 11;              // 固定为 7FF(16)；
+        uint8_t number_of_raw_data_blocks_in_frame : 2;  // 固定为 0。
     } adtsfh;  //< 音频数据传输流头。
-    static const unsigned SAMPLING_FREQUENCY_TABLE[16];     //< 采样率对应表。
-    static const unsigned CHANNEL_CONFIGURATION_TABLE[16];  //< 声道配置对应表。
+    static const unsigned SAMPLING_FREQUENCY_TABLE[16];    //< 采样率对应表。
+    static const unsigned CHANNEL_CONFIGURATION_TABLE[8];  //< 声道配置对应表。
 
-    // 音频数据传输流帧缓存（Audio Data Transport Stream Frame Buffer）
+    // 音频数据传输流帧缓存（Audio Data Transport Stream Frame Buffer）。
     struct ADTSFB {
         static const size_t SIZE {500000};  //< 百兆网 25FPS 最大尺寸。
         u_int8_t data[SIZE] {};
