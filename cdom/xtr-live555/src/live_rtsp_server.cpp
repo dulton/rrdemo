@@ -85,7 +85,7 @@ int Main(int, char *[])
     env->taskScheduler().doEventLoop();// noreturn
     return EXIT_SUCCESS;
 }
-}
+}// namespace
 
 #ifndef ENTRY_SWITCH
 int main(int argc, char *argv[]) { return Main(argc, argv); }

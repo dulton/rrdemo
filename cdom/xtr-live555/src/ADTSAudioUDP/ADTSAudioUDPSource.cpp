@@ -40,8 +40,8 @@ unsigned ADTSAudioUDPSource::channels() const
 const char *ADTSAudioUDPSource::configstr()
 {
     sprintf_s(configstr_, sizeof configstr_, "%02X%02x",
-              adtsfh.profile + 1 << 3 | adtsfh.sampling_frequency_index >> 1,
-              adtsfh.sampling_frequency_index << 7 | adtsfh.channel_configuration << 3);
+              static_cast<uint8_t>(adtsfh.profile + 1 << 3 | adtsfh.sampling_frequency_index >> 1),
+              static_cast<uint8_t>(adtsfh.sampling_frequency_index << 7 | adtsfh.channel_configuration << 3));
     return configstr_;
 }
 

@@ -57,7 +57,6 @@ void ADTSAudioUDPSourceHelper::newpck(const PACKET &pck, const SOCKADDR_IN &, co
     initialized_ = true;
 }
 
-
 }// namespace live555
 }// namespace cdom
 }// namespace rrdemo
