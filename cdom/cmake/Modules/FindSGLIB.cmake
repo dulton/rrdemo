@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-11-11
+# 2016-11-11 –  2017-1-7
 # The MIT License
 
 #[======================================================================[.rst:
@@ -13,7 +13,6 @@ Find SGLIB.
   SGLIB_FOUND
   SGLIB_ROOT_DIR
   SGLIB_INCLUDE_DIRS
-
 #]======================================================================]
 function(find_sglib)
   set(SGLIB_FOUND TRUE)

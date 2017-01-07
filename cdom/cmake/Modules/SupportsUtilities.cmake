@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-8 – 28
+# 2016-10-8 – 2017-1-7
 # The MIT License
 
 #[======================================================================[.rst:
@@ -90,7 +90,6 @@ endfunction()
     ...
     add_executable...
     add_library...
-
 #]==================================================]
 function(enable_unicode_support)
   if(MSVC)

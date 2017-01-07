@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-21 – 24
+# 2016-10-21 – 2017-1-7
 # The MIT License
 
 #[======================================================================[.rst:
@@ -14,7 +14,6 @@ CMake 3.3+ required.
 
   QT5CMAKE_FOUND
   QT5CMAKE_ROOT_DIR
-
 #]======================================================================]
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0057 NEW)  # CMake 3.3+

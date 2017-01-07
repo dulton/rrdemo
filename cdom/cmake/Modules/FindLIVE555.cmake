@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-24 – 11-11
+# 2016-10-24 – 2017-1-7
 # The MIT License
 
 #[======================================================================[.rst:
@@ -21,7 +21,6 @@ Find LIVE555.
   LIVE555_groupsock_LIBRARY
   LIVE555_liveMedia_LIBRARY
   LIVE555_UsageEnvironment_LIBRARY
-
 #]======================================================================]
 function(find_live555)
   set(LIVE555_FOUND TRUE)

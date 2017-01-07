@@ -38,70 +38,37 @@ getIdleLength() const
 }
 
 inline size_t CircularBytesBuffer::
-addDataFrom(const uint8_t *const src, const size_t srclen)
+addDataFrom(const uint8_t * const src, const size_t srclen)
 {
     const size_t actlen = fmin(srclen, getIdleLength());  // actual length
 
     if (haveInvertedPoint() || actlen <= SIZE - end_position) {
         memcpy_s(data + end_position, getIdleLength(), src, actlen);
-        end_position = SIZE != end_position + actlen ? end_position + actlen : 0;
+        endPositionDash(actlen);
     } else {
-        const auto firlen = SIZE - epos;            // first half length
-        memcpy_s(data + epos, idlelen(), src, firlen);
-        epos = SIZE != epos + firlen ? epos + firlen : 0;
-        const auto seclen = actlen - firlen;        // second half length
-        memcpy_s(data + epos, idlelen(), src + firlen, seclen);
-        epos = SIZE != epos + seclen ? epos + seclen : 0;
+        const auto hlflen = SIZE - end_position;          // half length
+        memcpy_s(data + end_position, hlflen, src, hlflen);
+        endPositionDash(hlflen);
+        const auto othlen = actlen - hlflen;              // other half length
+        memcpy_s(data + end_position, othlen, src + hlflen, othlen);
+        endPositionDash(othlen);
     }
-
-    if (spos == epos && 0 < actlen)
-        full = true;
 
     return srclen - actlen;
 }
 
 inline size_t CircularBytesBuffer::
-cutDataInto(uint8_t *const dst, const size_t dstsize, const size_t dstlen)
+copyDataInto(uint8_t * const dst, const size_t dstsize, const size_t dstlen) const
 {
-    assert(dstlen <= loadlen());
+    const size_t actlen = fmin(dstlen, dstsize);    // actual length
+    assert(actlen <= getLoadLength());
 
-    const size_t actlen = fmin(dstlen, dstsize);  // actual length
-
-    if (!inverted() || actlen <= SIZE - spos) {
-        memcpy_s(dst, dstsize, data + spos, actlen);
-        spos = SIZE != spos + actlen ? spos + actlen : 0;
+    if (!haveInvertedPoint() || actlen <= SIZE - start_position) {
+        memcpy_s(dst, dstsize, data + start_position, actlen);
     } else {
-        const auto firlen = SIZE - spos;          // first half length
-        memcpy_s(dst, dstsize, data + spos, firlen);
-        spos = SIZE != spos + actlen ? spos + actlen : 0;
-        const auto seclen = actlen - firlen;      // second half length
-        memcpy_s(dst + firlen, dstsize - firlen, data + spos, seclen);
-        spos = SIZE != spos + actlen ? spos + actlen : 0;
-    }
-
-    if (full && 0 < actlen)
-        full = false;
-
-    return dstlen - actlen;
-}
-
-inline size_t CircularBytesBuffer::
-copyDataInto(uint8_t* const dst, const size_t dstsize, const size_t dstlen) const
-{
-    assert(dstlen <= loadlen());
-
-    const size_t actlen = fmin(dstlen, dstsize);  // actual length
-
-    auto tmp = spos;                              // temporary
-
-    if (!inverted() || actlen <= SIZE - tmp) {
-        memcpy_s(dst, dstsize, data + tmp, actlen);
-    } else {
-        const auto firlen = SIZE - tmp;           // first half length
-        memcpy_s(dst, dstsize, data + tmp, firlen);
-        tmp = SIZE != tmp + actlen ? tmp + actlen : 0;
-        const auto seclen = actlen - firlen;      // second half length
-        memcpy_s(dst + firlen, dstsize - firlen, data + tmp, seclen);
+        const auto hlflen = SIZE - start_position;  // half length
+        memcpy_s(dst, dstsize, data + start_position, hlflen);
+        memcpy_s(dst + hlflen, dstsize - hlflen, data, actlen - hlflen);
     }
 
     return dstlen - actlen;
@@ -110,21 +77,26 @@ copyDataInto(uint8_t* const dst, const size_t dstsize, const size_t dstlen) cons
 inline size_t CircularBytesBuffer::
 discardData(const size_t len)
 {
-    const auto actlen = fmin(len, loadlen());      // actual length
+    const auto actlen = fmin(len, getLoadLength());  // actual length
 
-    if (!inverted() || actlen <= SIZE - spos) {
-        spos = SIZE != spos + actlen ? spos + actlen : 0;
+    if (!haveInvertedPoint() || actlen <= SIZE - start_position) {
+        startPositionDash(actlen);
     } else {
-        const auto firlen = SIZE - spos;          // first half length
-        spos = SIZE != spos + actlen ? spos + actlen : 0;
-        const auto seclen = actlen - firlen;      // second half length
-        spos = SIZE != spos + actlen ? spos + actlen : 0;
+        const auto hlflen = SIZE - start_position;  // half length
+        startPositionDash(hlflen);
+        const auto othlen = actlen - hlflen;        // other half length
+        startPositionDash(othlen);
     }
 
-    if (full && 0 < actlen)
-        full = false;
-
     return len - actlen;
+}
+
+inline size_t CircularBytesBuffer::
+cutDataInto(uint8_t * const dst, const size_t dstsize, const size_t dstlen)
+{
+    const auto discarded = copyDataInto(dst, dstsize, dstlen);
+    discardData(dstlen);
+    return discarded;
 }
 
 inline void CircularBytesBuffer::
@@ -139,6 +111,26 @@ inline bool CircularBytesBuffer::
 haveInvertedPoint() const
 {
     return 0 < length && !(start_position < end_position);
+}
+
+inline void CircularBytesBuffer::
+startPositionDash(const size_t len)
+{
+    assert(len <= getLoadLength());
+    assert(len <= SIZE - start_position);
+    length -= len;
+    start_position += len;
+    if (SIZE == start_position) start_position = 0;
+}
+
+inline void CircularBytesBuffer::
+endPositionDash(const size_t len)
+{
+    assert(len <= getIdleLength());
+    assert(len <= SIZE - end_position);
+    length += len;
+    end_position += len;
+    if (SIZE == end_position) end_position = 0;
 }
 
 }// namespace live555
