@@ -32,6 +32,4 @@ private:
 }// namespace cdom
 }// namespace rrdemo
 
-#include "ClassMemberShorthands.inl"
-
 #endif// RRDEMO__CDOM__CPP__CLASS_MEMBER__HPP
