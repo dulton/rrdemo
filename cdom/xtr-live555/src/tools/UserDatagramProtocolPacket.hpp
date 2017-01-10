@@ -3,8 +3,8 @@
  *  \date 2016-12-30 – 2017-1-9
  *  \copyright The MIT License
  */
-#ifndef RRDEMO__CDOM__LIVE555__UDP_PACKET__HPP
-#define RRDEMO__CDOM__LIVE555__UDP_PACKET__HPP
+#ifndef RRDEMO__CDOM__LIVE555__USER_DATAGRAM_PROTOCOL_PACKET__HPP
+#define RRDEMO__CDOM__LIVE555__USER_DATAGRAM_PROTOCOL_PACKET__HPP
 
 #include <cstdint>
 
@@ -23,4 +23,4 @@ struct IPv4UDPPacketData final {
 }// namespace cdom
 }// namespace rrdemo
 
-#endif //RRDEMO__CDOM__LIVE555__UDP_PACKET__HPP
+#endif //RRDEMO__CDOM__LIVE555__USER_DATAGRAM_PROTOCOL_PACKET__HPP

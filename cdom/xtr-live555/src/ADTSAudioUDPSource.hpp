@@ -3,8 +3,8 @@
  *  \date 2017-1-3 – 5
  *  \copyright The MIT License
  */
-#ifndef _RRDEMOCDOMLIVE555_ADTSAUDIOUDPSOURCE_HPP
-#define _RRDEMOCDOMLIVE555_ADTSAUDIOUDPSOURCE_HPP
+#ifndef RRDEMO__CDOM__LIVE555__ADTS_AUDIO_UDP_SOURCE__HPP
+#define RRDEMO__CDOM__LIVE555__ADTS_AUDIO_UDP_SOURCE__HPP
 
 #include "BasicUDPSource.hpp"
 
@@ -97,4 +97,4 @@ protected:
 }// namespace cdom
 }// namespace rrdemo
 
-#endif// _RRDEMOCDOMLIVE555_ADTSAUDIOUDPSOURCE_HPP
+#endif// RRDEMO__CDOM__LIVE555__ADTS_AUDIO_UDP_SOURCE__HPP

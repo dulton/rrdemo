@@ -8,7 +8,7 @@
 
 #include <WinSock2.h>
 
-#include "UDPPacket.hpp"
+#include "UserDatagramProtocolPacket.hpp"
 
 namespace rrdemo {
 namespace cdom {

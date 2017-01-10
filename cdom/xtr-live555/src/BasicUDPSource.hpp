@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-30 – 2017-1-9
+ *  \date 2016-12-30 – 2017-1-10
  *  \copyright The MIT License
  */
 #ifndef RRDEMO__CDOM__LIVE555__BASIC_UDP_SOURCE_HPP
@@ -34,8 +34,8 @@ protected:
     /// 重写的 doGetNextFrame 函数。
     void doGetNextFrame() override;
 
-    DoubleQueuePool<BytesBuffer> frameBufferPool {3};  //< 帧缓存池。
-    BytesBuffer *currentFrameBuffer {};                //< 当前处理帧缓存；
+    DoubleQueuePool<BytesBuffer> frameBufferPool {3};  ///< 帧缓存池。
+    BytesBuffer *currentFrameBuffer {};                ///< 当前处理帧缓存；
 
 public:
     /// 重写的 whenNewIPv4UDPPacketReceived 函数。
@@ -52,9 +52,9 @@ public:
     static void initializeSourceBeforeEventLoop(u_int16_t port);
 
 private:
-    static IPv4UDPSinkPool GlobalIPv4UDPSinkPool;  //< 全局 IPv4 UDP Sink Pool。
+    static IPv4UDPSinkPool GlobalIPv4UDPSinkPool;  ///< 全局 IPv4 UDP Sink Pool。
 
-    u_int16_t port;  //< 用户数据报协议收流端口。
+    u_int16_t port;  ///< 用户数据报协议收流端口。
 
 };// H264VideoUdpSource
 
