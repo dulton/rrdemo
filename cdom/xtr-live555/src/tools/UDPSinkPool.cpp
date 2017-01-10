@@ -8,10 +8,10 @@ namespace live555 {
 IPv4UDPSinkPool::
 ~IPv4UDPSinkPool()
 {
-    mapMutex.lock(); {
-        for (auto &sink : map)
-            free(sink.first);
-    } mapMutex.unlock();
+    //mapMutex.lock(); {
+    //    for (auto sink_pair : map)
+    //        free(sink_pair.first);
+    //} mapMutex.unlock();
 }
 
 IPv4UDPSink *IPv4UDPSinkPool::

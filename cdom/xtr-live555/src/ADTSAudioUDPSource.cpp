@@ -3,122 +3,98 @@
 
 #include <thread>
 
-#include "ADTSAudioUDPSourceHelper.hpp"
+namespace {
+using rrdemo::cdom::live555::AudioDataTransportStreamFrame;
+auto &SAMPLING_FREQUENCY_TABLE = AudioDataTransportStreamFrame::SAMPLING_FREQUENCY_TABLE;
+auto &CHANNEL_CONFIGURATION_TABLE = AudioDataTransportStreamFrame::CHANNEL_CONFIGURATION_TABLE;
+
+}// namespace
 
 namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
-const unsigned ADTSAudioUDPSource::SAMPLING_FREQUENCY_TABLE[16] {
-    96000, 88200, 64000, 48000, 44100, 32000, 24000, 22050, 16000, 12000, 11025, 8000, 7350, 0, 0, 0
-};
-
-const unsigned ADTSAudioUDPSource::CHANNEL_CONFIGURATION_TABLE[8] {
-    2, 1, 2, 3, 4, 5, 6, 8
-};
-
-bool ADTSAudioUDPSource::initialized() const
+bool ADTSAudioUDPSource::
+isInitialized() const
 {
-    return initialized_;
+    return initialized;
 }
 
-unsigned ADTSAudioUDPSource::sampfreq() const
+unsigned ADTSAudioUDPSource::
+getSamplingFrequency() const
 {
-    return SAMPLING_FREQUENCY_TABLE[adtsfh.sampling_frequency_index];
+    return SAMPLING_FREQUENCY_TABLE[adtsfHeader.sampling_frequency_index];
 }
 
-unsigned ADTSAudioUDPSource::usecspf() const
+unsigned ADTSAudioUDPSource::
+getSamplingCycle() const
 {
-    return 1024. / SAMPLING_FREQUENCY_TABLE[adtsfh.sampling_frequency_index] * 1000 * 1000;
+    return 1024. / getSamplingFrequency() * 1000 * 1000;
 }
 
-unsigned ADTSAudioUDPSource::channels() const
+unsigned ADTSAudioUDPSource::
+getChannelsNumber() const
 {
-    return CHANNEL_CONFIGURATION_TABLE[adtsfh.channel_configuration];
+    return CHANNEL_CONFIGURATION_TABLE[adtsfHeader.channel_configuration];
 }
 
-const char *ADTSAudioUDPSource::configstr()
+const char* ADTSAudioUDPSource::getConfigurationString()
 {
-    sprintf_s(configstr_, sizeof configstr_, "%02X%02x",
-              static_cast<uint8_t>(adtsfh.profile + 1 << 3 | adtsfh.sampling_frequency_index >> 1),
-              static_cast<uint8_t>(adtsfh.sampling_frequency_index << 7 | adtsfh.channel_configuration << 3));
-    return configstr_;
+    sprintf_s(configurationString, sizeof configurationString, "%02X%02x",
+              static_cast<uint8_t>(adtsfHeader.profile + 1 << 3 | adtsfHeader.sampling_frequency_index >> 1),
+              static_cast<uint8_t>(adtsfHeader.sampling_frequency_index << 7 | adtsfHeader.channel_configuration << 3));
+    return configurationString;
 }
 
-void ADTSAudioUDPSource::initializeSourceBeforeEventLoop(UsageEnvironment *env, u_int16_t port)
+void ADTSAudioUDPSource::
+whenNewIPv4UDPPacketReceived(
+const IPv4UDPPacketData &pkt, const SOCKADDR_IN &, const SOCKADDR_IN &)
 {
-    BasicUDPSource::initializeSourceBeforeEventLoop(env, port);
-    ADTSAudioUDPSourceHelper::allo(env, port);
-}
+    auto isReadyHalf = false;
+    if (!AudioDataTransportStreamFrame::ParseHeader(adtsfHeader, pkt.data, pkt.length))
+        /*skip*/;
+    else if (3 == adtsfHeader.profile)
+        envir() << "ADTSAudioUDPSource: Bad profile.\n";
+    else if (0 == SAMPLING_FREQUENCY_TABLE[adtsfHeader.sampling_frequency_index])
+        envir() << "ADTSAudioUDPSource: Bad sampling_frequency_index.\n";
+    else if (0 == CHANNEL_CONFIGURATION_TABLE[adtsfHeader.channel_configuration])
+        envir() << "ADTSAudioUDPSource: Bad channel_configuration.\n";
+    else {
+        isReadyHalf = true;
+        initialized = true;
+    }
 
-void ADTSAudioUDPSource::newpck(const PACKET &pck, const SOCKADDR_IN &, const SOCKADDR_IN &)
-{
-    /* 判断包是否含有 ADTS 帧头，并更新 */
-    bool isheader;
-    do {
-        if (pck.len < sizeof(ADTSFH)) {
-            isheader = false; break;
-        }
-
-        if (!(0xFFu == pck.data[0] && 0xF0u == (pck.data[1] & 0xF0u))) {
-            isheader = false; break;
-        }
-        adtsfh.syncword = 0xFFFu;
-
-        uint8_t profile {(pck.data[2] & 0xC0u) >> 6};
-        if (3 == profile) {
-            envir() << "ADTSAudioUDPSource: Bad profile.\n";
-            isheader = false; break;
-        }
-        adtsfh.profile = profile;
-
-        uint8_t sampling_frequency_index {(pck.data[2] & 0x3Cu) >> 2};
-        if (0 == SAMPLING_FREQUENCY_TABLE[sampling_frequency_index]) {
-            envir() << "ADTSAudioUDPSource: Bad sampling_frequency_index.\n";
-            isheader = false; break;
-        }
-        adtsfh.sampling_frequency_index = sampling_frequency_index;
-
-        uint8_t channel_configuration {(pck.data[2] & 0x01u) << 2 | (pck.data[3] & 0xC0u) >> 6};
-        if (0 == CHANNEL_CONFIGURATION_TABLE[channel_configuration]) {
-            envir() << "ADTSAudioUDPSource: Bad channel_configuration.\n";
-            isheader = false; break;
-        }
-        adtsfh.channel_configuration = channel_configuration;
-
-        isheader = true;
-        initialized_ = true;
-
-    } while (false);
-
-    /* 若上一帧已组装完毕，则将其压入缓存池，并重置 ADTS 帧缓存 */
-    if (isheader && 0 < adtsfb.len) {
-        Buf *buf;
-        while (nullptr == (buf = bufs.allocateforce()))
-            std::this_thread::sleep_for(std::chrono::microseconds(100));
-        const auto discarded = buf->cpyf(adtsfb.data, adtsfb.len);
-        if (0 < discarded)
-            envir() << "ADTSAudioUDPSource: A ADTSFB size is too large for SrcBuf, "
-            << discarded << " bytes data has been discarded.\n";
-        bufs.push(buf);
-        adtsfb.len = 0;
-        adtsfb.pcknum = 0;
+    if (isReadyHalf && 0 < adtsfBuffer.length) {
+        whenNewADTSFBufferReady(adtsfBuffer);
+        adtsfBuffer.length = 0;
+        adtsfBuffer.packetCount = 0;
     } else
-        if (ceil(adtsfb.SIZE / pck.SIZE) / 0.01 - 1 < ++adtsfb.pcknum &&
-            0 == adtsfb.pcknum % static_cast<int>(ceil(adtsfb.SIZE / pck.SIZE)))
-            envir() << "ADTSAudioUDPSource: " << adtsfb.pcknum << " consecutive packets without NALU start_codes,"
-            << " the port is receiving audio data transport stream?";
+        if (500 < ++adtsfBuffer.packetCount)
+            envir() << "ADTSAudioUDPSource: " << adtsfBuffer.packetCount
+            << " consecutive packets without ADTS syncwork, the port is receiving audio data transport stream?";
 
-    /* 将包数据追加至 ADTS 帧缓存 */
-    const auto free = adtsfb.SIZE - adtsfb.len;
-    const auto actual = pck.len < free ? pck.len : free;  // min
-    memcpy_s(adtsfb.data + adtsfb.len, free, pck.data, actual);
-    adtsfb.len += actual;
-    const auto discarded = pck.len - actual;
-    if (0 < discarded)
-        envir() << "ADTSAudioUDPSource: A ADTSF size is too large for ADTSFB, "
-        << discarded << " bytes data has been discarded.\n";
+    const size_t actlen = fmin(pkt.length, adtsfBuffer.SIZE - adtsfBuffer.length);  // actual length
+    memcpy_s(adtsfBuffer.data + adtsfBuffer.length, actlen, pkt.data, actlen);
+    adtsfBuffer.length += actlen;
+    const auto dsclen = pkt.length - actlen;
+    if (0 < dsclen)
+        envir() << "ADTSAudioUDPSource: A ADTSF size is too large for ADTSF buffer, "
+        << dsclen << " bytes data has been discarded.\n";
 }
+
+void ADTSAudioUDPSource::
+whenNewADTSFBufferReady(AudioDataTransportStreamFrameBuffer &adtsfBuf)
+{
+    BytesBuffer *frameBuf;
+    while (nullptr == (frameBuf = frameBufferPool.allocateForce()))
+        std::this_thread::sleep_for(std::chrono::microseconds(100));
+    const auto dsclen = frameBuf->copyDataFrom(adtsfBuf.data, adtsfBuf.length);  // discarded length
+    if (0 < dsclen)
+        envir() << "ADTSAudioUDPSource: A ADTSF buffer size is too large for frame buffer, "
+        << dsclen << " bytes data has been discarded.\n";
+    frameBufferPool.push(frameBuf);
+}
+
 
 }// namespace live555
 }// namespace cdom

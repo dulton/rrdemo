@@ -1,27 +1,27 @@
 /** \copyright The MIT License */
-#include "ADTSAudioUDPServerMediaSubsession.hpp"
+#include "FLVDemuxedADTSAudioUDPServerMediaSubsession.hpp"
 
 #include <live555/MPEG4GenericRTPSink.hh>
 
-#include "ADTSAudioUDPSource.hpp"
+#include "FLVDemuxedADTSAudioUDPSource.hpp"
 
 namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
-FramedSource *ADTSAudioUDPServerMediaSubsession::createNewStreamSource(
+FramedSource *FLVDemuxedADTSAudioUDPServerMediaSubsession::createNewStreamSource(
     unsigned /*clientSessionId*/, unsigned &estBitrate)
 {
     estBitrate = 96/*kbps*/;
-    return ADTSAudioUDPSource::createNew(envir(), port);
+    return FLVDemuxedADTSAudioUDPSource::createNew(envir(), port);
 }
 
-RTPSink *ADTSAudioUDPServerMediaSubsession::createNewRTPSink(
+RTPSink *FLVDemuxedADTSAudioUDPServerMediaSubsession::createNewRTPSink(
     Groupsock *rtpGroupsock, unsigned char rtpPayloadTypeIfDynamic, FramedSource *inputSource)
 {
-    auto *src = static_cast<ADTSAudioUDPSource *>(inputSource);
+    auto *src = static_cast<FLVDemuxedADTSAudioUDPSource *>(inputSource);
     if (src->isInitialized())
-        envir() << "ADTSAudioUDPServerMediaSubsession: No MPEG4GenericRTPSink informations is available.\n";
+        envir() << "FLVDemuxedADTSAudioUDPServerMediaSubsession: No MPEG4GenericRTPSink informations is available.\n";
 
     return MPEG4GenericRTPSink::createNew(
         envir(), rtpGroupsock, rtpPayloadTypeIfDynamic,

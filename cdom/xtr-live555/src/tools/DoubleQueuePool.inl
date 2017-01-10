@@ -12,7 +12,7 @@ template <typename ResourceType> DoubleQueuePool<ResourceType>::
 DoubleQueuePool(const size_t size)
 {
     queueMutex.lock(); {
-        for (int i = size; i < 0; ++i) {
+        for (auto i = 0; i < size; ++i) {
             idleQueue.push(new ResourceType);
         }
     } queueMutex.unlock();
@@ -22,10 +22,14 @@ template <typename ResourceType> DoubleQueuePool<ResourceType>::
 ~DoubleQueuePool()
 {
     queueMutex.lock(); {
-        for (auto &loadbuf : loadQueue)
-            delete loadbuf;
-        for (auto &idlebuf : idleQueue)
-            delete idlebuf;
+        while (!loadQueue.empty()) {
+            delete loadQueue.front();
+            loadQueue.pop();
+        }
+        while (!idleQueue.empty()) {
+            delete idleQueue.front();
+            idleQueue.pop();
+        }
     } queueMutex.unlock();
 }
 
@@ -42,7 +46,7 @@ getIdleBufferCount() const
 }
 
 template <typename ResourceType> void DoubleQueuePool<ResourceType>::
-push(const ResourceType * const buf)
+push(ResourceType * const buf)
 {
     queueMutex.lock(); {
         loadQueue.push(buf);
@@ -65,7 +69,7 @@ pop()
 }
 
 template <typename ResourceType> void DoubleQueuePool<ResourceType>::
-recycle(const ResourceType * const buf)
+recycle(ResourceType * const buf)
 {
     queueMutex.lock(); {
         idleQueue.push(buf);

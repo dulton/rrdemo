@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-15 – 2017-1-4
+ *  \date 2016-12-15 – 2017-1-10
  *  \copyright The MIT License
  */
 #include <thread>
@@ -8,14 +8,14 @@
 #include <live555/BasicUsageEnvironment.hh>
 #include <live555/liveMedia.hh>
 
-#include "ADTSAudioUDP/ADTSAudioUDPServerMediaSubsession.hpp"
-#include "ADTSAudioUDP/ADTSAudioUDPSource.hpp"
-#include "H264VideoUDP/H264VideoUDPServerMediaSubsession.hpp"
-#include "H264VideoUDP/H264VideoUDPSource.hpp"
-#include "FLVDemuxADTSH264UDP/FLVDemuxADTSAudioUDPServerMediaSubsession.hpp"
-#include "FLVDemuxADTSH264UDP/FLVDemuxADTSAudioUDPSource.hpp"
-#include "FLVDemuxADTSH264UDP/FLVDemuxH264VideoUDPServerMediaSubsession.hpp"
-#include "FLVDemuxADTSH264UDP/FLVDemuxH264VideoUDPSource.hpp"
+#include "ADTSAudioUDPServerMediaSubsession.hpp"
+#include "ADTSAudioUDPSource.hpp"
+#include "H264VideoUDPServerMediaSubsession.hpp"
+#include "H264VideoUDPSource.hpp"
+#include "FLVDemuxedADTSAudioUDPServerMediaSubsession.hpp"
+#include "FLVDemuxedADTSAudioUDPSource.hpp"
+#include "FLVDemuxedH264VideoUDPServerMediaSubsession.hpp"
+#include "FLVDemuxedH264VideoUDPSource.hpp"
 
 namespace {
 int Main(int, char *[])
@@ -24,10 +24,10 @@ int Main(int, char *[])
     using rrdemo::cdom::live555::ADTSAudioUDPSource;
     using rrdemo::cdom::live555::H264VideoUDPServerMediaSubsession;
     using rrdemo::cdom::live555::H264VideoUDPSource;
-    using rrdemo::cdom::live555::FLVDemuxADTSAudioUDPServerMediaSubsession;
-    using rrdemo::cdom::live555::FLVDemuxADTSAudioUDPSource;
-    using rrdemo::cdom::live555::FLVDemuxH264VideoUDPServerMediaSubsession;
-    using rrdemo::cdom::live555::FLVDemuxH264VideoUDPSource;
+    using rrdemo::cdom::live555::FLVDemuxedADTSAudioUDPServerMediaSubsession;
+    using rrdemo::cdom::live555::FLVDemuxedADTSAudioUDPSource;
+    using rrdemo::cdom::live555::FLVDemuxedH264VideoUDPServerMediaSubsession;
+    using rrdemo::cdom::live555::FLVDemuxedH264VideoUDPSource;
 
     /* 创建任务调度器与使用环境 */
     TaskScheduler *schr {BasicTaskScheduler::createNew()};
@@ -48,7 +48,7 @@ int Main(int, char *[])
     /* ADTS (A) UDP */ {
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "adtsudp", "info", "desc")};
-        ADTSAudioUDPSource::initializeSourceBeforeEventLoop(env, 10096);
+        ADTSAudioUDPSource::initializeSourceBeforeEventLoop(10096);
         sms->addSubsession(ADTSAudioUDPServerMediaSubsession::createNew(*env, 10096));
         server->addServerMediaSession(sms);
         *env << server->rtspURL(sms) << "\n";
@@ -59,7 +59,7 @@ int Main(int, char *[])
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "h264udp", "info", "desc")};
         OutPacketBuffer::maxSize = 300000;
-        H264VideoUDPSource::initializeSourceBeforeEventLoop(env, 10097);
+        H264VideoUDPSource::initializeSourceBeforeEventLoop(10097);
         sms->addSubsession(H264VideoUDPServerMediaSubsession::createNew(*env, 10097));
         server->addServerMediaSession(sms);
         *env << server->rtspURL(sms) << "\n";
@@ -70,10 +70,10 @@ int Main(int, char *[])
         ServerMediaSession *sms {
             ServerMediaSession::createNew(*env, "flvudp", "info", "desc")};
         OutPacketBuffer::maxSize = 300000;
-        FLVDemuxADTSAudioUDPSource::initializeSourceBeforeEventLoop(env, 10098);
-        FLVDemuxH264VideoUDPSource::initializeSourceBeforeEventLoop(env, 10098);
-        sms->addSubsession(FLVDemuxADTSAudioUDPServerMediaSubsession::createNew(*env, 10098));
-        sms->addSubsession(FLVDemuxH264VideoUDPServerMediaSubsession::createNew(*env, 10098));
+        FLVDemuxedADTSAudioUDPSource::initializeSourceBeforeEventLoop(10098);
+        FLVDemuxedH264VideoUDPSource::initializeSourceBeforeEventLoop(10098);
+        sms->addSubsession(FLVDemuxedADTSAudioUDPServerMediaSubsession::createNew(*env, 10098));
+        sms->addSubsession(FLVDemuxedH264VideoUDPServerMediaSubsession::createNew(*env, 10098));
         server->addServerMediaSession(sms);
         *env << server->rtspURL(sms) << "\n";
         std::this_thread::sleep_for(std::chrono::microseconds(30));

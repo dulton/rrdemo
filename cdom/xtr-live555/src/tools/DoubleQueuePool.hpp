@@ -1,6 +1,6 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-30 – 2017-1-9
+ *  \date 2016-12-30 – 2017-1-10
  *  \copyright The MIT License
  */
 #ifndef RRDEMO__CDOM__LIVE555__DOUBLE_QUEUE_POOL__HPP
@@ -14,8 +14,6 @@ namespace cdom {
 namespace live555 {
 
 /// 缓存池。
-/** 为确保效率而全面使用内联，舍弃了虚函数和多态，允许继承仅为代码复用。
- */
 template <typename ResourceType> class DoubleQueuePool final {
     explicit DoubleQueuePool(const DoubleQueuePool &) = delete;
     explicit DoubleQueuePool(DoubleQueuePool &&) = delete;
@@ -38,13 +36,13 @@ public:
     size_t getIdleBufferCount() const;
 
     /// 压入负载资源。
-    void push(const ResourceType * const loadBuffer);
+    void push(ResourceType * const loadBuffer);
 
     /// 弹出负载资源。
     ResourceType *pop();
 
     /// 回收闲置资源。
-    void recycle(const ResourceType * const idleBuffer);
+    void recycle(ResourceType * const idleBuffer);
 
     /// 分配闲置资源。
     ResourceType *allocate();
@@ -64,5 +62,7 @@ private:
 }// namespace live555
 }// namespace cdom
 }// namespace rrdemo
+
+#include "DoubleQueuePool.inl"
 
 #endif// RRDEMO__CDOM__LIVE555__DOUBLE_QUEUE_POOL__HPP

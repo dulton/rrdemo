@@ -42,8 +42,11 @@ protected:
         static const size_t SIZE {500000};  ///< 缓存尺寸，百兆网 25FPS 帧最大尺寸；
         u_int8_t data[SIZE] {};             ///< 缓存数据；
         size_t length {};                   ///< 负载量；
-        int packetCount {};                 ///< 缓存内含用户数据报协议包计数。
-    } naluBuffer;  ///< 网络抽象层单元缓存
+        size_t packetCount {};              ///< 缓存内含用户数据报协议包计数。
+    } naluBuffer;  ///< 网络抽象层单元缓存。
+
+    /// 当新的 NALU Buffer 准备完毕时（的回调函数）。
+    void whenNewNALUBufferReady(NetworkAbstractionLayerUnitBuffer &buffer);
 
 };// class H264VideoUDPSource
 

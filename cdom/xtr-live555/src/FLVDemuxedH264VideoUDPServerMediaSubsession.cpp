@@ -1,24 +1,24 @@
 /** \copyright The MIT License */
-#include "FLVDemuxH264VideoUDPServerMediaSubsession.hpp"
+#include "FLVDemuxedH264VideoUDPServerMediaSubsession.hpp"
 
 #include <live555/H264VideoRTPSink.hh>
 #include <live555/H264VideoStreamFramer.hh>
 
-#include "FLVDemuxH264VideoUDPSource.hpp"
+#include "FLVDemuxedH264VideoUDPSource.hpp"
 
 namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
-FramedSource *FLVDemuxH264VideoUDPServerMediaSubsession::createNewStreamSource(
+FramedSource *FLVDemuxedH264VideoUDPServerMediaSubsession::createNewStreamSource(
     unsigned /*clientSessionId*/, unsigned &estBitrate)
 {
     estBitrate = 500/*kbps*/;
-    FramedSource *src = FLVDemuxH264VideoUDPSource::createNew(envir(), port);
+    FramedSource *src = FLVDemuxedH264VideoUDPSource::createNew(envir(), port);
     return H264VideoStreamFramer::createNew(envir(), src, True);
 }
 
-RTPSink *FLVDemuxH264VideoUDPServerMediaSubsession::createNewRTPSink(
+RTPSink *FLVDemuxedH264VideoUDPServerMediaSubsession::createNewRTPSink(
     Groupsock* rtpGroupsock, unsigned char /*rtpPayloadTypeIfDynamic*/, FramedSource */*inputSource*/)
 {
     return H264VideoRTPSink::createNew(envir(), rtpGroupsock, 96);
