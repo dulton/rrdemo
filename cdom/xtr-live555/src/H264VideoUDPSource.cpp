@@ -9,6 +9,8 @@ namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
+const char * const BasicUDPSource::OBJECT_TYPE_NAME {"H264VideoUDPSource"};
+
 void H264VideoUDPSource::
 whenNewIPv4UDPPacketReceived(const IPv4UDPPacketData &pkt, const SOCKADDR_IN &, const SOCKADDR_IN &)
 {
@@ -20,7 +22,7 @@ whenNewIPv4UDPPacketReceived(const IPv4UDPPacketData &pkt, const SOCKADDR_IN &, 
         naluBuffer.packetCount = 0;
     } else
         if (500 <= ++naluBuffer.packetCount)
-            envir() << "H264VideoUDPSource: " << naluBuffer.packetCount
+            envir() << getObjectTypeName() << ": " << naluBuffer.packetCount
             << " consecutive packets without NALU start_codes, the port is receiving H.264 elementary stream?";
 
     const size_t actlen = fmin(pkt.length, naluBuffer.SIZE - naluBuffer.length);  // actual length
@@ -28,7 +30,7 @@ whenNewIPv4UDPPacketReceived(const IPv4UDPPacketData &pkt, const SOCKADDR_IN &, 
     naluBuffer.length += actlen;
     const auto dsclen = pkt.length - actlen;
     if (0 < dsclen)
-        envir() << "H264VideoUDPSource: A NALU size is too large for NALU buffer, "
+        envir() << getObjectTypeName() << ": A NALU size is too large for NALU buffer, "
         << dsclen << " bytes data has been discarded.\n";
 }
 
@@ -40,7 +42,7 @@ whenNewNALUBufferReady(NetworkAbstractionLayerUnitBuffer &naluBuf)
         std::this_thread::sleep_for(std::chrono::microseconds(100));
     const auto dsclen = frameBuf->copyDataFrom(naluBuf.data, naluBuf.length);  // discarded length
     if (0 < dsclen)
-        envir() << "H264VideoUDPSource: A NALU buffer size is too large for frame buffer, "
+        envir() << getObjectTypeName() << ": A NALU buffer size is too large for frame buffer, "
         << dsclen << " bytes data has been discarded.\n";
     frameBufferPool.push(frameBuf);
 }

@@ -17,6 +17,10 @@ namespace cdom {
 namespace live555 {
 
 class BasicUDPSource : public FramedSource, public IPv4UDPProcessor {
+protected:
+    static const char * const OBJECT_TYPE_NAME;
+    virtual const char *getObjectTypeName() const { return OBJECT_TYPE_NAME; }
+
 public:
     /// 创建新的 BasicUDPSource 实例。
     static BasicUDPSource *createNew(UsageEnvironment &env, u_int16_t port)

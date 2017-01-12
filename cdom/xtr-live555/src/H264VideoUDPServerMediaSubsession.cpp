@@ -15,7 +15,7 @@ FramedSource *H264VideoUDPServerMediaSubsession::createNewStreamSource(
 {
     estBitrate = 500/*kbps*/;
     FramedSource *src = H264VideoUDPSource::createNew(envir(), port);
-    return H264VideoStreamFramer::createNew(envir(), src, True);
+    return H264VideoStreamFramer::createNew(envir(), src);
 }
 
 RTPSink *H264VideoUDPServerMediaSubsession::createNewRTPSink(

@@ -24,5 +24,5 @@ if(${PRJUPR}_GEN_DEV_DOC)
     COMMENT "Generating developing documentation with Doxygen."
     VERBATIM
     SOURCES ${${PRJUPR}_DOC})
-  install(DIRECTORY "${PROJECT_BINARY_DIR}/docs/" DESTINATION "docs")
+  install(DIRECTORY "${PROJECT_BINARY_DIR}/doxygen/docs/" DESTINATION "docs")
 endif()

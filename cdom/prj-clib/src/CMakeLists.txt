@@ -1,7 +1,11 @@
 # ./clib/src
-string(REPLACE "-" "" exports "${PRJUPR}")
-string(CONCAT exports "-D" "${exports}" "_EXPORTS")
+string(REPLACE "-" "__" exports "${PRJUPR}")
+string(CONCAT exports "-D" "${exports}" "__EXPORTS")
 add_definitions(${exports})
+
+if(MSVC)
+  add_compile_options("/wd4819")  # character cannot be represented
+endif()
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 sources_helper(GENERATE INSTALL RECURSE C
@@ -22,6 +26,6 @@ if(${PRJUPR}_COMPILE_STATIC)
   set_target_properties(${PRJLWR}_shared PROPERTIES
     C_STANDARD 11 C_STANDARD_REQUIRED ON
     OUTPUT_NAME "${PROJECT_NAME}" CLEAN_DIRECT_OUTPUT ON
-    VERSION "${PROJECT_VERSION}")
+    VERSION "${PROJECT_VERSION}" SOVERSION "${PROJECT_VERSION}")
   install(TARGETS ${PRJLWR}_shared DESTINATION "lib")
 endif()

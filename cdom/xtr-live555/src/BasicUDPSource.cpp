@@ -7,6 +7,8 @@ namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
+const char * const BasicUDPSource::OBJECT_TYPE_NAME {"BasicUDPSource"};
+
 IPv4UDPSinkPool BasicUDPSource::GlobalIPv4UDPSinkPool;
 
 BasicUDPSource::BasicUDPSource(UsageEnvironment &env, const u_int16_t port) :
@@ -54,7 +56,7 @@ void BasicUDPSource::whenNewIPv4UDPPacketReceived(
         std::this_thread::sleep_for(std::chrono::microseconds(100));
     size_t discarded;
     if (0 != (discarded = buf->copyDataFrom(pkt.data, pkt.length)))
-        envir() << "BasicUDPSource: A UDP pack size is too large for SrcBuf, "
+        envir() << getObjectTypeName() << ": A UDP pack size is too large for SrcBuf, "
         << discarded << " bytes data has been discarded.\n";
     frameBufferPool.push(buf);
 }

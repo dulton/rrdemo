@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-8 – 2017-1-7
+# 2016-10-8 – 2017-1-12
 # The MIT License
 
 #[======================================================================[.rst:
@@ -46,7 +46,6 @@ function(enable_highest_warning_level_support)
       string(CONCAT CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" " -Wall ")
     elseif(MSVC)
       if(CMAKE_C_FLAGS MATCHES "/Wall")
-        # skip
       elseif(CMAKE_C_FLAGS MATCHES "/W[0-4]")
         string(REGEX REPLACE "/W[0-4]" "/Wall" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
       else()
@@ -61,7 +60,6 @@ function(enable_highest_warning_level_support)
       string(CONCAT CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" " -Wall ")
     elseif(MSVC)
       if(CMAKE_CXX_FLAGS MATCHES "/Wall")
-        # skip
       elseif(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
         string(REGEX REPLACE "/W[0-4]" "/Wall" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
       else()
@@ -70,6 +68,7 @@ function(enable_highest_warning_level_support)
     endif()
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} PARENT_SCOPE)
   endif()
+
 endfunction()
 
 #[==================================================[.rst:

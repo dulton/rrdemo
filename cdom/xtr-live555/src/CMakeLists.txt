@@ -12,6 +12,7 @@ sources_helper(GENERATE RECURSE CPP
 option(${PRJUPR}_COMPILE_EXE "Build executable file." ON)
 if(${PRJUPR}_COMPILE_EXE)
   add_executable(${PRJLWR}_exe ${${PRJUPR}_SRC})
+  target_link_libraries(${PRJLWR}_exe rrdemo-cdom-cpp_library_static)  # link
   target_link_libraries(${PRJLWR}_exe ${LIVE555_LIBRARIES} ${${PRJUPR}_SOCKET_LIBRARIES})
   set_target_properties(${PRJLWR}_exe PROPERTIES
     CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON

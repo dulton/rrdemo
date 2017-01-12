@@ -4,7 +4,7 @@
 
 PROJECT_NAME           = "@PROJECT_NAME@"
 PROJECT_NUMBER         = "@PROJECT_VERSION@"
-OUTPUT_DIRECTORY       = "@PROJECT_BINARY_DIR@/docs"
+OUTPUT_DIRECTORY       = "@PROJECT_BINARY_DIR@/doxygen/docs"
 
 STRIP_FROM_PATH        = "@PROJECT_SOURCE_DIR@" \
                          "@PROJECT_BINARY_DIR@"

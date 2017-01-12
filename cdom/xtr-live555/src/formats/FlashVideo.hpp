@@ -1,6 +1,7 @@
 /** \file
+ *  \sa <http://download.macromedia.com/f4v/video_file_format_spec_v10_1.pdf>
  *  \author zhengrr
- *  \date 2017-1-4 – 10
+ *  \date 2017-1-4 – 11
  *  \copyright The MIT License
  */
 #ifndef RRDEMO__CDOM__LIVE555__FLASH_VIDEO__HPP
@@ -16,51 +17,51 @@ namespace live555 {
 /** 因端序和实现差异导致的不可移植性，位域结构体仅供按字段访问，勿按内存整体访问。
  */
 struct FLVHeader {
-    uint32_t Signature : 24;          ///< 签名，固为 464C56(16) 'FLV'；
-    uint8_t  Version : 8;             ///< 版本；
-    uint8_t  TypeFlagsReserved5 : 5;  ///< 固为 0；
-    uint8_t  TypeFlagsAudio : 1;      ///< 音频标志位；
-    uint8_t  TypeFlagsReserved1 : 1;  ///< 固为 0；
-    uint8_t  TypeFlagsVideo : 1;      ///< 视频标志位；
-    uint32_t DataOffset : 32;         ///< 文件体偏移量，通常为 9。
-    uint8_t getVersion() const { return Version; }
-    bool haveAudio() const { return 0x1u == TypeFlagsAudio; }
-    bool haveVideo() const { return 0x1u == TypeFlagsVideo; }
-    uint32_t getOffset() const { return DataOffset; }
-    static const size_t HEADER_MINIMUM_SIZE;
-    static bool IsHeader(const uint8_t * const data, const size_t length);
-    static bool ParseHeader(FLVHeader &flvHeader, const uint8_t * const data, const size_t length);
-    bool parse(const uint8_t * const data, const size_t length) { return ParseHeader(*this, data, length); }
+    uint32_t signature : 24;          ///< 签名，固为 464C56(16) 'FLV'；
+    uint8_t  version : 8;             ///< 版本；
+    uint8_t  typeFlagsReserved5 : 5;  ///< 固为 0；
+    uint8_t  typeFlagsAudio : 1;      ///< 音频标志位；
+    uint8_t  typeFlagsReserved1 : 1;  ///< 固为 0；
+    uint8_t  typeFlagsVideo : 1;      ///< 视频标志位；
+    uint32_t dataOffset : 32;         ///< 文件体偏移量，通常为 9。
+    uint8_t getVersion() const { return version; }
+    bool haveAudio() const { return 0x1u == typeFlagsAudio; }
+    bool haveVideo() const { return 0x1u == typeFlagsVideo; }
+    uint32_t getOffset() const { return dataOffset; }
+    static const size_t MINIMUM_SIZE {9u/*bytes*/};
+    static bool Parse(FLVHeader &flvHeader, const uint8_t * const data, const size_t length);
+    bool parse(const uint8_t * const data, const size_t length) { return Parse(*this, data, length); }
+    static bool Validate(const uint8_t * const data, const size_t length) { FLVHeader tmp; return Parse(tmp, data, length); };
 };
 
 /// Flash Video Previous Tag Size。
 struct FLVPreviousTagSize {
-    uint32_t PreviousTagSize : 32;
-    uint32_t getSize() const { return PreviousTagSize; }
-    static const size_t PREVIOUS_TAG_SIZE_SIZE;
-    static bool ParsePreviousTagSize(FLVPreviousTagSize &flvPreviousTagSize, const uint8_t * const data, const size_t length);
-    bool parse(const uint8_t * const data, const size_t length) { return ParsePreviousTagSize(*this, data, length); }
+    uint32_t previousTagSize : 32;
+    uint32_t getSize() const { return previousTagSize; }
+    static const size_t SIZE {4u/*bytes*/};
+    static bool Parse(FLVPreviousTagSize &flvPreviousTagSize, const uint8_t * const data, const size_t length);
+    bool parse(const uint8_t * const data, const size_t length) { return Parse(*this, data, length); }
 };
 
 /// Flash Video Tag Header。
 struct FLVTagHeader {
-    uint8_t  TagType : 8;            ///< Tag 类型；
-    uint32_t DataSize : 24;          ///< 数据区尺寸；
-    uint32_t Timestamp : 24;         ///< 时间戳；
-    uint8_t  TimestampExtended : 8;  ///< 时间戳扩展；
-    uint32_t StreamID : 24;          ///< 固为 0。
-    bool isAudio() const { return 0x08u == TagType; }
-    bool isVideo() const { return 0x09u == TagType; }
-    bool isScript() const { return 0x12u == TagType; }
-    uint32_t getDataSize() const { return DataSize; }
-    uint32_t getTimestamp() const { return static_cast<uint32_t>(TimestampExtended) << 24 | Timestamp; }
-    static const size_t TAG_HEADER_SIZE;
-    static bool IsTagHeader(const uint8_t * const data, const size_t length, const size_t maxDataSize = 0);
-    static bool ParseTagHeader(FLVTagHeader &flvTagHeader, const uint8_t * const data, const size_t length);
-    bool parse(const uint8_t * const data, const size_t length) { return ParseTagHeader(*this, data, length); }
+    uint8_t  tagType : 8;            ///< Tag 类型；
+    uint32_t dataSize : 24;          ///< 数据区尺寸；
+    uint32_t timestamp : 24;         ///< 时间戳；
+    uint8_t  timestampExtended : 8;  ///< 时间戳扩展；
+    uint32_t streamID : 24;          ///< 固为 0。
+    bool isAudio() const { return 0x08u == tagType; }
+    bool isVideo() const { return 0x09u == tagType; }
+    bool isScript() const { return 0x12u == tagType; }
+    uint32_t getDataSize() const { return dataSize; }
+    uint32_t getTimestamp() const { return static_cast<uint32_t>(timestampExtended) << 24 | static_cast<uint32_t>(timestamp); }
+    static const size_t SIZE {11u/*bytes*/};
+    static bool Parse(FLVTagHeader &flvTagHeader, const uint8_t * const data, const size_t length);
+    bool parse(const uint8_t * const data, const size_t length) { return Parse(*this, data, length); }
+    static bool Validate(const uint8_t * const data, const size_t length) { FLVTagHeader tmp; return Parse(tmp, data, length); }
 };
 
-/// Flash Video Tag Data Audio。
+/// Flash Video Tag Data (Audio)。
 struct FLVTagDataAudio {
     uint8_t soundFormat : 4;  ///< 音频格式；
     uint8_t soundRate : 2;    ///< 采样率；
@@ -96,12 +97,13 @@ struct FLVTagDataAudio {
     bool isSndStereo() const { return 0x1u == soundType; }
     bool isAACSequenceHeader() const { return isAAC() && 0x0u == aacFormat.aacPacketType; }
     bool isAACRaw() const { return isAAC() && 0x1u == aacFormat.aacPacketType; }
-    static const size_t TAG_DATA_AUDIO_MINIMUM_SIZE;
-    static bool ParseTagData(FLVTagDataAudio &flvTagData, const uint8_t * const data, const size_t length);
-    bool parse(const uint8_t * const data, const size_t length) { return ParseTagData(*this, data, length); }
+    size_t getDataOffset() const { return isAAC() ? 2u : 1u; }
+    static const size_t MINIMUM_SIZE {1u/*bytes*/};
+    static bool Parse(FLVTagDataAudio &flvTagData, const uint8_t * const data, const size_t length);
+    bool parse(const uint8_t * const data, const size_t length) { return Parse(*this, data, length); }
 };
 
-/// Flash Video Tag Data Video。
+/// Flash Video Tag Data (Video)。
 struct FLVTagDataVideo {
     uint8_t frameType : 4;  ///< 帧类型；
     uint8_t codecID : 4;    ///< 视频格式。
@@ -129,20 +131,26 @@ struct FLVTagDataVideo {
     bool isAVCNALU() const { return isAVC() && 0x1u == avcCodec.avcPacketType; }
     bool isAVCEndOfSequence() const { return isAVC() && 0x2u == avcCodec.avcPacketType; }
     int32_t getCompositionTime() const { return isAVCNALU() ? avcCodec.compositionTime : 0; }
-    static const size_t TAG_DATA_VIDEO_MINIMUM_SIZE;
-    static bool ParseTagData(FLVTagDataVideo &flvTagData, const uint8_t * const data, const size_t length);
-    bool parse(const uint8_t * const data, const size_t length) { return ParseTagData(*this, data, length); }
+    size_t getDataOffset() const { return isAVC() ? 5u : 1u; }
+    static const size_t MINIMUM_SIZE {1/*bytes*/};
+    static bool Parse(FLVTagDataVideo &flvTagData, const uint8_t * const data, const size_t length);
+    bool parse(const uint8_t * const data, const size_t length) { return Parse(*this, data, length); }
 };
 
-/// Flash Video Tag Data Script。
+/// Flash Video Tag Data (Script)。
 struct FLVTagDataScript {
-    struct {
+    struct Object {
         struct {
-            uint16_t StringLength : 16;
-            uint8_t *StringData;
-        } ObjectName;
-    } *ScriptDataObjects;
-    uint32_t End : 32;
+            uint16_t length : 16;
+            uint8_t *data;
+        } name;
+        struct {
+            uint8_t type : 8;
+            union {} value;
+        } data;
+    } *objects;
+    uint32_t end : 32;
+    static const size_t MINIMUM_SIZE {4u/*bytes*/};
 };
 
 }// namespace live555

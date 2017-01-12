@@ -1,5 +1,5 @@
 #ifdef _MSC_VER
-#include "winres.h"
+# include "winres.h"
 #endif
 
 VS_VERSION_INFO VERSIONINFO
@@ -24,7 +24,7 @@ BEGIN
          VALUE "FileVersion", "@PROJECT_VERSION@"
          VALUE "InternalName", "@PROJECT_NAME@"
          VALUE "LegalCopyright", "The MIT License"
-         VALUE "OriginalFilename", "@PROJECT_NAME@.exe"
+         VALUE "OriginalFilename", "@PROJECT_NAME@"
          VALUE "ProductName", "@PRODUCT_NAME@"
          VALUE "ProductVersion", "@PRODUCT_VERSION@"
       END

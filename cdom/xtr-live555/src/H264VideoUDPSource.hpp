@@ -13,6 +13,10 @@ namespace cdom {
 namespace live555 {
 
 class H264VideoUDPSource : public BasicUDPSource {
+protected:
+    static const char * const OBJECT_TYPE_NAME;
+    const char *getObjectTypeName() const override { return OBJECT_TYPE_NAME; }
+
 public:
     /// 创建新的 H264VideoUDPSource 实例。
     static H264VideoUDPSource *createNew(UsageEnvironment &env, const u_int16_t port)
@@ -40,7 +44,7 @@ protected:
     /// 网络抽象层单元缓存。
     struct NetworkAbstractionLayerUnitBuffer {
         static const size_t SIZE {500000};  ///< 缓存尺寸，百兆网 25FPS 帧最大尺寸；
-        u_int8_t data[SIZE] {};             ///< 缓存数据；
+        u_int8_t data[SIZE];                ///< 缓存数据；
         size_t length {};                   ///< 负载量；
         size_t packetCount {};              ///< 缓存内含用户数据报协议包计数。
     } naluBuffer;  ///< 网络抽象层单元缓存。

@@ -14,6 +14,8 @@ namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
+const char * const BasicUDPSource::OBJECT_TYPE_NAME {"ADTSAudioUDPSource"};
+
 bool ADTSAudioUDPSource::
 isInitialized() const
 {
@@ -54,11 +56,11 @@ const IPv4UDPPacketData &pkt, const SOCKADDR_IN &, const SOCKADDR_IN &)
     if (!AudioDataTransportStreamFrame::ParseHeader(adtsfHeader, pkt.data, pkt.length))
         /*skip*/;
     else if (3 == adtsfHeader.profile)
-        envir() << "ADTSAudioUDPSource: Bad profile.\n";
+        envir() << getObjectTypeName() << ": Bad profile.\n";
     else if (0 == SAMPLING_FREQUENCY_TABLE[adtsfHeader.sampling_frequency_index])
-        envir() << "ADTSAudioUDPSource: Bad sampling_frequency_index.\n";
+        envir() << getObjectTypeName() << ": Bad sampling_frequency_index.\n";
     else if (0 == CHANNEL_CONFIGURATION_TABLE[adtsfHeader.channel_configuration])
-        envir() << "ADTSAudioUDPSource: Bad channel_configuration.\n";
+        envir() << getObjectTypeName() << ": Bad channel_configuration.\n";
     else {
         isReadyHalf = true;
         initialized = true;
@@ -70,7 +72,7 @@ const IPv4UDPPacketData &pkt, const SOCKADDR_IN &, const SOCKADDR_IN &)
         adtsfBuffer.packetCount = 0;
     } else
         if (500 < ++adtsfBuffer.packetCount)
-            envir() << "ADTSAudioUDPSource: " << adtsfBuffer.packetCount
+            envir() << getObjectTypeName() << ": " << adtsfBuffer.packetCount
             << " consecutive packets without ADTS syncwork, the port is receiving audio data transport stream?";
 
     const size_t actlen = fmin(pkt.length, adtsfBuffer.SIZE - adtsfBuffer.length);  // actual length
@@ -78,7 +80,7 @@ const IPv4UDPPacketData &pkt, const SOCKADDR_IN &, const SOCKADDR_IN &)
     adtsfBuffer.length += actlen;
     const auto dsclen = pkt.length - actlen;
     if (0 < dsclen)
-        envir() << "ADTSAudioUDPSource: A ADTSF size is too large for ADTSF buffer, "
+        envir() << getObjectTypeName() << ": A ADTSF size is too large for ADTSF buffer, "
         << dsclen << " bytes data has been discarded.\n";
 }
 
@@ -90,11 +92,10 @@ whenNewADTSFBufferReady(AudioDataTransportStreamFrameBuffer &adtsfBuf)
         std::this_thread::sleep_for(std::chrono::microseconds(100));
     const auto dsclen = frameBuf->copyDataFrom(adtsfBuf.data, adtsfBuf.length);  // discarded length
     if (0 < dsclen)
-        envir() << "ADTSAudioUDPSource: A ADTSF buffer size is too large for frame buffer, "
+        envir() << getObjectTypeName() << ": A ADTSF buffer size is too large for frame buffer, "
         << dsclen << " bytes data has been discarded.\n";
     frameBufferPool.push(frameBuf);
 }
-
 
 }// namespace live555
 }// namespace cdom

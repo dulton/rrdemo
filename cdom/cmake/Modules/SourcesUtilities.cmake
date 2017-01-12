@@ -1,5 +1,5 @@
 # zhengrr
-# 2016-10-8 – 11-29
+# 2016-10-8 – 2017-1-12
 # The MIT License
 
 #[======================================================================[.rst:
@@ -334,9 +334,9 @@ function(sources_helper)
   string(REGEX REPLACE "^${prjsrc}" "" reldir "${cursrc}")
   set(prjbin "${PROJECT_BINARY_DIR}")
   set(curbin "${prjbin}${reldir}")
-  string(TOLOWER "${PROJECT_NAME}" prjlow)
+  string(TOLOWER "${PROJECT_NAME}" prjlwr)
   set(prjins "${CMAKE_INSTALL_PREFIX}")
-  set(curins "${prjins}/include/${prjlow}")
+  set(curins "${prjins}/include/${prjlwr}")
 
   if(ARG_RECURSE)
     set(ARG_RECURSE "RECURSE")

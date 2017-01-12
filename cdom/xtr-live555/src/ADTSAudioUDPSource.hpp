@@ -14,6 +14,10 @@ namespace cdom {
 namespace live555 {
 
 class ADTSAudioUDPSource : public BasicUDPSource {
+protected:
+    static const char * const OBJECT_TYPE_NAME;
+    const char *getObjectTypeName() const override { return OBJECT_TYPE_NAME; }
+
 public:
     /// 创建新的 ADTSAudioUDPSource 实例。
     static ADTSAudioUDPSource *createNew(UsageEnvironment &env, const u_int16_t port)
@@ -45,7 +49,7 @@ public:
 
 protected:
     boolean initialized {false};
-    char configurationString[5] {};
+    char configurationString[5];
 
 public:
     /// 重写的 whenNewIPv4UDPPacketReceived 函数。
@@ -60,7 +64,7 @@ protected:
     /// 音频数据传输流帧缓存。
     struct AudioDataTransportStreamFrameBuffer {
         static const size_t SIZE {500000};  ///< 缓存尺寸，百兆网 25FPS 帧最大尺寸；
-        u_int8_t data[SIZE] {};             ///< 缓存数据；
+        u_int8_t data[SIZE];                ///< 缓存数据；
         size_t length {};                   ///< 负载量；
         size_t packetCount {};              ///< 缓存内含用户数据报协议包的数量。
     } adtsfBuffer;            ///< 音频数据传输流帧缓存。

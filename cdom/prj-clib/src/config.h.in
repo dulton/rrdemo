@@ -3,16 +3,16 @@
  *  \date 2016-8-3 – 10-27
  *  \copyright The MIT License
  */
-#ifndef _RRDEMOCDOMCLIB_CONFIG_H
-#define _RRDEMOCDOMCLIB_CONFIG_H
+#ifndef RRDEMO__CDOM__C_LIBRARY__CONFIG_H
+#define RRDEMO__CDOM__C_LIBRARY__CONFIG_H
 
-#include <inttypes.h>
+#include <stdint.h>
 
-static const char *const RRDEMOCDOMCLIB_NAME = "@PROJECT_NAME@";  ///< 项目名
-static const char *const RRDEMOCDOMCLIB_VERSION = "@PROJECT_VERSION@";  ///< 项目版本号
-static const intmax_t RRDEMOCDOMCLIB_VERSION_MAJOR = (intmax_t) @PROJECT_VERSION_MAJOR@;  ///< 项目主版本号
-static const intmax_t RRDEMOCDOMCLIB_VERSION_MINOR = (intmax_t) @PROJECT_VERSION_MINOR@;  ///< 项目次版本号
-static const intmax_t RRDEMOCDOMCLIB_VERSION_PATCH = (intmax_t) @PROJECT_VERSION_PATCH@;  ///< 项目补丁版本号
-static const intmax_t RRDEMOCDOMCLIB_VERSION_TWEAK = (intmax_t) @PROJECT_VERSION_TWEAK@;  ///< 项目微调版本号
+static const char * const RRDEMO__CDOM__C_LIBRARY__NAME = "@PROJECT_NAME@";  ///< 项目名；
+static const char * const RRDEMO__CDOM__C_LIBRARY__VERSION = "@PROJECT_VERSION@";  ///< 项目版本号；
+static const intmax_t RRDEMO__CDOM__C_LIBRARY__VERSION_MAJOR = @PROJECT_VERSION_MAJOR@;  ///< 项目主版本号；
+static const intmax_t RRDEMO__CDOM__C_LIBRARY__VERSION_MINOR = @PROJECT_VERSION_MINOR@;  ///< 项目次版本号；
+static const intmax_t RRDEMO__CDOM__C_LIBRARY__VERSION_PATCH = @PROJECT_VERSION_PATCH@;  ///< 项目补丁版本号；
+static const intmax_t RRDEMO__CDOM__C_LIBRARY__VERSION_TWEAK = @PROJECT_VERSION_TWEAK@;  ///< 项目微调版本号。
 
-#endif// _RRDEMOCDOMCLIB_CONFIG_H
+#endif// RRDEMO__CDOM__C_LIBRARY__CONFIG_H

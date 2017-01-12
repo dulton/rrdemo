@@ -1,26 +1,29 @@
 ﻿# RrDemo › Cdom
 # zhengrr
-# 2016-6-28 – 12-9
+# 2016-6-28 – 2017-1-12
 # The MIT License
 cmake_minimum_required(VERSION 3.0)
-project("RrDemo-Cdom" VERSION 0.0.0.0)
+project("RrDemo-Cdom" VERSION 1.3.3.7)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
 include("SourcesUtilities")
 include("SupportsUtilities")
 include("VariablesUtilities")
-
 make_product_variables()
 
 enable_highest_warning_level_support()
 
 add_subdirectory("deps")
-option(${PRODUCT_NAME_UPPER}-CLIB "Project C Lib." OFF)
-if(${PRODUCT_NAME_UPPER}-CLIB)
+option(${PRODUCT_NAME_UPPER}-C_LIBRARY "Project C Library." OFF)
+if(${PRODUCT_NAME_UPPER}-C_LIBRARY)
   add_subdirectory("prj-clib")
 endif()
-option(${PRODUCT_NAME_UPPER}-CPPEXE "Project CPP Exe." OFF)
-if(${PRODUCT_NAME_UPPER}-CPPEXE)
+option(${PRODUCT_NAME_UPPER}-CPP_LIBRARY "Project C++ Library." OFF)
+if(${PRODUCT_NAME_UPPER}-CPP_LIBRARY)
+  add_subdirectory("prj-cpplib")
+endif()
+option(${PRODUCT_NAME_UPPER}-CPP_EXECUTABLE "Project C++ Executable." OFF)
+if(${PRODUCT_NAME_UPPER}-CPP_EXECUTABLE)
   add_subdirectory("prj-cppexe")
 endif()
 add_subdirectory("spls")

@@ -7,34 +7,27 @@ namespace rrdemo {
 namespace cdom {
 namespace live555 {
 
+const char * const BasicUDPSource::OBJECT_TYPE_NAME {"FLVDemuxedH264VideoUDPSource"};
+
 void FLVDemuxedH264VideoUDPSource::
 whenNewIPv4UDPPacketReceived(const IPv4UDPPacketData &pkt, const SOCKADDR_IN &, const SOCKADDR_IN &)
 {
-    auto isReadyHalf = false;
-    if (!FLVTagHeader::IsTagHeader(pkt.data, pkt.length))
-        /*skip*/;
-    else if (1472 == flvBuffer.previousPacketDataSize)  // 上一包为“满包”，不似 FLV 尾
-        /*skip*/;
-    else
-        isReadyHalf = true;
-
-    if (isReadyHalf && 0 < flvBuffer.length) {
+    if (FLVTagHeader::IsTagHeader(pkt.data, pkt.length) && 0 < flvBuffer.length) {
         whenNewFLVBufferReady(flvBuffer);
         flvBuffer.length = 0;
         flvBuffer.packetCount = 0;
-    } else
+    } else {
         if (500 <= ++flvBuffer.packetCount)
-            envir() << "FLVDemuxedH264VideoUDPSource: " << flvBuffer.packetCount
+            envir() << getObjectTypeName() << ": " << flvBuffer.packetCount
             << " consecutive packets without FLV tag header, the port is receiving FLV stream?";
+    }
 
     const size_t actlen = fmin(pkt.length, flvBuffer.SIZE - flvBuffer.length);  // actual length
     memcpy_s(flvBuffer.data + flvBuffer.length, actlen, pkt.data, actlen);
     flvBuffer.length += actlen;
-    flvBuffer.previousPacketDataSize = pkt.length;
-    const auto dsclen = pkt.length - actlen;
-    if (0 < dsclen)
-        envir() << "FLVDemuxedH264VideoUDPSource: A FLV tag size is too large for FLV buffer, "
-        << dsclen << " bytes data has been discarded.\n";
+    if (0 < pkt.length - actlen)
+        envir() << getObjectTypeName() << ": A FLV tag size is too large for FLV buffer, "
+        << pkt.length - actlen << " bytes data has been discarded.\n";
 }
 
 void FLVDemuxedH264VideoUDPSource::
@@ -45,25 +38,39 @@ whenNewFLVBufferReady(FlashVideoBuffer &flvBuf)
 
     FLVTagHeader tagHeader;
     if (!tagHeader.parse(flvBuf.data, flvBuf.length)) {
-        envir() << "FLVDemuxedH264VideoUDPSource: Bad tag header.\n";
+        envir() << getObjectTypeName() << ": Bad tag header.\n";
         return;
     }
     if (!tagHeader.isVideo())
         return;
     const auto tagSize = TAG_HEADER_SIZE + tagHeader.getDataSize();
     if (flvBuf.length != tagSize + PREVIOUS_TAG_SIZE_SIZE) {
-        envir() << "FLVDemuxedH264VideoUDPSource: Bad DataSize.\n";
+        envir() << getObjectTypeName() << ": Bad DataSize.\n";
+        return;
+    }
+
+    FLVTagDataVideo tagData;
+    if (!tagData.parse(flvBuf.data + TAG_HEADER_SIZE, flvBuf.length - TAG_HEADER_SIZE)) {
+        envir() << getObjectTypeName() << ": Bad tag data (video).\n";
+        return;
+    }
+    if (!tagData.isAVC()) {
+        envir() << getObjectTypeName() << ": Bad CodecID.\n";
         return;
     }
 
     size_t cur {};  // cursor
-    FLVTagDataVideo tagData;
-    if (!tagData.parse(flvBuf.data + TAG_HEADER_SIZE, flvBuf.length - TAG_HEADER_SIZE)) {
-        envir() << "FLVDemuxedH264VideoUDPSource: Bad tag data.\n";
-        return;
-    }
-    if (!tagData.isAVC()) {
-        envir() << "FLVDemuxedH264VideoUDPSource: Bad CodecID.\n";
+    if (tagData.isAVCSequenceHeader()) {
+        /* AVC Sequence Header */
+
+    } else if (tagData.isAVCNALU()) {
+        /* AVC NAL Unit */
+
+    } else if (tagData.isAVCEndOfSequence()) {
+        /* AVC End of Sequence */
+
+    } else {
+        envir() << getObjectTypeName() << ": Bad AVCPacketType.\n";
         return;
     }
 
@@ -71,11 +78,11 @@ whenNewFLVBufferReady(FlashVideoBuffer &flvBuf)
 
     FLVPreviousTagSize preTagSize;
     if (!preTagSize.parse(flvBuf.data + tagSize, flvBuf.length - tagSize)) {
-        envir() << "FLVDemuxedH264VideoUDPSource: Bad previous tag size.\n";
+        envir() << getObjectTypeName() << ": Bad previous tag size.\n";
         return;
     }
-    if (tagSize != preTagSize.PreviousTagSize)
-        envir() << "FLVDemuxedH264VideoUDPSource: Bad PreviousTagSize.\n";
+    if (tagSize != preTagSize.getSize())
+        envir() << getObjectTypeName() << ": Bad PreviousTagSize.\n";
 }
 
 }// namespace live555
