@@ -1,16 +1,19 @@
 /** \file
+ *  \brief 音频数据传输流（ADTS，Audio Data Transport Stream）格式。
+ *  \sa [ISO/IEC 13818-7:2006(en)](
+ *          http://iso.org/obp/ui/#iso:std:iso-iec:13818:-7:ed-4:v1:en)
  *  \author zhengrr
- *  \date 2017-1-3 – 2017-1-10
+ *  \date 2017-1-3 – 13
  *  \copyright The MIT License
  */
-#ifndef RRDEMO__CDOM__LIVE555__AUDIO_DATA_TRANSPORT_STREAM_FRAME__HPP
-#define RRDEMO__CDOM__LIVE555__AUDIO_DATA_TRANSPORT_STREAM_FRAME__HPP
+#ifndef RRDEMO__CDOM__CPP_LIBRARY__AUDIO_DATA_TRANSPORT_STREAM__HPP
+#define RRDEMO__CDOM__CPP_LIBRARY__AUDIO_DATA_TRANSPORT_STREAM__HPP
 
 #include <cstdint>
 
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
 /// 音频数据传输流帧头。
 /** 因端序和实现差异导致的不可移植性，位域结构体仅供按字段访问，勿按内存整体访问。
@@ -51,8 +54,8 @@ struct AudioDataTransportStreamFrame {
 
 };
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo
 
-#endif// RRDEMO__CDOM__LIVE555__AUDIO_DATA_TRANSPORT_STREAM_FRAME__HPP
+#endif// RRDEMO__CDOM__CPP_LIBRARY__AUDIO_DATA_TRANSPORT_STREAM__HPP

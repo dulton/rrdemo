@@ -1,52 +1,36 @@
 /** \copyright The MIT License */
 #include "FlashVideo.hpp"
 
+#include "../../prj-clib/src/parse_bit_stream.h"
+
+namespace {
+size_t Bb(const size_t Byte, const size_t bit = 0) { return 8 * Byte + bit; };
+}
+
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
-bool FLVHeader::
-Parse(FLVHeader &hdr, const uint8_t * const data, const size_t len)
+bool FLVTag::
+Validate(const uint8_t * const data, const size_t size)
 {
-    if (len < MINIMUM_SIZE) return false;
-    hdr.signature = static_cast<uint32_t>(data[0]) << 16 |
-        static_cast<uint32_t>(data[1]) << 8 |
-        static_cast<uint32_t>(data[2]);
-    if (0x464C56u != hdr.signature) return false;
-    hdr.version = data[3];
-    hdr.typeFlagsReserved5 = (data[4] & 0xF8u) >> 3;
-    if (0x0u != hdr.typeFlagsReserved5) return false;
-    hdr.typeFlagsAudio = (data[4] & 0x04u) >> 2;
-    hdr.typeFlagsReserved1 = (data[4] & 0x02u) >> 1;
-    if (0x0u != hdr.typeFlagsReserved1) return false;
-    hdr.typeFlagsVideo = (data[4] & 0x01u) >> 0;
-    hdr.dataOffset = static_cast<uint32_t>(data[5]) << 24 |
-        static_cast<uint32_t>(data[6]) << 16 |
-        static_cast<uint32_t>(data[7]) << 8 |
-        static_cast<uint32_t>(data[8]);
-    return true;
+
 }
 
-bool FLVPreviousTagSize::
-Parse(FLVPreviousTagSize &preTagSize, const uint8_t * const data, const size_t len)
+bool FLVTag::
+parse(const uint8_t * const data, const size_t size)
 {
-    if (len < SIZE) return false;
-    preTagSize.previousTagSize = static_cast<uint32_t>(data[0]) << 24 |
-        static_cast<uint32_t>(data[1]) << 16 |
-        static_cast<uint32_t>(data[2]) << 8 |
-        static_cast<uint32_t>(data[3]);
-    return true;
-}
-
-bool FLVTagHeader::
-Parse(FLVTagHeader &tagHdr, const uint8_t * const data, const size_t len)
-{
-    if (len < SIZE) return false;
-    tagHdr.tagType = data[0];
-    if (!tagHdr.isAudio() && !tagHdr.isVideo() && !tagHdr.isScript()) return false;
-    tagHdr.dataSize = static_cast<uint32_t>(data[1]) << 16 |
-        static_cast<uint32_t>(data[2]) << 8 |
-        static_cast<uint32_t>(data[3]);
+    uint8_t tmp8;
+    uint32_t tmp32;
+    if (!zrr_parse8bits(&tmp8, data, size, 0, 2)) return false;
+    if (0 != (reserved2 = tmp8)) return false;
+    if (!zrr_parse8bits(&tmp8, data, size, 2, 1)) return false;
+    filter = tmp8;
+    if (!zrr_parse8bits(&tmp8, data, size, 3, 5)) return false;
+    if (0 != (tagType = tmp8)) return false;
+    if (!isAudio() && !isVideo() && !isScript()) return false;
+    if (!zrr_parse32bits(&tmp32, data, size, Bb(1), Bb(3))) return false;
+    dataSize = tmp32;
     if (tagHdr.isAudio() && tagHdr.getDataSize() < FLVTagDataAudio::MINIMUM_SIZE) return false;
     if (tagHdr.isVideo() && tagHdr.getDataSize() < FLVTagDataVideo::MINIMUM_SIZE) return false;
     if (tagHdr.isScript() && tagHdr.getDataSize() < FLVTagDataScript::MINIMUM_SIZE) return false;
@@ -58,6 +42,37 @@ Parse(FLVTagHeader &tagHdr, const uint8_t * const data, const size_t len)
         static_cast<uint32_t>(data[9]) << 8 |
         static_cast<uint32_t>(data[10]);
     if (0x000u != tagHdr.streamID) return false;
+    return true;
+}
+
+bool FLV::
+Validate(const uint8_t * const data, const size_t length)
+{
+    FLV tmp;
+    return tmp.parse(data, length);
+}
+
+bool FLV::
+parse(const uint8_t * const data, const size_t length)
+{
+    uint8_t tmp8;
+    uint32_t tmp32;
+    if (!zrr_parse32bits(&tmp32, data, length, Bb(0, 0), Bb(2, 7))) return false;
+    if ('FLV' != (signature = tmp32)) return false;
+    if (!zrr_parse8bits(&tmp8, data, length, Bb(3, 0), Bb(3, 7))) return false;
+    version = tmp8;
+    if (!zrr_parse8bits(&tmp8, data, length, Bb(4, 0), Bb(4, 4))) return false;
+    if (0 != (typeFlagsReserved5 = tmp8)) return false;
+    if (!zrr_parse8bits(&tmp8, data, length, Bb(4, 5), Bb(4, 5))) return false;
+    typeFlagsAudio = tmp8;
+    if (!zrr_parse8bits(&tmp8, data, length, Bb(4, 6), Bb(4, 6))) return false;
+    if (0 != (typeFlagsReserved1 = tmp8)) return false;
+    if (!zrr_parse8bits(&tmp8, data, length, Bb(4, 7), Bb(4, 7))) return false;
+    typeFlagsVideo = tmp8;
+    if (!zrr_parse32bits(&tmp32, data, length, Bb(5, 0), Bb(8, 7))) return false;
+    dataOffset = tmp32;
+    if (!zrr_parse32bits(&tmp32, data, length, Bb(dataOffset, 0), Bb(dataOffset + 3, 7))) return false;
+    if (0 != (previousTagSize0 = tmp32)) return false;
     return true;
 }
 
@@ -96,6 +111,6 @@ Parse(FLVTagDataVideo &tagData, const uint8_t* const data, const size_t len)
     return true;
 }
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo

@@ -1,22 +1,23 @@
 /** \copyright The MIT License */
 #include "NetworkAbstractLayerUnit.hpp"
 
+#include "../../prj-clib/src/parse_bit_stream.h"
+
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
 bool NetworkAbstractLayerUnit::
-IsHeader(const uint8_t * const data, const size_t length)
+Validate(const uint8_t * const data, const size_t size)
 {
-    if (length < sizeof(NALUHeader))
-        return false;
-    if (0x00u == data[0] && 0x00u == data[1] && 0x00u == data[2] && 0x01u == data[3])
+    uint32_t tmp;  // start_codes
+    if (zrr_parse32bits(&tmp, data, size, 0, 3 * 8) && 1 == tmp)
         return true;
-    if (0x00u == data[0] && 0x00u == data[1] && 0x01u == data[2])
+    if (zrr_parse32bits(&tmp, data, size, 0, 4 * 8) && 1 == tmp)
         return true;
     return false;
 }
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo

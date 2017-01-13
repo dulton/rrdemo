@@ -1,16 +1,19 @@
 /** \file
+ *  \brief 高级视频编码（AVC，Advanced Video Coding）格式。
+ *  \sa [ISO/IEC 14496-10:2014(en)](
+ *          http://iso.org/obp/ui/#iso:std:iso-iec:14496:-10:ed-8:v1:en)
  *  \author zhengrr
- *  \date 2017-1-11
+ *  \date 2017-1-11 – 13
  *  \copyright The MIT License
  */
-#ifndef RRDEMO__CDOM__LIVE555__ADVANCED_VIDEO_CODING__HPP
-#define RRDEMO__CDOM__LIVE555__ADVANCED_VIDEO_CODING__HPP
+#ifndef RRDEMO__CDOM__CPP_LIBRARY__ADVANCED_VIDEO_CODING__HPP
+#define RRDEMO__CDOM__CPP_LIBRARY__ADVANCED_VIDEO_CODING__HPP
 
 #include <cstdint>
 
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
 /// Advanced Video Coding Sequence Header
 /** 因端序和实现差异导致的不可移植性，位域结构体仅供按字段访问，勿按内存整体访问。
@@ -43,8 +46,8 @@ struct AVCSequenceHeader {
     ~AVCSequenceHeader();
 };
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo
 
-#endif// RRDEMO__CDOM__LIVE555__ADVANCED_VIDEO_CODING__HPP
+#endif// RRDEMO__CDOM__CPP_LIBRARY__ADVANCED_VIDEO_CODING__HPP

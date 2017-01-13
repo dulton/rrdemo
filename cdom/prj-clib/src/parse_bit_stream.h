@@ -17,56 +17,48 @@ extern "C" {
 #endif
 
         /** \brief 解析最长 8 个位（bit(s)）。
-         *  \param[out] result     解析结果；
-         *  \param[in]  data       数据；
-         *  \param[in]  len        数据长度（byte(s)）；
-         *  \param[in]  bits_start 位起点偏移量（bit）；
-         *  \param[in]  bits_end   位终点偏移量（bit）。
-         *  \return 成功与否。
+         *  \param data   数据源；
+         *  \param size   数据源尺寸（byte(s)）；
+         *  \param offset 解析偏移量（bit）；
+         *  \param length 解析长度（bit(s)）。
+         *  \return 解析结果。
          */
-        RRDEMO__CDOM__C_LIBRARY__API bool zrr_parse8bits(
-                uint8_t * const result,
-                const uint8_t * const data, const size_t len,
-                const size_t bits_start, const size_t bits_end);
+        RRDEMO__CDOM__C_LIBRARY__API uint8_t zrr_parse8bits(
+                const uint8_t * const data, const size_t size,
+                const size_t offset, const size_t length);
 
         /** \brief 解析最长 16 个位（bit(s)）。
-         *  \param[out] result     解析结果；
-         *  \param[in]  data       数据；
-         *  \param[in]  len        数据长度（byte(s)）；
-         *  \param[in]  bits_start 位起点偏移量（bit）；
-         *  \param[in]  bits_end   位终点偏移量（bit）。
-         *  \return 成功与否。
+         *  \param data   数据源；
+         *  \param size   数据源尺寸（byte(s)）；
+         *  \param offset 解析偏移量（bit）；
+         *  \param length 解析长度（bit(s)）。
+         *  \return 解析结果。
          */
-        RRDEMO__CDOM__C_LIBRARY__API bool zrr_parse16bits(
-                uint16_t * const result,
-                const uint8_t * const data, const size_t len,
-                const size_t bits_start, const size_t bits_end);
+        RRDEMO__CDOM__C_LIBRARY__API uint16_t zrr_parse16bits(
+                const uint8_t * const data, const size_t size,
+                const size_t offset, const size_t length);
 
         /** \brief 解析最长 32 个位（bit(s)）。
-         *  \param[out] result     解析结果；
-         *  \param[in]  data       数据；
-         *  \param[in]  len        数据长度（byte(s)）；
-         *  \param[in]  bits_start 位起点偏移量（bit）；
-         *  \param[in]  bits_end   位终点偏移量（bit）。
-         *  \return 成功与否。
+         *  \param data   数据源；
+         *  \param size   数据源尺寸（byte(s)）；
+         *  \param offset 解析偏移量（bit）；
+         *  \param length 解析长度（bit(s)）。
+         *  \return 解析结果。
          */
-        RRDEMO__CDOM__C_LIBRARY__API bool zrr_parse32bits(
-                uint32_t * const result,
-                const uint8_t * const data, const size_t len,
-                const size_t bits_start, const size_t bits_end);
+        RRDEMO__CDOM__C_LIBRARY__API uint32_t zrr_parse32bits(
+                const uint8_t * const data, const size_t size,
+                const size_t offset, const size_t length);
 
         /** \brief 解析最长 64 个位（bit(s)）。
-         *  \param[out] result     解析结果；
-         *  \param[in]  data       数据；
-         *  \param[in]  len        数据长度（byte(s)）；
-         *  \param[in]  bits_start 位起点偏移量（bit）；
-         *  \param[in]  bits_end   位终点偏移量（bit）。
-         *  \return 成功与否。
+         *  \param data   数据源；
+         *  \param size   数据源尺寸（byte(s)）；
+         *  \param offset 解析偏移量（bit）；
+         *  \param length 解析长度（bit(s)）。
+         *  \return 解析结果。
          */
-        RRDEMO__CDOM__C_LIBRARY__API bool zrr_parse64bits(
-                uint64_t * const result,
-                const uint8_t * const data, const size_t len,
-                const size_t bits_start, const size_t bits_end);
+        RRDEMO__CDOM__C_LIBRARY__API uint64_t zrr_parse64bits(
+                const uint8_t * const data, const size_t size,
+                const size_t offset, const size_t length);
 
 #ifdef __cplusplus
 }

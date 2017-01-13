@@ -1,70 +1,79 @@
 /** \file
- *  \sa <http://download.macromedia.com/f4v/video_file_format_spec_v10_1.pdf>
+ *  \brief Flash 视频（FLV、F4V，Flash Video）格式。
+ *  \sa [Adobe Flash Video File Format Specification Version 10.1](
+ *          http://download.macromedia.com/f4v/video_file_format_spec_v10_1.pdf)
  *  \author zhengrr
- *  \date 2017-1-4 – 11
+ *  \date 2017-1-4 – 13
  *  \copyright The MIT License
  */
-#ifndef RRDEMO__CDOM__LIVE555__FLASH_VIDEO__HPP
-#define RRDEMO__CDOM__LIVE555__FLASH_VIDEO__HPP
+#ifndef RRDEMO__CDOM__CPP_LIBRARY__FLASH_VIDEO__HPP
+#define RRDEMO__CDOM__CPP_LIBRARY__FLASH_VIDEO__HPP
 
 #include <cstdint>
 
-#include "../../prj-clib/src/parse_bit_stream.h"
+#include "api.hpp"
 
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
-/// Flash Video Header。
-/** 因端序和实现差异导致的不可移植性，位域结构体仅供按字段访问，勿按内存整体访问。
- */
-struct FLVHeader {
-    uint32_t signature : 24;          ///< 签名，固为 464C56(16) 'FLV'；
-    uint8_t  version : 8;             ///< 版本；
-    uint8_t  typeFlagsReserved5 : 5;  ///< 固为 0；
-    uint8_t  typeFlagsAudio : 1;      ///< 音频标志位；
-    uint8_t  typeFlagsReserved1 : 1;  ///< 固为 0；
-    uint8_t  typeFlagsVideo : 1;      ///< 视频标志位；
-    uint32_t dataOffset : 32;         ///< 文件体偏移量，通常为 9。
-    uint8_t getVersion() const { return version; }
-    bool haveAudio() const { return 0x1 == typeFlagsAudio; }
-    bool haveVideo() const { return 0x1 == typeFlagsVideo; }
-    uint32_t getOffset() const { return dataOffset; }
-    static const size_t MINIMUM_SIZE {9u/*bytes*/};
-    static bool Parse(FLVHeader &flvHeader, const uint8_t * const data, const size_t length);
-    bool parse(const uint8_t * const data, const size_t length) { return Parse(*this, data, length); }
-    static bool Validate(const uint8_t * const data, const size_t length) { FLVHeader tmp; return Parse(tmp, data, length); };
-};
-
-/// Flash Video Previous Tag Size。
-struct FLVPreviousTagSize {
-    uint32_t previousTagSize : 32;
-    uint32_t getSize() const { return previousTagSize; }
-    static const size_t SIZE {4u/*bytes*/};
-    static bool Parse(FLVPreviousTagSize &flvPreviousTagSize, const uint8_t * const data, const size_t length);
-    bool parse(const uint8_t * const data, const size_t length) { return Parse(*this, data, length); }
-};
-
-/// Flash Video Tag Header。
-struct FLVTagHeader {
-    uint8_t  tagType : 8;            ///< Tag 类型；
+struct RRDEMO__CDOM__CPP_LIBRARY__API FLVTag {
+    /* Tag Header */
+    uint8_t  reserved2 : 2;          ///< 保留位，恒为 0；
+    uint8_t  filter : 1;             ///< 预处理标志位；
+    uint8_t  tagType : 5;            ///< Tag 类型；
     uint32_t dataSize : 24;          ///< 数据区尺寸；
     uint32_t timestamp : 24;         ///< 时间戳；
     uint8_t  timestampExtended : 8;  ///< 时间戳扩展；
-    uint32_t streamID : 24;          ///< 固为 0。
-    bool isAudio() const { return 0x08u == tagType; }
-    bool isVideo() const { return 0x09u == tagType; }
-    bool isScript() const { return 0x12u == tagType; }
+    uint32_t streamID : 24;          ///< 恒为 0。
+    /* Tag Data */
+
+    /* Tag Size */
+    uint32_t previousTagSize : 32;   ///< 后置尺寸。
+
+    bool isAudio() const { return 0x08 == tagType; }
+    bool isVideo() const { return 0x09 == tagType; }
+    bool isScript() const { return 0x12 == tagType; }
     uint32_t getDataSize() const { return dataSize; }
     uint32_t getTimestamp() const { return static_cast<uint32_t>(timestampExtended) << 24 | static_cast<uint32_t>(timestamp); }
-    static const size_t SIZE {11u/*bytes*/};
-    static bool Parse(FLVTagHeader &flvTagHeader, const uint8_t * const data, const size_t length);
-    bool parse(const uint8_t * const data, const size_t length) { return Parse(*this, data, length); }
-    static bool Validate(const uint8_t * const data, const size_t length) { FLVTagHeader tmp; return Parse(tmp, data, length); }
-};
+
+    /// 检验数据是否符合格式。
+    static bool Validate(const uint8_t * const data, const size_t size);
+
+    /// 解析数据。
+    bool parse(const uint8_t * const data, const size_t size);
+
+};// struct FLVTag
+
+struct RRDEMO__CDOM__CPP_LIBRARY__API FLV {
+    /* Header */
+    uint32_t signature : 24;          ///< 签名，恒为 'F'(0x46) 'L'(0x4C) 'V'(0x56)；
+    uint8_t  version : 8;             ///< 版本号；
+    uint8_t  typeFlagsReserved5 : 5;  ///< 保留位，恒为 0；
+    uint8_t  typeFlagsAudio : 1;      ///< 音频标志位；
+    uint8_t  typeFlagsReserved1 : 1;  ///< 保留位，恒为 0；
+    uint8_t  typeFlagsVideo : 1;      ///< 视频标志位；
+    uint32_t dataOffset : 32;         ///< 数据偏移量，通常为 9。
+    /* Header Size */
+    uint32_t previousTagSize0 : 32;   ///< 头的后置尺寸，恒为 0。
+    /* Tags */
+    FLVTag *tags {};
+
+    uint8_t getVersion() const { return version; }
+    bool hasAudio() const { return 1 == typeFlagsAudio; }
+    bool hasVideo() const { return 1 == typeFlagsVideo; }
+    uint32_t getOffset() const { return dataOffset; }
+
+    /// 检验数据是否符合格式。
+    static bool Validate(const uint8_t * const data, const size_t size);
+
+    /// 解析数据。
+    bool parse(const uint8_t * const data, const size_t size);
+
+};// struct FLV
 
 /// Flash Video Tag Data (Audio)。
-struct FLVTagDataAudio {
+struct RRDEMO__CDOM__CPP_LIBRARY__API FLVTagDataAudio {
     uint8_t soundFormat : 4;  ///< 音频格式；
     uint8_t soundRate : 2;    ///< 采样率；
     uint8_t soundSize : 1;    ///< 采样尺寸；
@@ -106,7 +115,7 @@ struct FLVTagDataAudio {
 };
 
 /// Flash Video Tag Data (Video)。
-struct FLVTagDataVideo {
+struct RRDEMO__CDOM__CPP_LIBRARY__API FLVTagDataVideo {
     uint8_t frameType : 4;  ///< 帧类型；
     uint8_t codecID : 4;    ///< 视频格式。
     union {
@@ -140,7 +149,7 @@ struct FLVTagDataVideo {
 };
 
 /// Flash Video Tag Data (Script)。
-struct FLVTagDataScript {
+struct RRDEMO__CDOM__CPP_LIBRARY__API FLVTagDataScript {
     struct Object {
         struct {
             uint16_t length : 16;
@@ -155,8 +164,8 @@ struct FLVTagDataScript {
     static const size_t MINIMUM_SIZE {4u/*bytes*/};
 };
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo
 
-#endif// RRDEMO__CDOM__LIVE555__FLASH_VIDEO__HPP
+#endif// RRDEMO__CDOM__CPP_LIBRARY__FLASH_VIDEO__HPP
