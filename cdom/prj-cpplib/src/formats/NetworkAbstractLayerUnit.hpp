@@ -3,7 +3,7 @@
  *  \sa [ISO/IEC 14496-10:2014(en)](
  *          http://iso.org/obp/ui/#iso:std:iso-iec:14496:-10:ed-8:v1:en)
  *  \author zhengrr
- *  \date 2016-12-22 – 2017-1-13
+ *  \date 2016-12-22 – 2017-1-14
  *  \copyright The MIT License
  */
 #ifndef RRDEMO__CDOM__CPP_LIBRARY__NETWORK_ABSTRACT_LAYER__HPP
@@ -43,12 +43,12 @@ struct RRDEMO__CDOM__CPP_LIBRARY__API NALUPictureParameterSet {};
 /// 网络抽象层单元。
 struct RRDEMO__CDOM__CPP_LIBRARY__API NetworkAbstractLayerUnit {
     union {
-        uint32_t variation4bytes : 32;  ///< 起始码 4 字节变种，固为 00000001(16)；
-        uint32_t variation3bytes : 24;  ///< 起始码 3 字节变种，固为 000001(16)。
-    } start_codes;                   ///< 起始码；
-    uint8_t forbidden_zero_bit : 1;  ///< 禁止位，固为 0；
-    uint8_t nal_ref_idc : 2;         ///< 参考重要度；
-    uint8_t nal_unit_type : 5;       ///< 网络抽象层单元类型。
+        uint32_t start_codes_4bytes : 32;  ///< 起始码 4 字节变种，恒为 00000001(16)
+        uint32_t start_codes_3bytes : 24;  ///< 起始码 3 字节变种，恒为 000001(16)
+    };
+    uint8_t forbidden_zero_bit : 1;        ///< 禁止位，固为 0
+    uint8_t nal_ref_idc : 2;               ///< 参考重要度
+    uint8_t nal_unit_type : 5;             ///< 单元类型
 
     /// 检验数据是否符合格式。
     static bool Validate(const uint8_t * const data, const size_t size);

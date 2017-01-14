@@ -1,59 +1,42 @@
 /** \copyright The MIT License */
 #include "AdvancedVideoCoding.hpp"
 
+#include "../../prj-clib/src/parse_bit_stream.h"
+
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
 bool AVCSequenceHeader::
-Parse(AVCSequenceHeader &seqHdr, const uint8_t* const data, const size_t len)
+parse(const uint8_t * const data, const size_t size)
 {
-    if (len < MINIMUM_SIZE) return false;
-    seqHdr.configurationVersion = data[0];
-    seqHdr.avcProfileIndication = data[1];
-    seqHdr.profileCompatibility = data[2];
-    seqHdr.avcLevelIndication = data[3];
-    seqHdr.reserver6 = (data[4] & 0xFCu) >> 2;
-    if (0x3Fu != seqHdr.reserver6) return false;
-    seqHdr.lengthSizeMinusOne = data[4] & 0x03u;
-    seqHdr.reserver3 = (data[5] & 0xE0u) >> 5;
-    if (0x7u != seqHdr.reserver3) return false;
-    seqHdr.numOfSequenceParameterSets = data[5] & 0x1Fu;
-    /* Validate */
-    size_t cur {6};  // cursor, offset 6, ordinal 7
-    uint16_t spsLen;
-    for (auto i = 0; i < seqHdr.getNumOfSPSs(); ++i) {
-        if (len < cur + 2) return false;
-        spsLen = static_cast<uint16_t>(data[cur]) << 8 |
-            static_cast<uint16_t>(data[cur + 1]);
-        cur += 2;
-        if (len < cur + spsLen) return false;
-        cur += spsLen;
+    size_t cursor {};
+    if (size < 7) return false;
+    configurationVersion = zrr_parse8bits(data, size, cursor, 8); cursor += 8;
+    if (1 != configurationVersion) return false;
+    avcProfileIndication = zrr_parse8bits(data, size, cursor, 8); cursor += 8;
+    profileCompatibility = zrr_parse8bits(data, size, cursor, 8); cursor += 8;
+    avcLevelIndication = zrr_parse8bits(data, size, cursor, 8); cursor += 8;
+    reserver6 = zrr_parse8bits(data, size, cursor, 6); cursor += 6;
+    if (0x3F != reserver6) return false;
+    lengthSizeMinusOne = zrr_parse8bits(data, size, cursor, 2); cursor += 2;
+    reserver3 = zrr_parse8bits(data, size, cursor, 3); cursor += 3;
+    if (7 != reserver3) return false;
+    numOfSequenceParameterSets = zrr_parse8bits(data, size, cursor, 5); cursor += 5;
+    for (auto i = 0; i < getNumOfSPSs(); ++i) {
+        if (size * 8 < cursor + 16) return false;
+        cursor += 16 + 8 * zrr_parse16bits(data, size, cursor, 16);
     }
-    if (len < cur + 2) return false;
-    seqHdr.numOfPictureParameterSets = static_cast<uint16_t>(data[cur]) << 8 |
-        static_cast<uint16_t>(data[cur + 1]);
-    cur += 2;
-    uint16_t ppsLen;
-    for (auto i = 0; i < seqHdr.getNumOfPPSs(); ++i) {
-        if (len < cur + 2) return false;
-        ppsLen = static_cast<uint16_t>(data[cur]) << 8 |
-            static_cast<uint16_t>(data[cur + 1]);
-        cur += 2;
-        if (len < cur + ppsLen) return false;
-        cur += ppsLen;
+    if (size * 8 < cursor + 8) return false;
+    numOfPictureParameterSets = zrr_parse8bits(data, size, cursor, 8); cursor += 8;
+    for (auto i = 0; i < getNumOfPPSs(); ++i) {
+        if (size * 8 < cursor + 16) return false;
+        cursor += 16 + 8 * zrr_parse16bits(data, size, cursor, 16);
     }
-    /* TODO:Allocate */
-    seqHdr.allocated = true;
+    if (size * 8 < cursor) return false;
     return true;
 }
 
-AVCSequenceHeader::
-~AVCSequenceHeader()
-{
-    if (!allocated) return;
-}
-
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo

@@ -10,11 +10,10 @@ namespace cpp_library {
 bool NetworkAbstractLayerUnit::
 Validate(const uint8_t * const data, const size_t size)
 {
-    uint32_t tmp;  // start_codes
-    if (zrr_parse32bits(&tmp, data, size, 0, 3 * 8) && 1 == tmp)
-        return true;
-    if (zrr_parse32bits(&tmp, data, size, 0, 4 * 8) && 1 == tmp)
-        return true;
+    if (3 <= size &&
+        1 == zrr_parse32bits(data, size, 0, 3 * 8)) return true;
+    if (4 <= size &&
+        1 == zrr_parse32bits(data, size, 0, 4 * 8)) return true;
     return false;
 }
 

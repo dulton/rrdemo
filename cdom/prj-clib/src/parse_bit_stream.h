@@ -1,14 +1,13 @@
 /** \file
  *  \brief 解析位流（bit stream）。
  *  \author zhengrr
- *  \data 2017-1-6 – 12
+ *  \date 2017-1-6 – 14
  *  \copyright The MIT License
  */
 #ifndef RRDEMO__CDOM__C_LIBRARY__PARSE_BIT_STREAM__H
 #define RRDEMO__CDOM__C_LIBRARY__PARSE_BIT_STREAM__H
 
 #include <stdint.h>
-#include <stdbool.h>
 
 #include "api.h"
 
@@ -18,9 +17,9 @@ extern "C" {
 
         /** \brief 解析最长 8 个位（bit(s)）。
          *  \param data   数据源；
-         *  \param size   数据源尺寸（byte(s)）；
-         *  \param offset 解析偏移量（bit）；
-         *  \param length 解析长度（bit(s)）。
+         *  \param size   byte(s)，数据源尺寸；
+         *  \param offset bit(s)，解析偏移量；
+         *  \param length bit(s)，解析长度。
          *  \return 解析结果。
          */
         RRDEMO__CDOM__C_LIBRARY__API uint8_t zrr_parse8bits(
@@ -29,9 +28,9 @@ extern "C" {
 
         /** \brief 解析最长 16 个位（bit(s)）。
          *  \param data   数据源；
-         *  \param size   数据源尺寸（byte(s)）；
-         *  \param offset 解析偏移量（bit）；
-         *  \param length 解析长度（bit(s)）。
+         *  \param size   byte(s)，数据源尺寸；
+         *  \param offset bit(s)，解析偏移量；
+         *  \param length bit(s)，解析长度。
          *  \return 解析结果。
          */
         RRDEMO__CDOM__C_LIBRARY__API uint16_t zrr_parse16bits(
@@ -40,9 +39,9 @@ extern "C" {
 
         /** \brief 解析最长 32 个位（bit(s)）。
          *  \param data   数据源；
-         *  \param size   数据源尺寸（byte(s)）；
-         *  \param offset 解析偏移量（bit）；
-         *  \param length 解析长度（bit(s)）。
+         *  \param size   byte(s)，数据源尺寸；
+         *  \param offset bit(s)，解析偏移量；
+         *  \param length bit(s)，解析长度。
          *  \return 解析结果。
          */
         RRDEMO__CDOM__C_LIBRARY__API uint32_t zrr_parse32bits(
@@ -51,9 +50,9 @@ extern "C" {
 
         /** \brief 解析最长 64 个位（bit(s)）。
          *  \param data   数据源；
-         *  \param size   数据源尺寸（byte(s)）；
-         *  \param offset 解析偏移量（bit）；
-         *  \param length 解析长度（bit(s)）。
+         *  \param size   byte(s)，数据源尺寸；
+         *  \param offset bit(s)，解析偏移量；
+         *  \param length bit(s)，解析长度。
          *  \return 解析结果。
          */
         RRDEMO__CDOM__C_LIBRARY__API uint64_t zrr_parse64bits(

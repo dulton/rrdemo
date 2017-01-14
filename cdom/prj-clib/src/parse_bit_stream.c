@@ -1,6 +1,7 @@
 /** \copyright The MIT License */
 #include "parse_bit_stream.h"
 
+#include <assert.h>
 #include <math.h>
 
 static const size_t BYTE_BITS = 8;
@@ -19,8 +20,8 @@ static const uint8_t BITS_MASK_TABLE[8][8] = {
 uintmax_t parse_bits(const uint8_t * const data, const size_t size,
                      const size_t offset, const size_t length)
 {
-        if (sizeof(uintmax_t) * BYTE_BITS < length) return false;
-        if (size * BYTE_BITS < offset + length) return false;
+        assert(length <= sizeof(uintmax_t) * BYTE_BITS);
+        assert(offset + length <= size * BYTE_BITS);
         uintmax_t result = 0;
         size_t bytec = offset / BYTE_BITS;                      // byte cursor
         size_t bitc = (size_t)fmax(offset, bytec * BYTE_BITS);  // bit cursor
@@ -30,45 +31,33 @@ uintmax_t parse_bits(const uint8_t * const data, const size_t size,
                 result |= (data[bytec] & BITS_MASK_TABLE[bitc % BYTE_BITS][splitc % BYTE_BITS]) << (offset + length - splitc);
                 bitc == ++bytec * BYTE_BITS;
         } while (bitc + 7 < offset + length);
-        return true;
+        return result;
 }
 
 uint8_t zrr_parse8bits(const uint8_t * const data, const size_t size,
                        const size_t offset, const size_t length)
 {
-        if (sizeof(uint8_t) * BYTE_BITS < length) return false;
-        uintmax_t tmp;
-        if (!parse_bits(&tmp, data, size, offset, length)) return false;
-        *result = (uint8_t)tmp;
-        return true;
+        assert(length <= sizeof(uint8_t) * BYTE_BITS);
+        return (uint8_t)parse_bits(data, size, offset, length);
 }
 
 uint16_t zrr_parse16bits(const uint8_t * const data, const size_t size,
                          const size_t offset, const size_t length)
 {
-        if (sizeof(uint16_t) * BYTE_BITS < length) return false;
-        uintmax_t tmp;
-        if (!parse_bits(&tmp, data, size, offset, length)) return false;
-        *result = (uint16_t)tmp;
-        return true;
+        assert(length <= sizeof(uint16_t) * BYTE_BITS);
+        return (uint16_t)parse_bits(data, size, offset, length);
 }
 
 uint32_t zrr_parse32bits(const uint8_t * const data, const size_t size,
                          const size_t offset, const size_t length)
 {
-        if (sizeof(uint32_t) * BYTE_BITS < length) return false;
-        uintmax_t tmp;
-        if (!parse_bits(&tmp, data, size, offset, length)) return false;
-        *result = (uint32_t)tmp;
-        return true;
+        assert(length <= sizeof(uint32_t) * BYTE_BITS);
+        return (uint32_t)parse_bits(data, size, offset, length);
 }
 
 uint64_t zrr_parse64bits(const uint8_t * const data, const size_t size,
                          const size_t offset, const size_t length)
 {
-        if (sizeof(uint64_t) * BYTE_BITS < length) return false;
-        uintmax_t tmp;
-        if (!parse_bits(&tmp, data, size, offset, length)) return false;
-        *result = (uint64_t)tmp;
-        return true;
+        assert(length <= sizeof(uint64_t) * BYTE_BITS);
+        return (uint64_t)parse_bits(data, size, offset, length);
 }
