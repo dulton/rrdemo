@@ -37,7 +37,7 @@ struct RRDEMO__CDOM__CPP_LIBRARY__API AudioDataTransportStreamFrame {
     uint16_t adts_buffer_fullness : 11;               ///< 恒为 7FF(16)
     uint8_t  number_of_raw_data_blocks_in_frame : 2;  ///< 恒为 0
     /* Data */
-    uint8_t *data;                                    ///< 数据
+    uint8_t *aacData;                                 ///< AAC 数据
 
     uint8_t getProfile() const { return profile; }
     uint8_t getSamplingFrequencyIndex() const { return sampling_frequency_index; }

@@ -39,7 +39,7 @@ parse(const uint8_t * const data, const size_t size)
         avcPacketType = zrr_parse8bits(data, size, cursor, 8); cursor += 8;
         if (2 < avcPacketType) return false;
         auto tmp = zrr_parse32bits(data, size, cursor, 24);
-        if (1 == tmp & 0x80000000) tmp = ~tmp + 1;
+        if (1 == (tmp & 0x80000000)) tmp = ~tmp + 1;
         avcCompositionTime = static_cast<int32_t>(tmp);
         if (!isAVCNALU() && 0 != getCompositionTime()) return false;
     }

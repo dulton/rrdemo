@@ -1,16 +1,16 @@
 /** \file
  *  \author zhengrr
- *  \date 2017-1-6 – 10
+ *  \date 2017-1-6 – 16
  *  \copyright The MIT License
  */
-#ifndef RRDEMO__CDOM__LIVE555__CIRCULAR_BYTES_BUFFER__HPP
-#define RRDEMO__CDOM__LIVE555__CIRCULAR_BYTES_BUFFER__HPP
+#ifndef RRDEMO__CDOM__CPP_LIBRARY__CIRCULAR_BYTES_BUFFER__HPP
+#define RRDEMO__CDOM__CPP_LIBRARY__CIRCULAR_BYTES_BUFFER__HPP
 
 #include "BytesBuffer.hpp"
 
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
 /// 循环字节缓存。
 class CircularBytesBuffer final : public BytesBuffer {
@@ -50,10 +50,10 @@ private:
 
 };// class CircularBytesBuffer
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo
 
 #include "CircularBytesBuffer.inl"
 
-#endif// RRDEMO__CDOM__LIVE555__CIRCULAR_BYTES_BUFFER__HPP
+#endif// RRDEMO__CDOM__CPP_LIBRARY__CIRCULAR_BYTES_BUFFER__HPP

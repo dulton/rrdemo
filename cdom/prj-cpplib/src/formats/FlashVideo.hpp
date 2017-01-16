@@ -3,7 +3,7 @@
  *  \sa [Adobe Flash Video File Format Specification Version 10.1](
  *          http://download.macromedia.com/f4v/video_file_format_spec_v10_1.pdf)
  *  \author zhengrr
- *  \date 2017-1-4 – 14
+ *  \date 2017-1-4 – 16
  *  \copyright The MIT License
  */
 #ifndef RRDEMO__CDOM__CPP_LIBRARY__FLASH_VIDEO__HPP
@@ -88,6 +88,7 @@ struct RRDEMO__CDOM__CPP_LIBRARY__API FLVTagDataVideo {
     bool isAVCEndOfSequence() const { return isAVC() && 2 == avcPacketType; }
     int32_t getCompositionTime() const { return isAVCNALU() ? avcCompositionTime : 0; }
 
+    /// 解析数据。
     bool parse(const uint8_t * const data, const size_t size);
 
 };// struct FLVTagDataVideo

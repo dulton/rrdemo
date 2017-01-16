@@ -4,6 +4,7 @@ string(CONCAT exports "-D" "${exports}" "__EXPORTS")
 add_definitions(${exports})
 
 if(MSVC)
+  add_compile_options("/wd4464")  # relative include path contains '..'
   add_compile_options("/wd4514")  # unreferenced inline function
   add_compile_options("/wd4819")  # character cannot be represented
   add_compile_options("/wd4820")  # bytes padding added

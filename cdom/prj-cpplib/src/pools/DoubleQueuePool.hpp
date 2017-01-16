@@ -1,19 +1,19 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-30 – 2017-1-10
+ *  \date 2016-12-30 – 2017-1-16
  *  \copyright The MIT License
  */
-#ifndef RRDEMO__CDOM__LIVE555__DOUBLE_QUEUE_POOL__HPP
-#define RRDEMO__CDOM__LIVE555__DOUBLE_QUEUE_POOL__HPP
+#ifndef RRDEMO__CDOM__CPP_LIBRARY__DOUBLE_QUEUE_POOL__HPP
+#define RRDEMO__CDOM__CPP_LIBRARY__DOUBLE_QUEUE_POOL__HPP
 
 #include <mutex>
 #include <queue>
 
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
-/// 缓存池。
+/// 双队列资源池。
 template <typename ResourceType> class DoubleQueuePool final {
     explicit DoubleQueuePool(const DoubleQueuePool &) = delete;
     explicit DoubleQueuePool(DoubleQueuePool &&) = delete;
@@ -53,16 +53,16 @@ public:
     ResourceType *allocateForce();
 
 private:
-    std::queue<ResourceType * const> loadQueue;  //< 负载资源队列。
-    std::queue<ResourceType * const> idleQueue;  //< 闲置资源队列。
-    std::mutex queueMutex;                       //< 资源队列锁。
+    std::queue<ResourceType * const> loadQueue;  ///< 负载资源队列
+    std::queue<ResourceType * const> idleQueue;  ///< 闲置资源队列
+    std::mutex queueMutex;                       ///< 资源队列锁
 
 };// class DoubleQueuePool
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo
 
 #include "DoubleQueuePool.inl"
 
-#endif// RRDEMO__CDOM__LIVE555__DOUBLE_QUEUE_POOL__HPP
+#endif// RRDEMO__CDOM__CPP_LIBRARY__DOUBLE_QUEUE_POOL__HPP

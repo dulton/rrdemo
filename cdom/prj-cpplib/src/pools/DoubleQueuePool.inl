@@ -1,12 +1,12 @@
 /** \copyright The MIT License */
-#ifndef RRDEMO__CDOM__LIVE555__DOUBLE_QUEUE_POOL__INL
-#define RRDEMO__CDOM__LIVE555__DOUBLE_QUEUE_POOL__INL
+#ifndef RRDEMO__CDOM__CPP_LIBRARY__DOUBLE_QUEUE_POOL__INL
+#define RRDEMO__CDOM__CPP_LIBRARY__DOUBLE_QUEUE_POOL__INL
 
 #include "DoubleQueuePool.hpp"
 
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
 template <typename ResourceType> DoubleQueuePool<ResourceType>::
 DoubleQueuePool(const size_t size)
@@ -111,8 +111,8 @@ allocateForce()
     return buf;
 }
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo
 
-#endif// RRDEMO__CDOM__LIVE555__DOUBLE_QUEUE_POOL__INL
+#endif// RRDEMO__CDOM__CPP_LIBRARY__DOUBLE_QUEUE_POOL__INL

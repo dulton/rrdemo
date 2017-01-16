@@ -1,6 +1,6 @@
 /** \copyright The MIT License */
-#ifndef RRDEMO__CDOM__LIVE555__CIRCULAR_BYTES_BUFFER__INL
-#define RRDEMO__CDOM__LIVE555__CIRCULAR_BYTES_BUFFER__INL
+#ifndef RRDEMO__CDOM__CPP_LIBRARY__CIRCULAR_BYTES_BUFFER__INL
+#define RRDEMO__CDOM__CPP_LIBRARY__CIRCULAR_BYTES_BUFFER__INL
 
 #include "CircularBytesBuffer.hpp"
 
@@ -10,7 +10,7 @@
 
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
 size_t CircularBytesBuffer::
 getIdleLength() const
@@ -78,8 +78,8 @@ haveInvertedPoint() const
     return SIZE < cursor + length;
 }
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo
 
-#endif// RRDEMO__CDOM__LIVE555__CIRCULAR_BYTES_BUFFER__INL
+#endif// RRDEMO__CDOM__CPP_LIBRARY__CIRCULAR_BYTES_BUFFER__INL

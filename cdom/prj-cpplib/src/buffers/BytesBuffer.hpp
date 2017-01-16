@@ -1,19 +1,19 @@
 /** \file
  *  \author zhengrr
- *  \date 2016-12-30 – 2017-1-9
+ *  \date 2016-12-30 – 2017-1-16
  *  \copyright The MIT License
  */
-#ifndef RRDEMO__CDOM__LIVE555__BYTES_BUFFER__HPP
-#define RRDEMO__CDOM__LIVE555__BYTES_BUFFER__HPP
+#ifndef RRDEMO__CDOM__CPP_LIBRARY__BYTES_BUFFER__HPP
+#define RRDEMO__CDOM__CPP_LIBRARY__BYTES_BUFFER__HPP
 
 #include <cstdint>
 
 namespace rrdemo {
 namespace cdom {
-namespace live555 {
+namespace cpp_library {
 
 /// 字节缓存。
-/** 为确保效率而全面使用内联，舍弃了虚函数和多态，允许继承仅为代码复用。
+/** \warning 为确保效率而全面使用内联，舍弃了虚函数和多态，允许继承仅为代码复用。
  */
 class BytesBuffer {
     explicit BytesBuffer(const BytesBuffer &) = delete;
@@ -81,17 +81,17 @@ public:
     inline void reset();
 
 protected:
-    const size_t SIZE;  //< 缓存尺寸；
-    uint8_t *data {};   //< 缓存数据；
-    size_t cursor {};   //< 起始游标偏移量；
-    size_t length {};   //< 负载量。
+    const size_t SIZE;  ///< 缓存尺寸
+    uint8_t *data {};   ///< 缓存数据
+    size_t cursor {};   ///< 起始游标偏移量
+    size_t length {};   ///< 负载量
 
 };// class BytesBuffer
 
-}// namespace live555
+}// namespace cpp_library
 }// namespace cdom
 }// namespace rrdemo
 
 #include "BytesBuffer.inl"
 
-#endif// RRDEMO__CDOM__LIVE555__BYTES_BUFFER__HPP
+#endif// RRDEMO__CDOM__CPP_LIBRARY__BYTES_BUFFER__HPP

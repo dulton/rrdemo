@@ -29,7 +29,7 @@ uintmax_t parse_bits(const uint8_t * const data, const size_t size,
         do {
                 splitc = (size_t)fmin(bytec * BYTE_BITS + 7, offset + length);
                 result |= (data[bytec] & BITS_MASK_TABLE[bitc % BYTE_BITS][splitc % BYTE_BITS]) << (offset + length - splitc);
-                bitc == ++bytec * BYTE_BITS;
+                bitc = ++bytec * BYTE_BITS;
         } while (bitc + 7 < offset + length);
         return result;
 }
